@@ -3,9 +3,13 @@ package com.mycompany.myweb.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Event {
 	private int eid;
+	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
 	private Date estartperiod;
+	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
 	private Date elastperiod;
 	private String econtents;
 	private String esavedfile;

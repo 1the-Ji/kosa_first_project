@@ -1,5 +1,6 @@
 package com.mycompany.myweb.dto;
 
+import java.util.Date;
 
 public class Store {
 	
@@ -10,8 +11,14 @@ public class Store {
 	private String slocal;	//매장 지점명
 	private String saddr;	//매장 주소
 	private String stel;	//매장 전화번호
-	private int sopen;		//매장 오픈시간
-	private int sclosed;	//매장 문닫는시간
+	//private int sopen;		//매장 오픈시간(4자리씩 : 시&분)(ex : 1040 <- 이렇게 입력)
+	//private int sclosed;	//매장 문닫는시간(4자리씩 : 시&분)(ex : 1240 <- 이렇게 입력)
+	
+	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
+	private Date sopen;
+	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
+	private Date sclosed;
+	
 	private String sbeacon;	//비콘 번호
 	
 	public String getSid() {
@@ -57,16 +64,20 @@ public class Store {
 	public void setStel(String stel) {
 		this.stel = stel;
 	}
-	public int getSopen() {
+	//이명진
+	public Date getSopen() {
 		return sopen;
 	}
-	public void setSopen(int sopen) {
+	//이명진
+	public void setSopen(Date sopen) {
 		this.sopen = sopen;
 	}
-	public int getSclosed() {
+	//이명진
+	public Date getSclosed() {
 		return sclosed;
 	}
-	public void setSclosed(int sclosed) {
+	//이명진
+	public void setSclosed(Date sclosed) {
 		this.sclosed = sclosed;
 	}
 	public String getSbeacon() {
