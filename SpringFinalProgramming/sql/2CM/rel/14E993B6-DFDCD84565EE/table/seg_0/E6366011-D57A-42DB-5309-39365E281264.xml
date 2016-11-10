@@ -1,0 +1,135 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E6366011-D57A-42DB-5309-39365E281264" name="store_table">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:29:24 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="sid" id="910D4981-5B78-5F29-F3CA-273FCA632592">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="semail" id="33AB7549-D95A-5B98-5197-84BE9B0E5BB5">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="spw" id="81318BE1-8698-BEE9-4FA5-7E908E122692">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sname" id="654A8563-80A7-EE71-ABB0-B6FAC0542673">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="slocal" id="D00F5FB4-27F1-6CA3-2E98-D7907ECD39ED">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="saddr" id="6226D138-046E-3E95-9282-7E3F0FC09F21">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="stel" id="C91B281F-84BF-AF19-B5D1-33F0EF5EBB69">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sopen" id="850EFFEA-97BC-D1B0-B27A-47A5E71C7FB3">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<ownDataTypeParameters>,4,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sclosed" id="C3B17167-C874-7D92-E307-A063BB26751A">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<ownDataTypeParameters>,4,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sbeacon" id="417BDCA2-62E3-FF53-8E1A-EB4D0B884478">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:32:47 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C1474675-E7F7-D672-0B60-D7527553423D" name="store_table_PK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:41:23 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="910D4981-5B78-5F29-F3CA-273FCA632592"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

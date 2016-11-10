@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="582B5336-529B-6C7C-DA31-FB0E54A6E35D" name="order_table">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:26:20 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<ordsAlias>table_13</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="oid" id="3218FFD6-30F6-8BF8-B7D8-C65F638D7891">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:43:01 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="oodercount" id="2776F71B-803F-48EF-BD07-60AE47E24CB7">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:44:17 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<ownDataTypeParameters>,100,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ototalprice" id="3C7FBEA4-40F9-872A-99D7-2F44B0B020A0">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:45:16 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="otime" id="C36CD4EF-C57F-C15B-5395-F1F8B87C1374">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:46:18 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="xid" id="4BAD4615-B60C-FB13-2AB6-726B0D97B074">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:59:13 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6211409C-25B9-E209-F733-A3EDE12D893B" referredColumn="AF0AF3A1-C944-980D-F160-0088F6466004"/>
+</associations>
+</Column>
+<Column name="mid" id="D92B0FA3-D45C-083F-6E43-C01D923A1AB6">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:59:33 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A7AD147D-F4B3-109E-C1C2-99D7315D23D0" referredColumn="DF2B8ACE-E8EA-A2DD-6858-757593456905"/>
+</associations>
+</Column>
+<Column name="user_id" id="BC8ED5B3-AE65-AEFD-80E7-5FCAE429895E">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 13:26:03 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9E9934BE-8676-9009-0AA9-07A7795D46EE" referredColumn="CD46C09A-1DEA-8EE3-3555-E8F8C84D2F27"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D70272EC-F06B-E5A0-B782-D35186D4B4F0" name="order_table_PK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:43:01 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3218FFD6-30F6-8BF8-B7D8-C65F638D7891"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3B9C5909-23B0-F10E-09C2-E1C20F2D471C" name="order_extra_table_FK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:59:13 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4BAD4615-B60C-FB13-2AB6-726B0D97B074"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8BD219A5-CD74-5D60-25DF-08D0E773A77F" name="order_menu_table_FK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:59:33 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D92B0FA3-D45C-083F-6E43-C01D923A1AB6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C5AD0FC4-AD0A-CBFD-C2B9-F0087E96DA9B" name="order_user_table_FK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 13:26:03 UTC</createdTime>
+<ownerDesignName>2CM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BC8ED5B3-AE65-AEFD-80E7-5FCAE429895E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
