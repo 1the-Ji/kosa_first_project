@@ -28,8 +28,8 @@ public class StoreService {
 	@Autowired
 	private StoreDao storeDao;
 	
-	public int join(Store member){
-		storeDao.insert(member);
+	public int join(Store store){
+		storeDao.insert(store);
 		return JOIN_SUCCESS;
 	}
 	
