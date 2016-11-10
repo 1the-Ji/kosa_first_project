@@ -18,7 +18,7 @@ import com.mycompany.myweb.dto.Menu;
 public class MenuDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+	   
 	public int insert(Menu menu){
 		String sql = "insert into menu(mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid, xid) values(sequence_mid, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int row = jdbcTemplate.update(
