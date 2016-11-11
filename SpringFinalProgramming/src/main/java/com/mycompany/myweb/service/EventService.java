@@ -42,7 +42,7 @@ public class EventService {
 		int row = eventDao.delete(eid);
 		if(row == 0) { return REMOVE_FAIL; }
 		return REMOVE_SUCCESS;
-	}
+	} 
 	
 	public Event info(int eid){
 		return eventDao.selectByEid(eid);		
