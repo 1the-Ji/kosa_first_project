@@ -72,7 +72,7 @@ public class MenuDao {
 				menu.setMcontents(rs.getString("mcontents"));
 				menu.setMsavedfile(rs.getString("msavedfile"));
 				menu.setMmimetype(rs.getString("mmimetype"));
-				menu.setSid(rs.getInt("sid"));
+				menu.setSid(rs.getString("sid"));
 				menu.setXid(rs.getInt("xid"));
 				return menu;
 			}
@@ -102,7 +102,7 @@ public class MenuDao {
 						menu.setMcontents(rs.getString("mcontents"));
 						menu.setMsavedfile(rs.getString("msavedfile"));
 						menu.setMmimetype(rs.getString("mmimetype"));
-						menu.setSid(rs.getInt("sid"));
+						menu.setSid(rs.getString("sid"));
 						menu.setXid(rs.getInt("xid"));
 						return menu;
 					}

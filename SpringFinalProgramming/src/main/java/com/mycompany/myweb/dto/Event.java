@@ -14,7 +14,7 @@ public class Event {
 	private String econtents;
 	private String esavedfile;
 	private String emimetype;
-	private int sid;
+	private String sid;
 	private int mid;
 	
 	public int getEid() {
@@ -53,10 +53,10 @@ public class Event {
 	public void setEmimetype(String emimetype) {
 		this.emimetype = emimetype;
 	}
-	public int getSid() {
+	public String getSid() {
 		return sid;
 	}
-	public void setSid(int sid) {
+	public void setSid(String sid) {
 		this.sid = sid;
 	}
 	public int getMid() {

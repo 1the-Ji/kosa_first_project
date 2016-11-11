@@ -69,7 +69,7 @@ public class EventDao {
 				event.setEcontents(rs.getString("econtents"));
 				event.setEsavedfile(rs.getString("esavedfile"));
 				event.setEmimetype(rs.getString("emimetype"));
-				event.setSid(rs.getInt("sid"));
+				event.setSid(rs.getString("sid"));
 				event.setMid(rs.getInt("mid"));
 				return event;
 			}
@@ -99,7 +99,7 @@ public class EventDao {
 						event.setEcontents(rs.getString("econtents"));
 						event.setEsavedfile(rs.getString("esavedfile"));
 						event.setEmimetype(rs.getString("emimetype"));
-						event.setSid(rs.getInt("sid"));
+						event.setSid(rs.getString("sid"));
 						event.setMid(rs.getInt("mid"));
 						return event;
 					}
