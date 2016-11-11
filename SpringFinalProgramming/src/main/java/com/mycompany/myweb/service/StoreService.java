@@ -6,8 +6,7 @@ import com.mycompany.myweb.dao.StoreDao;
 import com.mycompany.myweb.dto.Store;
 
 public class StoreService {
-	
-	//1111 스토어 서비스 kjh
+//김정호
 	
 	public static final int JOIN_SUCCESS=0;
 	public static final int JOIN_FAIL=1;
