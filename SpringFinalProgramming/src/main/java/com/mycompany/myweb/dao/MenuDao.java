@@ -58,7 +58,7 @@ public class MenuDao {
 		return row;
 	}
 	
-	public Menu selectByMid(int mid){
+	public Menu selectByMid(int mid){ 
 		String sql = "select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid, xid from menu where mid=?";
 		List<Menu> list = jdbcTemplate.query(sql, new Object[]{mid}, new RowMapper<Menu>(){
 			
