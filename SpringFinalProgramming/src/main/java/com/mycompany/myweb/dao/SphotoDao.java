@@ -18,7 +18,7 @@ public class SphotoDao {
 	private JdbcTemplate jdbcTemplate;
 
 	public int insert(Sphoto sphoto) {
-		String sql = "insert into Sphoto(spic_id, spic_savedfile, spic_mimetype, sid)"
+		String sql = "insert into Sphoto(spic_id, spic_savedfile, spic_mimetype, sid) "
 				+ "values(seq_sphoto_spic_id.nextval,?,?,?)";
 
 		int row = jdbcTemplate.update(sql, sphoto.getSpic_savedfile(), sphoto.getSpic_mimetype(), sphoto.getSid());

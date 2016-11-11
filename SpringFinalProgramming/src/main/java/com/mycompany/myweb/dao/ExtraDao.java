@@ -24,7 +24,6 @@ public class ExtraDao {
 		
 		int row = jdbcTemplate.update(
 				sql,
-				extra.getXid(),
 				extra.getXname(),
 				extra.getXprice()
 				);
