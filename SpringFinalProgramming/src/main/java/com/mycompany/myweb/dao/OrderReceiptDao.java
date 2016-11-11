@@ -29,6 +29,7 @@ public class OrderReceiptDao {
 	}
 	
 	
+	
 	//주문 영수증 검색
 	public OrderReceipt selectByMidOid(OrderReceipt orderreceipt){
 		String sql = "select mid,oid from orderreceipt where (mid = ? and oid = ?)";
