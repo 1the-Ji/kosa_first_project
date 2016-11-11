@@ -6,8 +6,7 @@ import com.mycompany.myweb.dao.StoreDao;
 import com.mycompany.myweb.dto.Store;
 
 public class StoreService {
-	
-	//1111 스토어 서비스 kjh
+//김정호
 	
 	public static final int JOIN_SUCCESS=0;
 	public static final int JOIN_FAIL=1;
@@ -49,8 +48,14 @@ public class StoreService {
 	}
 	
 	public int logout(String sid){
-		//회원 로그아웃
+		//매자 로그아웃
 		return LOGOUT_SUCCESS;
+	}
+	
+	public Store info(String sid) {
+		//매장 정보
+		Store store = storeDao.selectBySid(sid);
+		return store;
 	}
 	
 	public boolean isMid(String sid){
@@ -60,6 +65,15 @@ public class StoreService {
 			return false;
 		}//기존 회원 아이디가 없다.
 		return true;
-	}	
+	}
+	
+	public String findSpw(String sid, String semail){
+		
+		Store store = storeDao.selectBySid(sid);
+		if (store == null) return null;
+		if (store.getSemail().equals(semail) == false) return null;
+		return store.getSpw();
+			
+	}
 
 }

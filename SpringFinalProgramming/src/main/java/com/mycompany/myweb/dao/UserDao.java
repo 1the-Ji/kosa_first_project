@@ -41,7 +41,7 @@ public class UserDao {
             );
       return row;
    }
-   public int delete(int user_id){
+   public int delete(String user_id){
       String sql = "delete from user where user_id=?";
       
       int row = jdbcTemplate.update(sql, user_id);

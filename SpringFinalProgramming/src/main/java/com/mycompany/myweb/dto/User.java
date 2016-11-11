@@ -2,15 +2,15 @@ package com.mycompany.myweb.dto;
 
 public class User {
 	
-	private int user_id;		//유저 아이디(시퀀스)
+	private String user_id;		//유저 아이디(시퀀스)
 	private String user_email;	//유저 이메일(아이디)
 	private String user_pw;		//유저 패스워드
 	private String user_tel;	//유저 번호
 	
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 	public String getUser_email() {

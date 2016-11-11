@@ -3,7 +3,7 @@ package com.mycompany.myweb.dto;
 import java.util.Date;
 
 public class Store {
-	
+	//김정호
 	private String sid;		//매장아이디(아이디)
 	private String semail;	//매장이메일
 	private String spw;		//매장비밀번호
@@ -11,12 +11,10 @@ public class Store {
 	private String slocal;	//매장 지점명
 	private String saddr;	//매장 주소
 	private String stel;	//매장 전화번호
-	//private int sopen;		//매장 오픈시간(4자리씩 : 시&분)(ex : 1040 <- 이렇게 입력)
-	//private int sclosed;	//매장 문닫는시간(4자리씩 : 시&분)(ex : 1240 <- 이렇게 입력)
 	
-	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
+	//@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date sopen;
-	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
+	//@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date sclosed;
 	
 	private String sbeacon;	//비콘 번호
