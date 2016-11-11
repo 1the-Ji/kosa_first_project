@@ -11,12 +11,13 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dto.EventMenu;
 import com.mycompany.myweb.dto.Order;
-
+//
 @Component
 public class EventMenuDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
 	public int insert(EventMenu eventmenu){
 		String sql = "insert into event_menu_table(emid,dc_price,eid,mid) values(seq_eventmenu_emid.nextval,?,?,?)";
 		int row = jdbcTemplate.update(sql,eventmenu.getDc_price(),eventmenu.getEid(),eventmenu.getMid());
