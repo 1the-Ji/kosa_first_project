@@ -18,7 +18,7 @@ public class OrderReceiptDao {
 	JdbcTemplate jdbcTemplate;
 	
 	//주문 영수중 삽입
-	public int insert(OrderReceipt orderreceipt){
+	public int insertMidOid(OrderReceipt orderreceipt){
 		String sql = "insert into order_receipt(mid, oid) values(?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
@@ -46,7 +46,7 @@ public class OrderReceiptDao {
 	}
 	
 	//주문 영수증 목록
-	public List<OrderReceipt> selectByPage(int pageNo, int rowsPerPage){
+	public List<OrderReceipt> selectByMidOidAll(int pageNo, int rowsPerPage){
 		String sql ="";
 		sql += "select rn, mid, oid ";
 		sql += "from( ";
@@ -72,7 +72,7 @@ public class OrderReceiptDao {
 		return list;
 	}
 	//주문 영수증 수정
-	public int update(OrderReceipt orderreceipt){
+	public int updateMidOid(OrderReceipt orderreceipt){
 		String sql = "update orderreceipt set mid=?,oid=? where (mid = ? and oid = ?)";
 		
 		int row = jdbcTemplate.update(
@@ -84,14 +84,14 @@ public class OrderReceiptDao {
 	}
 	
 	//주문 영수증 삭제
-	public int delete(OrderReceipt orderreceipt){
+	public int deleteMidOid(OrderReceipt orderreceipt){
 		String sql = "delete from orderreceipt where (mid = ? and oid = ?)";
 		int row = jdbcTemplate.update(sql, orderreceipt.getMid(), orderreceipt.getOid());
 		return row;
 		
 	}
 	//주문 영수증 카운트
-	public int count(){
+	public int countMidOid(){
 		String sql = "select count(*) from orderreceipt";
 		int count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;

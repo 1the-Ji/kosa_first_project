@@ -18,7 +18,7 @@ public class ExtraOrderDao {
 	JdbcTemplate jdbcTemplate;
 	
 	//사이드 메뉴 삽입
-	public int insert(ExtraOrder extraorder){
+	public int insertXidOid(ExtraOrder extraorder){
 		String sql = "insert into extra_order(xid, oid) values(?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
@@ -29,7 +29,7 @@ public class ExtraOrderDao {
 	}
 	
 	//사이드 메뉴 검색
-	public ExtraOrder select(ExtraOrder extraorder){
+	public ExtraOrder selectByXidOid(ExtraOrder extraorder){
 		String sql = "select xid, oid from extra_order where (xid=? and oid=?)";
 		List<ExtraOrder> list =  jdbcTemplate.query(sql, 
 				new Object[]{extraorder.getXid(),extraorder.getOid()}, 
@@ -48,7 +48,7 @@ public class ExtraOrderDao {
 	}
 	
 	//사이드 메뉴 삭제
-	public int delete(ExtraOrder extraorder){
+	public int deleteXidOid(ExtraOrder extraorder){
 		String sql = "delete from event where (xid=? and oid=?)";
 		int row = jdbcTemplate.update(sql, extraorder.getXid(),extraorder.getOid());
 		return row;
