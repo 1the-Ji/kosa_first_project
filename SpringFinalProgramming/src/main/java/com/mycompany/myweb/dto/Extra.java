@@ -1,10 +1,11 @@
 package com.mycompany.myweb.dto;
 
 public class Extra {
+	//김정호
 	private int xid;
 	private String xname;
 	private int xprice;
-	private int mid;
+	
 	
 	public int getXid() {
 		return xid;
@@ -23,12 +24,6 @@ public class Extra {
 	}
 	public void setXprice(int xprice) {
 		this.xprice = xprice;
-	}
-	public int getMid() {
-		return mid;
-	}
-	public void setMid(int mid) {
-		this.mid = mid;
 	}
 	
 	
