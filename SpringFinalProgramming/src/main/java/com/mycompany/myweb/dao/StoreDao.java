@@ -79,8 +79,8 @@ public class StoreDao {
 				store.setSlocal(rs.getString("slocal"));
 				store.setSaddr(rs.getString("saddr"));
 				store.setStel(rs.getString("stel"));
-				store.setSopen(rs.getInt("sopen"));
-				store.setSclosed(rs.getInt("sclosed"));
+				store.setSopen(rs.getDate("sopen"));
+				store.setSclosed(rs.getDate("sclosed"));
 				store.setSbeacon(rs.getString("sbeacon"));
 			
 				return store;

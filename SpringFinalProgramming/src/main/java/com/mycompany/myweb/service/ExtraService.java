@@ -1,0 +1,44 @@
+package com.mycompany.myweb.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mycompany.myweb.dao.ExtraDao;
+import com.mycompany.myweb.dto.Extra;
+
+public class ExtraService {
+//김정호
+	public static final int ADD_SUCESS = 0;
+	public static final int ADD_FAIL = 1;
+	
+	public static final int MODIFY_SUCESS = 0;
+	public static final int MODIFY_FAIL = 1;
+
+	public static final int REMOVE_SUCESS = 0;
+	public static final int REMOVE_FAIL = 1;
+	
+	@Autowired
+	private ExtraDao extraDao;
+	
+	public int add(Extra extra){
+		
+		extraDao.insert(extra);
+		return ADD_SUCESS;
+	}
+	
+	public int modify(Extra extra){
+		int row = extraDao.update(extra);
+		if (row == 0) {return MODIFY_FAIL;}
+		return MODIFY_SUCESS;
+	}
+	
+	public int remove(int xid) {
+		int row = extraDao.delete(xid);
+		if (row == 0) {return REMOVE_FAIL;}
+		return REMOVE_SUCESS;
+	}
+	
+	public Extra info (int xid){
+		return extraDao.selectByXid(xid);
+	}
+	
+}

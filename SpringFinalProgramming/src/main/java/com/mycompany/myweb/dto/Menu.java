@@ -10,7 +10,7 @@ public class Menu {
 	private String mcontents;
 	private String msavedfile;
 	private String mmimetype;
-	private int sid;
+	private String sid;
 	private int xid;
 	
 	public int getXid() {
@@ -67,10 +67,10 @@ public class Menu {
 	public void setMmimetype(String mmimetype) {
 		this.mmimetype = mmimetype;
 	}
-	public int getSid() {
+	public String getSid() {
 		return sid;
 	}
-	public void setSid(int sid) {
+	public void setSid(String sid) {
 		this.sid = sid;
 	}
 	

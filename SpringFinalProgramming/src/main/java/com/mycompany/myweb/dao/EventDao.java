@@ -18,7 +18,7 @@ public class EventDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public int insert(Event event){
-		String sql = "insert into event(eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid) values(squence_mid, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into event(eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid) values(seq_event_eid.nextval, ?, ?, ?, ?, ?, ?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEstartperiod(),
@@ -56,10 +56,10 @@ public class EventDao {
 	}
 	
 	
-	public Event selectByeid(int eid){
+	public Event selectByEid(int eid){
 		String sql = "select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid from event where eid=?";
 		List<Event> list = jdbcTemplate.query(sql, new Object[]{eid}, new RowMapper<Event>(){
-			
+			 
 			@Override
 			public Event mapRow(ResultSet rs, int row) throws SQLException {
 				Event event = new Event();
@@ -69,7 +69,7 @@ public class EventDao {
 				event.setEcontents(rs.getString("econtents"));
 				event.setEsavedfile(rs.getString("esavedfile"));
 				event.setEmimetype(rs.getString("emimetype"));
-				event.setSid(rs.getInt("sid"));
+				event.setSid(rs.getString("sid"));
 				event.setMid(rs.getInt("mid"));
 				return event;
 			}
@@ -82,7 +82,7 @@ public class EventDao {
 		String sql = "";
 		sql += "select rn, select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid ";
 		sql += "from ( ";
-		sql += "select rownum as rn, select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid ";
+		sql += "select rownum as rn, eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid ";
 		sql += "from (select select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid from event order by eid desc) ";
 		sql += ") ";
 		sql += "where rn>=? ";
@@ -99,7 +99,7 @@ public class EventDao {
 						event.setEcontents(rs.getString("econtents"));
 						event.setEsavedfile(rs.getString("esavedfile"));
 						event.setEmimetype(rs.getString("emimetype"));
-						event.setSid(rs.getInt("sid"));
+						event.setSid(rs.getString("sid"));
 						event.setMid(rs.getInt("mid"));
 						return event;
 					}

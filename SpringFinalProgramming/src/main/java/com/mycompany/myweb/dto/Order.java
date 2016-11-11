@@ -8,7 +8,7 @@ public class Order {
 	
 	//1109김정호
 	private int oid;		//주문 아이디(시퀀스)
-	private int oordercount;	//갯수
+	private int ordercount;	//갯수
 	private int ototalprice;//총 주문 금액
 	//@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date otime;		//주문 날짜
@@ -22,11 +22,11 @@ public class Order {
 	public void setOid(int oid) {
 		this.oid = oid;
 	}
-	public int getOordercount() {
-		return oordercount;
+	public int getOrdercount() {
+		return ordercount;
 	}
-	public void setOordercount(int oordercount) {
-		this.oordercount = oordercount;
+	public void setOrdercount(int ordercount) {
+		this.ordercount = ordercount;
 	}
 	public int getOtotalprice() {
 		return ototalprice;
