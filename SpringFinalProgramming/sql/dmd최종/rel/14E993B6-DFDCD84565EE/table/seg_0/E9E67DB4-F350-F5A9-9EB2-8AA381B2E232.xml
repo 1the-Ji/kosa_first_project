@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E9E67DB4-F350-F5A9-9EB2-8AA381B2E232" name="user_table">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:16:07 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<ordsAlias>table_12</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="user_id" id="CD46C09A-1DEA-8EE3-3555-E8F8C84D2F27">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:22:15 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="user_email" id="80A5337A-8D0F-DDBA-E401-F4DC7CA8184C">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:25:02 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="user_pw" id="EE81BA38-4E64-CB5D-20A9-2B32B660E766">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:25:02 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="user_tel" id="8A89B895-7C17-429E-CBA8-EFF9012DDC81">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:25:02 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="863737E7-C9CB-A7D5-FC88-946740D74B5B" name="user_table_PK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:25:02 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD46C09A-1DEA-8EE3-3555-E8F8C84D2F27"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,162 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8AE3BF2D-1D48-F627-8EDA-858FC19A6AD6" name="menu_table">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:43:16 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<ordsAlias>table_7</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="mid" id="DF2B8ACE-E8EA-A2DD-6858-757593456905">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:47:00 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mgroup" id="00DA47E6-8721-F598-62B9-D4AA9C5B81EC">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:47:00 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mname" id="7A68DE9D-08A9-EF03-F325-173BF6272BD9">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:47:00 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hot_ice" id="21163F07-D1D7-847B-7EB0-F3FE92A74AFD">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:47:00 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mprice" id="32684D58-9DAE-10A8-C268-59E79F411C16">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:47:00 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mcontents" id="63F9DBF9-F622-30E6-CCB3-F6CAACA45194">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:47:00 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="msavedfile" id="B120D95B-109C-3800-7911-76BD68D59B95">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:47:00 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mmimetype" id="A5BE0B9C-4487-6403-ED99-661DFD35DAC1">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:47:00 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sid" id="24C5F79F-9BA8-2728-6FAC-CD7230D0C803">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:01:26 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6FF100EE-8C00-1088-8689-DE56258CB63F" referredColumn="910D4981-5B78-5F29-F3CA-273FCA632592"/>
+</associations>
+</Column>
+<Column name="xid" id="B86A650B-029C-350D-0095-6644C71693E7">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-09 23:57:35 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D0EFDDF7-0E3E-1AEE-5E45-6C8275E4981B" referredColumn="AF0AF3A1-C944-980D-F160-0088F6466004"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CFEA019E-F96B-2641-84A6-A89EC4F3B29E" name="menu_table_PK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 11:49:26 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DF2B8ACE-E8EA-A2DD-6858-757593456905"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="80A98F6E-B120-99A7-1A16-4A62D96C1CA3" name="menu_store_table_FK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-08 12:01:26 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="24C5F79F-9BA8-2728-6FAC-CD7230D0C803"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8D639643-DAC3-0FD4-566A-EE9EDB11882D" name="menu_extra_table_FK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-09 23:57:35 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B86A650B-029C-350D-0095-6644C71693E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="6A71C136-FCF8-73B7-A229-0C20D6C2521D" containerWithKeyObject="6840F437-5215-83C7-AF5E-3D61A4802FF7" localFKIndex="B5FD239E-27F3-C4C1-4B1D-486CA4BFABC7" name="sphoto_store_table_FK">
+<createdBy>kimjeongho</createdBy>
+<createdTime>2016-11-09 08:07:40 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>E6366011-D57A-42DB-5309-39365E281264</referredTableID>
+<keyObject>C1474675-E7F7-D672-0B60-D7527553423D</keyObject>
+<referredKeyID>C1474675-E7F7-D672-0B60-D7527553423D</referredKeyID>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
