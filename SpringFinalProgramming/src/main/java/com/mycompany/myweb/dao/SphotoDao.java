@@ -27,14 +27,12 @@ public class SphotoDao {
 	}
 
 	public int update(Sphoto sphoto){
-      String sql = "update sphoto set spic_id=?, spic_savedfile=?, spic_mimetype=?, sid=? where spic_id=?";
+      String sql = "update sphoto set spic_savedfile=?, spic_mimetype=?, where spic_id=?";
    
    int row = jdbcTemplate.update(
          sql,
-         sphoto.getSpic_id(),
          sphoto.getSpic_savedfile(),
          sphoto.getSpic_mimetype(),
-         sphoto.getSid(),
          sphoto.getSpic_id()
          );
    
@@ -49,7 +47,7 @@ public class SphotoDao {
 	}
 
 	public Sphoto selectBySpic_id(int spic_id) {
-		String sql = "select spic_id, spic_savedfile " + "from sphoto where spic_id=?";
+		String sql = "select spic_id, spic_savedfile, spic_mimetype, sid from sphoto where spic_id=?";
 
 		List<Sphoto> list = jdbcTemplate.query(sql, new Object[] { spic_id }, new RowMapper<Sphoto>() {
 
@@ -59,7 +57,7 @@ public class SphotoDao {
 				sphoto.setSpic_id(rs.getInt("spic_id"));
 				sphoto.setSpic_savedfile(rs.getString("savedfile"));
 				sphoto.setSpic_mimetype(rs.getString("smimetype"));
-				sphoto.setSid(rs.getString("sid"));
+				sphoto.setSid(rs.getInt("sid"));
 
 				return sphoto;
 			}

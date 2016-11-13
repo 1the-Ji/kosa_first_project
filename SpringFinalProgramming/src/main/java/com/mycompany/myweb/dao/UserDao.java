@@ -47,7 +47,7 @@ public class UserDao {
       int row = jdbcTemplate.update(sql, user_id);
       return row;
    }
-   public String selectByUserEmail(String user_email){
+   public String selectByUserId(String user_email){
       
       String sql = "select user_id from user where user_email=?";
       List<String> list = jdbcTemplate.query(sql, new Object[]{user_email}, new RowMapper<String>(){
@@ -61,7 +61,7 @@ public class UserDao {
       });
       return (list.size() != 0)? list.get(0):null;
    }
-   public String selectByUserTel(String user_id, String user_email){//비밀번호 찾기
+   public String selectByUserPw(String user_id, String user_email){//비밀번호 찾기
       String sql = "select user_pw from user where user_id=? and user_email=? ";
       List<String> list = jdbcTemplate.query(sql, new Object[]{user_email}, new RowMapper<String>(){
 
