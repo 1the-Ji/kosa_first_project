@@ -12,6 +12,12 @@ import com.mycompany.myweb.dto.Store;
 
 
 public class StoreDao {
+	/* 김정호
+	 * 수정해야 할 사항(11.13)
+	 * 1. 테이블명 정리 (store_table로 할건지 store로 할껀지)
+	 * 2. open, closed 타입을 data->varchar타입으로 변환.
+	 * 3. 평일 (weekday) open, closed 시간  주말(weekend) open, closed column정의
+	 */	
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
