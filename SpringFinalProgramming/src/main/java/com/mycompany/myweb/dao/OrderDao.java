@@ -53,7 +53,7 @@ public class OrderDao {
 		return (list.size() != 0) ? list.get(0) : null;
 	}
 
-	public List<Order> selectByPage(int pageNo, int rowsPerPage) {
+	public List<Order> selectByPage(int pageNo, int rowsPerPage, int oid) {
 		String sql = "";
 		sql += "select rn, oid, ototalprice, otime, user_id ";
 		sql += "from ( ";
