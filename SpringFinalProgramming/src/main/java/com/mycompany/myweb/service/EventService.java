@@ -1,6 +1,6 @@
 package com.mycompany.myweb.service;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class EventService {
 		int row = eventDao.insert(event);
 		return WRITE_SUCCESS;
 	}
-	
+	 
 	public int modify(Event event){
 		int row = eventDao.update(event);	
 		if(row == 0) { return MODIFY_FAIL; }

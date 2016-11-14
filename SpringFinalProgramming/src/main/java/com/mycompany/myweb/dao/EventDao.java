@@ -56,7 +56,7 @@ public class EventDao {
 	}
 	
 	
-	public Event selectByEid(int eid){
+	public Event selectByEid(int eid){ 
 		String sql = "select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid from event where eid=?";
 		List<Event> list = jdbcTemplate.query(sql, new Object[]{eid}, new RowMapper<Event>(){
 			 
