@@ -1,10 +1,12 @@
 package com.mycompany.myweb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dao.ExtraDao;
 import com.mycompany.myweb.dto.Extra;
 
+@Component
 public class ExtraService {
 //김정호
 	public static final int ADD_SUCESS = 0;
