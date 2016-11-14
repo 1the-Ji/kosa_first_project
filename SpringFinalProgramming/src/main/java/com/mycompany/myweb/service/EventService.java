@@ -23,10 +23,6 @@ public class EventService {
 	@Autowired
 	private EventDao eventDao;
 	
-	public List<Event> list(int pageNo, int rowsPerPage){
-		return eventDao.selectByPage(pageNo, rowsPerPage);
-	} 
-	
 	public int write(Event event){
 		int row = eventDao.insert(event);
 		return WRITE_SUCCESS;
@@ -48,7 +44,4 @@ public class EventService {
 		return eventDao.selectByEid(eid);		
 	}
 	
-	public int getCount(){
-		return eventDao.count();
-	}
 }

@@ -11,14 +11,8 @@ public class Menu {
 	private String msavedfile;
 	private String mmimetype;
 	private String sid;
-	private int xid;
 	
-	public int getXid() {
-		return xid;
-	}
-	public void setXid(int xid) {
-		this.xid = xid;
-	}
+	
 	public int getMid() {
 		return mid;
 	}

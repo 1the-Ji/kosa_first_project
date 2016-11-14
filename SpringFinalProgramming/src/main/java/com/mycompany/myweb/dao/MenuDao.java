@@ -20,7 +20,7 @@ public class MenuDao {
 	private JdbcTemplate jdbcTemplate;
 	   
 	public int insert(Menu menu){
-		String sql = "insert into menu(mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid, xid) values(seq_menu_mid.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into menu(mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid) values(seq_menu_mid.nextval, ?, ?, ?, ?, ?, ?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
 				menu.getMgroup(),
@@ -29,14 +29,13 @@ public class MenuDao {
 				menu.getMcontents(),
 				menu.getMsavedfile(),
 				menu.getMmimetype(),
-				menu.getSid(),
-				menu.getXid()
+				menu.getSid()
 		);
 		return row;
 	}
 	
 	public int update(Menu menu){
-		String sql = "update menu set mgroup=?, mname=?, hot_ice=?, msavedfile=?, sid=?, xid=? where mid=?";
+		String sql = "update menu set mgroup=?, mname=?, hot_ice=?, msavedfile=?, sid=? where mid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				menu.getMgroup(),
@@ -46,7 +45,6 @@ public class MenuDao {
 				menu.getMsavedfile(),
 				menu.getMmimetype(),
 				menu.getSid(),
-				menu.getXid(),
 				menu.getMid()
 		);
 		return row;
@@ -59,7 +57,7 @@ public class MenuDao {
 	}
 	
 	public Menu selectByMid(int mid){ 
-		String sql = "select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid, xid from menu where mid=?";
+		String sql = "select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid from menu where mid=?";
 		List<Menu> list = jdbcTemplate.query(sql, new Object[]{mid}, new RowMapper<Menu>(){
 			
 			@Override
@@ -73,7 +71,6 @@ public class MenuDao {
 				menu.setMsavedfile(rs.getString("msavedfile"));
 				menu.setMmimetype(rs.getString("mmimetype"));
 				menu.setSid(rs.getString("sid"));
-				menu.setXid(rs.getInt("xid"));
 				return menu;
 			}
 		});
@@ -82,10 +79,10 @@ public class MenuDao {
 	
 	public List<Menu> selectByPage(int pageNo, int rowsPerPage){
 		String sql="";
-		sql += "select rn, mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid, xid ";
+		sql += "select rn, mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid ";
 		sql += "from ( ";
-		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid, xid ";
-		sql += "from ( select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid, xid from menu order by mid desc) ";
+		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "from ( select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
 		sql += ") ";
 		sql += "where rn>=? ";
 		List<Menu> list = jdbcTemplate.query(
@@ -103,7 +100,6 @@ public class MenuDao {
 						menu.setMsavedfile(rs.getString("msavedfile"));
 						menu.setMmimetype(rs.getString("mmimetype"));
 						menu.setSid(rs.getString("sid"));
-						menu.setXid(rs.getInt("xid"));
 						return menu;
 					}
 				}

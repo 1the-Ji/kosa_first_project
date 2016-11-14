@@ -78,41 +78,4 @@ public class EventDao {
 	}
 	
 	
-	public List<Event> selectByPage(int pageNo, int rowsPerPage){
-		String sql = "";
-		sql += "select rn, select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid ";
-		sql += "from ( ";
-		sql += "select rownum as rn, eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid ";
-		sql += "from (select select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid from event order by eid desc) ";
-		sql += ") ";
-		sql += "where rn>=? ";
-		List<Event> list = jdbcTemplate.query(
-				sql, 
-				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1)},
-				new RowMapper<Event>(){
-					@Override
-					public Event mapRow(ResultSet rs, int row) throws SQLException {
-						Event event = new Event();
-						event.setEid(rs.getInt("eid"));
-						event.setEstartperiod(rs.getDate("estartperiod"));
-						event.setElastperiod(rs.getDate("elastperiod"));
-						event.setEcontents(rs.getString("econtents"));
-						event.setEsavedfile(rs.getString("esavedfile"));
-						event.setEmimetype(rs.getString("emimetype"));
-						event.setSid(rs.getString("sid"));
-						event.setMid(rs.getInt("mid"));
-						return event;
-					}
-				}
-		);
-		return list;
-	}
-	
-	
-	public int count(){
-		String sql = "select count(*) from event";
-		int count = jdbcTemplate.queryForObject(sql, Integer.class);
-		return count;
-	}
-
 }
