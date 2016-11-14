@@ -7,7 +7,7 @@ import com.mycompany.myweb.dao.ExtraDao;
 import com.mycompany.myweb.dao.ExtraOrderDao;
 import com.mycompany.myweb.dao.OrderDao;
 import com.mycompany.myweb.dto.ExtraOrder;
-import com.mycompany.myweb.dto.OrderReceipt;
+import com.mycompany.myweb.dto.OrderItem;
 //이명진
 @Component
 public class ExtraOrderService {
