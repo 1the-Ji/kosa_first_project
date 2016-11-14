@@ -28,13 +28,9 @@ public class EventMenuService {
 //----------------------------------------------------	
 	Logger logo = Logger.getLogger(EventMenuService.class);
 	
-	 ///
+
 	
-	//이벤트 리스트 출력
-	public List<EventMenu> list(int pageNo, int rowsPerPage){
-		return eventMenuDao.selectByPage(pageNo, rowsPerPage); 
-	}
-	
+
 	//이벤트 추가
 	public int write(EventMenu eventmenu){
 		int row = eventMenuDao.insert(eventmenu);
