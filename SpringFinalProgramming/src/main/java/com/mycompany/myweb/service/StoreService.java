@@ -14,8 +14,8 @@ public class StoreService {
 	public static final int JOIN_FAIL=1;
 	
 	public static final int LOGIN_SUCCESS=0;
-	public static final int LOGIN_FAIL_MID=1;
-	public static final int LOGIN_FAIL_MPASSWORD=2;	
+	public static final int LOGIN_FAIL_SID=1;
+	public static final int LOGIN_FAIL_SPW=2;	
 
 	public static final int LOGOUT_SUCCESS=0;
 	public static final int LOGOUT_FAIL=1;
@@ -38,12 +38,12 @@ public class StoreService {
 		
 		Store store = storeDao.selectBySid(sid);
 		if (store == null) {
-			return LOGIN_FAIL_MID;
+			return LOGIN_FAIL_SID;
 		} 
 		
 		if(store.getSpw().equals(spw) == false){
 			//디비에 있는 비밀번호와 다름.
-			return LOGIN_FAIL_MPASSWORD;
+			return LOGIN_FAIL_SPW;
 		}
 		
 		return LOGIN_SUCCESS;
@@ -60,13 +60,18 @@ public class StoreService {
 		return store;
 	}
 	
-	public boolean isMid(String sid){
+	public boolean isSid(String sid){
 		//기존 회원 아이디 있는지 체크
 		Store store = storeDao.selectBySid(sid);
 		if (store==null) {
 			return false;
 		}//기존 회원 아이디가 없다.
 		return true;
+	}
+	
+	public String findSid(String semail){
+		//회원 아이디 찾기
+		return storeDao.selectBySemail(semail);
 	}
 	
 	public String findSpw(String sid, String semail){

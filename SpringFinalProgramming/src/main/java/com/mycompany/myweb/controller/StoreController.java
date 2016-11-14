@@ -28,8 +28,48 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(String mid, String mpassword, HttpSession session, Model model){
-		return "";
+	public String login(String sid, String spw, HttpSession session, Model model){
+		int result = storeService.login(sid, spw);
+		
+		if (result == StoreService.LOGIN_FAIL_SPW) {
+			
+			model.addAttribute("error", "LOGIN");
+			return "store/loginForm";
+			
+		} else if (result == StoreService.LOGIN_FAIL_SID) {
+			
+			model.addAttribute("error", "LOGIN_FAIL_MID");
+			return "store/loginForm";
+			
+		} else {
+			
+			session.setAttribute("login", sid);
+			return "redirect:/home";
+		}
+		
+		
+	}
+	
+	@RequestMapping(value="/findSid", method=RequestMethod.GET)
+	public String findSidForm(){
+		return "store/findSidForm";
+	}
+	
+	@RequestMapping(value="/findSid", method=RequestMethod.POST)
+	public String findSid(String semail, Model model, HttpSession session){
+		String sid = storeService.findSid(semail);
+		if (sid == null) {
+			model.addAttribute("error", "이메일 not found");
+			return "store/findSidForm";
+		}
+		
+		session.setAttribute("findSid", sid);
+		return "redirect:/store/login";
+	}
+	
+	@RequestMapping(value="/findSpw", method=RequestMethod.GET)
+	public String findSpwForm(){
+		return "store/findSpwForm";
 	}
 	
 	
