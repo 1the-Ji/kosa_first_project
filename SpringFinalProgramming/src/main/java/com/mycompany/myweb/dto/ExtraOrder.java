@@ -2,7 +2,7 @@ package com.mycompany.myweb.dto;
 
 public class ExtraOrder {
 	private int xid;
-	private int oid;
+	private int orid;
 	
 	public int getXid() {
 		return xid;
@@ -10,11 +10,11 @@ public class ExtraOrder {
 	public void setXid(int xid) {
 		this.xid = xid;
 	}
-	public int getOid() {
-		return oid;
+	public int getOrid() {
+		return orid;
 	}
-	public void setOid(int oid) {
-		this.oid = oid;
+	public void setOrid(int orid) {
+		this.orid = orid;
 	}
 	
 }
