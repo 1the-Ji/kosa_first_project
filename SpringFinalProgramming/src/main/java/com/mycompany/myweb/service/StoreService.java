@@ -50,7 +50,7 @@ public class StoreService {
 	}
 	
 	public int logout(String sid){
-		//매자 로그아웃
+		//매장 로그아웃
 		return LOGOUT_SUCCESS;
 	}
 	
