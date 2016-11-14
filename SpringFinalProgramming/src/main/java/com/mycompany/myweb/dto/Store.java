@@ -1,9 +1,8 @@
 package com.mycompany.myweb.dto;
 
-import java.util.Date;
 
 public class Store {
-	//김정호
+	//김정호 1114 수정
 	private String sid;		//매장아이디(아이디)
 	private String semail;	//매장이메일
 	private String spw;		//매장비밀번호
@@ -12,10 +11,8 @@ public class Store {
 	private String saddr;	//매장 주소
 	private String stel;	//매장 전화번호
 	
-	//@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date sopen;
-	//@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date sclosed;
+	private String sopen;
+	private String sclosed;
 	
 	private String sbeacon;	//비콘 번호
 	
@@ -62,20 +59,16 @@ public class Store {
 	public void setStel(String stel) {
 		this.stel = stel;
 	}
-	//이명진
-	public Date getSopen() {
+	public String getSopen() {
 		return sopen;
 	}
-	//이명진
-	public void setSopen(Date sopen) {
+	public void setSopen(String sopen) {
 		this.sopen = sopen;
 	}
-	//이명진
-	public Date getSclosed() {
+	public String getSclosed() {
 		return sclosed;
 	}
-	//이명진
-	public void setSclosed(Date sclosed) {
+	public void setSclosed(String sclosed) {
 		this.sclosed = sclosed;
 	}
 	public String getSbeacon() {
