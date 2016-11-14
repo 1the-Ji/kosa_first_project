@@ -108,7 +108,7 @@ public class StoreController {
 		
 	}
 	
-	@RequestMapping("/logout")
+	@RequestMapping("/store/logout")
 	public String logout(HttpSession session){
 		String sid = (String) session.getAttribute("login");
 		int result = storeService.logout(sid);
@@ -118,12 +118,31 @@ public class StoreController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/info")
+	/*@RequestMapping(value="/store/info", method=RequestMethod.GET)
 	public String info(HttpSession session, Model model){
 		String sid = (String) session.getAttribute("login");
+		logger.info("storeinfo정보");
 		Store store = storeService.info(sid);
 		model.addAttribute("store", store);
 		return "store/info";
+	}*/
+	
+	@RequestMapping(value="/store/info", method=RequestMethod.GET)
+	public String modifyForm(HttpSession session, Model model){
+		logger.info("storemodifyForm정보");
+		String sid = (String) session.getAttribute("login");
+		Store store = storeService.info(sid);
+		model.addAttribute("store", store);
+		return "/store/info";
+	}
+	
+	@RequestMapping(value="/store/info", method=RequestMethod.POST)
+	public String modify(Store store){
+		
+		logger.info("storemodify정보");
+		Store dbStore = storeService.info(store.getSid());
+		storeService.modify(dbStore);
+		return "/store/index";
 	}
 	
 	@RequestMapping("/withdraw")
