@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E384EC3F-44D6-09A7-5F07-1BF40E2661CF" name="event_menu_table">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E384EC3F-44D6-09A7-5F07-1BF40E2661CF" name="event_menu">
 <createdBy>kimjeongho</createdBy>
 <createdTime>2016-11-09 09:23:24 UTC</createdTime>
 <ownerDesignName>dmd최종</ownerDesignName>
@@ -39,7 +39,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>3</dataTypePrecision>
-<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="6008D57C-731A-4AE1-1EEB-E2D2D702D703" referredColumn="E9AB9B8C-45E0-5CA2-4D60-14F215F7126C"/>
@@ -53,7 +53,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>3</dataTypePrecision>
-<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="052CA958-BFE9-795B-9CBF-C6B3F4858C86" referredColumn="DF2B8ACE-E8EA-A2DD-6858-757593456905"/>
@@ -72,7 +72,7 @@
 <colUsage columnID="D901302D-21FC-3F0E-656C-0D0976F71828"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3AEB9DBC-B41F-3C2D-3132-BC84EE7BD1A1" name="event_menu_event_table_FK">
+<ind_PK_UK id="3AEB9DBC-B41F-3C2D-3132-BC84EE7BD1A1" name="event_menu_event_FK">
 <createdBy>kimjeongho</createdBy>
 <createdTime>2016-11-09 09:29:18 UTC</createdTime>
 <ownerDesignName>dmd최종</ownerDesignName>
@@ -82,7 +82,7 @@
 <colUsage columnID="58DED0E4-44F4-424E-F63D-72C6591A6851"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="E4AA4F1A-2C93-36EB-0E14-9D9BEBB1DE4A" name="event_menu_menu_table_FK">
+<ind_PK_UK id="E4AA4F1A-2C93-36EB-0E14-9D9BEBB1DE4A" name="event_menu_menu_FK">
 <createdBy>kimjeongho</createdBy>
 <createdTime>2016-11-09 09:31:09 UTC</createdTime>
 <ownerDesignName>dmd최종</ownerDesignName>

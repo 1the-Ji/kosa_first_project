@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8AE3BF2D-1D48-F627-8EDA-858FC19A6AD6" name="menu_table">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8AE3BF2D-1D48-F627-8EDA-858FC19A6AD6" name="menu">
 <createdBy>kimjeongho</createdBy>
 <createdTime>2016-11-08 11:43:16 UTC</createdTime>
 <ownerDesignName>dmd최종</ownerDesignName>
@@ -103,26 +103,11 @@
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="6FF100EE-8C00-1088-8689-DE56258CB63F" referredColumn="910D4981-5B78-5F29-F3CA-273FCA632592"/>
-</associations>
-</Column>
-<Column name="xid" id="B86A650B-029C-350D-0095-6644C71693E7">
-<createdBy>kimjeongho</createdBy>
-<createdTime>2016-11-09 23:57:35 UTC</createdTime>
-<ownerDesignName>dmd최종</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>3</dataTypePrecision>
-<ownDataTypeParameters>,3,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="D0EFDDF7-0E3E-1AEE-5E45-6C8275E4981B" referredColumn="AF0AF3A1-C944-980D-F160-0088F6466004"/>
 </associations>
 </Column>
 </columns>
@@ -138,7 +123,7 @@
 <colUsage columnID="DF2B8ACE-E8EA-A2DD-6858-757593456905"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="80A98F6E-B120-99A7-1A16-4A62D96C1CA3" name="menu_store_table_FK">
+<ind_PK_UK id="80A98F6E-B120-99A7-1A16-4A62D96C1CA3" name="menu_extra_FK">
 <createdBy>kimjeongho</createdBy>
 <createdTime>2016-11-08 12:01:26 UTC</createdTime>
 <ownerDesignName>dmd최종</ownerDesignName>
@@ -146,16 +131,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="24C5F79F-9BA8-2728-6FAC-CD7230D0C803"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="8D639643-DAC3-0FD4-566A-EE9EDB11882D" name="menu_extra_table_FK">
-<createdBy>kimjeongho</createdBy>
-<createdTime>2016-11-09 23:57:35 UTC</createdTime>
-<ownerDesignName>dmd최종</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="B86A650B-029C-350D-0095-6644C71693E7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

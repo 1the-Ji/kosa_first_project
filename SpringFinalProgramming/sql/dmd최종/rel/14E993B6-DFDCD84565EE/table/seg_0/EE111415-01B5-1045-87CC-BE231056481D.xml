@@ -61,7 +61,7 @@
 <colUsage columnID="298C6FCE-EA97-E7F0-49AC-01F2F1AB222B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C7E82862-808A-3915-714B-0CA4C557D742" name="order_receipt_order_table_FK">
+<ind_PK_UK id="C7E82862-808A-3915-714B-0CA4C557D742" name="order_receipt_order_FK">
 <createdBy>kimjeongho</createdBy>
 <createdTime>2016-11-10 12:22:27 UTC</createdTime>
 <ownerDesignName>dmd최종</ownerDesignName>
@@ -71,7 +71,7 @@
 <colUsage columnID="B04F69B7-BA96-7199-03E3-6BB7BEF2CF87"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="398469E7-E9F1-669C-6237-5611D8615F5D" name="order_receipt_menu_table_FK">
+<ind_PK_UK id="398469E7-E9F1-669C-6237-5611D8615F5D" name="order_receipt_menu_FK">
 <createdBy>Administrator</createdBy>
 <createdTime>2016-11-11 12:55:22 UTC</createdTime>
 <ownerDesignName>dmd최종</ownerDesignName>

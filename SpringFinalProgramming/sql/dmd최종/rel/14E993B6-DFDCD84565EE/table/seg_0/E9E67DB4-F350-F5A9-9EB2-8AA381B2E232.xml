@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E9E67DB4-F350-F5A9-9EB2-8AA381B2E232" name="user_table">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E9E67DB4-F350-F5A9-9EB2-8AA381B2E232" name="user">
 <createdBy>kimjeongho</createdBy>
 <createdTime>2016-11-08 12:16:07 UTC</createdTime>
 <ownerDesignName>dmd최종</ownerDesignName>
