@@ -30,9 +30,9 @@ public class OrderItemDao {
 	}
 	
 	//주문 품목 검색(1개)
-	public OrderItem selectByOrid(OrderItem orderitem){
+	public OrderItem selectByOrid(int orid){
 		String sql = "select orid,mid,oid from order_item where orid=?";
-		List<OrderItem> list = jdbcTemplate.query(sql, new Object[]{orderitem.getOrid()}, new RowMapper<OrderItem>(){
+		List<OrderItem> list = jdbcTemplate.query(sql, new Object[]{orid}, new RowMapper<OrderItem>(){
 			@Override
 			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
 				OrderItem orderitem = new OrderItem();

@@ -5,9 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mycompany.myweb.dao.ExtraOrderDao;
 import com.mycompany.myweb.dao.MenuDao;
 import com.mycompany.myweb.dao.OrderDao;
 import com.mycompany.myweb.dao.OrderItemDao;
+import com.mycompany.myweb.dto.Extra;
+import com.mycompany.myweb.dto.ExtraOrder;
+import com.mycompany.myweb.dto.Menu;
+import com.mycompany.myweb.dto.Order;
 import com.mycompany.myweb.dto.OrderItem;
 //이명진
 @Component
@@ -31,7 +36,24 @@ public class OrderItemService {
 	@Autowired
 	OrderDao orderDao;
 	
-	//1개 주문 품목 추가
+	@Autowired
+	ExtraOrderDao extraOrderDao;
+	
+	
+	//1개 주문 품목 총 가격 구하기
+	//MenuDao의 selectByMid(mid)쓰임
+	//ExtraOrderDao의 selectByXidOid(extraorder)쓰임
+	public Order sumPrice(int oid, int mid, OrderItem orderitem, ExtraOrder extraorder){
+		Order rsultOrder = orderDao.selectByOid(oid);//특정 주문에 대한 1개 품목에 대한 총 가격을 넣어주기 위한
+		Menu menu = menuDao.selectByMid(mid);//어떤 메뉴인지
+		Extra extra = extraOrderDao.selectByXid(extraorder.getXid());//어떤 사이드인지
+		rsultOrder.setOtotalprice(menu.getMprice()+ extra.getXprice());
+			
+		return rsultOrder;
+		
+	}
+	
+	//1개 주문 품목 추가(MenuDao의 selectByMid(mid)쓰임)()
 	public int writeOrid(OrderItem orderitem){
 		if(orderItemtDao.insertOrid(orderitem)==1){
 			return INSERT_SUCCESS;
@@ -40,8 +62,8 @@ public class OrderItemService {
 	}
 	
 	//1개 주문 품목 리스트 찾기(1개 주문 상세 검색 할 때 쓰임)
-	public OrderItem oneOrid(OrderItem orderitem){
-		return orderItemtDao.selectByOrid(orderitem);
+	public OrderItem oneOrid(int orid){
+		return orderItemtDao.selectByOrid(orid);
 	}
 	
 	//1개 주문 품목 리스트 찾기(모든 품목 검색 할 때 쓰임)

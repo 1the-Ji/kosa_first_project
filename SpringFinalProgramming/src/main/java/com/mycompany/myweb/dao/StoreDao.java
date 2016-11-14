@@ -109,7 +109,7 @@ public class StoreDao {
 	
 	public String searchSpw(String sid, String semail){//비밀번호 찾기
 		String sql = "select spw from store where sid=? and semail=? ";
-		List<String> list = jdbcTemplate.query(sql, new Object[]{semail}, new RowMapper<String>(){
+		List<String> list = jdbcTemplate.query(sql, new Object[]{sid,semail}, new RowMapper<String>(){
 
 			@Override
 			public String mapRow(ResultSet rs, int row) throws SQLException {
