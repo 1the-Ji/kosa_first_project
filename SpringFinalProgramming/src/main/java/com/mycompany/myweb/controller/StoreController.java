@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.myweb.dto.Store;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
 
@@ -70,6 +71,56 @@ public class StoreController {
 	@RequestMapping(value="/findSpw", method=RequestMethod.GET)
 	public String findSpwForm(){
 		return "store/findSpwForm";
+	}
+	
+	@RequestMapping(value="/findSpw", method=RequestMethod.POST)
+	public String findSpw(String sid, String semail, Model model, HttpSession session){
+		String Spw = storeService.findSpw(sid, semail);
+		if (Spw == null) {
+			model.addAttribute("error","이메일 및 아이디가 존재 하지 않음.");
+			return "store/findSpwForm";
+		}
+		session.setAttribute("findSpw", Spw);
+		return "redirect:/store/login";
+	}
+	
+	@RequestMapping(value="/join", method=RequestMethod.GET)
+	public String joinForm(){
+		return "store/joinForm";
+	}
+	
+	@RequestMapping(value="/join",method=RequestMethod.POST)
+	public String join(Store store){
+		try {
+			int result = storeService.join(store);
+			return "redirect:/store/login";
+		} catch (Exception e) {
+			return "store/joinForm";
+		}
+		
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){
+		String sid = (String) session.getAttribute("login");
+		int result = storeService.logout(sid);
+		if (result == StoreService.LOGOUT_SUCCESS) {
+			session.removeAttribute("login");
+		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/info")
+	public String info(HttpSession session, Model model){
+		String sid = (String) session.getAttribute("login");
+		Store store = storeService.info(sid);
+		model.addAttribute("store", store);
+		return "store/info";
+	}
+	
+	@RequestMapping("/withdraw")
+	public String withdraw(HttpSession session){
+		return "store/index";
 	}
 	
 	
