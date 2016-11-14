@@ -1,4 +1,4 @@
-package com.mycompany.myweb.controller;
+/*package com.mycompany.myweb.controller;
 
 
 
@@ -18,3 +18,4 @@ public class HomeController {
 		return "/index";
 	}
 }
+*/

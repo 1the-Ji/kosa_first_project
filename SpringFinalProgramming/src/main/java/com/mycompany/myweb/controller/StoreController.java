@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,8 @@ import com.mycompany.myweb.dto.Store;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
 
+
+@Controller
 public class StoreController {
 //김정호
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
@@ -23,29 +26,34 @@ public class StoreController {
 	@Autowired
 	private SphotoService sphotoService;
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String loginForm(){
-		return "store/loginForm";
+		logger.info("login 페이지 열림");
+		return "/index";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="/", method=RequestMethod.POST)
 	public String login(String sid, String spw, HttpSession session, Model model){
 		int result = storeService.login(sid, spw);
+		logger.info("login 페이지 열림2");
 		
 		if (result == StoreService.LOGIN_FAIL_SPW) {
 			
 			model.addAttribute("error", "LOGIN");
-			return "store/loginForm";
+			logger.info("login_실패");
+			return "/index";
 			
 		} else if (result == StoreService.LOGIN_FAIL_SID) {
 			
 			model.addAttribute("error", "LOGIN_FAIL_SID");
-			return "store/loginForm";
+			logger.info("login_실패");
+			return "/index";
 			
 		} else {
 			
 			session.setAttribute("login", sid);
-			return "redirect:/home";
+			logger.info("login_성공");
+			return "/store/index";
 		}
 		
 		
