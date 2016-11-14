@@ -17,10 +17,10 @@ public class OrderDao {
 	private JdbcTemplate jdbcTemplate;
 
 	public int insert(Order order) {
-		String sql = "insert into order_table(oid,ototalprice,otime,user_id) "
-				+ "values(seq_order_oid.nextval,?,sysdate,?)";
+		String sql = "insert into order_table(oid,ototalprice,otime,user_id, sid) "
+				+ "values(seq_order_oid.nextval,?,sysdate,?,?)";
 
-		int row = jdbcTemplate.update(sql, order.getOtotalprice(),order.getUser_id());
+		int row = jdbcTemplate.update(sql, order.getOtotalprice(),order.getUser_id(),order.getSid());
 		return row;
 	}
 
@@ -34,7 +34,7 @@ public class OrderDao {
 	}
 
 	public Order selectByOid(int oid) {
-		String sql = "select oid,ototalprice,otime,user_id from order_table where oid=?";
+		String sql = "select oid,ototalprice,otime,user_id sid from order_table where oid=?";
 
 		List<Order> list = jdbcTemplate.query(sql, new Object[] { oid }, new RowMapper<Order>() {
 
@@ -45,6 +45,7 @@ public class OrderDao {
 				order.setOtotalprice(rs.getInt("ototalprice"));
 				order.setOtime(rs.getDate("otime"));
 				order.setUser_id(rs.getInt("user_id"));
+				order.setSid(rs.getInt("sid"));
 
 				return order;
 			}
