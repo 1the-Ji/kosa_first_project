@@ -39,7 +39,7 @@ public class StoreController {
 			
 		} else if (result == StoreService.LOGIN_FAIL_SID) {
 			
-			model.addAttribute("error", "LOGIN_FAIL_MID");
+			model.addAttribute("error", "LOGIN_FAIL_SID");
 			return "store/loginForm";
 			
 		} else {
