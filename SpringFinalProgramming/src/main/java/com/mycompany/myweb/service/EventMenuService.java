@@ -29,8 +29,6 @@ public class EventMenuService {
 	Logger logo = Logger.getLogger(EventMenuService.class);
 	
 
-	
-
 	//이벤트 추가
 	public int write(EventMenu eventmenu){
 		int row = eventMenuDao.insert(eventmenu);
@@ -38,6 +36,7 @@ public class EventMenuService {
 		return WRITE_SUCCESS;
 	}
 	
+	//이벤트 수정
 	public int modify(EventMenu eventmenu){
 		int row = eventMenuDao.update(eventmenu);
 		if(row == 0 ){
@@ -47,6 +46,7 @@ public class EventMenuService {
 		return MODIFY_SUCCESS;
 	}
 	
+	//이벤트 제거
 	public int remove(int emid){
 		int row = eventMenuDao.delete(emid);
 		if(row ==0){
@@ -55,4 +55,6 @@ public class EventMenuService {
 		}
 		return REMOVE_SUCCESS;
 	}
+	
+	
 }

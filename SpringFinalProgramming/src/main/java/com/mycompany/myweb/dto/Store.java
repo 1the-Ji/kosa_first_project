@@ -3,16 +3,16 @@ package com.mycompany.myweb.dto;
 
 public class Store {
 	//김정호 1114 수정
-	private String sid;		//매장아이디(아이디)
-	private String semail;	//매장이메일
-	private String spw;		//매장비밀번호
+	private String sid;		//매장등록 회원아이디(아이디)
+	private String semail;	//회원이메일
+	private String spw;		//회원비밀번호
 	private String sname;	//매장이름
 	private String slocal;	//매장 지점명
 	private String saddr;	//매장 주소
 	private String stel;	//매장 전화번호
 	
-	private String sopen;
-	private String sclosed;
+	private String sopen;	//매장 오픈 시간
+	private String sclosed;	//매장 닫는 시간
 	
 	private String sbeacon;	//비콘 번호
 	
