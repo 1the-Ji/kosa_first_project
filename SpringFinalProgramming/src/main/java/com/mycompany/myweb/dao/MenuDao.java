@@ -57,7 +57,7 @@ public class MenuDao {
 	}
 	 
 	public Menu selectByMid(int mid){ 
-		String sql = "select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid from menu where mid=?";
+		String sql = "select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid from menu where mid=?, sid=?";
 		List<Menu> list = jdbcTemplate.query(sql, new Object[]{mid}, new RowMapper<Menu>(){
 			
 			@Override
@@ -73,7 +73,7 @@ public class MenuDao {
 				menu.setSid(rs.getString("sid"));
 				return menu;
 			}
-		});
+		}); 
 		return (list.size() != 0)? list.get(0) : null;
 	}
 	
@@ -84,7 +84,7 @@ public class MenuDao {
 		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid ";
 		sql += "from ( select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
 		sql += ") ";
-		sql += "where rn>=? sid=? ";
+		sql += "where rn>=? and sid=? ";
 		List<Menu> list = jdbcTemplate.query(
 				sql, 
 				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1)},
