@@ -17,11 +17,10 @@ public class OrderDao {
 	private JdbcTemplate jdbcTemplate;
 
 	public int insert(Order order) {
-		String sql = "insert into order_table(oid,ordercount,ototalprice,otime,user_id) "
-				+ "values(seq_order_oid.nextval,?,?,sysdate,?)";
+		String sql = "insert into order_table(oid,ototalprice,otime,user_id) "
+				+ "values(seq_order_oid.nextval,?,sysdate,?)";
 
-		int row = jdbcTemplate.update(sql, order.getOrdercount(), order.getOtotalprice(),
-				order.getUser_id());
+		int row = jdbcTemplate.update(sql, order.getOtotalprice(),order.getUser_id());
 		return row;
 	}
 
@@ -35,7 +34,7 @@ public class OrderDao {
 	}
 
 	public Order selectByOid(int oid) {
-		String sql = "select oid,ordercount,ototalprice,otime,user_id " + "from order_table where oid=?";
+		String sql = "select oid,ototalprice,otime,user_id from order_table where oid=?";
 
 		List<Order> list = jdbcTemplate.query(sql, new Object[] { oid }, new RowMapper<Order>() {
 
@@ -43,7 +42,6 @@ public class OrderDao {
 			public Order mapRow(ResultSet rs, int row) throws SQLException {
 				Order order = new Order();
 				order.setOid(rs.getInt("oid"));
-				order.setOrdercount(rs.getInt("ordercount"));
 				order.setOtotalprice(rs.getInt("ototalprice"));
 				order.setOtime(rs.getDate("otime"));
 				order.setUser_id(rs.getInt("user_id"));
@@ -55,11 +53,11 @@ public class OrderDao {
 		return (list.size() != 0) ? list.get(0) : null;
 	}
 
-	public List<Order> selectByPage(int pageNo, int rowsPerPage) {
+	public List<Order> selectByPage(int pageNo, int rowsPerPage, int oid) {
 		String sql = "";
-		sql += "select rn, oid, ordercount, ototalprice, otime, user_id ";
+		sql += "select rn, oid, ototalprice, otime, user_id ";
 		sql += "from ( ";
-		sql += "select rownum as rn, oid, ordercount, ototalprice, otime, user_id ";
+		sql += "select rownum as rn, oid, ototalprice, otime, user_id ";
 		sql += "where rownum<=? ";
 		sql += ") ";
 		sql += "where rn >= ? ";
@@ -71,7 +69,6 @@ public class OrderDao {
 					public Order mapRow(ResultSet rs, int row) throws SQLException {
 						Order order = new Order();
 						order.setOid(rs.getInt("oid"));
-						order.setOrdercount(rs.getInt("ordercount"));
 						order.setOtotalprice(rs.getInt("ototalprice"));
 						order.setOtime(rs.getDate("otime"));
 						order.setUser_id(rs.getInt("user_id"));

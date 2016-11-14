@@ -7,11 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dto.Extra;
 
 
-
+@Component
 public class ExtraDao {
 	
 	@Autowired
@@ -67,3 +68,4 @@ public class ExtraDao {
 		return (list.size() != 0)? list.get(0):null;
 	}
 }
+

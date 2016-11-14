@@ -1,10 +1,12 @@
 package com.mycompany.myweb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dao.StoreDao;
 import com.mycompany.myweb.dto.Store;
 
+@Component
 public class StoreService {
 //김정호
 	
