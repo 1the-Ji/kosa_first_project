@@ -82,5 +82,13 @@ public class StoreService {
 		return store.getSpw();
 			
 	}
+	
+	public int modify(Store store){
+		int row = storeDao.update(store);
+		if (row == 0) {
+			return MODIFY_FAIL;
+		}
+		return MODIFY_SUCCESS;
+	}
 
 }
