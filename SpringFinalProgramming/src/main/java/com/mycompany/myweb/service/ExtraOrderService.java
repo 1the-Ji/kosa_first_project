@@ -40,7 +40,7 @@ public class ExtraOrderService {
 			int xid = extraOrderDao.selectByOrid(orderItemDao.selectByOrid(orid).getOrid());
 			Extra extra = extraDao.selectByXid(xid);
 		
-			return extra;
+			return extra;//주문내역 상세보기 - 사이드에(xname)도 이용하면 됨
 		}
 	
 	/*//한 주문 시 한 품목 사이드 상세 찾기
