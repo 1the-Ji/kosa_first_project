@@ -22,7 +22,7 @@ public class MenuService {
 	@Autowired
 	private MenuDao menuDao;
 	
-	public List<Menu> list(int pageNo, int rowsPerPage, int sid){
+	public List<Menu> list(int pageNo, int rowsPerPage, String sid){
 		return menuDao.selectByPage(pageNo, rowsPerPage, sid);
 	}
 	
