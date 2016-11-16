@@ -26,18 +26,11 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 	
-	@Autowired
-	private Store store;
-	// String sid = store.getSid();
 	
 	@RequestMapping("/list")
-	public String list(String pageNo, Model model, HttpSession session){
+	public String list(String pageNo, Model model, HttpSession session, String sid){
 		
-		String ssid = (String) session.getAttribute("login");
-		String sid = "";
-		if(ssid.equals(store.getSid())){
-			sid = ssid;
-		}
+		sid = (String) session.getAttribute("login");
 		
 		int intPageNo = 1;
 		if (pageNo == null) {
@@ -82,22 +75,27 @@ public class MenuController {
 		return "menu/list";
 	}
 	
-	@RequestMapping(value = "/write", method=RequestMethod.GET)
-	public String write(){
-		return "menu/write";
+	@RequestMapping(value = "/register", method=RequestMethod.GET)
+	public String registerForm(){
+		return "menu/register";
 	}
 	
-	/*
-	@RequestMapping(value = "/write", method=RequestMethod.POST)
-	public String write(Menu menu, HttpSession session){
-		try{
-			String sid = (String)session.getAttribute("login");
-			//menu.
-		} catch(Exception e){
-			
+	
+	@RequestMapping(value = "/register", method=RequestMethod.POST)
+	public String register(HttpSession session, Menu menu){
+		String sid = (String)session.getAttribute("login");
+		menu.setSid(sid);
+		int result = menuService.write(menu);
+		if(result == MenuService.WRITE_FAIL){
+			return "menu/write";
+		} else{
+			return "redirect:/menu/list";
 		}
-		return ;
-	}
-	*/
+	} // register
+	/*
+	public String info(int mid, Model model){
+		Menu menu = menuService.info(mid);
+		menu
+	}*/
 
 }
