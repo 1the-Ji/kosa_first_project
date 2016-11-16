@@ -1,5 +1,6 @@
 package com.mycompany.myweb.dto;
 
+//이명진
 public class OrderItem {
 	private int orid;
 	private int oid;
