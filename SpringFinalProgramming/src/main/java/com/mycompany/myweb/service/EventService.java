@@ -28,7 +28,7 @@ public class EventService {
 	@Autowired
 	private EventDao eventDao;
 	
-	public List<Event> getList(){
+	public List<Event> getList(int eid){//김정호 파라미터 int eid추가(임시 수정)
 		logger.info("getList 처리");
 		List<Event> list = eventDao.selectList();
 		return list;
