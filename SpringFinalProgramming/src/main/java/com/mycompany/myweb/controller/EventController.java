@@ -23,6 +23,7 @@ public class EventController {
 	
 	@RequestMapping("/list")
 	public String list(Model model, String sid) throws SQLException{
+		logger.info("service list 실행");
 		List<Event> list = eventService.getList(sid);
 		model.addAttribute("eventList",list);
 		return "event/list";
