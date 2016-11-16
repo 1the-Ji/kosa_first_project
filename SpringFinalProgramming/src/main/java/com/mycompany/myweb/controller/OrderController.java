@@ -1,0 +1,89 @@
+package com.mycompany.myweb.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.mycompany.myweb.service.ExtraOrderService;
+import com.mycompany.myweb.service.OrderItemService;
+import com.mycompany.myweb.service.OrderService;
+
+@Controller
+@RequestMapping("/order")
+public class OrderController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+	
+	@Autowired
+	OrderItemService orderItemService;
+	
+	@Autowired
+	ExtraOrderService extraOrderService;
+	
+	@Autowired
+	OrderService orderService;
+	
+	//주문내역 페이지
+	@RequestMapping("/list")
+	public String list(String pageNo, Model model, HttpSession session, String sid){
+		sid = (String) session.getAttribute("order");
+		
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute(pageNo, String.valueOf(intPageNo));
+		
+		int rowsPerPage = 5;
+		int pagesPerGroup = 3;
+		
+		//int totalBoardNo = orderService.getCount();
+		
+		//int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		//int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+		int endPageNo = startPageNo + pagesPerGroup - 1;
+		
+		/*if(groupNo == totalGroupNo){
+			endPageNo = totalPageNo;
+		}
+		
+		List<Order> list = orderService.list(intPageNo, rowsPerPage, sid);
+		*/
+		
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		//model.addAttribute("totalBoardNo", totalBoardNo);
+		//model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		//model.addAttribute("list", list);
+		
+		return "order/list";
+	
+	}
+
+	//주문내역 상세보기(1개 주문 당)
+	@RequestMapping(value="/detailList", method=RequestMethod.GET)
+	public String detailList(){
+		
+		
+		return "detailList";
+	}
+}
