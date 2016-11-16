@@ -94,6 +94,7 @@ public class StoreController {
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String joinForm(){
+		logger.info("joinForm 진입 성공");
 		return "store/joinForm";
 	}
 	
@@ -101,8 +102,10 @@ public class StoreController {
 	public String join(Store store){
 		try {
 			int result = storeService.join(store);
-			return "redirect:/store/login";
+			logger.info("join 성공");
+			return "redirect:/";
 		} catch (Exception e) {
+			logger.info("join 실패"+e.getMessage());
 			return "store/joinForm";
 		}
 		
