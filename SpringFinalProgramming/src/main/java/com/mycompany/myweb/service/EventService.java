@@ -52,7 +52,6 @@ public class EventService {
 	}
 	
 	public List<Event> getList(String sid) throws SQLException{
-		
 		return eventDao.selectAll(sid);
 	}
 }
