@@ -1,5 +1,7 @@
 package com.mycompany.myweb.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,25 +22,19 @@ import com.mycompany.myweb.dto.Event;
 public class EventDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	private Connection conn= null;
 	private static final Logger logger = LoggerFactory.getLogger(EventDao.class);
 	
 	
-	public List<Event> selectList(String sid){
-		String sql = "select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid from event where eid=?";
-		List<Event> list = new ArrayList<>();
-		logger.info("selectList()");
-		list.add(new Event());
 
-		return list;
-		
-	}
-	
 	public int insert(Event event){
-		String sql = "insert into event(eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid) values(seq_event_eid.nextval, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into event(eid, estartperiod, elastperiod, etitle, econtents, esavedfile, emimetype, sid, mid) values(seq_event_eid.nextval, ?, ?, ?,?, ?, ?, ?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEstartperiod(),
 				event.getElastperiod(),
+				event.getEtitle(),
 				event.getEcontents(),
 				event.getEsavedfile(),
 				event.getEmimetype(),
@@ -49,11 +45,12 @@ public class EventDao {
 	}
 	
 	public int update(Event event){
-		String sql = "update event set estartperiod=?, elastperiod=?, econtents=?, esavedfile=?, emimetype=?, sid=?, mid=? where eid=?";
+		String sql = "update event set estartperiod=?, elastperiod=?, etitle=?, econtents=?, esavedfile=?, emimetype=?, sid=?, mid=? where eid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEstartperiod(),
 				event.getElastperiod(),
+				event.getEtitle(),
 				event.getEcontents(),
 				event.getEsavedfile(),
 				event.getEmimetype(),
@@ -63,8 +60,6 @@ public class EventDao {
 		);
 		return row;
 	}
-	
-	
 	public int delete(int eid){
 		String sql = "delete from event where eid=?";
 		int row = jdbcTemplate.update(sql, eid);
@@ -72,7 +67,7 @@ public class EventDao {
 	}
 	
 	public Event selectByEid(int eid){ 
-		String sql = "select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid from event where eid=?";
+		String sql = "select eid, estartperiod, elastperiod,etitle, econtents, esavedfile, emimetype, sid, mid from event where eid=?";
 		List<Event> list = jdbcTemplate.query(sql, new Object[]{eid}, new RowMapper<Event>(){
 			 
 			@Override
@@ -81,6 +76,7 @@ public class EventDao {
 				event.setEid(rs.getInt("eid"));
 				event.setEstartperiod(rs.getDate("estartperiod"));
 				event.setElastperiod(rs.getDate("elastperiod"));
+				event.setEtitle(rs.getString("etitle"));
 				event.setEcontents(rs.getString("econtents"));
 				event.setEsavedfile(rs.getString("esavedfile"));
 				event.setEmimetype(rs.getString("emimetype"));
@@ -90,5 +86,26 @@ public class EventDao {
 			}
 		});
 		return (list.size() != 0) ? list.get(0) : null;
+	}
+	
+	public List<Event> selectAll(String sid) throws SQLException{
+		String sql = "select eid, estartperiod, elastperiod, etitle, econtents from event where sid=?";
+		List<Event> list = new ArrayList<Event>();
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, sid);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()){
+			Event event = new Event();
+			event.setEid(rs.getInt("eid"));
+			event.setEstartperiod(rs.getDate("estartperiod"));
+			event.setElastperiod(rs.getDate("elastperiod"));
+			event.setEtitle(rs.getString("etitle"));
+			event.setEcontents(rs.getString("econtents"));
+			
+			list.add(event);
+		}
+		
+		return list;
 	}
 }
