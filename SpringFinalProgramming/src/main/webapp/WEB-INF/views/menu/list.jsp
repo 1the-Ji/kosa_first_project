@@ -19,15 +19,38 @@
    				<td>
    					<c:forEach var="menu" items="${list}">
    					<a href="info?bno=${menu.mid}">
-   					<div style="width:120px; height:130px; margin:5px; display:inline-block;
-   					background-image:url(showPhoto?savedfile=${menu.msavedfile});
-   					background-size: 120px 130px;">
-   					</div>
+	   					<div style="width:120px; height:130px; margin:5px; display:inline-block;
+	   					background-image:url(showPhoto?savedfile=${menu.msavedfile});
+	   					background-size: 120px 130px;">
+	   					
+		   					<div>
+		   						<table style="width:100%; height:40px;">
+			   						<tr style="text-align:center;">${menu.mname} ${menu.hot_ice}</tr>
+			   						<tr style="text-align:center;color:red">${menu.mprice}</tr>
+			   					</table>
+		   					</div>
+   						</div>
    					</a>
    					</c:forEach>
    				</td>
    			</tr>
    		</table>
    		
+   		<div style="width: 600px">
+			<a href="list?pageNo=1">[처음]</a>
+			<c:if test="${groupNo>1 }">
+			<a href="list?pageNo=${startPageNo-1 }">[이전]</a>
+			</c:if>
+			<c:forEach var="i" begin="${startPageNo}" end="${endPageNo }">
+			 <a href="list?pageNo=${i}" 
+			 	<c:if test="${pageNo==i }">style="color:red"</c:if>
+			 >${i}</a>
+			</c:forEach>
+			 
+			<c:if test="${groupNo<totalGroupNo }">
+			<a href="list?pageNo=${endPageNo+1 }">[다음]</a>
+			</c:if>
+			<a href="list?pageNo=${totalPageNo }">[맨끝]</a>
+		</div>
    </body>
 </html>
