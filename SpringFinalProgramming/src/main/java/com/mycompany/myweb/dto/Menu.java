@@ -1,5 +1,6 @@
 package com.mycompany.myweb.dto;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class Menu {
 	private int mid;
@@ -8,6 +9,7 @@ public class Menu {
 	private String hot_ice;
 	private int mprice;
 	private String mcontents;
+	private MultipartFile photo;
 	private String msavedfile;
 	private String mmimetype;
 	private String sid;
@@ -47,7 +49,14 @@ public class Menu {
 		return mcontents;
 	}
 	public void setMcontents(String mcontents) {
-		this.mcontents = mcontents;
+		this.mcontents = mcontents;		
+	}
+	
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
 	}
 	public String getMsavedfile() {
 		return msavedfile;
