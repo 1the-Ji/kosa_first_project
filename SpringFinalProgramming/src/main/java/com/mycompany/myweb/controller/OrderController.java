@@ -1,7 +1,12 @@
 package com.mycompany.myweb.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.myweb.dto.Extra;
 import com.mycompany.myweb.dto.Order;
 import com.mycompany.myweb.service.ExtraOrderService;
 import com.mycompany.myweb.service.OrderItemService;
@@ -75,14 +81,26 @@ public class OrderController {
 		
 		return "order/list";
 	}
-
+	
 	//주문내역 상세보기(1개 주문 당)
 	@RequestMapping(value="/detailList", method=RequestMethod.GET)
-	public String detailList(){
+	public String detailList(int oid, Model model){
+		//주문내역 상세보기 service&dao 만들어야 함
+		//1주문당
+		//품목, 수량, 사이드, 가격 -> 구해서 같이 넘겨야 됨
+		Map<Integer,String> mnameSameItem = orderItemService.mnameSameItem(oid);
+		Map<Integer,Integer> countSameItem = orderItemService.countSameItem(oid);
+		Map<Integer,String> xnameSameItem = orderItemService.xnameSameItem(oid);
+		Map<Integer,Integer> sumSameItem = orderItemService.sumSameItem(oid);
+		
+		model.addAttribute("mnameSameItem", mnameSameItem);
+		model.addAttribute("countSameItem", countSameItem);
+		model.addAttribute("xnameSameItem", xnameSameItem);
+		model.addAttribute("sumSameItem", sumSameItem);
 		
 		
 		return "order/detailList";
-	}
+	}//여기까지 함
 	
 	//주문내역 기간보기
 	@RequestMapping(value="/termList", method=RequestMethod.POST)
