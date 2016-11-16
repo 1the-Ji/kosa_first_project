@@ -56,7 +56,7 @@
 						<option value="option9">엔제리너스</option>					
 						<option value="option10">커피빈</option>	
 						<option value="option11">이디야</option>							
-					</select>
+					</select><br/>
 							
 			지점명: <input type="text" name="slocal" value=""><br/>
 			주소: <input type="text" name="saddr" value=""><br/>
