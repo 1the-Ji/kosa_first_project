@@ -21,8 +21,8 @@ public class EventController {
 	private EventService eventService;
 	
 	@RequestMapping("/list")
-	public String list(Model model, int eid){
-		List<Event> list = eventService.getList(eid);
+	public String list(Model model, String sid){
+		List<Event> list = eventService.getList(sid);
 		model.addAttribute("eventList",list);
 		return "event/list";
 	}
