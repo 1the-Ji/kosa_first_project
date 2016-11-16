@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-<<<<<<< HEAD
-=======
-	
->>>>>>> 9e9e320c84b3e0b1177fac65eb9d8db81d381b2a
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@RequestMapping("/")
 	public String index(){

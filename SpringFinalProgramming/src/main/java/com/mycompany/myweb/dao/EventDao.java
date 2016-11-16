@@ -21,17 +21,14 @@ public class EventDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private static final Logger logger = LoggerFactory.getLogger(EventDao.class);
-	public List<Event> selectList(){
+	
+	
+	public List<Event> selectList(String sid){
+		String sql = "select eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, mid from event where eid=?";
 		List<Event> list = new ArrayList<>();
-		logger.info("selectList() 2");
-		for(int i = 1;i<=10;i++){
-			Event event = new Event();
-		//	event.setBtitle("제목 :" + i);
-		//	event.setBcontent("내용 :" + i);
-		//	event.setBwriter("글쓴이 :" + i);
-			list.add(event);
-		}
-		logger.info("selectList() 3");
+		logger.info("selectList()");
+		list.add(new Event());
+
 		return list;
 		
 	}

@@ -28,9 +28,9 @@ public class EventService {
 	@Autowired
 	private EventDao eventDao;
 	
-	public List<Event> getList(){
+	public List<Event> getList(String sid){
 		logger.info("getList 처리");
-		List<Event> list = eventDao.selectList();
+		List<Event> list = eventDao.selectList(sid);
 		return list;
 	}
 
