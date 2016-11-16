@@ -88,24 +88,22 @@ public class EventDao {
 		return (list.size() != 0) ? list.get(0) : null;
 	}
 	
-	public List<Event> selectAll(String sid) throws SQLException{
-		String sql = "select eid, estartperiod, elastperiod, etitle, econtents from event where sid=?";
-		List<Event> list = new ArrayList<Event>();
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, sid);
-		ResultSet rs = pstmt.executeQuery();
-		
-		while(rs.next()){
-			Event event = new Event();
-			event.setEid(rs.getInt("eid"));
-			event.setEstartperiod(rs.getDate("estartperiod"));
-			event.setElastperiod(rs.getDate("elastperiod"));
-			event.setEtitle(rs.getString("etitle"));
-			event.setEcontents(rs.getString("econtents"));
-			
-			list.add(event);
-		}
-		
+	public List<Event> selectAll(String sid){
+		String sql = "select eid, estartperiod, elastperiod, econtents, etitle from event where sid=?";
+		List<Event> list = jdbcTemplate.query(sql, new Object[]{sid}, new RowMapper<Event>(){
+			 
+			@Override
+			public Event mapRow(ResultSet rs, int row) throws SQLException {
+				Event event = new Event();
+				event.setEid(rs.getInt("eid"));
+				event.setEstartperiod(rs.getDate("estartperiod"));
+				event.setElastperiod(rs.getDate("elastperiod"));
+				event.setEcontents(rs.getString("econtents"));
+				event.setEtitle(rs.getString("etitle"));
+				return event;
+			}
+		});
+
 		return list;
 	}
 }

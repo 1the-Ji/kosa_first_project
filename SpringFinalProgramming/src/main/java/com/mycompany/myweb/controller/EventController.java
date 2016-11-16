@@ -21,13 +21,15 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 	
-	@RequestMapping("/list")
-	public String list(Model model, String sid) throws SQLException{
+	@RequestMapping("/event/list")
+	public String list(Model model, String sid){
 		logger.info("service list 실행");
 		List<Event> list = eventService.getList(sid);
 		model.addAttribute("eventList",list);
 		return "event/list";
 	}
+	
+	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String registerForm(){
 		return "event/registerForm";
