@@ -92,6 +92,7 @@ public class MenuController {
 			return "redirect:/menu/list";
 		}
 	} // register
+	
 	/*
 	public String info(int mid, Model model){
 		Menu menu = menuService.info(mid);
