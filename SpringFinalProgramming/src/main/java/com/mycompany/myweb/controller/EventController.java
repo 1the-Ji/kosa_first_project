@@ -3,6 +3,8 @@ package com.mycompany.myweb.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,23 +24,22 @@ public class EventController {
 	private EventService eventService;
 	
 	@RequestMapping("/event/list")
-	public String list(Model model, String sid){
-		logger.info("service list 실행");
+	public String list(Model model, HttpSession session){
+		logger.info("service list 실행1");
+		String sid = (String) session.getAttribute("login");
 		List<Event> list = eventService.getList(sid);
 		model.addAttribute("eventList",list);
+		logger.info("service list 실행2");
 		return "event/list";
 	}
-	
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String registerForm(){
 		return "event/registerForm";
 	}
+	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(){
 		return "redirect:/event/list";
 	}
-
-	
-	
 }
