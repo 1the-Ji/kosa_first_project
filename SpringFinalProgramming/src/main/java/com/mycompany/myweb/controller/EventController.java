@@ -1,5 +1,6 @@
 package com.mycompany.myweb.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,12 +22,11 @@ public class EventController {
 	private EventService eventService;
 	
 	@RequestMapping("/list")
-	public String list(Model model, String sid){
+	public String list(Model model, String sid) throws SQLException{
 		List<Event> list = eventService.getList(sid);
 		model.addAttribute("eventList",list);
 		return "event/list";
 	}
-	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String registerForm(){
 		return "event/registerForm";
