@@ -33,7 +33,7 @@ public class MenuController {
 	private MenuService menuService;
 	
 	
-	@RequestMapping("/list")
+	@RequestMapping("/menu/list")
 	public String list(String pageNo, Model model, HttpSession session, Menu menu){
 		
 		String sid = (String) session.getAttribute("login");
@@ -81,21 +81,21 @@ public class MenuController {
 			model.addAttribute("endPageNo", endPageNo);
 			model.addAttribute("list", list);
 			
-			return "/menu/list";
+			return "menu/menulist";
 			
 		} else {
-			return "/store/index";
+			return "store/index";
 		}
 	} // list
 	
 	
-	@RequestMapping(value = "/register", method=RequestMethod.GET)
+	@RequestMapping(value = "/menu/register", method=RequestMethod.GET)
 	public String registerForm(){
-		return "/menu/register";
+		return "menu/register";
 	} 
 	
 	
-	@RequestMapping(value = "/register", method=RequestMethod.POST)
+	@RequestMapping(value = "/menu/register", method=RequestMethod.POST)
 	public String register(HttpSession session, Menu menu){
 		
 		try {
@@ -113,7 +113,7 @@ public class MenuController {
 			return "redirect:/menu/list";		
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "/menu/register";
+			return "menu/register";
 		}
 	} // register
 	
@@ -142,23 +142,23 @@ public class MenuController {
 		}
 	} // showPhoto 
 	
-	
+	@RequestMapping(value="/menu/info")
 	public String info(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		menuService.modify(menu);
 		model.addAttribute("menu", menu);
-		return "/menu/info";
+		return "menu/info";
 	} // info
 	
-	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	@RequestMapping(value="/menu/modify", method=RequestMethod.GET)
 	public String modifyForm(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		model.addAttribute("menu", menu);
-		return "/menu/modify";
+		return "menu/modify";
 	} // modifyForm
 	
 	
-	@RequestMapping(value="modify", method=RequestMethod.POST)
+	@RequestMapping(value="/menu/modify", method=RequestMethod.POST)
 	public String modify(Menu menu, HttpSession session, Model model){
 		
 		try{
