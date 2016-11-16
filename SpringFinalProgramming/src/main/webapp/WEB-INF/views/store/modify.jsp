@@ -12,7 +12,8 @@
 		회원정보 수정
 		<hr/>
 		<form method="post" enctype="multipart/form-data"><%-- input type="file"일시 반드시 enctype="multipart/form-data 작성 --%>
-			아이디: ${store.sid}<br/>
+			<%-- <input type="hidden" name="sid" value="${store.sid}"> --%>
+			아이디: <input type="text" name="sid" value="${store.sid}" readonly="readonly"> <br/>
 			이메일: <input type="email" name="semail" value="${store.semail}"><br/>
 			<%-- <select name="semail">
 						<option selected>직접 입력</option>
@@ -57,7 +58,7 @@
 			<option value=KT>KT</option>
 			<option value=U+>U+</option>
 			</select> -->
-			<input type="tel" name="stel" value="" placeholder="-뺴고 숫자만 입력" ><br/>			
+			<input type="tel" name="stel" value="${store.stel}" placeholder="-뺴고 숫자만 입력" ><br/>			
 			오픈시간: <input type="time" name="sopen" value="${store.sopen}"><br/>
 			마감시간: <input type="time" name="sclosed" value="${store.sclosed}"><br/>
 			비콘번호: <input type="text" name="sbeacon" value="${store.sbeacon}"><br/>
