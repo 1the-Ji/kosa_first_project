@@ -15,8 +15,8 @@
 		
 		<h1>메뉴</h1>
 		<hr/>
-		1. <a href="${pageContext.servletContext.contextPath}/menu/list">메뉴리스트</a>
-		2. <a href="${pageContext.servletContext.contextPath}/menu/info">메뉴상세보기</a>
+		1. <a href="${pageContext.servletContext.contextPath}/menu/list">메뉴리스트</a> <br/>
+		2. <a href="${pageContext.servletContext.contextPath}/menu/info">메뉴상세보기</a> <br/>
 		
 	</body>
 </html>

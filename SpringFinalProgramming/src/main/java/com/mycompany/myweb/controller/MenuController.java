@@ -25,7 +25,6 @@ import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.service.MenuService;
 
 @Controller
-@RequestMapping("/menu")
 public class MenuController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
@@ -82,17 +81,17 @@ public class MenuController {
 			model.addAttribute("endPageNo", endPageNo);
 			model.addAttribute("list", list);
 			
-			return "menu/list";
+			return "/menu/list";
 			
 		} else {
-			return "/";
+			return "/store/index";
 		}
 	} // list
 	
 	
 	@RequestMapping(value = "/register", method=RequestMethod.GET)
 	public String registerForm(){
-		return "menu/register";
+		return "/menu/register";
 	} 
 	
 	
@@ -114,7 +113,7 @@ public class MenuController {
 			return "redirect:/menu/list";		
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "menu/register";
+			return "/menu/register";
 		}
 	} // register
 	
@@ -148,14 +147,14 @@ public class MenuController {
 		Menu menu = menuService.info(mid);
 		menuService.modify(menu);
 		model.addAttribute("menu", menu);
-		return "menu/info";
+		return "/menu/info";
 	} // info
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyForm(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		model.addAttribute("menu", menu);
-		return "menu/modify";
+		return "/menu/modify";
 	} // modifyForm
 	
 	
