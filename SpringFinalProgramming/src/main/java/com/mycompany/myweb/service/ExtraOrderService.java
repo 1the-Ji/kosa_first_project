@@ -37,7 +37,7 @@ public class ExtraOrderService {
 	
 	//한 주문 시(매칭되는) 한 품목 사이드 상세 찾기
 		public Extra orderItemExtra(int orid, ExtraOrder extraorder){
-			int xid = extraOrderDao.selectByOrid(orderItemDao.selectByOrid(orid).getOrid());
+			int xid = extraOrderDao.selectXidByOrid(orderItemDao.selectByOrid(orid).getOrid());
 			Extra extra = extraDao.selectByXid(xid);
 		
 			return extra;//주문내역 상세보기 - 사이드에(xname)도 이용하면 됨
