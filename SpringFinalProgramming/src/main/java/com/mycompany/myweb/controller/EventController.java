@@ -17,7 +17,7 @@ import com.mycompany.myweb.service.EventService;
 @Controller
 public class EventController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	  
 	@Autowired
 	private EventService eventService;
 	
