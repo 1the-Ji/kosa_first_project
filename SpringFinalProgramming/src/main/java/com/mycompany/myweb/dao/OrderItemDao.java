@@ -21,7 +21,7 @@ public class OrderItemDao {
 	
 	
 	//1개 주문 총 가격 구하기(주문 상세보기의 총가격 에 쓰임)
-	public List<Integer> sumOrder(int oid){
+	/*public List<Integer> sumOrder(int oid){
 		String sql ="select sum(mprice) from menu where ";
 		
 		List<Integer> list = jdbcTemplate.query(sql, 
@@ -38,7 +38,7 @@ public class OrderItemDao {
 			
 		});
 		return list;
-	}
+	}*/
 	
 	//1개 주문에 대해 같은 이름과 사이드를 갖는 품목을 카운트 하는 것(아메리카노 시럼추가 2개, 카페모카 샷추가 1개 이런식)
 	/*public int countItem(){
@@ -146,8 +146,27 @@ public class OrderItemDao {
 		return row;
 		
 	}
+	
+	//1개 주문에 대해 같은 이름과 사이드를 갖는 품목을 카운트 하는 것(아메리카노 시럼추가 2개, 카페모카 샷추가 1개 이런식)
+	public int countOrid(int orid){
+		String sql = "select count(*) as count from order_item where orid=?";
+			
+		List<Integer> list = jdbcTemplate.query(sql, 
+				new Object[]{orid}, 
+				new RowMapper<Integer>(){
+
+					@Override
+					public Integer mapRow(ResultSet rs, int row) throws SQLException {
+						Integer countItem = new Integer(rs.getInt("count")); 
+						return countItem;
+					}
+			
+		});
+		return (list.size() != 0)?list.get(0):null;
+	}
+	
 	//1개 주문 품목들 총 카운트
-	public int countOrid(){
+	public int count(){
 		String sql = "select count(*) from order_item";
 		int count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;

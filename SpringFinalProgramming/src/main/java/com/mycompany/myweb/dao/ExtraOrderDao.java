@@ -39,7 +39,7 @@ public class ExtraOrderDao {
 		}
 	
 		//1개 주문 품목에 대한 사이드 검색
-		public int selectByOrid(int orid){
+		public int selectXidByOrid(int orid){
 			String sql = "select xid from extra_order where orid=?";
 			List<Integer> list =  jdbcTemplate.query(sql, 
 					new Object[]{orid}, 

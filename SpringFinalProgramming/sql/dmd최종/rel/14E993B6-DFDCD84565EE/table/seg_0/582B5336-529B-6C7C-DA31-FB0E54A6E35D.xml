@@ -70,6 +70,17 @@
 <colAssociation fkAssociation="A7462C1D-E426-7531-AA59-D4B1C81EE904" referredColumn="910D4981-5B78-5F29-F3CA-273FCA632592"/>
 </associations>
 </Column>
+<Column name="howpay" id="0035A6A0-8ED6-6B43-60B1-24767701CDC6">
+<createdBy>Administrator</createdBy>
+<createdTime>2016-11-16 08:44:38 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="D70272EC-F06B-E5A0-B782-D35186D4B4F0" name="order_table_PK">

@@ -55,6 +55,8 @@ public class EventMenuService {
 		}
 		return REMOVE_SUCCESS;
 	}
+	//이벤트 조회
+	public void list(){}
 	
-	
+	  
 }

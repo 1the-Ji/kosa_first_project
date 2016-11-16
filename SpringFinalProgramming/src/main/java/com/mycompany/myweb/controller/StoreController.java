@@ -94,6 +94,7 @@ public class StoreController {
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String joinForm(){
+		logger.info("joinForm 진입 성공");
 		return "store/joinForm";
 	}
 	
@@ -101,8 +102,10 @@ public class StoreController {
 	public String join(Store store){
 		try {
 			int result = storeService.join(store);
-			return "redirect:/store/login";
+			logger.info("join 성공");
+			return "redirect:/";
 		} catch (Exception e) {
+			logger.info("join 실패"+e.getMessage());
 			return "store/joinForm";
 		}
 		
@@ -127,22 +130,22 @@ public class StoreController {
 		return "store/info";
 	}*/
 	
-	@RequestMapping(value="/store/info", method=RequestMethod.GET)
+	@RequestMapping(value="/store/modify", method=RequestMethod.GET)
 	public String modifyForm(HttpSession session, Model model){
 		logger.info("storemodifyForm정보");
 		String sid = (String) session.getAttribute("login");
 		Store store = storeService.info(sid);
 		model.addAttribute("store", store);
-		return "/store/info";
+		return "/store/modify";
 	}
 	
-	@RequestMapping(value="/store/info", method=RequestMethod.POST)
+	@RequestMapping(value="/store/modify", method=RequestMethod.POST)
 	public String modify(Store store){
 		
 		logger.info("storemodify정보");
 		Store dbStore = storeService.info(store.getSid());
 		storeService.modify(dbStore);
-		return "/store/index";
+		return "redirect:/store/modify";
 	}
 	
 	@RequestMapping("/withdraw")

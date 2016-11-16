@@ -77,7 +77,7 @@ public class MenuDao {
 		return (list.size() != 0)? list.get(0) : null;
 	}
 	
-	public List<Menu> selectByPage(int pageNo, int rowsPerPage, int sid){
+	public List<Menu> selectByPage(int pageNo, int rowsPerPage, String sid){
 		String sql="";
 		sql += "select rn, mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid ";
 		sql += "from ( ";

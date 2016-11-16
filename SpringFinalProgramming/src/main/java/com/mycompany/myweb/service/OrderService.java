@@ -47,9 +47,14 @@ public class OrderService {
 		return REMOVE_SUCCESS;
 	}
 	
-	//주문 조회 (시간으로 조회해야함 ->수정중)
-	public List<Order> list(int pageNo, int rowsPerPage, int oid){
-		return orderDao.selectByPage(pageNo,rowsPerPage,oid);
+	//명진 수정
+	//주문 전체 조회 (시간으로 조회해야함 ->수정중)
+	public List<Order> list(int pageNo, int rowsPerPage){
+		return orderDao.selectByPage(pageNo,rowsPerPage);
 	} 
 	
+	//주문 카운트(명진)
+	public int getCount(){
+		return orderDao.count();
+	}
 }
