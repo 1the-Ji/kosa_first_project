@@ -10,7 +10,7 @@
 	<body>
 		<h1>매장</h1>
 		<hr/>
-		1. <a href="${pageContext.servletContext.contextPath}/store/info"> 매장 정보 보기</a> <br/>
+		1. <a href="${pageContext.servletContext.contextPath}/store/modify"> 매장정보보기</a> <br/>
 		2. <a href="${pageContext.servletContext.contextPath}/store/logout"> 로그아웃</a> <br/><br/>
 		
 		<h1>메뉴</h1>
