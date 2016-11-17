@@ -63,6 +63,6 @@ public class EventController {
 			 */			
 			return "redirect:/event/list";
 		}
-		
+		   
 	}
 }
