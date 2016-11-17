@@ -63,6 +63,29 @@ public class EventController {
 			 */			
 			return "redirect:/event/list";
 		}
-		   
+		
 	}
+	@RequestMapping(value="/info")
+	public String info(int eid, Model model){
+		logger.info("이벤트 세부정보 form실행");
+		Event event = eventService.info(eid);
+		model.addAttribute("event",event);
+		return "event/info";
+	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	public String modify(int eid, Model model){
+		logger.info("이벤트 수정폼 form실행");
+		Event event = eventService.info(eid);
+		model.addAttribute("event",event);
+		 return "event/modify";
+	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public String modify(Event event){
+		eventService.modify(event);
+		return "redirect:/event/list";
+	}
+	
 }
+
