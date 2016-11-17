@@ -104,7 +104,7 @@ public class MenuController {
 			
 			int result = menuService.write(menu);
 			logger.info(""+result);
-			return "redirect:/menu/list";		
+			return "redirect:/index";		
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.info(e.getMessage());
@@ -112,7 +112,7 @@ public class MenuController {
 		}
 	} // register
 	
-	
+	/*
 	@RequestMapping("/showPhoto")
 	public void showPhoto(String savedfile, HttpServletRequest request, HttpServletResponse response){
 		try{
@@ -137,7 +137,7 @@ public class MenuController {
 			e.printStackTrace();
 		}
 	} // showPhoto 
-	
+	*/
 	@RequestMapping(value="/menu/info")
 	public String info(int mid, Model model){
 		Menu menu = menuService.info(mid);
