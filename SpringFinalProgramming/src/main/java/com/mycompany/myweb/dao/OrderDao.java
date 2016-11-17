@@ -19,7 +19,6 @@ public class OrderDao {
 	public int insert(Order order) {
 		String sql = "insert into order_table(oid,ototalprice,otime,user_id, sid) "
 				+ "values(seq_order_oid.nextval,?,sysdate,?,?)";
-
 		int row = jdbcTemplate.update(sql, order.getOtotalprice(),order.getUser_id(),order.getSid());
 		return row;
 	}
@@ -27,15 +26,12 @@ public class OrderDao {
 
 	public int delete(int oid) {
 		String sql = "delete from order_table where oid=?";
-
 		int row = jdbcTemplate.update(sql, oid);
-
 		return row;
 	}
 
 	public Order selectByOid(int oid) {
 		String sql = "select oid,ototalprice,otime,user_id sid from order_table where oid=?";
-
 		List<Order> list = jdbcTemplate.query(sql, new Object[] { oid }, new RowMapper<Order>() {
 
 			@Override

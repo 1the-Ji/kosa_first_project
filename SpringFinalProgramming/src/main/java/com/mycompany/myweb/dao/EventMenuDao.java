@@ -2,6 +2,7 @@ package com.mycompany.myweb.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,19 @@ public class EventMenuDao {
 		return (list.size() != 0) ? list.get(0) : null;
 	}
 	
+/*	public List<EventMenu> selectList(int eid){
+		String sql = "select emid,dc_price,eid,mid from event_menu where eid=?";
+		List<EventMenu> list = new ArrayList<EventMenu>();
+		for(int i=0;i<list.size();i++){
+			EventMenu eventmenu = new EventMenu();
+			eventmenu.setEmid(rs.getInt("emid"));
+			eventmenu.setDc_price(rs.getInt("dc_price"));
+			eventmenu.setEid(rs.getInt("eid"));
+			eventmenu.setMid(rs.getInt("mid"));
+			return eventmenu;
+		}
+		return list;
+	}*/
 
 
 }
