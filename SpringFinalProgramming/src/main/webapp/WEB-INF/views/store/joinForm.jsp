@@ -69,7 +69,7 @@
 			오픈시간: <input type="time" name="sopen" value=""><br/>
 			마감시간: <input type="time" name="sclosed" value=""><br/>
 			비콘번호: <input type="text" name="sbeacon" value=""><br/>
-			사진첨부: <input type = "file" name="sphoto" src="showPhoto?spic_savedfile" value=""><br/>
+			사진첨부: <input type="file" name="photo" multiple="multiple"/><br/>
 			<input type="submit" value="가입"/>
 			<input type="reset" value="취소"/>
 		</form>
