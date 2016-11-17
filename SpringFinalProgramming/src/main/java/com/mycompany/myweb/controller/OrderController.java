@@ -2,9 +2,7 @@ package com.mycompany.myweb.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.mycompany.myweb.dto.Extra;
 import com.mycompany.myweb.dto.Order;
 import com.mycompany.myweb.service.ExtraOrderService;
+import com.mycompany.myweb.service.MenuService;
 import com.mycompany.myweb.service.OrderItemService;
 import com.mycompany.myweb.service.OrderService;
 
@@ -41,6 +39,9 @@ public class OrderController {
 	
 	@Autowired
 	OrderService orderService;
+	
+	@Autowired
+	MenuService munuService;
 	
 	//주문전체 내역 페이지
 	@RequestMapping("/list")
@@ -138,19 +139,39 @@ public class OrderController {
 		//주문내역 상세보기 service&dao 만들어야 함
 		//1주문당
 		//품목, 수량, 사이드, 가격 -> 구해서 같이 넘겨야 됨
-		Map<Integer,String> mnameSameItem = orderItemService.mnameSameItem(oid);
+		
+		
+		
+		/*Map<Integer,String> mnameSameItem = orderItemService.mnameSameItem(oid);
 		Map<Integer,Integer> countSameItem = orderItemService.countSameItem(oid);
 		Map<Integer,String> xnameSameItem = orderItemService.xnameSameItem(oid);
 		Map<Integer,Integer> sumSameItem = orderItemService.sumSameItem(oid);
 		
+		Set<Map.Entry<Integer,String>> entrySet1 = mnameSameItem.entrySet();
+		Iterator<Map.Entry<Integer,String>> entryIterator1 = entrySet1.iterator();
+		
+		int mid=0; int mprice=0; int xprice=0; String mname;
+		while(entryIterator1.hasNext()){
+			Map.Entry<Integer, String> entry1 = entryIterator1.next();
+			
+			mid = entry1.getKey();
+			//mprice = munuService.info(mid).getMprice();
+			mname = entry1.getValue();
+			
+			logger.info("mid: "+mid);
+			logger.info("mprice: "+mprice);
+			logger.info("mname: "+mname);
+			
+		}
+		
 		model.addAttribute("mnameSameItem", mnameSameItem);
 		model.addAttribute("countSameItem", countSameItem);
 		model.addAttribute("xnameSameItem", xnameSameItem);
-		model.addAttribute("sumSameItem", sumSameItem);
+		model.addAttribute("sumSameItem", sumSameItem);*/
 		
 		
 		return "order/detailList";
-	}//여기까지 함
+	}
 	
 	
 	

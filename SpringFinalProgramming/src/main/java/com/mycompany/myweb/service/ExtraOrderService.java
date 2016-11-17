@@ -1,5 +1,7 @@
 package com.mycompany.myweb.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,13 +37,26 @@ public class ExtraOrderService {
 	@Autowired
 	OrderItemDao orderItemDao;
 	
+	//중요
+	//1개 주문 품목에 대한 모든 사이드(xid) 검색
+	public List<Integer> allXidByoneOrid(int orid){
+		return extraOrderDao.selectXidsByOrid(orid);
+	}
+		
+	//중요
+	//1개 주문 품목에 대한 모든 사이드 검색
+	public List<Extra> allExtraByXids(List<Integer> xids){
+		return extraOrderDao.selectExtrasByXids(xids);
+	}
+	//-------------------------------------------------
+	
 	//1개 주문 시(매칭되는) 한 품목 사이드 상세 찾기
-	public Extra orderItemExtra(int orid){
+	/*public Extra orderItemExtra(int orid){
 		int xid = extraOrderDao.selectXidByOrid(orderItemDao.selectByOrid(orid).getOrid());
 		Extra extra = extraDao.selectByXid(xid);
 		
 		return extra;//주문내역 상세보기 - 사이드에(xname)도 이용하면 됨
-	}
+	}*/
 	
 	/*//한 주문 시 한 품목 사이드 상세 찾기
 	public ExtraOrder oneXidOid(ExtraOrder extraorder){

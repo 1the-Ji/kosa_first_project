@@ -9,15 +9,79 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.dto.OrderItem;
-
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 //이명진
 @Component
 public class OrderItemDao {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	//중요
+	//1개 주문에 대한 모든 품목 리스트 찾기
+	public List<OrderItem> selectOrderItemsByOid(int oid){
+		String sql = "select orid,oid,mid from order_item where oid=?";
+		List<OrderItem> orderItems =  jdbcTemplate.query(sql, 
+				new Object[]{oid}, 
+				new RowMapper<OrderItem>(){
+				  		
+			@Override
+			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
+				OrderItem orderItem = new OrderItem();
+				orderItem.setOrid(rs.getInt("orid"));
+				orderItem.setOid(rs.getInt("oid"));
+				orderItem.setMid(rs.getInt("mid"));
+				
+				return orderItem;
+			}			
+		});
+		return orderItems;
+	}
+	
+	//중요
+	//1개 주문에 대한 1개 품목 메뉴(mid) 찾기
+	public int selectMidByOrid(int orid){
+		String sql = "select mid from order_item where orid=?";
+		List<Integer> list =  jdbcTemplate.query(sql, 
+				new Object[]{orid}, 
+				new RowMapper<Integer>(){
+					  		
+			@Override
+			public Integer mapRow(ResultSet rs, int row) throws SQLException {
+				Integer mid = new Integer(rs.getInt("mid"));
+				
+				return mid;
+			}			
+		});
+		return (list.size() != 0)?list.get(0):null;
+	}
+	
+	//----------------------------------------
+	/*public Menu selectMenuByOrid(int orid){
+		String sql = "select orid,oid,mid from order_item where orid=?";
+		List<Menu> list =  jdbcTemplate.query(sql, 
+				new Object[]{orid}, 
+				new RowMapper<Menu>(){
+					  		
+			@Override
+			public Menu mapRow(ResultSet rs, int row) throws SQLException {
+				Menu menu = new Menu();
+				menu.setMid(rs.getInt("mid"));
+				menu.setMgroup(rs.getString("mgroup"));
+				menu.setMname(rs.getString("mname"));
+				menu.setHot_ice(rs.getString("hot_ice"));
+				menu.setMprice(rs.getInt("mprice"));
+				menu.setMcontents(rs.getString("mcontents"));
+				menu.setMsavedfile(rs.getString("msavedfile"));
+				menu.setMmimetype(rs.getString("mmimetype"));
+				menu.setSid(rs.getString("sid"));
+				
+				return menu;
+			}			
+		});
+		return (list.size() != 0)?list.get(0):null;
+	}*/
 	
 	
 	//1개 주문 총 가격 구하기(주문 상세보기의 총가격 에 쓰임)
