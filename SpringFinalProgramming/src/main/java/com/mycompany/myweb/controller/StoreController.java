@@ -1,8 +1,14 @@
 package com.mycompany.myweb.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -113,7 +119,7 @@ public class StoreController {
 			sphoto.setSid(sid);
 			for(MultipartFile photo: sphoto.getPhoto()){
 				String savedfile = new Date().getTime()+photo.getOriginalFilename();
-				String realpath = session.getServletContext().getRealPath("/WEB-INF/photo"+savedfile);
+				String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);
 				
 				photo.transferTo(new File(realpath));
 				sphoto.setSpic_savedfile(savedfile);
@@ -143,22 +149,52 @@ public class StoreController {
 		return "redirect:/";
 	}
 	
-	/*@RequestMapping(value="/store/info", method=RequestMethod.GET)
-	public String info(HttpSession session, Model model){
-		String sid = (String) session.getAttribute("login");
-		logger.info("storeinfo정보");
-		Store store = storeService.info(sid);
-		model.addAttribute("store", store);
-		return "store/info";
-	}*/
+	@RequestMapping("/store/showPhoto")
+	public void showPhoto(String savedfile, HttpServletRequest request,HttpServletResponse response){//이미지 다운로드 받기 위해 메소드 작성
+						//보기를 원하는 파일명
+		try{
+			String fileName = savedfile;
+			
+			String mimeType = request.getServletContext().getMimeType(savedfile);
+			response.setContentType(mimeType);//Content-Type 설정
+			
+			OutputStream os = response.getOutputStream();
+			
+			String filePath = request.getServletContext().getRealPath("/WEB-INF/photo/"+fileName);
+			InputStream is = new FileInputStream(filePath);
+			byte[] values =new byte[1024];
+			int byteNum = -1;
+			while ((byteNum = is.read(values)) != -1 ) {
+				os.write(values, 0, byteNum);
+			}
+			os.flush();
+			is.close();
+			os.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	@RequestMapping(value="/store/modify", method=RequestMethod.GET)
 	public String modifyForm(HttpSession session, Model model){
 		logger.info("storemodifyForm정보");
 		String sid = (String) session.getAttribute("login");
+		
 		Store store = storeService.info(sid);
 		model.addAttribute("store", store);
+		
+		//===================sphoto=========================
+		
+		List<Sphoto> list = sphotoService.info(sid);
+		for (Sphoto sphoto : list) {
+			
+			logger.info(sphoto.getSpic_savedfile());
+			
+		}
+		model.addAttribute("list", list);
 		logger.info(""+store.getSid());
+		//===================sphoto=========================
 		return "store/modify";
 	}
 	
@@ -169,6 +205,7 @@ public class StoreController {
 		logger.info(""+row);
 		return "store/index";
 	}
+	
 	
 	@RequestMapping("/withdraw")
 	public String withdraw(HttpSession session){

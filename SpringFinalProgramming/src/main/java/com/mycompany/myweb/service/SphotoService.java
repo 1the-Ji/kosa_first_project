@@ -46,8 +46,12 @@ public class SphotoService {
 		if (row == 0) {return REMOVE_FAIL;}//ex. 사용자의 게시물을 관리자가 지웠을때 사용자에게 게시물은 보이지만 DB에 남아 있지 않으므로 remove 할 수가 없다.
 		return REMOVE_SUCESS;
 	}
-	public Sphoto info(int spic_id){
+	public Sphoto infoSpic_id(int spic_id){
 		return sphotoDao.selectBySpic_id(spic_id);
+	}
+	
+	public List<Sphoto> info(String sid){
+		return sphotoDao.selectAll(sid);
 	}
 	
 	/*public int getCount(){

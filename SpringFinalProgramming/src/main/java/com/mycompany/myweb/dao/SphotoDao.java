@@ -120,4 +120,5 @@ public class SphotoDao {
 		
 		return list;
 	}
+
 }
