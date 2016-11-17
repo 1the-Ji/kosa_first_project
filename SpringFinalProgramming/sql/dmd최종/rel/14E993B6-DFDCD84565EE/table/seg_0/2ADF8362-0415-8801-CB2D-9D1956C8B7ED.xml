@@ -39,6 +39,17 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="etitle" id="FD8D52F7-9B25-7A95-E90F-A2F5194ADA8D">
+<createdBy>Administrator</createdBy>
+<createdTime>2016-11-16 09:32:19 UTC</createdTime>
+<ownerDesignName>dmd최종</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="econtents" id="57D95DB5-AAA8-7F2F-084B-0ABE040BBE80">
 <createdBy>kimjeongho</createdBy>
 <createdTime>2016-11-08 12:14:37 UTC</createdTime>

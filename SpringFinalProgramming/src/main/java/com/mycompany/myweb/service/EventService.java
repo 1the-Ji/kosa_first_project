@@ -1,5 +1,6 @@
 package com.mycompany.myweb.service;
-import java.sql.SQLException;
+
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import com.mycompany.myweb.dto.Event;
 
 @Component
 public class EventService {
+	
 	@Autowired
 	private EventDao eventDao;
 	
@@ -26,11 +28,7 @@ public class EventService {
 	public static final int REMOVE_SUCCESS = 0;
 	public static final int REMOVE_FAIL = 1;
 	
-//--------------------------------------------------	
-	private static final Logger logger = LoggerFactory.getLogger(EventDao.class);
-
-
-	public int write(Event event){
+public int write(Event event){
 		int row = eventDao.insert(event);
 		return WRITE_SUCCESS;
 	}
@@ -51,8 +49,7 @@ public class EventService {
 		return eventDao.selectByEid(eid);		
 	}
 	
-	public List<Event> getList(String sid) throws SQLException{
-		
+	public List<Event> getList(String sid){
 		return eventDao.selectAll(sid);
 	}
 }

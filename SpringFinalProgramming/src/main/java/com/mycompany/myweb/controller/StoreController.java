@@ -136,6 +136,7 @@ public class StoreController {
 		String sid = (String) session.getAttribute("login");
 		Store store = storeService.info(sid);
 		model.addAttribute("store", store);
+		logger.info(""+store.getSid());
 		return "/store/modify";
 	}
 	
@@ -143,9 +144,11 @@ public class StoreController {
 	public String modify(Store store){
 		
 		logger.info("storemodify정보");
-		Store dbStore = storeService.info(store.getSid());
-		storeService.modify(dbStore);
-		return "redirect:/store/modify";
+		logger.info(""+store.getSid());
+		logger.info(""+storeService.modify(store));
+		int row = storeService.modify(store);
+		logger.info(""+row);
+		return "store/index";
 	}
 	
 	@RequestMapping("/withdraw")
