@@ -52,7 +52,7 @@ public class SphotoController {
 			
 			}
 			
-			return "redirect:/store/index";
+			return "redirect:/index";
 						
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

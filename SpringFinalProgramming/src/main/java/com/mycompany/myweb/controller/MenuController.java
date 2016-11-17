@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.service.MenuService;
 
+
 @Controller
 public class MenuController {
 	
@@ -32,85 +33,68 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 	
-	/*@RequestMapping(value="/menu/list1", method=RequestMethod.GET)
-	public String test(){
-		return "menu/list2";
-	}*/
-	
-	@RequestMapping(value="/menu/list", method=RequestMethod.GET)
-	public String list(String pageNo, Model model, HttpSession session, Menu menu){
+	@RequestMapping(value="/menu/list")
+	public String list(String pageNo, Model model, HttpSession session){
 		
 		String sid = (String) session.getAttribute("login");
-		
-//		menu = menuService.info(mid);
-		logger.info("if전");
-		
-		if(sid.equals(menu.getSid())){
-
-			int intPageNo = 1;
-			if (pageNo == null) {
-				pageNo = (String) session.getAttribute("pageNo");
-				if(pageNo != null){
-					intPageNo = Integer.parseInt(pageNo);
-				}
-			} else {
+	
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
 				intPageNo = Integer.parseInt(pageNo);
 			}
-			session.setAttribute(pageNo, String.valueOf(intPageNo));
-			
-			int rowsPerPage = 8;
-			int pagesPerGroup = 5;
-			
-			int totalBoardNo = menuService.getCount();
-			
-			int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
-			int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
-			
-			int groupNo = (intPageNo-1)/pagesPerGroup + 1;
-			int startPageNo = (groupNo-1)*pagesPerGroup + 1;
-			int endPageNo = startPageNo + pagesPerGroup - 1;
-			
-			if(groupNo == totalGroupNo){
-				endPageNo = totalPageNo;
-			}
-			
-			List<Menu> list = menuService.list(intPageNo, rowsPerPage, sid);
-			
-			model.addAttribute("pageNo", intPageNo);
-			model.addAttribute("rowsPerPage", rowsPerPage);
-			model.addAttribute("pagesPerGroup", pagesPerGroup);
-			model.addAttribute("totalBoardNo", totalBoardNo);
-			model.addAttribute("totalPageNo", totalPageNo);
-			model.addAttribute("groupNo", groupNo);
-			model.addAttribute("startPageNo", startPageNo);
-			model.addAttribute("endPageNo", startPageNo);
-			model.addAttribute("endPageNo", endPageNo);
-			model.addAttribute("list", list);
-			
-			logger.info("list넘어가라");
-			
-			return "menu/list";
-			
 		} else {
-			logger.info("else");
-			return "store/index";
+			intPageNo = Integer.parseInt(pageNo);
 		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
+		
+		int rowsPerPage = 8;
+		int pagesPerGroup = 5;
+		
+		int totalBoardNo = menuService.getCount();
+		
+		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+		int endPageNo = startPageNo + pagesPerGroup - 1;
+		
+		if(groupNo == totalGroupNo){
+			endPageNo = totalPageNo;
+		}
+		
+		List<Menu> list = menuService.list(intPageNo, rowsPerPage, sid);
+		
+		model.addAttribute("sid",sid);
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("list", list);
+		
+		return "menu/list";
+	
 	} // list
 	
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.GET)
-	public String registerForm(){
-		return "menu/register";
+	public String registerForm(HttpSession session){
+		return "/menu/registerForm";
 	} 
-	
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.POST)
 	public String register(HttpSession session, Menu menu){
-		
+		logger.info("ggg");
 		try {
 			String sid = (String)session.getAttribute("login");
 			menu.setSid(sid);
-			
+			logger.info(""+sid);
 			String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();
 			
 			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/" + msavedfile);
@@ -119,13 +103,16 @@ public class MenuController {
 			menu.setMmimetype(menu.getPhoto().getContentType());
 			
 			int result = menuService.write(menu);
-			return "redirect:/menu/list";		
+			logger.info(""+result);
+			return "redirect:/index";		
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "menu/register";
+			logger.info(e.getMessage());
+			return "menu/registerForm";
 		}
 	} // register
 	
+	/*
 	@RequestMapping("/showPhoto")
 	public void showPhoto(String savedfile, HttpServletRequest request, HttpServletResponse response){
 		try{
@@ -150,7 +137,7 @@ public class MenuController {
 			e.printStackTrace();
 		}
 	} // showPhoto 
-	
+	*/
 	@RequestMapping(value="/menu/info")
 	public String info(int mid, Model model){
 		Menu menu = menuService.info(mid);
