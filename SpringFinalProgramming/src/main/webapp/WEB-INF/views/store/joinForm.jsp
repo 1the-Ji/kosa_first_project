@@ -21,7 +21,7 @@
 		<hr/>
 		<form method="post" enctype="multipart/form-data"><%-- input type="file"일시 반드시 enctype="multipart/form-data 작성 --%>
 			아이디: <input type="text" name="sid" value="">
-			<input type ="button" href="checkSid">중복체크</a><br/>
+			<input type ="button" href="checkSid">중복체크<br/>
 			이메일: <input type="email" name="semail" value=""><br/>
 			<!-- <select name="semail">
 						<option selected>직접 입력</option>

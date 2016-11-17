@@ -148,7 +148,7 @@ public class StoreController {
 		logger.info(""+storeService.modify(store));
 		int row = storeService.modify(store);
 		logger.info(""+row);
-		return "redirect:/store/index";
+		return "store/index";
 	}
 	
 	@RequestMapping("/withdraw")

@@ -7,6 +7,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<script type="text/javascript">
+
+		function getSelectValue(frm)
+		{
+ 			frm.sname.value = frm.snameBox.options[frm.snameBox.selectedIndex].text;
+ 			frm.optionValue.value = frm.snameBox.options[frm.snameBox.selectedIndex].value;
+		}
+		</script>
 	</head>
 	<body>
 		회원정보 수정
@@ -33,22 +41,22 @@
 					</select> --%>
 					
 			비밀번호: <input type="password" name="spw"  value="${store.spw}"><br/>
-			비밀번호  확인: <input type="password" name="spw"  value=""><br/>
-			카페명: <input type="text" name="sname" value="${store.sname}"><br/> 
-			<%-- <select name="sname">
-						<option selected>직접 입력</option>
-						<option>스타벅스</option>
-						<option>탐앤탐스</option>
-						<option>할리스 커피</option>
-						<option>투썸플레이스</option>					
-						<option>커핀그루나루</option>		
-						<option>카페베네</option>
-						<option>드롭탑</option>
-						<option>파스쿠찌</option>
-						<option>엔제리너스</option>					
-						<option>커피빈</option>	
-						<option>이디야</option>							
-					</select> --%>
+			비밀번호  확인: <input type="password" value=""><br/>
+			카페명: <input type="text" name="sname" value="${store.sname}">
+			<select name="snameBox"  onChange="getSelectValue(this.form);">
+						<option selected value="option1">직접 입력</option>
+						<option value="option1">스타벅스</option>
+						<option value="option2">탐앤탐스</option>
+						<option value="option3">할리스 커피</option>
+						<option value="option4">투썸플레이스</option>					
+						<option value="option5">커핀그루나루</option>		
+						<option value="option6">카페베네</option>
+						<option value="option7">드롭탑</option>
+						<option value="option8">파스쿠찌</option>
+						<option value="option9">엔제리너스</option>					
+						<option value="option10">커피빈</option>	
+						<option value="option11">이디야</option>							
+					</select><br/>
 					
 					
 			지점명: <input type="text" name="slocal"  value="${store.slocal}"><br/>
