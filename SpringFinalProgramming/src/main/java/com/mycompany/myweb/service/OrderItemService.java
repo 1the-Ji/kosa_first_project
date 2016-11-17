@@ -1,5 +1,6 @@
 package com.mycompany.myweb.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -46,6 +47,47 @@ public class OrderItemService {
 	@Autowired
 	ExtraDao extraDao;
 	
+	//중요
+	//1개 주문에 대한 모든 품목 리스트 찾기
+	public List<OrderItem> allOrderItemByOid(int oid){
+		List<OrderItem> orderItems = new ArrayList<>();
+		orderItems = orderItemtDao.selectOrderItemsByOid(oid);
+		return orderItems;
+	}
+	
+	//중요
+	//1개 주문 품목에 대한 메뉴(mid) 검색
+	public int oneMidByOrid(int orid){
+		return orderItemtDao.selectMidByOrid(orid);
+	}
+	
+	//중요
+	//1개 주문 품목에 대한 메뉴 검색
+	public Menu oneMenuByOrid(int orid){
+		Menu menu = new Menu();
+		menu = menuDao.selectByMid(orderItemtDao.selectMidByOrid(orid));
+		return menu;
+	}
+			
+	//중요
+	//1개 주문 품목에 대한 모든 사이드 검색
+	public List<Extra> allExtraByXids(List<Integer> xids){
+		return extraOrderDao.selectExtrasByXids(xids);
+	}
+
+	//-------------------------------------------------
+	
+	//1개 주문 품목 리스트 찾기(1개 주문 상세 검색 할 때 쓰임)
+	public OrderItem oneOrid(int orid){
+		return orderItemtDao.selectByOrid(orid);
+	}
+	
+	//중요
+	//1개 주문 모든 품목 리스트 찾기(모든 품목 검색 할 때 쓰임)
+	public List<OrderItem> allMidOid(int pageNo, int rowsPerPage, int oid){
+		return orderItemtDao.selectByOidAll(pageNo,rowsPerPage,oid);
+	}
+	
 	
 	//1개 주문 품목 당 총 가격 구하기(메뉴+사이드)
 	//MenuDao의 selectByMid(mid)쓰임
@@ -59,7 +101,7 @@ public class OrderItemService {
 	}
 	
 	//1개 주문 총 가격 구하기(주문 상세보기의 총가격 에 쓰임)
-	public Order sumAllPrice(int oid, int mid, int xid){
+	/*public Order sumAllPrice(int oid, int mid, int xid){
 		Order order = orderDao.selectByOid(oid);
 		List<OrderItem> list = orderItemtDao.selectByOid(oid);
 		int resultAllPrice = 0;
@@ -73,11 +115,11 @@ public class OrderItemService {
 		return order;
 		//하나의 품목에 대한 총 가격이 담긴 order 리턴
 		//order가 뭐하면 int로 변환하면 됨
-	}
+	}*/
 	
 	//(mid, mname)
 	//1개 주문에 대해 같은 이름과 사이드를 갖는 품목의 이름들을 담는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럼2)
-	public Map<Integer,String> mnameSameItem(int oid){
+	/*public Map<Integer,String> mnameSameItem(int oid){
 		int xid = 0; String mname = null;
 		int xid2 = 0; String mname2 = null;
 		int mid = 0;
@@ -99,11 +141,11 @@ public class OrderItemService {
 			}
 		}
 		return map;
-	}
+	}*/
 	
 	//(mid, count)
 	//1개 주문에 대해 같은 이름과 사이드를 갖는 품목을 카운트 하는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럼2)
-	public Map<Integer,Integer> countSameItem(int oid){
+	/*public Map<Integer,Integer> countSameItem(int oid){
 		int countSameItem = 0; 
 		int xid = 0; String mname = null;
 		int xid2 = 0; String mname2 = null;
@@ -128,11 +170,11 @@ public class OrderItemService {
 			countSameItem = 0;
 		}
 		return map;
-	}
+	}*/
 	
 	//(mid, xname)
 	//1개 주문에 대해 같은 이름과 사이드를 갖는 사이드이름을 반환 하는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럽))
-	public Map<Integer,String> xnameSameItem(int oid){
+	/*public Map<Integer,String> xnameSameItem(int oid){
 		String xnameSameItem = null; 
 		int xid = 0; String mname = null;
 		int xid2 = 0; String mname2 = null;
@@ -157,38 +199,38 @@ public class OrderItemService {
 			xnameSameItem = null;
 		}
 		return map;
-	}
+	}*/
 	
 	//(mid, extra)
 	//1개 주문에 대해 같은 이름과 사이드를 갖는 사이드를 반환 하는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럽))
-		public Map<Integer,Extra> xSameItem(int oid){
-			//List<Extra> extraAll = null; 
-			int xid = 0; String mname = null;
-			int xid2 = 0; String mname2 = null;
-			int mid = 0;
+	/*public Map<Integer,Extra> xSameItem(int oid){
+		//List<Extra> extraAll = null; 
+		int xid = 0; String mname = null;
+		int xid2 = 0; String mname2 = null;
+		int mid = 0;
 				
-			Map<Integer,Extra> map = new HashMap<>();
-			List<OrderItem> list = orderItemtDao.selectByOid(oid);
-			for(int i=0;i<list.size();i++){
-				Extra extra = extraDao.selectByXid(extraOrderDao.selectXidByOrid(list.get(i).getOrid()));
-				xid = extra.getXid();
-				Menu menu = menuDao.selectByMid(list.get(i).getMid());
-				mid = menu.getMid();
-				mname = menu.getMname();
-				for(int j=0;j<list.size();j++){
-					Extra extra2 = extraDao.selectByXid(extraOrderDao.selectXidByOrid(list.get(i).getOrid()));
-					xid2 = extra2.getXid();
-					Menu menu2 = menuDao.selectByMid(list.get(i).getMid());
-					mname2 = menu2.getMname();
-					if(mname.equals(mname2)&&xid==xid2) map.put(mid, extra);
-				}
+		Map<Integer,Extra> map = new HashMap<>();
+		List<OrderItem> list = orderItemtDao.selectByOid(oid);
+		for(int i=0;i<list.size();i++){
+			Extra extra = extraDao.selectByXid(extraOrderDao.selectXidByOrid(list.get(i).getOrid()));
+			xid = extra.getXid();
+			Menu menu = menuDao.selectByMid(list.get(i).getMid());
+			mid = menu.getMid();
+			mname = menu.getMname();
+			for(int j=0;j<list.size();j++){
+				Extra extra2 = extraDao.selectByXid(extraOrderDao.selectXidByOrid(list.get(i).getOrid()));
+				xid2 = extra2.getXid();
+				Menu menu2 = menuDao.selectByMid(list.get(i).getMid());
+				mname2 = menu2.getMname();
+				if(mname.equals(mname2)&&xid==xid2) map.put(mid, extra);
 			}
-			return map;
 		}
+		return map;
+	}*/
 	
 	//(mid, sum)
 	//1개 주문 같은 품목(이름,사이드)당 합한 가격(아메 시럽추가 2잔 6000원 이런식에서 6000)
-	public Map<Integer,Integer> sumSameItem(int oid){
+	/*public Map<Integer,Integer> sumSameItem(int oid){
 		int mid = 0; int countSameItem = 0; int mprice = 0; int xprice = 0; int sumSameItem = 0;
 		
 		Map<Integer,Integer> sumSameItems = new HashMap<>();
@@ -219,7 +261,7 @@ public class OrderItemService {
 		}
 			
 		return sumSameItems;
-	}
+	}*/
 		
 	//1개 주문 품목 추가(MenuDao의 selectByMid(mid)쓰임)()
 	public int writeOrid(OrderItem orderitem){
@@ -229,23 +271,6 @@ public class OrderItemService {
 		return INSERT_FAIL;
 	}
 	
-	//1개 주문 품목 리스트 찾기(1개 주문 상세 검색 할 때 쓰임)
-	public OrderItem oneOrid(int orid){
-		return orderItemtDao.selectByOrid(orid);
-	}
-	
-	//1개 주문 품목 리스트 찾기(모든 품목 검색 할 때 쓰임)
-	public List<OrderItem> allMidOid(int pageNo, int rowsPerPage, int oid){
-		return orderItemtDao.selectByOidAll(pageNo,rowsPerPage,oid);
-	}
-	
-	//1개 주문 품목 고치기(고치는게 아니라, 품목을 추가 삭제로 대체)(그러므로 수정기능은 필요 없음)
-	/*public int modifyOrid(OrderItem orderitem){
-		if(orderItemtDao.updateOrid(orderitem)==1){
-			return UPDATE_SUCCESS;
-		}
-		return UPDATE_FAIL;
-	}*/
 	
 	//1개 주문 품목 제거
 	public int removeOrid(OrderItem orderitem){

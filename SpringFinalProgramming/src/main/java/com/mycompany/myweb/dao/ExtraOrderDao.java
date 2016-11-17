@@ -18,44 +18,67 @@ public class ExtraOrderDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	//1개 메뉴에 대한 사이드 상세 검색
-		public Extra selectByXid(int xid){
-			String sql = "select xid, xname, xprice from extra where xid=?";
-			List<Extra> list =  jdbcTemplate.query(sql, 
-					new Object[]{xid}, 
-					new RowMapper<Extra>(){
-		  		
-				@Override
-				public Extra mapRow(ResultSet rs, int row) throws SQLException {
-					Extra extra = new Extra();
-					extra.setXid(rs.getInt("xid"));
-					extra.setXname(rs.getString("xname"));
-					extra.setXprice(rs.getInt("xprice"));
-					
-					return extra;
-				}
-			});
-			return (list.size() != 0) ? list.get(0) : null;
-		}
+	//중요
+	//1개 주문 품목에 대한 모든 사이드(xid) 검색
+	public List<Integer> selectXidsByOrid(int orid){
+		String sql = "select xid from extra_order where orid=?";
+		List<Integer> xids =  jdbcTemplate.query(sql, 
+				new Object[]{orid}, 
+				new RowMapper<Integer>(){
+			  		
+			@Override
+			public Integer mapRow(ResultSet rs, int row) throws SQLException {
+				Integer xid = new Integer(rs.getInt("xid"));
+				
+				return xid;
+			}			
+		});
+		return xids;
+	}
 	
-		//1개 주문 품목에 대한 사이드 검색
-		public int selectXidByOrid(int orid){
-			String sql = "select xid from extra_order where orid=?";
-			List<Integer> list =  jdbcTemplate.query(sql, 
-					new Object[]{orid}, 
-					new RowMapper<Integer>(){
-		  		
-				@Override
-				public Integer mapRow(ResultSet rs, int row) throws SQLException {
-					ExtraOrder extraorder = new ExtraOrder();
-					extraorder.setXid(rs.getInt("xid"));
-					extraorder.setOrid(rs.getInt("orid"));
+	//중요
+	//1개 주문 품목에 대한 모든 사이드 검색
+	public List<Extra> selectExtrasByXids(List<Integer> xids){
+		String sql = "select xid,xname,xprice from extra where xid=?";
+		List<Extra> extras =  jdbcTemplate.query(sql, 
+				new Object[]{xids}, 
+				new RowMapper<Extra>(){
+				  		
+			@Override
+			public Extra mapRow(ResultSet rs, int row) throws SQLException {
+				Extra extra = new Extra();
+				extra.setXid(rs.getInt("xid"));
+				extra.setXname(rs.getString("xname"));
+				extra.setXprice(rs.getInt("xprice"));
+				
+				return extra;
+			}			
+		});
+		return extras;
+	}
+	//-----------------------------------------------------------
+	
+	//1개 메뉴에 대한 사이드 상세 검색
+	public Extra selectByXid(int xid){
+		String sql = "select xid, xname, xprice from extra where xid=?";
+		List<Extra> list =  jdbcTemplate.query(sql, 
+				new Object[]{xid}, 
+				new RowMapper<Extra>(){
+	  		
+			@Override
+			public Extra mapRow(ResultSet rs, int row) throws SQLException {
+				Extra extra = new Extra();
+				extra.setXid(rs.getInt("xid"));
+				extra.setXname(rs.getString("xname"));
+				extra.setXprice(rs.getInt("xprice"));
 					
-					return extraorder.getXid();
-				}
-			});
-			return (list.size() != 0) ? list.get(0) : null;
-		}
+				return extra;
+			}
+		});
+		return (list.size() != 0) ? list.get(0) : null;
+	}
+	
+		
 		
 	//1개 메뉴에 사이드 삽입
 	public int insertXidOrid(ExtraOrder extraorder){
