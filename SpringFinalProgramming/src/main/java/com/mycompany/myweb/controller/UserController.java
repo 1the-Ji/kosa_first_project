@@ -41,8 +41,9 @@ public class UserController {
 			return "user/loginForm";
 		
 		} else {
+			logger.info(""+result);
 			session.setAttribute("login", user_id);//성공 시 session에 저장			
-			return "redirect:/home";
+			return "user/settingForm";
 		}
 	}
 	
@@ -53,11 +54,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/findUser_id", method=RequestMethod.POST)
-	public String findUser_id(String user_email,Model model,HttpSession session){
+	public String findUser_id(String user_email, Model model, HttpSession session){
 		String user_id = userService.findUser_id(user_email);
 		if (user_id == null) {
 			model.addAttribute("error", "이메일이 존재하지 않습니다.");//값을 바로 .jsp에 넘김
-			return "user/findMidForm";
+			return "user/findUser_idForm";
 		}
 		session.setAttribute("findUser_id", user_id);
 		return "redirect:/user/login";//get방식으로 넘김
@@ -66,17 +67,17 @@ public class UserController {
 	@RequestMapping(value="/findUser_pw", method=RequestMethod.GET)
 	public String findUser_pwForm(){
 		
-		return "member/findUser_pwForm";
+		return "user/findUser_pwForm";
 	}
 	
 	@RequestMapping(value="/findUser_pw", method=RequestMethod.POST)
-	public String findUser_pw(String user_id, String user_email, Model model,HttpSession session){
-		String User_pw = userService.findUser_pw(user_id, user_email);
-		if (User_pw == null) {
+	public String findUser_pw(String user_id, String user_email, Model model, HttpSession session){
+		String user_pw = userService.findUser_pw(user_id, user_email);
+		if (user_pw == null) {
 			model.addAttribute("error", "아이디 및 이메일이 존재하지 않습니다.");//값을 바로 .jsp에 넘김
-			return "member/findUser_pwForm";
+			return "user/findUser_pwForm";
 		}
-		session.setAttribute("findUser_pw", User_pw);
+		session.setAttribute("findUser_pw", user_pw);
 		return "redirect:/user/login";//get방식으로 넘김
 	}
 	
@@ -85,12 +86,13 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
-	@RequestMapping(value="/join", method=RequestMethod.POST)
+	@RequestMapping(value="user/join", method=RequestMethod.POST)
 	public String join(User user){
+		
 		try{
 			
 			int result = userService.join(user);
-			return "redirect:/user/login";
+			return "redirect:/";
 		}catch (Exception e) {
 			return "user/joinForm";
 		}
@@ -104,7 +106,7 @@ public class UserController {
 		if (result == UserService.LOGOUT_SUCCESS) {
 			session.removeAttribute("login");
 		}
-		return "redirect:/";
+		return "user/loginForm";
 	}
 	
 	@RequestMapping("/info")
@@ -117,7 +119,7 @@ public class UserController {
 	
 	@RequestMapping("/dropout")
 	public String dropout(HttpSession session){
-		return "user/index";
+		return "user/home";
 	}
 
 	

@@ -32,12 +32,18 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 	
+	/*@RequestMapping(value="/menu/list1", method=RequestMethod.GET)
+	public String test(){
+		return "menu/list2";
+	}*/
 	
-	@RequestMapping("/menu/list")
+	@RequestMapping(value="/menu/list", method=RequestMethod.GET)
 	public String list(String pageNo, Model model, HttpSession session, Menu menu){
 		
 		String sid = (String) session.getAttribute("login");
 		
+//		menu = menuService.info(mid);
+		logger.info("if전");
 		
 		if(sid.equals(menu.getSid())){
 
@@ -81,9 +87,12 @@ public class MenuController {
 			model.addAttribute("endPageNo", endPageNo);
 			model.addAttribute("list", list);
 			
-			return "menu/menulist";
+			logger.info("list넘어가라");
+			
+			return "menu/list";
 			
 		} else {
+			logger.info("else");
 			return "store/index";
 		}
 	} // list

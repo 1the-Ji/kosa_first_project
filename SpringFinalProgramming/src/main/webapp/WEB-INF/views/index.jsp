@@ -21,5 +21,6 @@
 	<a href="join">회원가입</a><br/>    
 	<a href="findSid">아이디 찾기</a><br/>
 	<a href="findSpw">비밀번호 찾기</a><br/>
+	<a href="user/login">사용자 로그인</a><br/>
   </body>
 </html>

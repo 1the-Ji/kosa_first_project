@@ -2,9 +2,9 @@ package com.mycompany.myweb.dto;
 
 //이명진
 public class OrderItem {
-	private int orid;
-	private int oid;
-	private int mid;
+	private int orid;//OrderItem 테이블 아이디
+	private int oid;//주문 아이디
+	private int mid;//메뉴 아이디
 	
 	
 	public int getOrid() {
