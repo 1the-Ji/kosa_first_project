@@ -34,7 +34,7 @@ public class EventDao {
 	}
 	
 	public int update(Event event){
-		String sql = "update event set estartperiod=?, elastperiod=?, etitle=?, econtents=?, esavedfile=?, emimetype=?, sid=?, mid=? where eid=?";
+		String sql = "update event set estartperiod=?, elastperiod=?, etitle=?, econtents=?, esavedfile=?, emimetype=? where eid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEstartperiod(),
@@ -43,8 +43,6 @@ public class EventDao {
 				event.getEcontents(),
 				event.getEsavedfile(),
 				event.getEmimetype(),
-				event.getSid(),
-				event.getMid(),
 				event.getEid()
 		);
 		return row;
@@ -56,7 +54,7 @@ public class EventDao {
 	}
 	
 	public Event selectByEid(int eid){ 
-		String sql = "select eid, estartperiod, elastperiod,etitle, econtents, esavedfile, emimetype, sid, mid from event where eid=?";
+		String sql = "select eid, estartperiod, elastperiod,etitle, econtents, esavedfile, emimetype, sid from event where eid=?";
 		List<Event> list = jdbcTemplate.query(sql, new Object[]{eid}, new RowMapper<Event>(){
 			 
 			@Override
@@ -70,7 +68,6 @@ public class EventDao {
 				event.setEsavedfile(rs.getString("esavedfile"));
 				event.setEmimetype(rs.getString("emimetype"));
 				event.setSid(rs.getString("sid"));
-				event.setMid(rs.getInt("mid"));
 				return event;
 			}
 		});
