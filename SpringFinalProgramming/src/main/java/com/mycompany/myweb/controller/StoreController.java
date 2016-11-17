@@ -1,5 +1,8 @@
 package com.mycompany.myweb.controller;
 
+import java.io.File;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.mycompany.myweb.dto.Sphoto;
 import com.mycompany.myweb.dto.Store;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
@@ -53,7 +58,7 @@ public class StoreController {
 			
 			session.setAttribute("login", sid);
 			logger.info("login_성공");
-			return "store/index";
+			return "redirect:/index";
 		}
 		
 		
@@ -99,10 +104,27 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value="/join",method=RequestMethod.POST)
-	public String join(Store store){
+	public String join(Store store,Sphoto sphoto, HttpSession session){
 		try {
 			int result = storeService.join(store);
-			logger.info("join 성공");
+			
+			/*=========sphoto=============================*/
+			String sid = store.getSid();
+			sphoto.setSid(sid);
+			for(MultipartFile photo: sphoto.getPhoto()){
+				String savedfile = new Date().getTime()+photo.getOriginalFilename();
+				String realpath = session.getServletContext().getRealPath("/WEB-INF/photo"+savedfile);
+				
+				photo.transferTo(new File(realpath));
+				sphoto.setSpic_savedfile(savedfile);
+				
+				logger.info(realpath);
+				
+				sphoto.setSpic_mimetype(photo.getContentType());
+				
+				int result2 = sphotoService.write(sphoto);
+			}
+			/*=========sphoto=============================*/
 			return "redirect:/";
 		} catch (Exception e) {
 			logger.info("join 실패"+e.getMessage());
