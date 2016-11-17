@@ -13,19 +13,19 @@ import com.mycompany.myweb.dto.Menu;
 
 
 
-
 @Component
 public class MenuDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	   
 	public int insert(Menu menu){
-		String sql = "insert into menu(mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid) values(seq_menu_mid.nextval, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into menu(mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid) values(seq_menu_mid.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
 				menu.getMgroup(),
 				menu.getMname(), 
 				menu.getHot_ice(),
+				menu.getMprice(),
 				menu.getMcontents(),
 				menu.getMsavedfile(),
 				menu.getMmimetype(),
@@ -35,12 +35,13 @@ public class MenuDao {
 	}
 	
 	public int update(Menu menu){
-		String sql = "update menu set mgroup=?, mname=?, hot_ice=?, msavedfile=?, sid=? where mid=?";
+		String sql = "update menu set mgroup=?, mname=?, hot_ice=?, mprice=?, msavedfile=?, sid=? where mid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				menu.getMgroup(),
 				menu.getMname(),
 				menu.getHot_ice(),
+				menu.getMprice(),
 				menu.getMcontents(),
 				menu.getMsavedfile(),
 				menu.getMmimetype(),
@@ -57,7 +58,7 @@ public class MenuDao {
 	}
 	 
 	public Menu selectByMid(int mid){ 
-		String sql = "select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid from menu where mid=?, sid=?";
+		String sql = "select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where mid=?";
 		List<Menu> list = jdbcTemplate.query(sql, new Object[]{mid}, new RowMapper<Menu>(){
 			
 			@Override
@@ -67,6 +68,7 @@ public class MenuDao {
 				menu.setMgroup(rs.getString("mgroup"));
 				menu.setMname(rs.getString("mname"));
 				menu.setHot_ice(rs.getString("hot_ice"));
+				menu.setMprice(rs.getInt("mprice"));
 				menu.setMcontents(rs.getString("mcontents"));
 				menu.setMsavedfile(rs.getString("msavedfile"));
 				menu.setMmimetype(rs.getString("mmimetype"));
@@ -77,17 +79,19 @@ public class MenuDao {
 		return (list.size() != 0)? list.get(0) : null;
 	}
 	
+	
 	public List<Menu> selectByPage(int pageNo, int rowsPerPage, String sid){
 		String sql="";
-		sql += "select rn, mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
 		sql += "from ( ";
-		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid ";
-		sql += "from ( select mid, mgroup, mname, hot_ice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
+		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
+		sql += "where rownum<=? ";
 		sql += ") ";
-		sql += "where rn>=? and sid=? ";
+		sql += "where rn>=? and sid=?";
 		List<Menu> list = jdbcTemplate.query(
-				sql, 
-				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1)},
+				sql,
+				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid},
 				new RowMapper<Menu>(){
 					@Override
 					public Menu mapRow(ResultSet rs, int row) throws SQLException {
@@ -96,6 +100,7 @@ public class MenuDao {
 						menu.setMgroup(rs.getString("mgroup"));
 						menu.setMname(rs.getString("mname"));
 						menu.setHot_ice(rs.getString("hot_ice"));
+						menu.setMprice(rs.getInt("mprice"));
 						menu.setMcontents(rs.getString("mcontents"));
 						menu.setMsavedfile(rs.getString("msavedfile"));
 						menu.setMmimetype(rs.getString("mmimetype"));

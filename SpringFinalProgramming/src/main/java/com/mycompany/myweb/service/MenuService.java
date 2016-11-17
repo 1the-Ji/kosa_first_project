@@ -23,6 +23,10 @@ public class MenuService {
 	private MenuDao menuDao;
 	
 	public List<Menu> list(int pageNo, int rowsPerPage, String sid){
+		
+		/*if( != null){
+			return menuDao.searchBySid(sid);
+		}*/
 		return menuDao.selectByPage(pageNo, rowsPerPage, sid);
 	}
 	
