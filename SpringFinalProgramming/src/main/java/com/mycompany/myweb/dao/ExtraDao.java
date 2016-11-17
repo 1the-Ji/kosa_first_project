@@ -51,7 +51,9 @@ public class ExtraDao {
 	
 	public Extra selectByXid(int xid){
 		String sql="select xid, xname, xprice from extra where xid=?";
-		List<Extra> list = jdbcTemplate.query(sql, new Object[]{xid}, new RowMapper<Extra>(){
+		List<Extra> list = jdbcTemplate.query(sql, 
+				new Object[]{xid}, 
+				new RowMapper<Extra>(){
 
 			@Override
 			public Extra mapRow(ResultSet rs, int row) throws SQLException {
