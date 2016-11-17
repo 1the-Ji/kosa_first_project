@@ -35,13 +35,13 @@ public class ExtraOrderService {
 	@Autowired
 	OrderItemDao orderItemDao;
 	
-	//한 주문 시(매칭되는) 한 품목 사이드 상세 찾기
-		public Extra orderItemExtra(int orid, ExtraOrder extraorder){
-			int xid = extraOrderDao.selectXidByOrid(orderItemDao.selectByOrid(orid).getOrid());
-			Extra extra = extraDao.selectByXid(xid);
+	//1개 주문 시(매칭되는) 한 품목 사이드 상세 찾기
+	public Extra orderItemExtra(int orid){
+		int xid = extraOrderDao.selectXidByOrid(orderItemDao.selectByOrid(orid).getOrid());
+		Extra extra = extraDao.selectByXid(xid);
 		
-			return extra;//주문내역 상세보기 - 사이드에(xname)도 이용하면 됨
-		}
+		return extra;//주문내역 상세보기 - 사이드에(xname)도 이용하면 됨
+	}
 	
 	/*//한 주문 시 한 품목 사이드 상세 찾기
 	public ExtraOrder oneXidOid(ExtraOrder extraorder){
@@ -49,7 +49,7 @@ public class ExtraOrderService {
 	}*/
 	
 	//1개 주문 시 한 품목 사이드 추가(ExtraDao의 selectByXid(xid)쓰임)
-	public int writeXidOid(ExtraOrder extraorder,int xid){
+	/*public int writeXidOid(ExtraOrder extraorder,int xid){
 		
 		//Extra extra = extraDao.selectByXid(xid);
 		
@@ -57,7 +57,7 @@ public class ExtraOrderService {
 			return INSERT_SUCCESS;
 		}
 		return INSERT_FAIL;
-	}
+	}*/
 	
 	
 	
@@ -70,10 +70,10 @@ public class ExtraOrderService {
 	}*/
 	
 	//1개 주문 시 한 품목 사이드 제거
-	public int removeXidOid(ExtraOrder extraorder){
+	/*public int removeXidOid(ExtraOrder extraorder){
 		if(extraOrderDao.deleteXidOrid(extraorder)==1){
 			return DELETE_SUCCESS;
 		}
 		return DELETE_FAIL;
-	}
+	}*/
 }
