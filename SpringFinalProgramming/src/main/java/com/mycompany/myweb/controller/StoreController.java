@@ -29,7 +29,7 @@ public class StoreController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String loginForm(){
 		logger.info("login 페이지 열림");
-		return "/index";
+		return "index";
 	}
 	
 	@RequestMapping(value="/", method=RequestMethod.POST)
@@ -41,19 +41,19 @@ public class StoreController {
 			
 			model.addAttribute("error", "LOGIN");
 			logger.info("login_실패");
-			return "/index";
+			return "index";
 			
 		} else if (result == StoreService.LOGIN_FAIL_SID) {
 			
 			model.addAttribute("error", "LOGIN_FAIL_SID");
 			logger.info("login_실패");
-			return "/index";
+			return "index";
 			
 		} else {
 			
 			session.setAttribute("login", sid);
 			logger.info("login_성공");
-			return "/store/index";
+			return "store/index";
 		}
 		
 		
@@ -137,15 +137,12 @@ public class StoreController {
 		Store store = storeService.info(sid);
 		model.addAttribute("store", store);
 		logger.info(""+store.getSid());
-		return "/store/modify";
+		return "store/modify";
 	}
 	
 	@RequestMapping(value="/store/modify", method=RequestMethod.POST)
 	public String modify(Store store){
 		
-		logger.info("storemodify정보");
-		logger.info(""+store.getSid());
-		logger.info(""+storeService.modify(store));
 		int row = storeService.modify(store);
 		logger.info(""+row);
 		return "store/index";
