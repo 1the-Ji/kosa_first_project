@@ -19,17 +19,16 @@ public class EventDao {
 
 	
 	public int insert(Event event){
-		String sql = "insert into event(eid, estartperiod, elastperiod, etitle, econtents, esavedfile, emimetype, sid, mid) values(seq_event_eid.nextval, ?, ?, ?,?, ?, ?, ?, ?)";
+		String sql = "insert into event(eid, estartperiod, elastperiod, econtents, esavedfile, emimetype, sid, etitle) values(seq_event_eid.nextval,?,?,?,?,?,?,?)";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEstartperiod(),
 				event.getElastperiod(),
-				event.getEtitle(),
 				event.getEcontents(),
 				event.getEsavedfile(),
 				event.getEmimetype(),
 				event.getSid(),
-				event.getMid()
+				event.getEtitle()
 		);
 		return row;		
 	}

@@ -6,7 +6,7 @@
       <meta charset="UTF-8">
    </head>
    <body>
-   eventList
+   <h1>eventList</h1>
    <hr/>
    <table style = "border-collapse: collapse;border: 1px solid black; width: 600px"><%-- tr => row 설정 th,td => columns 설정 --%>
 			<tr style="background-color: #ffcc00">
@@ -27,5 +27,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+	<a href="register">등록하기</a> <a href="remove">삭제하기</a>	
+	
    </body>
 </html>

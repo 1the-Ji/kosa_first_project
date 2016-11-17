@@ -7,9 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Event {
 	private int eid;
-	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date estartperiod;
-	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date elastperiod;
 	private String etitle;
 	private String econtents;

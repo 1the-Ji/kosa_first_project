@@ -17,13 +17,14 @@ import com.mycompany.myweb.dto.Event;
 import com.mycompany.myweb.service.EventService;
 
 @Controller
+@RequestMapping("/event")
 public class EventController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	  
 	@Autowired
 	private EventService eventService;
 	
-	@RequestMapping("/event/list")
+	@RequestMapping("/list")
 	public String list(Model model, HttpSession session){
 		logger.info("service list 실행1");
 		String sid = (String) session.getAttribute("login");
@@ -34,12 +35,34 @@ public class EventController {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String registerForm(){
+	public String register(){
+		logger.info("eventForm 실행");
 		return "event/registerForm";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String register(){
-		return "redirect:/event/list";
+	public String registerForm(Event event, HttpSession session){
+		logger.info("event 등록 성공");
+		String sid = (String)session.getAttribute("login");
+		event.setSid(sid);
+		int result = eventService.write(event);
+		if(result == EventService.WRITE_FAIL){
+			return "event/registerForm";
+		}else{
+			/*
+		    photoBoard.setOriginalfile(photoBoard.getPhoto().getOriginalFilename());//저장할 파일 originalfilename 얻기
+			
+			String savedfile = new Date().getTime()+photoBoard.getPhoto().getOriginalFilename();
+			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);//저장할 파일의 절대 파일 시스템 경로를 얻는다.
+			//C:\Users\Administrator\workspace\.metadata\...\SpringFinalProgramming\...
+			
+			photoBoard.getPhoto().transferTo(new File(realpath));//클라이언트에서 저장한 파일을 해당 경로(realpath)에 저장 실제 파일을 저장
+			photoBoard.setSavedfile(savedfile);
+			
+			photoBoard.setMimetype(photoBoard.getPhoto().getContentType());//저장할 파일의 mime type 얻어냄.
+			 */			
+			return "redirect:/event/list";
+		}
+		
 	}
 }
