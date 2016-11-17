@@ -23,25 +23,9 @@
 			아이디: <input type="text" name="sid" value="">
 			<input type ="button" href="checkSid">중복체크<br/>
 			이메일: <input type="email" name="semail" value=""><br/>
-			<!-- <select name="semail">
-						<option selected>직접 입력</option>
-						<option>@naver.com</option>
-						<option>@daum.net</option>
-						<option>@hotmail.com</option>
-						<option>@nate.com</option>					
-						<option>@yahoo.co.kr</option>		
-						<option>@paran.com</option>
-						<option>@empas.com</option>
-						<option>@dreamwiz.com</option>
-						<option>@freechal.com</option>					
-						<option>@lycos.co.kr</option>	
-						<option>@korea.com</option>
-						<option>@gmail.com</option>
-						<option>@hanmir.com</option>								
-					</select> -->
-					
+			
 			비밀번호: <input type="password" name="spw" value=""><br/>
-			<%-- 비밀번호  확인: <input type="password" name="spw" value=""><br/> --%>
+			비밀번호  확인: <input type="password" name="" value=""><br/>
 			카페명: <input type="text" name="sname">
 			<select name="snameBox"  onChange="getSelectValue(this.form);">
 						<option selected value="option1">직접 입력</option>
@@ -60,11 +44,7 @@
 							
 			지점명: <input type="text" name="slocal" value=""><br/>
 			주소: <input type="text" name="saddr" value=""><br/>
-			대표전화:<%-- <select name="stel" required>
-			<option value=SKT>SKT</option>
-			<option value=KT>KT</option>
-			<option value=U+>U+</option>
-			</select> --%>
+			대표전화:
 			<input type="tel" name="stel" value="" placeholder="-뺴고 숫자만 입력" ><br/>		
 			오픈시간: <input type="time" name="sopen" value=""><br/>
 			마감시간: <input type="time" name="sclosed" value=""><br/>

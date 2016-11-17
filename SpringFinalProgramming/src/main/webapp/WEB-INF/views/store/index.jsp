@@ -11,7 +11,7 @@
 		<h1>매장</h1>
 		<hr/>
 		1. <a href="${pageContext.servletContext.contextPath}/store/modify"> 매장정보보기</a> <br/>
-		2. <a href="${pageContext.servletContext.contextPath}/store/logout"> 로그아웃</a> <br/><br/>
+		2. <a href="${pageContext.servletContext.contextPath}/store/logout"> 로그아웃</a> <br/>
 		3. <a href="${pageContext.servletContext.contextPath}/sphoto/write"> 사진 첨부하기</a> <br/><br/>
 		<h1>메뉴</h1>
 		<hr/>
