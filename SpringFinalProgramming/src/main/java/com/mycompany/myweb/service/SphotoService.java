@@ -24,9 +24,13 @@ public class SphotoService {
 	@Autowired
 	private SphotoDao sphotoDao;
 	
-	public List<Sphoto> list(int pageNo, int rowsPerPage){
+	/*public List<Sphoto> list(int pageNo, int rowsPerPage){
 		
 		return sphotoDao.selectByPage(pageNo, rowsPerPage);
+	}*/
+	
+	public List<Sphoto> getList(String sid){
+		return sphotoDao.selectAll(sid);
 	}
 	public int write(Sphoto sphoto){
 		int row = sphotoDao.insert(sphoto);
@@ -46,9 +50,9 @@ public class SphotoService {
 		return sphotoDao.selectBySpic_id(spic_id);
 	}
 	
-	public int getCount(){
+	/*public int getCount(){
 		return sphotoDao.count();
-	}
+	}*/
 }
 
 

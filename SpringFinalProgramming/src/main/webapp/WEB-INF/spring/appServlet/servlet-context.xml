@@ -39,6 +39,8 @@
 	</beans:bean>
 	
 	<!-- Multipart/form-date 해석을 위한 스프링 관리 객체 설정-->
-	<beans:bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></beans:bean>
+	<beans:bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+			<beans:property name="maxUploadSize" value="30720000" />
+	</beans:bean>
 	
 </beans:beans>

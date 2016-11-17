@@ -14,4 +14,11 @@ public class HomeController {
 		logger.info("index실행");
 		return "/index";
 	}
+	
+	@RequestMapping("/index")
+	public String home(){
+		logger.info("home실행");
+		
+		return "store/index";
+	}
 }
