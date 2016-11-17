@@ -130,22 +130,25 @@ public class StoreController {
 		return "store/info";
 	}*/
 	
-	@RequestMapping(value="/store/info", method=RequestMethod.GET)
+	@RequestMapping(value="/store/modify", method=RequestMethod.GET)
 	public String modifyForm(HttpSession session, Model model){
 		logger.info("storemodifyForm정보");
 		String sid = (String) session.getAttribute("login");
 		Store store = storeService.info(sid);
 		model.addAttribute("store", store);
-		return "/store/info";
+		logger.info(""+store.getSid());
+		return "/store/modify";
 	}
 	
-	@RequestMapping(value="/store/info", method=RequestMethod.POST)
+	@RequestMapping(value="/store/modify", method=RequestMethod.POST)
 	public String modify(Store store){
 		
 		logger.info("storemodify정보");
-		Store dbStore = storeService.info(store.getSid());
-		storeService.modify(dbStore);
-		return "/store/index";
+		logger.info(""+store.getSid());
+		logger.info(""+storeService.modify(store));
+		int row = storeService.modify(store);
+		logger.info(""+row);
+		return "redirect:/store/index";
 	}
 	
 	@RequestMapping("/withdraw")

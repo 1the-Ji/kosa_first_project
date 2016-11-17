@@ -1,5 +1,6 @@
 package com.mycompany.myweb.dto;
 
+//이명진
 public class ExtraOrder {
 	private int xid;
 	private int orid;

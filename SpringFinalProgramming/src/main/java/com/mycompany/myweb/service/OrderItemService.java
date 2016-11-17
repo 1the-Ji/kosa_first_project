@@ -75,6 +75,33 @@ public class OrderItemService {
 		//order가 뭐하면 int로 변환하면 됨
 	}
 	
+	//(mid, mname)
+	//1개 주문에 대해 같은 이름과 사이드를 갖는 품목의 이름들을 담는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럼2)
+	public Map<Integer,String> mnameSameItem(int oid){
+		int xid = 0; String mname = null;
+		int xid2 = 0; String mname2 = null;
+		int mid = 0;
+			
+		Map<Integer,String> map = new HashMap<>();
+		List<OrderItem> list = orderItemtDao.selectByOid(oid);
+		for(int i=0;i<list.size();i++){
+			Extra extra = extraDao.selectByXid(extraOrderDao.selectXidByOrid(list.get(i).getOrid()));
+			xid = extra.getXid();
+			Menu menu = menuDao.selectByMid(list.get(i).getMid());
+			mid = menu.getMid();
+			mname = menu.getMname();
+			for(int j=0;j<list.size();j++){
+				Extra extra2 = extraDao.selectByXid(extraOrderDao.selectXidByOrid(list.get(i).getOrid()));
+				xid2 = extra2.getXid();
+				Menu menu2 = menuDao.selectByMid(list.get(i).getMid());
+				mname2 = menu2.getMname();
+				if(mname.equals(mname2)&&xid==xid2) map.put(mid, mname);
+			}
+		}
+		return map;
+	}
+	
+	//(mid, count)
 	//1개 주문에 대해 같은 이름과 사이드를 갖는 품목을 카운트 하는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럼2)
 	public Map<Integer,Integer> countSameItem(int oid){
 		int countSameItem = 0; 
@@ -103,6 +130,7 @@ public class OrderItemService {
 		return map;
 	}
 	
+	//(mid, xname)
 	//1개 주문에 대해 같은 이름과 사이드를 갖는 사이드이름을 반환 하는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럽))
 	public Map<Integer,String> xnameSameItem(int oid){
 		String xnameSameItem = null; 
@@ -131,7 +159,8 @@ public class OrderItemService {
 		return map;
 	}
 	
-	//1개 주문에 대해 같은 이름과 사이드를 갖는 사이드이름을 반환 하는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럽))
+	//(mid, extra)
+	//1개 주문에 대해 같은 이름과 사이드를 갖는 사이드를 반환 하는 것(아메리카노 시럼추가 2개, 아이스아메리카노 샷추가 1개 이런식에서 (아메, 시럽))
 		public Map<Integer,Extra> xSameItem(int oid){
 			//List<Extra> extraAll = null; 
 			int xid = 0; String mname = null;
@@ -157,7 +186,7 @@ public class OrderItemService {
 			return map;
 		}
 	
-	
+	//(mid, sum)
 	//1개 주문 같은 품목(이름,사이드)당 합한 가격(아메 시럽추가 2잔 6000원 이런식에서 6000)
 	public Map<Integer,Integer> sumSameItem(int oid){
 		int mid = 0; int countSameItem = 0; int mprice = 0; int xprice = 0; int sumSameItem = 0;

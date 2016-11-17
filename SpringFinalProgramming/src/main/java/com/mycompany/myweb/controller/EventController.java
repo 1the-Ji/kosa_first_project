@@ -1,6 +1,9 @@
 package com.mycompany.myweb.controller;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,14 +19,17 @@ import com.mycompany.myweb.service.EventService;
 @Controller
 public class EventController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	  
 	@Autowired
 	private EventService eventService;
 	
-	@RequestMapping("/list")
-	public String list(Model model, int eid){
-		List<Event> list = eventService.getList(eid);
+	@RequestMapping("/event/list")
+	public String list(Model model, HttpSession session){
+		logger.info("service list 실행1");
+		String sid = (String) session.getAttribute("login");
+		List<Event> list = eventService.getList(sid);
 		model.addAttribute("eventList",list);
+		logger.info("service list 실행2");
 		return "event/list";
 	}
 	
@@ -31,11 +37,9 @@ public class EventController {
 	public String registerForm(){
 		return "event/registerForm";
 	}
+	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(){
 		return "redirect:/event/list";
 	}
-
-	
-	
 }

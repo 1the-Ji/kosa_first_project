@@ -12,8 +12,8 @@
 		회원정보 수정
 		<hr/>
 		<form method="post" enctype="multipart/form-data"><%-- input type="file"일시 반드시 enctype="multipart/form-data 작성 --%>
-			아이디: <input type="text" name="sid" value="${store.sid}">
-			<input type ="button" href="checkSid">중복체크</a><br/>
+			<%-- <input type="hidden" name="sid" value="${store.sid}"> --%>
+			아이디: <input type="text" name="sid" value="${store.sid}" readonly="readonly"> <br/>
 			이메일: <input type="email" name="semail" value="${store.semail}"><br/>
 			<%-- <select name="semail">
 						<option selected>직접 입력</option>
@@ -33,7 +33,7 @@
 					</select> --%>
 					
 			비밀번호: <input type="password" name="spw"  value="${store.spw}"><br/>
-			비밀번호  확인: <input type="password" name="spw"  value="${store.spw}"><br/>
+			비밀번호  확인: <input type="password" name="spw"  value=""><br/>
 			카페명: <input type="text" name="sname" value="${store.sname}"><br/> 
 			<%-- <select name="sname">
 						<option selected>직접 입력</option>
@@ -53,12 +53,12 @@
 					
 			지점명: <input type="text" name="slocal"  value="${store.slocal}"><br/>
 			주소: <input type="text" name="saddr"  value="${store.saddr}"><br/>
-			휴대전화:<select name="stel" required>
+			휴대전화:<!-- <select name="stel" required>
 			<option value=SKT>SKT</option>
 			<option value=KT>KT</option>
-			<option vlaue=U+>U+</option>
-			</select>
-			<input type="tel" name="stel" value="${store.stel}" placeholder="-뺴고 숫자만 입력" required><br/>		
+			<option value=U+>U+</option>
+			</select> -->
+			<input type="tel" name="stel" value="${store.stel}" placeholder="-뺴고 숫자만 입력" ><br/>			
 			오픈시간: <input type="time" name="sopen" value="${store.sopen}"><br/>
 			마감시간: <input type="time" name="sclosed" value="${store.sclosed}"><br/>
 			비콘번호: <input type="text" name="sbeacon" value="${store.sbeacon}"><br/>

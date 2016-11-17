@@ -11,6 +11,7 @@ public class Event {
 	private Date estartperiod;
 	//@DateTimeFormat(pattern="yyyy-MM-dd")//이명진
 	private Date elastperiod;
+	private String etitle;
 	private String econtents;
 	private String esavedfile;
 	private String emimetype;
@@ -35,6 +36,13 @@ public class Event {
 	}
 	public void setElastperiod(Date elastperiod) {
 		this.elastperiod = elastperiod;
+	}
+	
+	public String getEtitle() {
+		return etitle;
+	}
+	public void setEtitle(String etitle) {
+		this.etitle = etitle;
 	}
 	public String getEcontents() {
 		return econtents;
