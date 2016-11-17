@@ -152,7 +152,4 @@ public class StoreController {
 	public String withdraw(HttpSession session){
 		return "store/index";
 	}
-	
-	
-
 }
