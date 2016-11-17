@@ -10,9 +10,8 @@
    		<h2>메뉴 게시판</h2>
    		<hr/>
    		
-   		<c:if test="${login!=null}">
-   		<a href="register">[메뉴 등록]</a>
-   		</c:if>
+   		<a href="/menu/register">[메뉴 등록]</a>
+   		
    		
    		<table style="width:600px">
    			<tr>
