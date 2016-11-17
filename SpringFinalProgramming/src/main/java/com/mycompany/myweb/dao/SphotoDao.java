@@ -21,7 +21,7 @@ public class SphotoDao {
 
 	public int insert(Sphoto sphoto) {
 		String sql = "insert into Sphoto(spic_id, spic_savedfile, spic_mimetype, sid) "
-				+ "values(seq_sphoto_spic_id.nextval,?,?,?) ";
+				+ "values(SEQ_SPHOTO_SPID.nextval,?,?,?) ";
 
 		int row = jdbcTemplate.update(sql, sphoto.getSpic_savedfile(), sphoto.getSpic_mimetype(), sphoto.getSid());
 
@@ -59,7 +59,7 @@ public class SphotoDao {
 				sphoto.setSpic_id(rs.getInt("spic_id"));
 				sphoto.setSpic_savedfile(rs.getString("savedfile"));
 				sphoto.setSpic_mimetype(rs.getString("smimetype"));
-				sphoto.setSid(rs.getInt("sid"));
+				sphoto.setSid(rs.getString("sid"));
 
 				return sphoto;
 			}
@@ -69,7 +69,7 @@ public class SphotoDao {
 	}
 	
 	
-	public List<Sphoto> selectByPage(int pageNo, int rowsPerPage){//rowsPerPage : 한 페이지의 갯수 pageNo : 페이지 번호(ex. 1page, 2page, 3page)
+	/*public List<Sphoto> selectByPage(int pageNo, int rowsPerPage){//rowsPerPage : 한 페이지의 갯수 pageNo : 페이지 번호(ex. 1page, 2page, 3page)
 	      String sql="";
 	      sql += "select rn, spic_id, spic_savedfile ";//이미지는 화면에 보여 지기만 하면 되므로 서버에 저장 되있는 이미지인 savedfile만 적는다.
 	      sql += "from ( ";
@@ -102,5 +102,22 @@ public class SphotoDao {
 		int count = jdbcTemplate.queryForObject(sql, Integer.class);//queryForObject = select 문으로 무조건 값이 넘어 오는 경우 사용
 		
 		return count;
+	}*/
+	
+	public List<Sphoto> selectAll(String sid){
+		String sql = "select spic_id, spic_savedfile, spic_mimetype, sid from sphoto where sid=?";
+		
+		List<Sphoto> list = jdbcTemplate.query(sql, new Object[]{sid}, new RowMapper<Sphoto>() {
+				@Override
+				public Sphoto mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Sphoto sphoto = new Sphoto();
+					sphoto.setSpic_id(rs.getInt("spic_id"));
+					sphoto.setSpic_savedfile(rs.getString("spic_savedfile"));
+					sphoto.setSpic_mimetype(rs.getString("spic_mimetype"));
+					return sphoto;
+				}
+		});
+		
+		return list;
 	}
 }
