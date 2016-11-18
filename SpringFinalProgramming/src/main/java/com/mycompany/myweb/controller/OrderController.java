@@ -138,6 +138,9 @@ public class OrderController {
 		//1주문당 (품목, 수량, 사이드, 가격) -> 구해서 같이 넘겨야 됨
 		List<OrderItem> orderItems = orderItemService.allOrderItemByOgid(ogid);
 		
+		//품목
+		//munuService
+		
 
 		
 		
