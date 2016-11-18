@@ -11,9 +11,10 @@ public class Order {
 	private int ogtotalprice;//총 주문 금액
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date ogtime;//주문 날짜
-	private String oghowpay;//주문 결재방법
 	private String user_id;//일반 회원 아이디
 	private String sid;//매장 회원 아이디
+	private String oghowpay;//주문 결재방법
+	
 	public int getOgid() {
 		return ogid;
 	}
@@ -32,12 +33,6 @@ public class Order {
 	public void setOgtime(Date ogtime) {
 		this.ogtime = ogtime;
 	}
-	public String getOghowpay() {
-		return oghowpay;
-	}
-	public void setOghowpay(String oghowpay) {
-		this.oghowpay = oghowpay;
-	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -50,7 +45,12 @@ public class Order {
 	public void setSid(String sid) {
 		this.sid = sid;
 	}
-	
+	public String getOghowpay() {
+		return oghowpay;
+	}
+	public void setOghowpay(String oghowpay) {
+		this.oghowpay = oghowpay;
+	}
 	
 	
 	
