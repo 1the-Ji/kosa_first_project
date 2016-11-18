@@ -24,10 +24,10 @@
 			</table>
 			<div>
 				<c:if test="${login == event.sid}">
-					<a href="modify?eid=${event.eid}">[수정]</a>
-					<a href="remove?eid=${event.eid}">[삭제]</a>
+					<a href="modify?eid=${event.eid}"><input type="button" value="수정"/></a>
+					<a href="remove?eid=${event.eid}"><input type="button" value="삭제"/></a>
 				</c:if>
-					<a href="list">[목록]</a>
+					<a href="list"><input type="button" value="목록"/></a>
 			</div>
    </body>
 </html>

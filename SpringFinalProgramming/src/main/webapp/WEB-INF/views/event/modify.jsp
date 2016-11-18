@@ -27,7 +27,7 @@
 				<c:if test="${login == event.sid}">
 					<input type="submit" value="수정완료" />
 				</c:if>
-				<a href="list">[목록]</a>
+				<a href="list"><input type="button" value="목록"/></a>
 			</div>
 		</form>
 					

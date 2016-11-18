@@ -27,7 +27,9 @@
 				</tr>
 			</c:forEach>
 		</table>
-	<a href="register">등록하기</a> <a href="remove">삭제하기</a>	
+		<br/>
+	<a href="register"><input type="button" value="등록하기"/></a>
+	<a href="remove"><input type="button" value="삭제하기"/></a>	
 	
    </body>
 </html>
