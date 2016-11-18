@@ -21,6 +21,10 @@
 					<td style="background-color:orange; width:70px">이벤트내용</td>
 					<td><pre>${event.econtents}</pre></td>
 				</tr>
+				<tr>
+					<td style="background-color:orange; width:70px" >사진</td>
+					<td><img src="showPhoto?esavedfile=${event.esavedfile}" width="500px"/></td>
+				</tr>
 			</table>
 			<div>
 				<c:if test="${login == event.sid}">

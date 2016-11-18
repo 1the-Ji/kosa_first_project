@@ -117,9 +117,9 @@ public class StoreController {
 			/*=========sphoto=============================*/
 			String sid = store.getSid();
 			sphoto.setSid(sid);
+			logger.info("sphoto: "+sphoto.getPhoto().toString() );
+			
 			for(MultipartFile photo: sphoto.getPhoto()){
-				if (!sphoto.getPhoto().equals(null)) {
-					logger.info("사진 없음");
 					String savedfile = new Date().getTime()+photo.getOriginalFilename();
 					String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);
 					
@@ -131,7 +131,6 @@ public class StoreController {
 					sphoto.setSpic_mimetype(photo.getContentType());
 					
 					int result2 = sphotoService.write(sphoto);
-				}
 				
 			}
 			/*=========sphoto=============================*/
@@ -180,8 +179,8 @@ public class StoreController {
 	}
 	
 	
-	@RequestMapping(value="/store/modify", method=RequestMethod.GET)
-	public String modifyForm(HttpSession session, Model model){
+	@RequestMapping(value="/store/info", method=RequestMethod.GET)
+	public String info(HttpSession session, Model model){
 		logger.info("storemodifyForm정보");
 		String sid = (String) session.getAttribute("login");
 		
@@ -191,23 +190,62 @@ public class StoreController {
 		//===================sphoto=========================
 		
 		List<Sphoto> list = sphotoService.info(sid);
-		for (Sphoto sphoto : list) {
-			
-			logger.info(sphoto.getSpic_savedfile());
-			
-		}
 		model.addAttribute("list", list);
 		logger.info(""+store.getSid());
 		//===================sphoto=========================
 		return "store/info";
 	}
 	
-	@RequestMapping(value="/store/modify", method=RequestMethod.POST)
-	public String modify(Store store){
+	@RequestMapping(value="/store/modify", method=RequestMethod.GET)
+	public String modifyForm(HttpSession session, Model model){
+		logger.info("modifyForm정보");
+		String sid = (String) session.getAttribute("login");
 		
+		Store store = storeService.info(sid);
+		model.addAttribute("store", store);
+		
+		//===================sphoto=========================
+		
+		List<Sphoto> list = sphotoService.info(sid);
+		model.addAttribute("list", list);
+		logger.info(""+store.getSid());
+		//===================sphoto=========================
+		return "store/modify";
+	}
+	
+	@RequestMapping(value="/store/modify", method=RequestMethod.POST)
+	public String modify(HttpSession session, Store store, Sphoto sphoto){
 		int row = storeService.modify(store);
-		logger.info(""+row);
-		return "store/index";
+		logger.info("row => "+row);
+		try{
+		/*=========sphoto=============================*/
+		String sid = (String)session.getAttribute("login");
+		sphoto.setSid(sid);
+		
+		/*for(MultipartFile photo: sphoto.getPhoto()){
+				String savedfile = new Date().getTime()+photo.getOriginalFilename();
+				String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);
+				
+				photo.transferTo(new File(realpath));
+				sphoto.setSpic_savedfile(savedfile);
+				
+				logger.info("realpath => "+realpath);
+				
+				sphoto.setSpic_mimetype(photo.getContentType());
+				
+				int result2 = sphotoService.modify(sphoto);
+				logger.info("result2 => "+result2);
+				
+				logger.info("photo spic_id : "+ sphoto.getSpic_id());
+			
+		}*/
+		/*=========sphoto=============================*/
+		return "redirect:/store/info";
+	} catch (Exception e) {
+		logger.info("join 실패"+e.getMessage());
+		return "store/modify";
+	}
+		
 	}
 	
 	

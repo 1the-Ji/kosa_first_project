@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -190,6 +191,36 @@ public class OrderController {
 		return "order/detailList";
 	}
 	
+	//주문하기(진행 중)
+	@RequestMapping(value="/orderItems",method=RequestMethod.GET)
+	public String orderForm(){
+		return "order/orderForm";
+	}
 	
+	//-------------------------------------------------------------------------------
+	
+	//메뉴 전체 검색
+	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
+	public String allMenuSearch(){
+		
+		return "order/allMenuSearch";
+	}
+	
+	//메뉴 커피or티 검색 //메뉴 단어 검색
+	@RequestMapping(value="/someMenuSearch",method=RequestMethod.GET)
+	public String someMenuSearch(String mname){
+		logger.info("mname: "+mname);
+		
+		return "order/someMenuSearch";
+	}
+	
+	
+	//주문하기(진행 중)
+	@RequestMapping(value="/orderItems",method=RequestMethod.POST)
+	public String order(){
+		
+			
+		return "redirect:/order/list";
+	}
 	
 }
