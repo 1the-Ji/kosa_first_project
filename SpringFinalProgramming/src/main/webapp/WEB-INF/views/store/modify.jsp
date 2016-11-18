@@ -22,8 +22,7 @@
 		<form method="post" enctype="multipart/form-data"><%-- input type="file"일시 반드시 enctype="multipart/form-data 작성 --%>
 			아이디: <input type="text" name="sid" value="${store.sid}" readonly="readonly"> <br/>
 			이메일: <input type="email" name="semail" value="${store.semail}"><br/>
-			
-					
+				
 			비밀번호: <input type="password" name="spw"  value="${store.spw}"><br/>
 			비밀번호  확인: <input type="password" value=""><br/>
 			카페명: <input type="text" name="sname" value="${store.sname}">
@@ -51,13 +50,10 @@
 			마감시간: <input type="time" name="sclosed" value="${store.sclosed}"><br/>
 			비콘번호: <input type="text" name="sbeacon" value="${store.sbeacon}"><br/>
 			
-			
-			사진첨부: <input type="file" name="photo" multiple="multiple"  value=""/><br/>
 			<c:forEach var="sphoto" items="${list}">
-				
-				<div style="width:120px; height:130px; margin:5px; background-image:url(showPhoto?savedfile=${sphoto.spic_savedfile}); background-size: 120px 130px;display:inline-block;">
-				</div>
-				
+			사진첨부: <input type="file" name="photo" multiple="multiple"  value="${sphoto.spic_savedfile}"/><br/>
+			<%-- <div style="width:120px; height:130px; margin:5px; background-image:url(showPhoto?savedfile=${sphoto.spic_savedfile}); background-size: 120px 130px;display:inline-block;">
+				</div> --%>
 			</c:forEach><br/><br/>
 			
 			<input type="submit" value="수정"/>
