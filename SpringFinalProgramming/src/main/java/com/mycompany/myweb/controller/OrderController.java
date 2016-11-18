@@ -197,10 +197,28 @@ public class OrderController {
 		return "order/orderForm";
 	}
 	
+	//-------------------------------------------------------------------------------
+	
+	//메뉴 전체 검색
+	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
+	public String allMenuSearch(){
+		
+		return "order/allMenuSearch";
+	}
+	
+	//메뉴 커피or티 검색 //메뉴 단어 검색
+	@RequestMapping(value="/someMenuSearch",method=RequestMethod.GET)
+	public String someMenuSearch(String mname){
+		logger.info("mname: "+mname);
+		
+		return "order/someMenuSearch";
+	}
+	
+	
 	//주문하기(진행 중)
 	@RequestMapping(value="/orderItems",method=RequestMethod.POST)
 	public String order(){
-			
+		
 			
 		return "redirect:/order/list";
 	}
