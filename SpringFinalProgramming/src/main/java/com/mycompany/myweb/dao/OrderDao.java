@@ -19,7 +19,7 @@ public class OrderDao {
 	
 	//주문 삽입
 	public int insertOrder(Order order) {
-		String sql = "insert into order_total(ogid,ogtotalprice,ogtime,user_id,sid,oghowpay) values(seq_order_oid.nextval,?,sysdate,?,?,?)";
+		String sql = "insert into order_total(ogid,ogtotalprice,ogtime,user_id,sid,oghowpay) values(seq_order_ogid.nextval,?,sysdate,?,?,?)";
 		int row = jdbcTemplate.update(
 				sql, 
 				order.getOgtotalprice(),

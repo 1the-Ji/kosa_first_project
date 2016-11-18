@@ -31,7 +31,7 @@ public class MenuService {
 	}
 	
 	public int write(Menu menu){
-		int row = menuDao.insert(menu);
+		menuDao.insert(menu);
 		return WRITE_SUCCESS;
 	}
 	

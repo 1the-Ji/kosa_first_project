@@ -16,8 +16,7 @@
 		<h1>메뉴</h1>
 		<hr/>
 		1. <a href="${pageContext.servletContext.contextPath}/menu/list">메뉴리스트</a> <br/>
-		2. <a href="${pageContext.servletContext.contextPath}/menu/info">메뉴상세보기</a> <br/><br/>
-		
+
 		<h1>이벤트</h1>
 		<hr/>
 		1. <a href="${pageContext.servletContext.contextPath}/event/list">이벤트리스트</a> <br/><br/>
@@ -26,6 +25,7 @@
 		<h1>주문</h1>
 		<hr/>
 		1. <a href="${pageContext.servletContext.contextPath}/order/list">주문리스트</a> <br/><br/>
+		2. <a href="${pageContext.servletContext.contextPath}/order/orderItems">주문하기</a> <br/><br/>
 		
 	</body>
 </html>

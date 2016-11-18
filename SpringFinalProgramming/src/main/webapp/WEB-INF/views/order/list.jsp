@@ -21,10 +21,10 @@
                     끄읕 날짜 입력<br>
                     <input type = "date" min = "1987-07-01" max = "2020-08-01" name = "date2" step = "1">
                     <br><br>
-                    <input type = "submit" value = "submit"/>
-                    <input type = "reset" value = "reset"/><br><br>
+                    <input type = "submit" value = "검색"/>
+                    <input type = "reset" value = "리셋"/><br><br>
             </fieldset>
-        </form>
+    </form>
 
 
 	<table style="border-collapse: collapse; border: 1px solid black; width: 600px">
