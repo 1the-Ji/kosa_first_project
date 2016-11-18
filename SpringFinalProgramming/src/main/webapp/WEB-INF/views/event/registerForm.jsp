@@ -9,7 +9,9 @@
 					border: 1px solid black;
 				}
 				div{
-					 
+					display:inline-block;
+					float:right;
+					margin:5px;
 				}
 			
 			</style>
