@@ -46,9 +46,9 @@ public class EventController {
 	public String registerForm(Event event, HttpSession session){
 		logger.info("event 등록 성공");
 		String sid = (String)session.getAttribute("login");
-		
-		int result = eventService.write(event);
 		event.setSid(sid);
+		int result = eventService.write(event);
+
 		if(result == EventService.WRITE_FAIL){
 			return "event/registerForm";
 		}else{

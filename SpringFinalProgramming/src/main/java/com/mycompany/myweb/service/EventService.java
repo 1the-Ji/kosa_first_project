@@ -29,7 +29,7 @@ public class EventService {
 	public static final int REMOVE_SUCCESS = 0;
 	public static final int REMOVE_FAIL = 1;
 	
-public int write(Event event){
+	public int write(Event event){
 		int row = eventDao.insert(event);
 		return WRITE_SUCCESS;
 	}
