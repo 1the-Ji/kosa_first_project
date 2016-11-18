@@ -8,21 +8,26 @@
 		<body>
 			<h1>event 등록</h1>
 			<hr/>
-			<form method="post">
+			<form method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
-						<td>이벤트 제목 :</td>
+						<td>이벤트 제목</td>
 						<td><input name="etitle"  type="text" /><br/></td>
 					</tr>
 					<tr>
-						<td>기간 :</td>
+						<td>기간</td>
 						<td><input name="estartperiod" type="date"> ~ <input name="elastperiod" type="date"><br/></td>			
 					</tr>
 					<tr>
-						<td>내용 :</td>
+						<td>내용</td>
 						<td><textarea name="econtents" rows="5" cols="30"></textarea></td> 
 					</tr>
+					<!--<tr>
+						<td>사진</td>
+						<td><input type="file" name="photo" /></td>
+					</tr> -->
 				</table>	
+				<br/>
 			<input type="submit" value ="등록"/>
 			</form>
 		</body>
