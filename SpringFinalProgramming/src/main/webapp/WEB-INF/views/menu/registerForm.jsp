@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+<%-- 보나 20161116~ --%>
 <!DOCTYPE html>
 <html>
    <head>
@@ -30,7 +31,7 @@
    				<td>
    					<input type="radio" name="hot_ice" checked value="HOT"> HOT
    					<input type="radio" name="hot_ice" value="ICED"> ICED
-   					<input type="radio" name="hot_ice" value=""> 없음
+   					<input type="radio" name="hot_ice" value=" "> 없음
    				</td>
    			</tr>
    			<tr>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%-- 보나 --%>
+<%-- 보나 20161117--%>
 <!DOCTYPE html>
 <html>
    <head>
@@ -34,13 +34,13 @@
    			</tr>
    			<tr>
    				<td style="background-color:gold; width:70px">사진</td>
-   				<td><img src="showPhoto?msavedfile=$menu.msavedfile}" width="500px"/></td>
+   				<td><img src="showPhoto?msavedfile=${menu.msavedfile}" width="500px"/></td>
    			</tr>
    		</table>
    		
    			<div>
-			<a href="/menu/modify?mid=${menu.mid}">[수정]</a>
-			<a href="/menu/remove?mid=${menu.mid}">[삭제]</a>
+			<a href="modify?mid=${menu.mid}">[수정]</a>
+			<a href="remove?mid=${menu.mid}">[삭제]</a>
 			<a href="list">[취소]</a>
    			</div>
    		

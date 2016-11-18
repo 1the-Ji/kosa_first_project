@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dto.Menu;
 
-
+// 보나 20161111~
 
 @Component
 public class MenuDao {
@@ -35,7 +35,7 @@ public class MenuDao {
 	}
 	
 	public int update(Menu menu){
-		String sql = "update menu set mgroup=?, mname=?, hot_ice=?, mprice=?, mcontents=?, msavedfile=?, mmimetype=?, sid=? where mid=?";
+		String sql = "update menu set mgroup=?, mname=?, hot_ice=?, mprice=?, mcontents=?, msavedfile=?, mmimetype=? where mid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				menu.getMgroup(),
@@ -45,7 +45,7 @@ public class MenuDao {
 				menu.getMcontents(),
 				menu.getMsavedfile(),
 				menu.getMmimetype(),
-				menu.getSid(),
+				//menu.getSid(),
 				menu.getMid()
 		);
 		return row;

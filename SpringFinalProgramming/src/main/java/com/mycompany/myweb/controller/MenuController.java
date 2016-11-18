@@ -98,6 +98,7 @@ public class MenuController {
 			String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();
 			
 			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/" + msavedfile);
+			logger.info(realpath);
 			menu.getPhoto().transferTo(new File(realpath));
 			menu.setMsavedfile(msavedfile);
 			menu.setMmimetype(menu.getPhoto().getContentType());
@@ -113,10 +114,10 @@ public class MenuController {
 	} // register
 	
 	
-	@RequestMapping("/showPhoto")
-	public void showPhoto(String savedfile, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping("/menu/showPhoto")
+	public void showPhoto(String msavedfile, HttpServletRequest request, HttpServletResponse response){
 		try{
-			String fileName = savedfile;
+			String fileName = msavedfile;
 			String mimeType = request.getServletContext().getMimeType(fileName);
 			response.setContentType(mimeType);
 			
@@ -158,12 +159,13 @@ public class MenuController {
 	public String modify(Menu menu, HttpSession session, Model model){
 		
 		try{
-			String sid = (String)session.getAttribute("login");
-			menu.setSid(sid);
+			// String sid = (String)session.getAttribute("login");
+			// menu.setSid(sid);
 			
 			String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();
 			
 			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/" + msavedfile);
+			logger.info("realpath : "+realpath);
 			menu.getPhoto().transferTo(new File(realpath));
 			menu.setMsavedfile(msavedfile);
 			menu.setMmimetype(menu.getPhoto().getContentType());
@@ -171,5 +173,11 @@ public class MenuController {
 		}catch(Exception e){}
 		return "redirect:/menu/list";
 	} //modify
+	
+	@RequestMapping("/menu/remove")
+	public String remove(int mid){
+		menuService.remove(mid);
+		return "redirect:/menu/list";
+	}
 
 } // class
