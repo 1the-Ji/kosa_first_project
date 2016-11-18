@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%-- 보나 20161116 --%>
 <!DOCTYPE html>
 <html>
    <head>
@@ -19,7 +19,8 @@
    					<c:forEach var="menu" items="${list}">
    					<a href="info?mid=${menu.mid}">
 	   					<div style="width:120px; height:130px; margin:5px; display:inline-block;
-	   					background-image:url(showPhoto?savedfile=${menu.msavedfile});"><br/>
+	   					background-image:url(showPhoto?msavedfile=${menu.msavedfile});
+	   					background-size: 120px 130px;"><br/>
 	   					${menu.mname} ${menu.hot_ice}<br/>
 		   				${menu.mprice}<br/>
 	   					</div>
@@ -29,6 +30,8 @@
    				</td>
    			</tr>
    		</table>
+   		
+   		<br/><br/>
    		
    		<div style="width: 600px">
 			<a href="list?pageNo=1">[처음]</a>
