@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dto.Event;
 
+// 보나 20161111
+// 승훈 20161114~
+
 @Component
 public class EventDao {
 	

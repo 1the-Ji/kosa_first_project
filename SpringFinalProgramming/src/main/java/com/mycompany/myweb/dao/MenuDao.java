@@ -35,7 +35,7 @@ public class MenuDao {
 	}
 	
 	public int update(Menu menu){
-		String sql = "update menu set mgroup=?, mname=?, hot_ice=?, mprice=?, msavedfile=?, sid=? where mid=?";
+		String sql = "update menu set mgroup=?, mname=?, hot_ice=?, mprice=?, mcontents=?, msavedfile=?, mmimetype=?, sid=? where mid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				menu.getMgroup(),

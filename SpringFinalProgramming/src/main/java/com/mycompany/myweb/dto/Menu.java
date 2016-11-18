@@ -1,7 +1,7 @@
 package com.mycompany.myweb.dto;
 
 import org.springframework.web.multipart.MultipartFile;
-
+// 보나 
 public class Menu {
 	private int mid;
 	private String mgroup;
