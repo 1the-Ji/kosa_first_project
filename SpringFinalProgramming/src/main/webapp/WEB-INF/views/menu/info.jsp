@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 보나 20161117--%>
 <!DOCTYPE html>
 <html>
@@ -39,8 +40,11 @@
    		</table>
    		
    			<div>
-			<a href="modify?mid=${menu.mid}">[수정]</a>
-			<a href="remove?mid=${menu.mid}">[삭제]</a>
+   			<c:if test="${login==menu.sid}">
+				<a href="modify?mid=${menu.mid}">[수정]</a>
+				<a href="remove?mid=${menu.mid}">[삭제]</a>
+			</c:if>
+			
 			<a href="list">[취소]</a>
    			</div>
    		

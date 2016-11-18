@@ -9,8 +9,9 @@
    <body>
    		<h2>메뉴 게시판</h2>
    		<hr/>
-   		
+   		<c:if test="${login!=null }">
    		<a href="${pageContext.servletContext.contextPath}/menu/register">[메뉴 등록]</a>
+   		</c:if>
    		<a href="${pageContext.servletContext.contextPath}/index">[메인ㄱㄱ]</a>
    		
    		<table style="width:600px">
@@ -36,12 +37,12 @@
    		<div style="width: 600px">
 			<a href="list?pageNo=1">[처음]</a>
 			<c:if test="${groupNo>1 }">
-			<a href="list?pageNo=${startPageNo-1 }">[이전]</a>
+			<a href="list?pageNo=${startPageNo-1}">[이전]</a>
 			</c:if>
-			<c:forEach var="i" begin="${startPageNo}" end="${endPageNo }">
+			<c:forEach var="i" begin="${startPageNo}" end="${endPageNo}">
 			 <a href="list?pageNo=${i}" 
-			 	<c:if test="${pageNo==i }">style="color:red"</c:if>
-			 >${i}</a>
+			 	<c:if test="${pageNo==i}">style="color:red"</c:if>>
+			 ${i}</a>
 			</c:forEach>
 			 
 			<c:if test="${groupNo<totalGroupNo }">
