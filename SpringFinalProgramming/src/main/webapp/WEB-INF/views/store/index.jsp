@@ -26,6 +26,7 @@
 		<h1>주문</h1>
 		<hr/>
 		1. <a href="${pageContext.servletContext.contextPath}/order/list">주문리스트</a> <br/><br/>
+		2. <a href="${pageContext.servletContext.contextPath}/order/orderItems">주문하기</a> <br/><br/>
 		
 	</body>
 </html>
