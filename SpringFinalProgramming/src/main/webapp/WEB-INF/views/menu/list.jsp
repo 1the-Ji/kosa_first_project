@@ -43,7 +43,7 @@
 			 <a href="list?pageNo=${i}" 
 			 	<c:if test="${pageNo==i}">style="color:red"</c:if>>
 			 ${i}</a>
-			</c:forEach>
+			</c:forEach> 
 			 
 			<c:if test="${groupNo<totalGroupNo }">
 			<a href="list?pageNo=${endPageNo+1 }">[다음]</a>

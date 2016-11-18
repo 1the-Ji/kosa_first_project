@@ -44,7 +44,7 @@
 				<a href="modify?mid=${menu.mid}">[수정]</a>
 				<a href="remove?mid=${menu.mid}">[삭제]</a>
 			</c:if>
-			
+			 
 			<a href="list">[취소]</a>
    			</div>
    		
