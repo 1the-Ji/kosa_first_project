@@ -50,12 +50,12 @@
 			마감시간: <input type="time" name="sclosed" value="${store.sclosed}"><br/>
 			비콘번호: <input type="text" name="sbeacon" value="${store.sbeacon}"><br/>
 			
-			<c:forEach var="sphoto" items="${list}">
+			<%-- <c:forEach var="sphoto" items="${list}">
 			
 			<input type="hidden" name="spic_id" value="${sphoto.spic_id}">
 			사진첨부: <input type="file" name="photo" multiple="multiple"  value=""/>${sphoto.spic_id}<br/>
 			</c:forEach>
-			<br/><br/>
+			<br/><br/> --%>
 			
 			<input type="submit" value="수정"/>
 			<input type="reset" value="취소"/>
