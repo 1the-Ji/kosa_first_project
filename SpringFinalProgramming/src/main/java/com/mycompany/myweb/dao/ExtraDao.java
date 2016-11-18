@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import com.mycompany.myweb.dto.Event;
 import com.mycompany.myweb.dto.Extra;
 
 
@@ -68,6 +69,24 @@ public class ExtraDao {
 		});
 		
 		return (list.size() != 0)? list.get(0):null;
+	}
+	
+	public List<Extra> selectAll(String xid){
+		String sql = "select xid, xname, xprice from extra where xid=?";
+		List<Extra> list = jdbcTemplate.query(sql, new Object[]{xid}, new RowMapper<Extra>(){
+			
+			@Override
+			public Extra mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Extra extra = new Extra();
+				extra.setXid(rs.getInt("xid"));
+				extra.setXname(rs.getString("xname"));
+				extra.setXprice(rs.getInt("xprice"));
+				return extra;
+			}
+			
+		}
+		);
+		return list;
 	}
 }
 

@@ -118,17 +118,21 @@ public class StoreController {
 			String sid = store.getSid();
 			sphoto.setSid(sid);
 			for(MultipartFile photo: sphoto.getPhoto()){
-				String savedfile = new Date().getTime()+photo.getOriginalFilename();
-				String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);
+				if (!sphoto.getPhoto().equals(null)) {
+					logger.info("사진 없음");
+					String savedfile = new Date().getTime()+photo.getOriginalFilename();
+					String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);
+					
+					photo.transferTo(new File(realpath));
+					sphoto.setSpic_savedfile(savedfile);
+					
+					logger.info(realpath);
+					
+					sphoto.setSpic_mimetype(photo.getContentType());
+					
+					int result2 = sphotoService.write(sphoto);
+				}
 				
-				photo.transferTo(new File(realpath));
-				sphoto.setSpic_savedfile(savedfile);
-				
-				logger.info(realpath);
-				
-				sphoto.setSpic_mimetype(photo.getContentType());
-				
-				int result2 = sphotoService.write(sphoto);
 			}
 			/*=========sphoto=============================*/
 			return "redirect:/";
