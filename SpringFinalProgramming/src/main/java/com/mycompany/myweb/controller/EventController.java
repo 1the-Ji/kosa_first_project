@@ -52,7 +52,7 @@ public class EventController {
 		if(result == EventService.WRITE_FAIL){
 			return "event/registerForm";
 		}else{
-	  		
+	  		 
 			/*String savedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
 			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);//저장할 파일의 절대 파일 시스템 경로를 얻는다.
 			//C:\Users\Administrator\workspace\.metadata\...\SpringFinalProgramming\...
