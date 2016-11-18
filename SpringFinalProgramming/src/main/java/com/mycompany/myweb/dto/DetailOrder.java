@@ -6,6 +6,7 @@ public class DetailOrder {
 	private int sameItemCount;
 	private String xname;
 	private int sameItemPrice;
+	
 	public String getMname() {
 		return mname;
 	}

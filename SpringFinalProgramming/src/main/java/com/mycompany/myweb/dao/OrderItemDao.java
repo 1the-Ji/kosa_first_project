@@ -20,18 +20,19 @@ public class OrderItemDao {
 	
 	//중요
 	//1개 주문에 대한 모든 품목 리스트 찾기
-	public List<OrderItem> selectOrderItemsByOid(int oid){
-		String sql = "select orid,oid,mid from order_item where oid=?";
+	public List<OrderItem> selectOrderItemsByOgid(int ogid){
+		String sql = "select oid,ogid,mid,ordercount from order_item where ogid=?";
 		List<OrderItem> orderItems =  jdbcTemplate.query(sql, 
-				new Object[]{oid}, 
+				new Object[]{ogid}, 
 				new RowMapper<OrderItem>(){
 				  		
 			@Override
 			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
 				OrderItem orderItem = new OrderItem();
-				orderItem.setOrid(rs.getInt("orid"));
 				orderItem.setOid(rs.getInt("oid"));
+				orderItem.setOgid(rs.getInt("ogid"));
 				orderItem.setMid(rs.getInt("mid"));
+				orderItem.setOrdercount(rs.getInt("ordercount"));
 				
 				return orderItem;
 			}			
@@ -39,7 +40,50 @@ public class OrderItemDao {
 		return orderItems;
 	}
 	
-	//중요
+	//주문 품목 삽입(1개)
+	public int insertOrderItem(OrderItem orderitem){
+		String sql = "insert into order_item(oid, ogid, mid, ordercount) values(?,?,?,?)";
+		int row = jdbcTemplate.update(
+				sql,
+				orderitem.getOid(),
+				orderitem.getOgid(),
+				orderitem.getMid(),
+				orderitem.getOrdercount()
+		);
+		return row;		
+	}
+	
+	//1개 주문 품목 삭제
+	public int deleteOrderItem(OrderItem orderitem){
+		String sql = "delete from order_item where oid=?";
+		int row = jdbcTemplate.update(sql, orderitem.getOid());
+		return row;
+		
+	}
+	
+	//주문 품목 검색(1개)(oid)
+	public OrderItem selectOrderItemByOid(int oid){
+		String sql = "select oid,ogid,mid,ordercount from order_item where oid=?";
+		List<OrderItem> list = jdbcTemplate.query(sql, new Object[]{oid}, new RowMapper<OrderItem>(){
+			@Override
+			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
+				OrderItem orderitem = new OrderItem();
+				orderitem.setOid(rs.getInt("oid"));
+				orderitem.setOgid(rs.getInt("ogid"));
+				orderitem.setMid(rs.getInt("mid"));
+				orderitem.setOrdercount(rs.getInt("ordercount"));
+					
+				return orderitem;
+			}
+				
+		});
+		return (list.size() != 0)?list.get(0):null;
+	}
+		
+	//------------------------------------------------------------------------------
+	
+	
+	/*//중요
 	//1개 주문에 대한 1개 품목 메뉴(mid) 찾기
 	public int selectMidByOrid(int orid){
 		String sql = "select mid from order_item where orid=?";
@@ -55,184 +99,6 @@ public class OrderItemDao {
 			}			
 		});
 		return (list.size() != 0)?list.get(0):null;
-	}
-	
-	//----------------------------------------
-	/*public Menu selectMenuByOrid(int orid){
-		String sql = "select orid,oid,mid from order_item where orid=?";
-		List<Menu> list =  jdbcTemplate.query(sql, 
-				new Object[]{orid}, 
-				new RowMapper<Menu>(){
-					  		
-			@Override
-			public Menu mapRow(ResultSet rs, int row) throws SQLException {
-				Menu menu = new Menu();
-				menu.setMid(rs.getInt("mid"));
-				menu.setMgroup(rs.getString("mgroup"));
-				menu.setMname(rs.getString("mname"));
-				menu.setHot_ice(rs.getString("hot_ice"));
-				menu.setMprice(rs.getInt("mprice"));
-				menu.setMcontents(rs.getString("mcontents"));
-				menu.setMsavedfile(rs.getString("msavedfile"));
-				menu.setMmimetype(rs.getString("mmimetype"));
-				menu.setSid(rs.getString("sid"));
-				
-				return menu;
-			}			
-		});
-		return (list.size() != 0)?list.get(0):null;
 	}*/
 	
-	
-	//1개 주문 총 가격 구하기(주문 상세보기의 총가격 에 쓰임)
-	/*public List<Integer> sumOrder(int oid){
-		String sql ="select sum(mprice) from menu where ";
-		
-		List<Integer> list = jdbcTemplate.query(sql, 
-				new Object[]{}, 
-				new RowMapper<Integer>(){
-
-					@Override
-					public Integer mapRow(ResultSet rs, int row) throws SQLException {
-						Integer sumItem = null;
-						sumItem = Integer.valueOf(rs.getInt("orid"));
-						
-						return sumItem;
-					}
-			
-		});
-		return list;
-	}*/
-	
-	//1개 주문에 대해 같은 이름과 사이드를 갖는 품목을 카운트 하는 것(아메리카노 시럼추가 2개, 카페모카 샷추가 1개 이런식)
-	/*public int countItem(){
-		String sql = "select count(*) from ";
-		int count = jdbcTemplate.queryForObject(sql, Integer.class);
-		return count;
-	}*/
-	
-	
-		
-	//주문 품목 삽입(1개)
-	public int insertOrid(OrderItem orderitem){
-		String sql = "insert into order_item(orid, oid, mid) values(?,?,?)";
-		int row = jdbcTemplate.update(
-				sql,
-				orderitem.getOrid(),
-				orderitem.getMid(),
-				orderitem.getOid()
-		);
-		return row;		
-	}
-	
-	//주문 품목 검색(다수)(oid)
-	public List<OrderItem> selectByOid(int oid){
-		String sql = "select orid,mid,oid from order_item where oid=?";
-		List<OrderItem> list = jdbcTemplate.query(sql, 
-				new Object[]{oid}, 
-				new RowMapper<OrderItem>(){
-			@Override
-			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
-				OrderItem orderitem = new OrderItem();
-				orderitem.setOrid(rs.getInt("orid"));
-				orderitem.setMid(rs.getInt("mid"));
-				orderitem.setOid(rs.getInt("oid"));
-					
-				return orderitem;
-			}
-				
-		});
-		return list;
-	}
-	
-	//주문 품목 검색(1개)(orid)
-	public OrderItem selectByOrid(int orid){
-		String sql = "select orid,mid,oid from order_item where orid=?";
-		List<OrderItem> list = jdbcTemplate.query(sql, new Object[]{orid}, new RowMapper<OrderItem>(){
-			@Override
-			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
-				OrderItem orderitem = new OrderItem();
-				orderitem.setOrid(rs.getInt("orid"));
-				orderitem.setOid(rs.getInt("oid"));
-				orderitem.setMid(rs.getInt("mid"));
-				
-				return orderitem;
-			}
-			
-		});
-		return (list.size() != 0)?list.get(0):null;
-	}
-	
-	//주문 품목 목록(다수)
-	public List<OrderItem> selectByOidAll(int pageNo, int rowsPerPage, int oid){
-		String sql ="";
-		sql += "select rn, orid, oid, mid ";
-		sql += "from( ";
-		sql += "select rownum as rn, orid, oid, mid ";
-		sql += "from(select orid, oid, mid from order_item order by oid desc) ";
-		sql += "where rownum<=? ";
-		sql += ") ";
-		sql += "where rn>=? ";
-		List<OrderItem> list = jdbcTemplate.query(sql, 
-				new Object[]{pageNo*rowsPerPage,(pageNo-1)*rowsPerPage+1}, 
-				new RowMapper<OrderItem>(){
-
-					@Override
-					public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
-						OrderItem orderitem = new OrderItem();
-						orderitem.setOrid(rs.getInt("orid"));
-						orderitem.setMid(rs.getInt("mid"));
-						orderitem.setOid(rs.getInt("oid"));
-						
-						return orderitem;
-					}
-			
-		});
-		return list;
-	}
-	
-	//주문 품목 수정(1개)(주문 1건에 대한)(필요없음 서비스단에서 dao 섞어서 쓰면 됨)
-	/*public int updateOrid(OrderItem orderitem){
-		String sql = "update order_item set oid=?, mid=? where orid=?";
-		
-		int row = jdbcTemplate.update(sql, 
-				orderitem.getOrid(),
-				orderitem.getOrid()
-				
-				);
-		return row;
-	}*/
-	
-	//1개 주문 품목 삭제
-	public int deleteOrid(OrderItem orderitem){
-		String sql = "delete from order_item where orid=?";
-		int row = jdbcTemplate.update(sql, orderitem.getOrid());
-		return row;
-		
-	}
-	
-	//1개 주문에 대해 같은 이름과 사이드를 갖는 품목을 카운트 하는 것(아메리카노 시럼추가 2개, 카페모카 샷추가 1개 이런식)
-	public int countOrid(int orid){
-		String sql = "select count(*) as count from order_item where orid=?";
-			
-		List<Integer> list = jdbcTemplate.query(sql, 
-				new Object[]{orid}, 
-				new RowMapper<Integer>(){
-
-					@Override
-					public Integer mapRow(ResultSet rs, int row) throws SQLException {
-						Integer countItem = new Integer(rs.getInt("count")); 
-						return countItem;
-					}
-			
-		});
-		return (list.size() != 0)?list.get(0):null;
-	}
-	
-	//1개 주문 품목들 총 카운트
-	public int count(){
-		String sql = "select count(*) from order_item";
-		int count = jdbcTemplate.queryForObject(sql, Integer.class);
-		return count;
-	}
 }

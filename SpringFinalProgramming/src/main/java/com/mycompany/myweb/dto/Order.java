@@ -7,38 +7,36 @@ import org.springframework.format.annotation.DateTimeFormat;
 //이명진
 public class Order {
 	
-	private int oid;//주문 아이디(시퀀스)
-	private int ototalprice;//총 주문 금액
+	private int ogid;//주문 아이디(시퀀스)
+	private int ogtotalprice;//총 주문 금액
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date otime;//주문 날짜
-	private String howpay;//주문 결재방법
+	private Date ogtime;//주문 날짜
+	private String oghowpay;//주문 결재방법
 	private String user_id;//일반 회원 아이디
 	private String sid;//매장 회원 아이디
-	
-	
-	public int getOid() {
-		return oid;
+	public int getOgid() {
+		return ogid;
 	}
-	public void setOid(int oid) {
-		this.oid = oid;
+	public void setOgid(int ogid) {
+		this.ogid = ogid;
 	}
-	public int getOtotalprice() {
-		return ototalprice;
+	public int getOgtotalprice() {
+		return ogtotalprice;
 	}
-	public void setOtotalprice(int ototalprice) {
-		this.ototalprice = ototalprice;
+	public void setOgtotalprice(int ogtotalprice) {
+		this.ogtotalprice = ogtotalprice;
 	}
-	public Date getOtime() {
-		return otime;
+	public Date getOgtime() {
+		return ogtime;
 	}
-	public void setOtime(Date otime) {
-		this.otime = otime;
+	public void setOgtime(Date ogtime) {
+		this.ogtime = ogtime;
 	}
-	public String getHowpay() {
-		return howpay;
+	public String getOghowpay() {
+		return oghowpay;
 	}
-	public void setHowpay(String howpay) {
-		this.howpay = howpay;
+	public void setOghowpay(String oghowpay) {
+		this.oghowpay = oghowpay;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -52,6 +50,9 @@ public class Order {
 	public void setSid(String sid) {
 		this.sid = sid;
 	}
+	
+	
+	
 	
 	
 }

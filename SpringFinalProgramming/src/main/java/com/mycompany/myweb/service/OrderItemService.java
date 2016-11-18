@@ -1,11 +1,7 @@
 package com.mycompany.myweb.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,9 +11,9 @@ import com.mycompany.myweb.dao.ExtraOrderDao;
 import com.mycompany.myweb.dao.MenuDao;
 import com.mycompany.myweb.dao.OrderDao;
 import com.mycompany.myweb.dao.OrderItemDao;
+import com.mycompany.myweb.dto.DetailOrder;
 import com.mycompany.myweb.dto.Extra;
 import com.mycompany.myweb.dto.Menu;
-import com.mycompany.myweb.dto.Order;
 import com.mycompany.myweb.dto.OrderItem;
 //이명진
 @Component
@@ -49,13 +45,40 @@ public class OrderItemService {
 	
 	//중요
 	//1개 주문에 대한 모든 품목 리스트 찾기
-	public List<OrderItem> allOrderItemByOid(int oid){
-		List<OrderItem> orderItems = new ArrayList<>();
-		orderItems = orderItemtDao.selectOrderItemsByOid(oid);
+	public List<OrderItem> allOrderItemByOgid(int ogid){
+		List<OrderItem> orderItems = orderItemtDao.selectOrderItemsByOgid(ogid);
 		return orderItems;
 	}
 	
-	//중요
+	/*//1개 주문 품목 당 총 가격 구하기(메뉴+사이드)
+	public int sumOnePrice(int mid, int xid){
+		Menu menu = menuDao.selectByMid(mid);//어떤 메뉴인지
+		Extra extra = extraOrderDao.selectByXid(xid);//어떤 사이드인지
+		
+		return menu.getMprice()+extra.getXprice();//하나의 품목에 대한 총 가격이며 주문 상세보기 - 가격 부분에 이용
+		
+	}*/
+	
+	//1개 주문 품목 추가(MenuDao의 selectByMid(mid)쓰임)()
+	public int writeOrid(OrderItem orderitem){
+		if(orderItemtDao.insertOrderItem(orderitem)==1){
+			return INSERT_SUCCESS;
+		}
+		return INSERT_FAIL;
+	}
+		
+		
+	//1개 주문 품목 제거
+	public int removeOrid(OrderItem orderitem){
+		if(orderItemtDao.deleteOrderItem(orderitem)==1){
+			return DELETE_SUCCESS;
+		}
+		return DELETE_FAIL;
+	}
+	
+	//-------------------------------------------------
+	
+	/*//중요
 	//1개 주문 품목에 대한 메뉴(mid) 검색
 	public int oneMidByOrid(int orid){
 		return orderItemtDao.selectMidByOrid(orid);
@@ -74,31 +97,92 @@ public class OrderItemService {
 	public List<Extra> allExtraByXids(List<Integer> xids){
 		return extraOrderDao.selectExtrasByXids(xids);
 	}
-
-	//-------------------------------------------------
-	
-	//1개 주문 품목 리스트 찾기(1개 주문 상세 검색 할 때 쓰임)
-	public OrderItem oneOrid(int orid){
-		return orderItemtDao.selectByOrid(orid);
-	}
 	
 	//중요
-	//1개 주문 모든 품목 리스트 찾기(모든 품목 검색 할 때 쓰임)
-	public List<OrderItem> allMidOid(int pageNo, int rowsPerPage, int oid){
-		return orderItemtDao.selectByOidAll(pageNo,rowsPerPage,oid);
-	}
+	//1개 주문의 모든 품목에 대한 같은 메뉴와 사이드인 품목 카운트
+	*/	
 	
 	
-	//1개 주문 품목 당 총 가격 구하기(메뉴+사이드)
-	//MenuDao의 selectByMid(mid)쓰임
-	//ExtraOrderDao의 selectByXidOid(extraorder)쓰임
-	public int sumOnePrice(int mid, int xid){
-		Menu menu = menuDao.selectByMid(mid);//어떤 메뉴인지
-		Extra extra = extraOrderDao.selectByXid(xid);//어떤 사이드인지
+	
+	
+	
+	//중요
+		//1개 주문의 모든 품목에 대한 같은 메뉴와 사이드인 품목 카운트
+		/*public List<DetailOrder> countByOrid(int oid){
+			List<DetailOrder> detailOrders = new ArrayList<>();
+			
+			List<OrderItem> orderItems1 = new ArrayList<>();
+			orderItems1 = orderItemtDao.selectOrderItemsByOid(oid);
+			
+			List<OrderItem> orderItems2 = new ArrayList<>();
+			orderItems2 = orderItemtDao.selectOrderItemsByOid(oid);
+			
+			//비교 시작
+			
+			for(int i=0;i<orderItems1.size();i++){
+				int sameItemCount = 0; int sameItemPrice = 0; int avoidIndex = 0;
+				
+				DetailOrder detailOrder = new DetailOrder();
+				
+				OrderItem orderItem1 = orderItems1.get(i);
+				List<Integer> xids1 = extraOrderDao.selectXidsByOrid(orderItem1.getOrid());
+				Menu menu1  = menuDao.selectByMid(orderItemtDao.selectMidByOrid(orderItem1.getOrid()));
+				
+				//일단 담음
+				detailOrder.setMname(menu1.getMname());
+				sameItemCount++;
+				detailOrder.setSameItemCount(sameItemCount);
+				sameItemPrice += menu1.getMprice();
+				for(int k=0;k<xids1.size();k++){
+					String temp = "";
+					sameItemPrice += xids1.get(k);
+					temp += extraDao.selectByXid(xids1.get(k)).getXname()+" ";
+					detailOrder.setXname(temp);
+					
+				}
+				detailOrder.setSameItemPrice(sameItemPrice);
+				
+				avoidIndex = i;
+				
+				for(int j=0;j<orderItems2.size();j++){
+					if(j == avoidIndex){
+						continue;
+					}else{
+						OrderItem orderItem2 = orderItems2.get(j);
+						List<Integer> xids2 = extraOrderDao.selectXidsByOrid(orderItem2.getOrid());
+						Menu menu2  = menuDao.selectByMid(orderItemtDao.selectMidByOrid(orderItem2.getOrid()));
+						
+						if(menu1.getMid() == menu2.getMid()){//같은 메뉴인 경우
+							boolean sameOrNot = false;
+							if(xids1.size()==xids2.size()){
+								for(int k=0;k<xids1.size();k++){		
+									if(xids1.get(k)==xids2.get(k)){
+										sameOrNot=true;//같은 메뉴면서 사이드도 같은 경우(완전 같은 거임)
+									}else{
+										sameOrNot=false;//같은 메뉴면서 사이드는 다른 경우(사이드만 다른 거임)
+									}
+								}
+								if(sameOrNot){//같은 메뉴면서 사이드도 같은 경우(완전 같은 거임)
+									
+								}else{//같은 메뉴면서 사이드는 다른 경우(사이드만 다른 거임)
+									
+								}
+								
+							}else{//같은 메뉴면서 사이드는 다른 경우(사이드만 다른 거임)
+								
+							}
+						}else if(menu1.getMid() != menu2.getMid()){//다른 메뉴인 경우
+							
+							
+						}
+					}
+					
+				}
+				
+			}
+			return detailOrders;
+		}*/
 		
-		return menu.getMprice()+extra.getXprice();//하나의 품목에 대한 총 가격이며 주문 상세보기 - 가격 부분에 이용
-		
-	}
 	
 	//1개 주문 총 가격 구하기(주문 상세보기의 총가격 에 쓰임)
 	/*public Order sumAllPrice(int oid, int mid, int xid){
@@ -263,25 +347,5 @@ public class OrderItemService {
 		return sumSameItems;
 	}*/
 		
-	//1개 주문 품목 추가(MenuDao의 selectByMid(mid)쓰임)()
-	public int writeOrid(OrderItem orderitem){
-		if(orderItemtDao.insertOrid(orderitem)==1){
-			return INSERT_SUCCESS;
-		}
-		return INSERT_FAIL;
-	}
 	
-	
-	//1개 주문 품목 제거
-	public int removeOrid(OrderItem orderitem){
-		if(orderItemtDao.deleteOrid(orderitem)==1){
-			return DELETE_SUCCESS;
-		}
-		return DELETE_FAIL;
-	}
-	
-	//1개 주문 품목 카운트
-	public int countOrid(){
-		return orderItemtDao.count();
-	}
 }
