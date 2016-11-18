@@ -1,6 +1,8 @@
 package com.mycompany.myweb.controller;
 
+import java.io.File;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -46,21 +48,20 @@ public class EventController {
 		String sid = (String)session.getAttribute("login");
 		event.setSid(sid);
 		int result = eventService.write(event);
+
 		if(result == EventService.WRITE_FAIL){
 			return "event/registerForm";
 		}else{
-			/*
-		    photoBoard.setOriginalfile(photoBoard.getPhoto().getOriginalFilename());//저장할 파일 originalfilename 얻기
-			
-			String savedfile = new Date().getTime()+photoBoard.getPhoto().getOriginalFilename();
+	  		 
+			/*String savedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
 			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);//저장할 파일의 절대 파일 시스템 경로를 얻는다.
 			//C:\Users\Administrator\workspace\.metadata\...\SpringFinalProgramming\...
 			
-			photoBoard.getPhoto().transferTo(new File(realpath));//클라이언트에서 저장한 파일을 해당 경로(realpath)에 저장 실제 파일을 저장
-			photoBoard.setSavedfile(savedfile);
+			event.getPhoto().transferTo(new File(realpath));//클라이언트에서 저장한 파일을 해당 경로(realpath)에 저장 실제 파일을 저장
+			event.setEsavedfile(savedfile);
 			
-			photoBoard.setMimetype(photoBoard.getPhoto().getContentType());//저장할 파일의 mime type 얻어냄.
-			 */			
+			event.setEmimetype(event.getPhoto().getContentType());//저장할 파일의 mime type 얻어냄.
+*/					
 			return "redirect:/event/list";
 		}
 		

@@ -2,11 +2,9 @@ package com.mycompany.myweb.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,8 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.myweb.dto.DetailOrder;
+import com.mycompany.myweb.dto.Extra;
+import com.mycompany.myweb.dto.ExtraOrder;
+import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.dto.Order;
+import com.mycompany.myweb.dto.OrderItem;
 import com.mycompany.myweb.service.ExtraOrderService;
+import com.mycompany.myweb.service.ExtraService;
 import com.mycompany.myweb.service.MenuService;
 import com.mycompany.myweb.service.OrderItemService;
 import com.mycompany.myweb.service.OrderService;
@@ -42,6 +46,10 @@ public class OrderController {
 	
 	@Autowired
 	MenuService munuService;
+	
+	@Autowired
+	ExtraService extraService;
+	
 	
 	//주문전체 내역 페이지
 	@RequestMapping("/list")
@@ -135,39 +143,48 @@ public class OrderController {
 	
 	//주문내역 상세보기(1개 주문 당)
 	@RequestMapping(value="/detailList", method=RequestMethod.GET)
-	public String detailList(int oid, Model model){
-		//주문내역 상세보기 service&dao 만들어야 함
-		//1주문당
-		//품목, 수량, 사이드, 가격 -> 구해서 같이 넘겨야 됨
+	public String detailList(int ogid, Model model){
+		//1주문당 (품목, 수량, 사이드, 가격) -> 구해서 같이 넘겨야 됨
+		List<OrderItem> orderItems = orderItemService.allOrderItemByOgid(ogid);
+		List<DetailOrder> detailOrders = new ArrayList<>();
 		
-		
-		
-		/*Map<Integer,String> mnameSameItem = orderItemService.mnameSameItem(oid);
-		Map<Integer,Integer> countSameItem = orderItemService.countSameItem(oid);
-		Map<Integer,String> xnameSameItem = orderItemService.xnameSameItem(oid);
-		Map<Integer,Integer> sumSameItem = orderItemService.sumSameItem(oid);
-		
-		Set<Map.Entry<Integer,String>> entrySet1 = mnameSameItem.entrySet();
-		Iterator<Map.Entry<Integer,String>> entryIterator1 = entrySet1.iterator();
-		
-		int mid=0; int mprice=0; int xprice=0; String mname;
-		while(entryIterator1.hasNext()){
-			Map.Entry<Integer, String> entry1 = entryIterator1.next();
+		int totalprice = 0 ;
+		for(int i=0;i<orderItems.size();i++){
+			DetailOrder detailOrder = new DetailOrder();
+			String xname = ""; int itemprice = 0;
 			
-			mid = entry1.getKey();
-			//mprice = munuService.info(mid).getMprice();
-			mname = entry1.getValue();
+			Menu menu = munuService.info(orderItems.get(i).getMid());
+			detailOrder.setMname(menu.getMname());//품목
+			logger.info("품목:"+detailOrder.getMname());
+			detailOrder.setSameItemCount(orderItems.get(i).getOrdercount());//수량
+			logger.info("수량:"+detailOrder.getSameItemCount());
+			itemprice += menu.getMprice();
 			
-			logger.info("mid: "+mid);
-			logger.info("mprice: "+mprice);
-			logger.info("mname: "+mname);
+			//주문 품목에 대한 모든 사이드 찾기
+			List<ExtraOrder> extraOrders = extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid());
+			logger.info("extraOrders.size(): "+extraOrders.size());
 			
+			for(int j=0;j<extraOrders.size();j++){
+				Extra extra = extraService.info(extraOrders.get(j).getXid());
+				xname += extra.getXname()+" ";
+				itemprice += extra.getXprice();
+			}
+			detailOrder.setXname(xname);//사이드 이름들
+			logger.info("사이드 이름들:"+detailOrder.getXname());
+			
+			
+			int tempitemprice = itemprice*orderItems.get(i).getOrdercount();
+			detailOrder.setSameItemPrice(tempitemprice);//1주문 동일 품목(메뉴 사이드) 가격
+			totalprice += tempitemprice;
+			logger.info("가격:"+detailOrder.getSameItemPrice());
+			
+			detailOrder.setTotalprice(totalprice);//1 주문 총가격
+			detailOrder.setOghowpay(orderService.SearchOne(ogid).getOghowpay());//결제 방법
+			detailOrders.add(i,detailOrder);
 		}
 		
-		model.addAttribute("mnameSameItem", mnameSameItem);
-		model.addAttribute("countSameItem", countSameItem);
-		model.addAttribute("xnameSameItem", xnameSameItem);
-		model.addAttribute("sumSameItem", sumSameItem);*/
+		model.addAttribute("detailOrders", detailOrders);
+		
 		
 		
 		return "order/detailList";

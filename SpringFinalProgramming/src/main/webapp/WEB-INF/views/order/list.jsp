@@ -21,10 +21,10 @@
                     끄읕 날짜 입력<br>
                     <input type = "date" min = "1987-07-01" max = "2020-08-01" name = "date2" step = "1">
                     <br><br>
-                    <input type = "submit" value = "submit"/>
-                    <input type = "reset" value = "reset"/><br><br>
+                    <input type = "submit" value = "검색"/>
+                    <input type = "reset" value = "리셋"/><br><br>
             </fieldset>
-        </form>
+    </form>
 
 
 	<table style="border-collapse: collapse; border: 1px solid black; width: 600px">
@@ -39,11 +39,11 @@
 
 		<c:forEach var="orderList" items="${list}">
 			<tr>
-				<th style="border: 1px solid black;">${orderList.oid }</th>
-				<th style="border: 1px solid black;"><a href="detailList?oid=${orderList.oid}">${orderList.user_id}</a></th>
-				<th style="border: 1px solid black;">${orderList.otime }</th>
-				<th style="border: 1px solid black;">${orderList.ototalprice }</th>
-				<th style="border: 1px solid black;">${orderList.howpay }</th>
+				<th style="border: 1px solid black;"><a href="detailList?ogid=${orderList.ogid}">${orderList.ogid }</a></th>
+				<th style="border: 1px solid black;">${orderList.user_id}</th>
+				<th style="border: 1px solid black;">${orderList.ogtime }</th>
+				<th style="border: 1px solid black;">${orderList.ogtotalprice }</th>
+				<th style="border: 1px solid black;">${orderList.oghowpay }</th>
 			</tr>
 		</c:forEach>
 	</table>

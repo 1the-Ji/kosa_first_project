@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dto.Extra;
 import com.mycompany.myweb.dto.ExtraOrder;
+import com.mycompany.myweb.dto.OrderItem;
 //이명진
 @Component
 public class ExtraOrderDao {
@@ -19,103 +20,44 @@ public class ExtraOrderDao {
 	JdbcTemplate jdbcTemplate;
 	
 	//중요
-	//1개 주문 품목에 대한 모든 사이드(xid) 검색
-	public List<Integer> selectXidsByOrid(int orid){
-		String sql = "select xid from extra_order where orid=?";
-		List<Integer> xids =  jdbcTemplate.query(sql, 
-				new Object[]{orid}, 
-				new RowMapper<Integer>(){
+	
+	//1개 주문에 대한 모든 사이드오더 리스트 찾기
+	public List<ExtraOrder> selectExtraOrdersByOid(int oid){
+		String sql = "select xid,oid from extra_order where oid=?";
+		List<ExtraOrder> extraOrders =  jdbcTemplate.query(sql, 
+				new Object[]{oid}, 
+				new RowMapper<ExtraOrder>(){
 			  		
 			@Override
-			public Integer mapRow(ResultSet rs, int row) throws SQLException {
-				Integer xid = new Integer(rs.getInt("xid"));
-				
-				return xid;
+			public ExtraOrder mapRow(ResultSet rs, int row) throws SQLException {
+				ExtraOrder extraOrder = new ExtraOrder();
+				extraOrder.setXid(rs.getInt("xid"));
+				extraOrder.setOid(rs.getInt("oid"));
+	
+				return extraOrder;
 			}			
 		});
-		return xids;
+		return extraOrders;
 	}
 	
-	//중요
-	//1개 주문 품목에 대한 모든 사이드 검색
-	public List<Extra> selectExtrasByXids(List<Integer> xids){
-		String sql = "select xid,xname,xprice from extra where xid=?";
-		List<Extra> extras =  jdbcTemplate.query(sql, 
-				new Object[]{xids}, 
-				new RowMapper<Extra>(){
-				  		
-			@Override
-			public Extra mapRow(ResultSet rs, int row) throws SQLException {
-				Extra extra = new Extra();
-				extra.setXid(rs.getInt("xid"));
-				extra.setXname(rs.getString("xname"));
-				extra.setXprice(rs.getInt("xprice"));
-				
-				return extra;
-			}			
-		});
-		return extras;
-	}
-	//-----------------------------------------------------------
-	
-	//1개 메뉴에 대한 사이드 상세 검색
-	public Extra selectByXid(int xid){
-		String sql = "select xid, xname, xprice from extra where xid=?";
-		List<Extra> list =  jdbcTemplate.query(sql, 
-				new Object[]{xid}, 
-				new RowMapper<Extra>(){
-	  		
-			@Override
-			public Extra mapRow(ResultSet rs, int row) throws SQLException {
-				Extra extra = new Extra();
-				extra.setXid(rs.getInt("xid"));
-				extra.setXname(rs.getString("xname"));
-				extra.setXprice(rs.getInt("xprice"));
-					
-				return extra;
-			}
-		});
-		return (list.size() != 0) ? list.get(0) : null;
-	}
-	
-		
-		
-	//1개 메뉴에 사이드 삽입
-	public int insertXidOrid(ExtraOrder extraorder){
-		String sql = "insert into extra_order(xid, orid) values(?,?)";
+	//주문 품목 사이드오더 삽입(다수)
+	public int insertExtraOrder(ExtraOrder extraOrder){
+		String sql = "insert into extra_order(xid,oid) values(?,?)";
 		int row = jdbcTemplate.update(
 				sql,
-				extraorder.getXid(),
-				extraorder.getOrid()
+				extraOrder.getXid(),
+				extraOrder.getOid()
 		);
 		return row;		
 	}
 	
-	
-	
-	//1개 메뉴에 대한 사이드 검색
-	public ExtraOrder selectByXidOrid(ExtraOrder extraorder){
-		String sql = "select xid, orid from extra_order where (xid=? and orid=?)";
-		List<ExtraOrder> list =  jdbcTemplate.query(sql, 
-				new Object[]{extraorder.getXid(),extraorder.getOrid()}, 
-				new RowMapper<ExtraOrder>(){
-	  		
-			@Override
-			public ExtraOrder mapRow(ResultSet rs, int row) throws SQLException {
-				ExtraOrder extraorder = new ExtraOrder();
-				extraorder.setXid(rs.getInt("xid"));
-				extraorder.setOrid(rs.getInt("orid"));
-				
-				return extraorder;
-			}
-		});
-		return (list.size() != 0) ? list.get(0) : null;
-	}
-	
-	//1개 메뉴에 대한 사이드 메뉴 삭제
-	public int deleteXidOrid(ExtraOrder extraorder){
-		String sql = "delete from event where (xid=? and orid=?)";
-		int row = jdbcTemplate.update(sql, extraorder.getXid(),extraorder.getOrid());
+	//1개 주문 품목 사이드오더 삭제
+	public int deleteExtraOrder(ExtraOrder extraOrder){
+		String sql = "delete from extra_order where oid=?";
+		int row = jdbcTemplate.update(sql, extraOrder.getOid());
 		return row;
 	}
+	
+	
+	//-----------------------------------------------------------
 }

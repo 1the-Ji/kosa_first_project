@@ -3,6 +3,7 @@ package com.mycompany.myweb.dto;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 //보나 20161110
 //승훈 20161116 (etitle추가)
@@ -15,11 +16,11 @@ public class Event {
 	private Date elastperiod;
 	private String etitle;
 	private String econtents;
+	private MultipartFile photo;
 	private String esavedfile;
 	private String emimetype;
 	private String sid;
 	private int mid;
-	
 	
 	public int getEid() {
 		return eid;
@@ -52,6 +53,12 @@ public class Event {
 	public void setEcontents(String econtents) {
 		this.econtents = econtents;
 	}
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
 	public String getEsavedfile() {
 		return esavedfile;
 	}
@@ -76,7 +83,5 @@ public class Event {
 	public void setMid(int mid) {
 		this.mid = mid;
 	}
-	
-	
 	
 }

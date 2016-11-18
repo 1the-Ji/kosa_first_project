@@ -39,14 +39,24 @@ public class ExtraOrderService {
 	
 	//중요
 	//1개 주문 품목에 대한 모든 사이드(xid) 검색
-	public List<Integer> allXidByoneOrid(int orid){
-		return extraOrderDao.selectXidsByOrid(orid);
+	public List<ExtraOrder> allExtraOrderByoneOid(int oid){
+		return extraOrderDao.selectExtraOrdersByOid(oid);
 	}
 		
-	//중요
-	//1개 주문 품목에 대한 모든 사이드 검색
-	public List<Extra> allExtraByXids(List<Integer> xids){
-		return extraOrderDao.selectExtrasByXids(xids);
+	//주문 품목 사이드오더 삽입(다수)
+	public int addExtraOrder(ExtraOrder extraOrder){
+		if(extraOrderDao.insertExtraOrder(extraOrder)==1){
+			return INSERT_SUCCESS;
+		}
+		return INSERT_FAIL;
+	}
+	
+	//1개 주문 품목 사이드오더 삭제
+	public int removeExtraOrder(ExtraOrder extraorder){
+		if(extraOrderDao.deleteExtraOrder(extraorder)==1){
+			return DELETE_SUCCESS;
+		}
+		return DELETE_FAIL;
 	}
 	//-------------------------------------------------
 	
@@ -84,11 +94,5 @@ public class ExtraOrderService {
 		return UPDATE_FAIL;
 	}*/
 	
-	//1개 주문 시 한 품목 사이드 제거
-	/*public int removeXidOid(ExtraOrder extraorder){
-		if(extraOrderDao.deleteXidOrid(extraorder)==1){
-			return DELETE_SUCCESS;
-		}
-		return DELETE_FAIL;
-	}*/
+	
 }

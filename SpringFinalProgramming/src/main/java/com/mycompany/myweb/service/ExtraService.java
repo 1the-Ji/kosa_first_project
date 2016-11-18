@@ -1,5 +1,7 @@
 package com.mycompany.myweb.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +10,7 @@ import com.mycompany.myweb.dto.Extra;
 
 @Component
 public class ExtraService {
-//김정호
+//김정호 11-18수정
 	public static final int ADD_SUCESS = 0;
 	public static final int ADD_FAIL = 1;
 	
@@ -41,6 +43,10 @@ public class ExtraService {
 	
 	public Extra info (int xid){
 		return extraDao.selectByXid(xid);
+	}
+	
+	public List<Extra> getList(String xid){
+		return extraDao.selectAll(xid);
 	}
 	
 }

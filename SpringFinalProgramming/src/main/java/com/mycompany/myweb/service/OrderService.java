@@ -28,15 +28,15 @@ public class OrderService {
 	Logger logo = Logger.getLogger(OrderService.class);
 	
 	//주문 추가(완료)
-	public int oderAdd(Order order){
-		int row = orderDao.insert(order);
+	public int addOrder(Order order){
+		int row = orderDao.insertOrder(order);
 		if(row == 1) return WRITE_SUCCESS;
 		else return WRITE_FAIL;
 	}
 	
 	//주문 1개 조회(완료)
-	public Order SearchOne(int oid){
-		return orderDao.selectByOid(oid);
+	public Order SearchOne(int ogid){
+		return orderDao.selectByOgid(ogid);
 	}
 	
 	//주문 기간 조회(완료)
@@ -50,14 +50,14 @@ public class OrderService {
 	}
 	
 	//주문 제거(완료)
-	public int remove(int oid){
-		int row = orderDao.delete(oid);
+	public int remove(int ogid){
+		int row = orderDao.deleteOrder(ogid);
 		if(row == 1) return REMOVE_SUCCESS;
 		else return REMOVE_FAIL;
 	}
 	
 	//주문 카운트(완료)
 	public int getCount(){
-		return orderDao.count();
+		return orderDao.countOrder();
 	}
 }
