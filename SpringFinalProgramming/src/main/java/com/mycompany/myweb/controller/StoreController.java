@@ -222,7 +222,7 @@ public class StoreController {
 		String sid = (String)session.getAttribute("login");
 		sphoto.setSid(sid);
 		
-		for(MultipartFile photo: sphoto.getPhoto()){
+		/*for(MultipartFile photo: sphoto.getPhoto()){
 				String savedfile = new Date().getTime()+photo.getOriginalFilename();
 				String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);
 				
@@ -238,7 +238,7 @@ public class StoreController {
 				
 				logger.info("photo spic_id : "+ sphoto.getSpic_id());
 			
-		}
+		}*/
 		/*=========sphoto=============================*/
 		return "redirect:/store/info";
 	} catch (Exception e) {

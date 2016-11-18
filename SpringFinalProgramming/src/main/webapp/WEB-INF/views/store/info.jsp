@@ -53,8 +53,8 @@
 			</c:forEach><br/><br/>
 			
 			<a href="modify?sid=${store.sid}">[수정]</a>
-			<a href="index">확인</a>
-			<a href="">취소</a>
+			<a href="../index">[확인]</a>
+			<a href="../index">취소</a>
 		</form>
 	</body>
 </html>
