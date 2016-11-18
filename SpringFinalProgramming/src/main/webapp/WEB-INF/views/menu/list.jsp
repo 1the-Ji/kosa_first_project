@@ -11,7 +11,7 @@
    		<hr/>
    		
    		<a href="${pageContext.servletContext.contextPath}/menu/register">[메뉴 등록]</a>
-   		
+   		<a href="${pageContext.servletContext.contextPath}/index">[메인ㄱㄱ]</a>
    		
    		<table style="width:600px">
    			<tr>
@@ -19,15 +19,11 @@
    					<c:forEach var="menu" items="${list}">
    					<a href="info?mid=${menu.mid}">
 	   					<div style="width:120px; height:130px; margin:5px; display:inline-block;
-	   					background-image:url(showPhoto?savedfile=${menu.msavedfile});">
+	   					background-image:url(showPhoto?savedfile=${menu.msavedfile});"><br/>
+	   					${menu.mname} ${menu.hot_ice}<br/>
+		   				${menu.mprice}<br/>
 	   					</div>
-	   					<div>
-	   						<table style="width: 120px">
-		   						<tr style="text-align:center;">${menu.mname} ${menu.hot_ice}</tr>
-		   						<tr style="text-align:center;color:red">${menu.mprice}</tr>
-		   					</table>
-	   					</div>
-   						
+	   					
    					</a>
    					</c:forEach>
    				</td>

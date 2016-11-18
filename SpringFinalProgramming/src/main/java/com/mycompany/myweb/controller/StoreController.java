@@ -195,7 +195,7 @@ public class StoreController {
 		model.addAttribute("list", list);
 		logger.info(""+store.getSid());
 		//===================sphoto=========================
-		return "store/modify";
+		return "store/info";
 	}
 	
 	@RequestMapping(value="/store/modify", method=RequestMethod.POST)

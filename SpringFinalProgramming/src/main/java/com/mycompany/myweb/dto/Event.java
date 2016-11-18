@@ -1,10 +1,12 @@
 package com.mycompany.myweb.dto;
 
-
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
+
+//보나 20161110
+//승훈 20161116 (etitle추가)
 
 public class Event {
 	private int eid;

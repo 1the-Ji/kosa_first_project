@@ -1,38 +1,59 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%--2016-11-16(수)--%>
+<%--작성자: 이윤주--%>
 <!DOCTYPE html>
-
 <html>
 	<head>
-		<meta charset = "UTF-8">
+		<meta charset="UTF-8">
+		<script type="text/javascript">
+			function pop(img) {
+			 var win = window.open('', 'Detail', 'width=0, height=0, menubar=0, toolbar=0, directories=0, scrollbars=1, status=0, location=0, resizable=1');
+			 op="<html><head><title>크게 보기</title></head>";
+			 op+="<body leftmargin='0' topmargin='0'>";
+			 op+="<img src='"+ img.src +"' border='0' style='cursor:pointer' onclick='window.close();' onload='window.resizeTo(this.width+30, this.height+90); window.moveTo( (screen.width-this.width)/2 ,  (screen.height-this.height)/2-50 )'>";
+			 op+="</body></html>";
+
+			 win.document.write(op);
+			}
+		</script>
 	</head>
 	<body>
-		매장정보
+		매장정보 확인
 		<hr/>
-		<form method="post">
-			아 이 디:${store.sid} <br/>
+		<form ><%-- input type="file"일시 반드시 enctype="multipart/form-data 작성 --%>
 			
-			이메일:<input type="text" name="semail" value="${store.semail}"/> <br/>
+			아이디: ${store.sid} <br/>
 			
-			비밀번호:<input type="password" name="spw" value="${store.spw}"/> <br/>
+			이메일: ${store.semail}<br/>
 			
-			비밀번호 다시 입력:<input type="password" name="respw"/> <br/>
+			카페명: ${store.sname}<br/>
+								
+			지점명: ${store.slocal}<br/>
 			
-			이    름:<input type="text" name="sname" value="${store.sname} "/><br/>
-	
-			지점명:<input type="text" name="slocal" value="${store.slocal}"/> <br/>
+			주소: ${store.saddr}<br/>
 			
-			매장주소:<input type="text" name="saddr" value="${store.saddr}"/> <br/>
-
-			매장번호:<input type="text" name="stel" value="${store.stel}"/> <br/>
+			휴대전화: ${store.stel}<br/>
+						
+			오픈시간: <input type="time" name="sopen" value="${store.sopen}" readonly="readonly"><br/>
 			
-			매장open:<input type="text" name="sopen" value="${store.sopen}"/> <br/>
+			마감시간: <input type="time" name="sclosed" value="${store.sclosed}" readonly="readonly"><br/>
 			
-			매장close:<input type="text" name="sclosed" value="${store.sclosed}"/> <br/>
+			비콘번호: ${store.sbeacon}<br/>
+		
+			매장이미지:<br/><br/>
+			<c:forEach var="sphoto" items="${list}">
+				
+				<%-- <div style="width:150px; height:170px; margin:5px; background-image:url(showPhoto?savedfile=${sphoto.spic_savedfile}); background-size: 150px 170px;display:inline-block;">
+    			</div> --%> 
+    			<img id="i1" width="170" height="150" src="showPhoto?savedfile=${sphoto.spic_savedfile}" onError="this.style.visibility='hidden'"  style="cursor:hand" onclick="pop(this)">
+				
+			</c:forEach><br/><br/>
 			
-			비콘번호:<input type="text" name="sbeacon" value="${store.sbeacon}"/> <br/>
-			
-			<input type="submit" value="내용수정"/>
+			<a href="modify?spic_id=${sphoto.spic_id}">[수정]</a>
+			<a href="">확인</a>
+			<a href="">취소</a>
 		</form>
 	</body>
 </html>
