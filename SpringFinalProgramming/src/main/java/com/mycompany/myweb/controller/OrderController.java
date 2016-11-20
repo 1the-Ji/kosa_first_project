@@ -89,6 +89,7 @@ public class OrderController {
 		model.addAttribute("groupNo",groupNo);
 		model.addAttribute("startPageNo",startPageNo);
 		model.addAttribute("endPageNo",endPageNo);
+		
 		model.addAttribute("list", list);
 		
 		return "order/list";
