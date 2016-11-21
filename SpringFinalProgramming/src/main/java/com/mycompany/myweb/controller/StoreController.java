@@ -178,17 +178,9 @@ public class StoreController {
 		}
 	}
 	
-	
-<<<<<<< HEAD
-	
-	
 	//post로 받는다
-	@RequestMapping(value="/store/modify", method=RequestMethod.GET)
-	public String modifyForm(HttpSession session, Model model){
-=======
 	@RequestMapping(value="/store/info", method=RequestMethod.GET)
 	public String info(HttpSession session, Model model){
->>>>>>> branch 'master' of https://github.com/JiSeungHoon/TeamRepository
 		logger.info("storemodifyForm정보");
 		String sid = (String) session.getAttribute("login");
 		
