@@ -28,6 +28,37 @@
 					   <input type="submit" value="검색"/>
 		</form><br/><br/><br/>
 		
-		
+		<table style="border-collapse: collapse; border: 1px solid black; width: 600px">
+		<tr style="background-color: #00D8FF">
+			<th style="border: 1px solid black;">메뉴 번호</th>
+			<th style="border: 1px solid black;">메뉴 사진</th>
+			<th style="border: 1px solid black;">메뉴 이름</th>
+		</tr>
+
+
+		<c:forEach var="menuList" items="${list}">
+			<tr>
+				<th style="border: 1px solid black;">${menuList.mid}</th>
+				<th style="border: 1px solid black;">${menuList.msavedfile}</th>
+				<th style="border: 1px solid black;"><a href="orderItems2?mid=${menuList.mid}">${menuList.mname}</a></th>
+			</tr>
+		</c:forEach>
+		</table>
+	
+		<div style="width: 600px">
+			<a href="list?pageNo=1">[처음]</a>
+			<c:if test="${groupNo>1 }">
+				<a href="list?pageNo=${startPageNo-1 }">[이전]</a>
+			</c:if>
+			<c:forEach var="i" begin="${startPageNo}" end="${endPageNo }">
+				<a href="list?pageNo=${i}"
+					<c:if test="${pageNo==i }">style="color:red"</c:if>>${i}</a>
+			</c:forEach>
+
+			<c:if test="${groupNo<totalGroupNo }">
+				<a href="list?pageNo=${endPageNo+1 }">[다음]</a>
+			</c:if>
+			<a href="list?pageNo=${totalPageNo }">[맨끝]</a>
+		</div>
 	</body>
 </html>
