@@ -50,6 +50,11 @@ public class OrderItemService {
 		return orderItems;
 	}
 	
+	//1개 주문에 대한 품목 찾기(주문 시 필요)
+	public OrderItem searchOrderItemByOgidMid(int ogid,int mid){
+		OrderItem orderItems = orderItemtDao.selectOrderItemByOgidMid(ogid,mid);
+		return orderItems;
+	}
 	/*//1개 주문 품목 당 총 가격 구하기(메뉴+사이드)
 	public int sumOnePrice(int mid, int xid){
 		Menu menu = menuDao.selectByMid(mid);//어떤 메뉴인지
@@ -60,8 +65,16 @@ public class OrderItemService {
 	}*/
 	
 	//1개 주문 품목 추가(MenuDao의 selectByMid(mid)쓰임)()
-	public int writeOrid(OrderItem orderitem){
+	public int writeOid(OrderItem orderitem){
 		if(orderItemtDao.insertOrderItem(orderitem)==1){
+			return INSERT_SUCCESS;
+		}
+		return INSERT_FAIL;
+	}
+	
+	//1개 주문 품목 추가(MenuDao의 selectByMid(mid)쓰임)()
+	public int writeOid(int ogid, int mid, int ordercount){
+		if(orderItemtDao.insertOrderItem2(ogid, mid, ordercount)==1){
 			return INSERT_SUCCESS;
 		}
 		return INSERT_FAIL;

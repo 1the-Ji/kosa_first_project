@@ -179,6 +179,81 @@ public class MenuDao {
 		return list;
 	}
 	
+	//[명진]
+	public List<Menu> selectByMname(String mname) {
+		String sql = "select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where mname=?";
+		List<Menu> list = jdbcTemplate.query(sql, 
+				new Object[]{mname}, 
+				new RowMapper<Menu>(){
+			
+			@Override
+			public Menu mapRow(ResultSet rs, int row) throws SQLException {
+				Menu menu = new Menu();
+				menu.setMid(rs.getInt("mid"));
+				menu.setMgroup(rs.getString("mgroup"));
+				menu.setMname(rs.getString("mname"));
+				menu.setHot_ice(rs.getString("hot_ice"));
+				menu.setMprice(rs.getInt("mprice"));
+				menu.setMcontents(rs.getString("mcontents"));
+				menu.setMsavedfile(rs.getString("msavedfile"));
+				menu.setMmimetype(rs.getString("mmimetype"));
+				menu.setSid(rs.getString("sid"));
+				return menu;
+			}
+		}); 
+		return list;
+	}
+	
+	//[명진]
+	public Menu selectByMnameHot_Ice(String mname, String hot_ice) {
+		String sql = "select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where (mname like ? and hot_ice like ?)";
+		List<Menu> list = jdbcTemplate.query(sql, 
+				new Object[]{mname, hot_ice}, 
+				new RowMapper<Menu>(){
+			
+			@Override
+			public Menu mapRow(ResultSet rs, int row) throws SQLException {
+				Menu menu = new Menu();
+				menu.setMid(rs.getInt("mid"));
+				menu.setMgroup(rs.getString("mgroup"));
+				menu.setMname(rs.getString("mname"));
+				menu.setHot_ice(rs.getString("hot_ice"));
+				menu.setMprice(rs.getInt("mprice"));
+				menu.setMcontents(rs.getString("mcontents"));
+				menu.setMsavedfile(rs.getString("msavedfile"));
+				menu.setMmimetype(rs.getString("mmimetype"));
+				menu.setSid(rs.getString("sid"));
+				return menu;
+			}
+		}); 
+		return (list.size() != 0)? list.get(0) : null;
+	}
+	
+	//[명진]//지우게 될 듯
+	public List<Menu> selectByMidforList(int mid) {
+		String sql = "select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where mid=?";
+		List<Menu> list = jdbcTemplate.query(sql, 
+				new Object[]{mid}, 
+				new RowMapper<Menu>(){
+			
+			@Override
+			public Menu mapRow(ResultSet rs, int row) throws SQLException {
+				Menu menu = new Menu();
+				menu.setMid(rs.getInt("mid"));
+				menu.setMgroup(rs.getString("mgroup"));
+				menu.setMname(rs.getString("mname"));
+				menu.setHot_ice(rs.getString("hot_ice"));
+				menu.setMprice(rs.getInt("mprice"));
+				menu.setMcontents(rs.getString("mcontents"));
+				menu.setMsavedfile(rs.getString("msavedfile"));
+				menu.setMmimetype(rs.getString("mmimetype"));
+				menu.setSid(rs.getString("sid"));
+				return menu;
+			}
+		}); 
+		return list;
+	}
+	
 	public int count(){
 		String sql = "select count(*) from menu";
 		int count = jdbcTemplate.queryForObject(sql, Integer.class);
