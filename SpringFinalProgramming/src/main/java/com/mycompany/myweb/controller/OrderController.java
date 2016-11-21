@@ -347,10 +347,7 @@ public class OrderController {
 	
 	//주문하기(진행 중)
 	@RequestMapping(value="/orderItems2",method=RequestMethod.GET)
-	public String order(int mid, Model model){
-		
-		Menu menu = menuService.info(mid);
-		model.addAttribute("menu",menu);
+	public String order(){
 		
 		return "order/orderForm2";
 	}
