@@ -30,6 +30,18 @@ public class MenuService {
 		return menuDao.selectByPage(pageNo, rowsPerPage, sid);
 	}
 	
+	//[명진]
+	public List<Menu> listByMgroup(int pageNo, int rowsPerPage, String mgroup){
+
+		return menuDao.selectByMgroup(pageNo, rowsPerPage, mgroup);
+	}
+	
+	//[명진]
+	public List<Menu> listByMname(int pageNo, int rowsPerPage, String mname){
+
+		return menuDao.selectByMname(pageNo, rowsPerPage, mname);
+	}
+	
 	public int write(Menu menu){
 		menuDao.insert(menu);
 		return WRITE_SUCCESS;

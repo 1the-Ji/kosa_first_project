@@ -25,7 +25,7 @@
 		<a href="someMenuSearchMgroup?mgroup=디저트">기타</a><br/><br/><br/>
 		
 		<form method="post" action="/myweb/order/someMenuSearchMname">
-			메뉴단어검색: <input type="text" name="mname" value="">&nbsp;&nbsp;&nbsp;
+			메뉴단어검색: <input type="text" name="mname" value="아메리카노">&nbsp;&nbsp;&nbsp;
 					   <input type="submit" value="검색"/>
 		</form><br/><br/><br/>
 		

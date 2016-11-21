@@ -249,28 +249,110 @@ public class OrderController {
 	
 	//메뉴 전체 검색
 	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
-	public String allMenuSearch(){
-		
-		return "order/allMenuSearch";
+	public String allMenuSearch(String pageNo, Model model,HttpSession session){
+		return "redirect:/order/orderItems";
 	}
 	
-	//메뉴 커피or티 검색 //메뉴 단어 검색
-	@RequestMapping(value="/someMenuSearch",method=RequestMethod.GET)
-	public String someMenuSearch(String mname){
-		logger.info("mname: "+mname);
+	//메뉴 커피or티or디저트 검색 //메뉴 그룹 검색
+	@RequestMapping(value="/someMenuSearchMgroup",method=RequestMethod.GET)
+	public String someMenuSearchMgroup(String pageNo, Model model,HttpSession session, String mgroup){
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		return "order/someMenuSearch";
+		int rowsPerPage = 8;
+		int pagesPerGroup = 5;
+		
+		int totalBoardNo = menuService.getCount();
+		
+		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+		int endPageNo = startPageNo + pagesPerGroup - 1;
+		
+		if(groupNo == totalGroupNo){
+			endPageNo = totalPageNo;
+		}
+		
+		List<Menu> list = menuService.listByMgroup(intPageNo, rowsPerPage, mgroup);
+		
+		model.addAttribute("mgroup",mgroup);
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("list", list);
+		
+		return "order/orderSearchMgroup";
 	}
 	
+	//메뉴 키워드(이름) 검색
+	@RequestMapping(value="/someMenuSearchMname",method=RequestMethod.POST)
+	public String someMenuSearchMname(String pageNo, Model model,HttpSession session, String mname){
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
+			
+		int rowsPerPage = 8;
+		int pagesPerGroup = 5;
+		
+		int totalBoardNo = menuService.getCount();
+		
+		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+		int endPageNo = startPageNo + pagesPerGroup - 1;
+		
+		if(groupNo == totalGroupNo){
+			endPageNo = totalPageNo;
+		}
+		
+		List<Menu> list = menuService.listByMname(intPageNo, rowsPerPage, mname);
+		
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("list", list);
+		
+		return "order/orderSearchMname";
+	}
+		
 	
 	//주문하기(진행 중)
 	@RequestMapping(value="/orderItems2",method=RequestMethod.GET)
-	public String order(int mid,Model model){
+	public String order(int mid, Model model){
 		
 		Menu menu = menuService.info(mid);
 		model.addAttribute("menu",menu);
 		
-		return "redirect:/order/list";
+		return "order/orderForm2";
 	}
 	
 }

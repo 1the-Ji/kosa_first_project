@@ -112,11 +112,79 @@ public class MenuDao {
 		return list;
 	}
 	
+	//[명진]
+	public List<Menu> selectByMgroup(int pageNo, int rowsPerPage, String mgroup){
+		String sql="";
+		sql += "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "from ( ";
+		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
+		sql += "where rownum<=? ";
+		sql += ") ";
+		sql += "where rn>=? and mgroup=?";
+		List<Menu> list = jdbcTemplate.query(
+				sql,
+				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), mgroup},
+				new RowMapper<Menu>(){
+					@Override
+					public Menu mapRow(ResultSet rs, int row) throws SQLException {
+						Menu menu = new Menu();
+						menu.setMid(rs.getInt("mid"));
+						menu.setMgroup(rs.getString("mgroup"));
+						menu.setMname(rs.getString("mname"));
+						menu.setHot_ice(rs.getString("hot_ice"));
+						menu.setMprice(rs.getInt("mprice"));
+						menu.setMcontents(rs.getString("mcontents"));
+						menu.setMsavedfile(rs.getString("msavedfile"));
+						menu.setMmimetype(rs.getString("mmimetype"));
+						menu.setSid(rs.getString("sid"));
+						return menu;
+					}
+				}
+		);
+		return list;
+	}
+	
+	//[명진]
+	public List<Menu> selectByMname(int pageNo, int rowsPerPage, String mname) {
+		String mnameMody = "%"+mname+"%";
+		String sql="";
+		sql += "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "from ( ";
+		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
+		sql += "where rownum<=? ";
+		sql += ") ";
+		sql += "where rn>=? and mname like ?";
+		List<Menu> list = jdbcTemplate.query(
+				sql,
+				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), mnameMody},
+				new RowMapper<Menu>(){
+					@Override
+					public Menu mapRow(ResultSet rs, int row) throws SQLException {
+						Menu menu = new Menu();
+						menu.setMid(rs.getInt("mid"));
+						menu.setMgroup(rs.getString("mgroup"));
+						menu.setMname(rs.getString("mname"));
+						menu.setHot_ice(rs.getString("hot_ice"));
+						menu.setMprice(rs.getInt("mprice"));
+						menu.setMcontents(rs.getString("mcontents"));
+						menu.setMsavedfile(rs.getString("msavedfile"));
+						menu.setMmimetype(rs.getString("mmimetype"));
+						menu.setSid(rs.getString("sid"));
+						return menu;
+					}
+				}
+		);
+		return list;
+	}
 	
 	public int count(){
 		String sql = "select count(*) from menu";
 		int count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
 	}
+
+	
 	
 }

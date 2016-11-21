@@ -35,9 +35,6 @@
  			<p>총 가격 : ${detailOrders.totalprice}</p>
 			<p>결제방법 : ${detailOrders.oghowpay}</p>
 		</c:forEach>
-	<div>
-		
-	</div>
 
 </body>
 </html>
