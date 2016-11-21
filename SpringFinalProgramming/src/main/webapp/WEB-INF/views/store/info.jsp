@@ -17,12 +17,13 @@
 
 			 win.document.write(op);
 			}
+
 		</script>
 	</head>
 	<body>
 		매장정보 확인
 		<hr/>
-		<form ><%-- input type="file"일시 반드시 enctype="multipart/form-data 작성 --%>
+		<form><%-- input type="file"일시 반드시 enctype="multipart/form-data 작성 --%>
 			
 			아이디: ${store.sid} <br/>
 			
@@ -51,9 +52,9 @@
 				
 			</c:forEach><br/><br/>
 			
-			<a href="modify?spic_id=${sphoto.spic_id}">[수정]</a>
-			<a href="">확인</a>
-			<a href="">취소</a>
+			<a href="modify?sid=${store.sid}">[수정]</a>
+			<a href="../index">[확인]</a>
+			<a href="../index">취소</a>
 		</form>
 	</body>
 </html>

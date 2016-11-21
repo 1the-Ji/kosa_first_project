@@ -60,4 +60,5 @@ public class OrderService {
 	public int getCount(){
 		return orderDao.countOrder();
 	}
+	//-------------------------------------------------
 }

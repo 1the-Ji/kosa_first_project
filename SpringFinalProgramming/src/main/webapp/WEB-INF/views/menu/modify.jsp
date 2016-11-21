@@ -10,7 +10,11 @@
    <body>
    <h2>메뉴 수정</h2>
    <hr/>
-   <a href="${pageContext.servletContext.contextPath}/menu/list">메뉴 목록</a>
+   
+   <a href="list"> 
+   		<input type="button" value="목록"/> 
+   </a>
+   
    <form method="post" enctype="multipart/form-data">
    		<table>
    			<tr>
@@ -47,11 +51,12 @@
    			</tr>
    			<tr>
 				<td style="background-color:gold; width:70px">사진</td>
-				<td><input type="file" name="photo" value="${menu.photo}"></td>
+				<td><input type="file" name="photo" value="${menu.msavedfile}"></td>
 			</tr>
    		</table>
    		<input type="submit" value="수정완료"/>
    		<input type="reset" value="초기화"/>
+   		
    		
    </form>
    

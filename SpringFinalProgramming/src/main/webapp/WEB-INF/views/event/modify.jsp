@@ -8,7 +8,7 @@
    <body>
 		  수정하기
 		<hr/>
-		<form method="post">
+		<form method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td style="background-color:orange; width:70px">이벤트제목</td>
@@ -22,6 +22,15 @@
 					<td style="background-color:orange; width:70px">이벤트내용</td>
 					<td><pre><textarea name="econtents" rows="8" cols="30">${event.econtents}</textarea></pre></td>
 				</tr>
+				<tr>
+					<td rowspan=2 style="background-colot:orange; width:70px">사진</td>
+					<td>  
+						<input type="file" name="photo"/>
+					</td>
+				</tr>
+				<tr>
+					<td>기존파일 : ${event.esavedfile}</td>
+				</tr>
 			</table>
 			<div>
 				<c:if test="${login == event.sid}">
@@ -30,7 +39,8 @@
 				<a href="list"><input type="button" value="목록"/></a>
 			</div>
 		</form>
-					
+		<hr/>
+
 
    </body>
 </html>

@@ -27,6 +27,7 @@ import com.mycompany.myweb.service.ExtraService;
 import com.mycompany.myweb.service.MenuService;
 import com.mycompany.myweb.service.OrderItemService;
 import com.mycompany.myweb.service.OrderService;
+import com.mycompany.myweb.service.StoreService;
 
 //이명진
 @Controller
@@ -45,11 +46,13 @@ public class OrderController {
 	OrderService orderService;
 	
 	@Autowired
-	MenuService munuService;
+	MenuService menuService;
 	
 	@Autowired
 	ExtraService extraService;
 	
+	@Autowired
+	StoreService storeService;
 	
 	//주문전체 내역 페이지
 	@RequestMapping("/list")
@@ -88,10 +91,12 @@ public class OrderController {
 		model.addAttribute("groupNo",groupNo);
 		model.addAttribute("startPageNo",startPageNo);
 		model.addAttribute("endPageNo",endPageNo);
+		
 		model.addAttribute("list", list);
 		
 		return "order/list";
 	}
+
 	//주문내역 기간보기
 	@RequestMapping(value="/termList", method=RequestMethod.POST)
 	public String termList(String date1, String date2, String pageNo, Model model, HttpSession session) throws ParseException{
@@ -153,7 +158,7 @@ public class OrderController {
 			DetailOrder detailOrder = new DetailOrder();
 			String xname = ""; int itemprice = 0;
 			
-			Menu menu = munuService.info(orderItems.get(i).getMid());
+			Menu menu = menuService.info(orderItems.get(i).getMid());
 			detailOrder.setMname(menu.getMname());//품목
 			logger.info("품목:"+detailOrder.getMname());
 			detailOrder.setSameItemCount(orderItems.get(i).getOrdercount());//수량
@@ -190,6 +195,82 @@ public class OrderController {
 		return "order/detailList";
 	}
 	
+	//주문하기(진행 중)
+	@RequestMapping(value="/orderItems",method=RequestMethod.GET)
+	public String orderForm(String pageNo, Model model,HttpSession session){
+		//sid를 참조하는 mid를 통한 모든 메뉴 리스트를 model에 담아 넘겨야 함(주문 눌렀을 때 전체 보기)
+		String sid = (String) session.getAttribute("login");
+		
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
+		
+		int rowsPerPage = 8;
+		int pagesPerGroup = 5;
+		
+		int totalBoardNo = menuService.getCount();
+		
+		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+		int endPageNo = startPageNo + pagesPerGroup - 1;
+		
+		if(groupNo == totalGroupNo){
+			endPageNo = totalPageNo;
+		}
+		
+		List<Menu> list = menuService.list(intPageNo, rowsPerPage, sid);
+		
+		model.addAttribute("sid",sid);
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("list", list);
+		
+		return "order/orderForm";
+	}
 	
+	
+	//-------------------------------------------------------------------------------
+	
+	//메뉴 전체 검색
+	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
+	public String allMenuSearch(){
+		
+		return "order/allMenuSearch";
+	}
+	
+	//메뉴 커피or티 검색 //메뉴 단어 검색
+	@RequestMapping(value="/someMenuSearch",method=RequestMethod.GET)
+	public String someMenuSearch(String mname){
+		logger.info("mname: "+mname);
+		
+		return "order/someMenuSearch";
+	}
+	
+	
+	//주문하기(진행 중)
+	@RequestMapping(value="/orderItems2",method=RequestMethod.GET)
+	public String order(int mid,Model model){
+		
+		Menu menu = menuService.info(mid);
+		model.addAttribute("menu",menu);
+		
+		return "redirect:/order/list";
+	}
 	
 }
