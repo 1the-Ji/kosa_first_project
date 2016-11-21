@@ -180,6 +180,9 @@ public class StoreController {
 	}
 	
 	
+	
+	
+	//post로 받는다
 	@RequestMapping(value="/store/modify", method=RequestMethod.GET)
 	public String modifyForm(HttpSession session, Model model){
 		logger.info("storemodifyForm정보");

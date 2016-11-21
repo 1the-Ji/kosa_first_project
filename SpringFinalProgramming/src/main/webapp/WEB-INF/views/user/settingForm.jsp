@@ -23,7 +23,7 @@
 						<div class="slider"></div>
 			 		</label>
 					<br/>
-			<input type="submit" value="탙퇴하기"/>
+			<input type="submit" value="탈퇴하기"/>
 		</form>
 	</body>
 </html>

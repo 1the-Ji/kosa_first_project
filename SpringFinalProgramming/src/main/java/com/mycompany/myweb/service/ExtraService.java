@@ -20,6 +20,7 @@ public class ExtraService {
 	public static final int REMOVE_SUCESS = 0;
 	public static final int REMOVE_FAIL = 1;
 	
+    
 	@Autowired
 	private ExtraDao extraDao;
 	
@@ -45,8 +46,10 @@ public class ExtraService {
 		return extraDao.selectByXid(xid);
 	}
 	
-	public List<Extra> getList(String xid){
+	public List<Extra> getList(int xid){
 		return extraDao.selectAll(xid);
 	}
+	
+
 	
 }

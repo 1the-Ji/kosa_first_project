@@ -86,18 +86,18 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
-	@RequestMapping(value="user/join", method=RequestMethod.POST)
+	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(User user){
-		
-		try{
-			
 			int result = userService.join(user);
-			return "redirect:/";
-		}catch (Exception e) {
+			if(result == UserService.JOIN_SUCCESS) {
+			logger.info("회원가입 성공");
+			return "user/settingForm";
+			} 
+			logger.info("회원가입 실패");
 			return "user/joinForm";
-		}
-		
 	}
+		
+	
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session){
@@ -119,7 +119,8 @@ public class UserController {
 	
 	@RequestMapping("/dropout")
 	public String dropout(HttpSession session){
-		return "user/home";
+		logger.info("dropout");
+		return "user/joinForm";
 	}
 
 	

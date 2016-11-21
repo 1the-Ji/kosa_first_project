@@ -4,7 +4,7 @@
 
 
 
-<%--2016-11-16(수)--%>
+<%--2016-11-18(금)--%>
 
 <!DOCTYPE html>
 
@@ -44,15 +44,22 @@
 
 		<form method="post"><%--action=~ 이 없으면 현재 넘어간 요청경로로 다시 이동하다.--%>
 
-			아이디: <input type="text" name="user_id" value="${findUser_id}"><br/>
+			<input type="text" name="user_id" placeholder="아이디" value="${findUser_id}"><br/>
 
-			<c:if test="${error == 'LOGIN_FAIL_USER_ID'}">*아이디가 존재하지 않습니다.</c:if><br/>
+			
 
-			비밀번호: <input type="password" name="user_pw"><br/>
+			<input type="password" name="user_pw" placeholder="비밀번호"><br/>
+			
+			<c:choose>
+				<c:when test="${error == 'LOGIN_FAIL_USER_ID'}">아이디가 존재하지 않습니다.</c:when>
+				<c:when test="${error == 'LOGIN_FAIL_USER_PW'}">패스워드가 틀립니다.</c:when>
+			</c:choose>
+			<%-- 
+			<c:if test="${error == 'LOGIN_FAIL_USER_ID'}">아이디가 존재하지 않습니다.</c:if>
 
-			<c:if test="${error == 'LOGIN_FAIL_USER_PW'}">*패스워드가 틀립니다.</c:if>
+			<c:if test="${error == 'LOGIN_FAIL_USER_PW'}">패스워드가 틀립니다.</c:if><br/>
 
-
+			 --%>
 
 			<input type="submit" value="로그인"/>
 

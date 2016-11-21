@@ -12,10 +12,11 @@
 		회원가입
 		<hr/>
 		<form method="post"><%--action=~ 이 없으면 현재 넘어간 요청경로로 다시 이동하다.--%>
-			이메일: <input type="email" name="user_email" value="" placeholder="e-mail을 입력해주세요.">
-			<input type ="button" href="checkUser_email">중복체크</a><br/>
-			비밀번호: <input type="password" name="" placeholder="비밀번호를 입력해주세요."><br/>
-			비밀번호 확인: <input type="password" name="" placeholder="비밀번호를 다시 입력해주세요."><br/>
+			아이디: <input type="text" name="user_id" value="" placeholder="아이디을 입력해주세요.">
+			<input type ="button" href="checkUser_id">중복체크<br/>
+			이메일: <input type="email" name="user_email" value="" placeholder="e-mail을 입력해주세요."><br/>
+			비밀번호: <input type="password" name="user_pw" value="" placeholder="비밀번호를 입력해주세요."><br/>
+			비밀번호 확인: <input type="password" name="user_pw2" value="" placeholder="비밀번호를 다시 입력해주세요."><br/>
 			휴대전화: <input type="tel" name="user_tel" value="" placeholder="휴대전화번호를 입력해주세요."><br/>
 			<input type="submit" value="가입"/>
 		</form>

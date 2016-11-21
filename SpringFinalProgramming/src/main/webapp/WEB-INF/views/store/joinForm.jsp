@@ -19,6 +19,7 @@
 	<body>
 		회원가입
 		<hr/>
+		<!-- post로 보낸다. -->
 		<form method="post" enctype="multipart/form-data"><%-- input type="file"일시 반드시 enctype="multipart/form-data 작성 --%>
 			아이디: <input type="text" name="sid" value="">
 			<input type ="button" href="checkSid">중복체크<br/>
