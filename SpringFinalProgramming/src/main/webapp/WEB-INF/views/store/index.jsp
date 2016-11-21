@@ -1,8 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -103,7 +101,7 @@
 	            <div class="navbar-header">
 	                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
 	                <a href="javascript:void(0);" class="bars"></a>
-	                <a class="navbar-brand" href="../../../index.html">하루에 2cm씩 자라나는 어린이</a>
+	                <a class="navbar-brand" href="${pageContext.servletContext.contextPath}/index">하루에 2cm씩 자라나는 어린이</a>
 	            </div>
 	            <div class="collapse navbar-collapse" id="navbar-collapse">
 	                <ul class="nav navbar-nav navbar-right">
@@ -125,7 +123,7 @@
 	            <!-- User Info -->
 	            <div class="user-info">
 	                <div class="image">
-	                    <img src="${pageContext.servletContext.contextPath}/photo/images.png" width="48" height="48" alt="User"/>
+	                    <img src="${pageContext.servletContext.contextPath}/store/showPhoto?savedfile=images.png" width="65" height="65" alt="User"/>
 	                </div>
 	                <div class="info-container">
 	                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">2CM</div>
@@ -150,7 +148,7 @@
 	                <ul class="list">
 	                    <li class="header">MAIN NAVIGATION</li>
 	                    <li>
-	                        <a href="#">
+	                        <a href="index">
 	                        	<i class="material-icons">home</i>
 	                            <span>Home</span>
 	                        </a>
@@ -162,13 +160,13 @@
 	                        </a>
 	                        <ul class="ml-menu">
 	                            <li>
-	                                <a href="${pageContext.servletContext.contextPath}/store/info">매장 정보 보기</a>
+	                                <a target="iframe" href="${pageContext.servletContext.contextPath}/store/info">매장 정보 보기</a>
 	                            </li>
 	                            <li>
-	                                <a href="${pageContext.servletContext.contextPath}/sphoto/write">사진 첨부하기</a>
+	                                <a target="iframe" href="${pageContext.servletContext.contextPath}/sphoto/write">사진 첨부하기</a>
 	                            </li>
 	                            <li>
-	                                <a href="${pageContext.servletContext.contextPath}/store/logout"">로그아웃</a>
+	                                <a target="iframe" href="${pageContext.servletContext.contextPath}/store/logout"">로그아웃</a>
 	                            </li>
 	                        </ul>
 	                    </li>
@@ -179,7 +177,7 @@
 	                        </a>
 	                        <ul class="ml-menu">
 	                            <li>
-	                                <a href="${pageContext.servletContext.contextPath}/menu/list">메뉴리스트</a>
+	                                <a target="iframe" href="${pageContext.servletContext.contextPath}/menu/list">메뉴리스트</a>
 	                            </li>
 	                            <li>
 	                                <a href="#">메뉴 옵션</a>
@@ -193,7 +191,7 @@
 	                        </a>
 	                        <ul class="ml-menu">
 	                            <li>
-	                                <a href="${pageContext.servletContext.contextPath}/event/list">이벤트 리스트</a>
+	                                <a target="iframe" href="${pageContext.servletContext.contextPath}/event/list">이벤트 리스트</a>
 	                            </li>
 	                            <li>
 	                                <a href="#">이벤트 리스트2</a>
@@ -207,10 +205,10 @@
 	                        </a>
 	                        <ul class="ml-menu">
 	                            <li>
-	                                <a href="${pageContext.servletContext.contextPath}/order/list">주문 리스트</a>
+	                                <a target="iframe" href="${pageContext.servletContext.contextPath}/order/list">주문 리스트</a>
 	                            </li>
 	                            <li>
-	                                <a href="${pageContext.servletContext.contextPath}/order/orderItems">주문하기</a>
+	                                <a target="iframe" href="${pageContext.servletContext.contextPath}/order/orderItems">주문하기</a>
 	                            </li>
 	                        </ul>
 	                    </li>   
@@ -230,31 +228,10 @@
 	        </aside>
 	    </section>
 	    
-	    
-	    
-	    
-	    
-	    
-	<%--     
-	    
-		<h1>매장</h1>
-		<hr/>
-		1. <a href="${pageContext.servletContext.contextPath}/store/info"> 매장정보보기</a> <br/>
-		2. <a href="${pageContext.servletContext.contextPath}/store/logout"> 로그아웃</a> <br/>
-		3. <a href="${pageContext.servletContext.contextPath}/sphoto/write"> 사진 첨부하기</a> <br/><br/>
-		<h1>메뉴</h1>
-		<hr/>
-		1. <a href="${pageContext.servletContext.contextPath}/menu/list">메뉴리스트</a> <br/>
-
-		<h1>이벤트</h1>
-		<hr/>
-		1. <a href="${pageContext.servletContext.contextPath}/event/list">이벤트리스트</a> <br/><br/>
-		
-		
-		<h1>주문</h1>
-		<hr/>
-		1. <a href="${pageContext.servletContext.contextPath}/order/list">주문리스트</a> <br/><br/>
-		2. <a href="${pageContext.servletContext.contextPath}/order/orderItems">주문하기</a> <br/><br/> --%>
-		
+	      <section class="content">
+	      	<div class="container-fluid">
+	      		 <iframe id="iframe" name="iframe" style="width: 100%; height: 800px; border-width:0px;" src="home"></iframe>
+	      	</div>
+	      </section>    	
 	</body>
 </html>
