@@ -125,5 +125,26 @@ public class ExtraDao {
 		);
 		return list;
 	}
+	
+	//[명진]
+	public Extra selectByXname(String xname) {
+		String sql="select xid, xname, xprice from extra where xname like ?";
+		List<Extra> list = jdbcTemplate.query(sql, 
+				new Object[]{xname}, 
+				new RowMapper<Extra>(){
+			@Override
+			public Extra mapRow(ResultSet rs, int row) throws SQLException {
+				// TODO Auto-generated method stub
+				Extra extra = new Extra();
+				extra.setXid(rs.getInt("xid"));
+				extra.setXname(rs.getString("xname"));
+				extra.setXprice(rs.getInt("xprice"));
+				return extra;
+			}
+			
+		});
+		
+		return (list.size() != 0)? list.get(0):null;
+	}
 }
 

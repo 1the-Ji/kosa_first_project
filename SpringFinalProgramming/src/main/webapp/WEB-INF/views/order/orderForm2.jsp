@@ -29,21 +29,18 @@
 	<body>
 		주문 하기2
 		<hr/>
-		<c:forEach var="menuList" items="${menulist}" begin="1" end="1">
- 			<p>${menuList.mname}</p>
- 			<hr/>
- 			${menuList.msavedfile}&nbsp;&nbsp;${menuList.mname}
- 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격 나와야 함
- 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<form action="">
-  													Quantity (between 1 and 5):
-  													<input type="number" name="ordercount" min="1" max="5">
-  													<input type="submit">
-												</form>
- 			
-		</c:forEach>
+		<c:set var="mname" value="${requestScope.menu.mname}" scope="session" /> 
+		<c:out value="${requestScope.menu.mname}"/> <br/>
+ 			<c:out value="${requestScope.menu.msavedfile}"/>&nbsp;&nbsp;
+ 			<c:out value="${requestScope.menu.mname}"/> <br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격 나와야 함&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+ 												
+  			
 		
 		<form method="post">
-		
+			수량 : <input type="number" name="ordercount" min="1" max="5"><br/><br/>
+			
 			핫or아이스: <input type="radio" name="hot_ice" value="HOT" checked> HOT &nbsp;&nbsp;
   					<input type="radio" name="hot_ice" value="ICE"> ICE <br/><br/>
   						
@@ -69,7 +66,7 @@
 			
 			
 			<input type="submit" value="담기"/>&nbsp;&nbsp;
-			<input type="button" onclick="alert('Hello World!')" value="바로 주문">
+			<input type="button" onclick="alert('결제 기능 추가 예정')" value="바로 주문">
 		</form>
 	</body>
 </html>

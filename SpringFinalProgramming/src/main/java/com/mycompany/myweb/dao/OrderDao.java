@@ -134,4 +134,29 @@ public class OrderDao {
 		return count;
 	}
 	//------------------------------------------------------------------
+
+
+	//주문 기간 조회(완료)(주문할 때)
+	public Order selectByTime(Date start, Date end) {
+		String sql = "select ogid,ogtotalprice,ogtime,user_id,sid,oghowpay from order_total where ogtime between ? and ?";
+		List<Order> list = jdbcTemplate.query(sql, 
+				new Object[] {start, end},
+				new RowMapper<Order>() {
+
+			@Override
+			public Order mapRow(ResultSet rs, int row) throws SQLException {
+				Order order = new Order();
+				order.setOgid(rs.getInt("ogid"));
+				order.setOgtotalprice(rs.getInt("ogtotalprice"));
+				order.setOgtime(rs.getDate("ogtime"));
+				order.setUser_id(rs.getString("user_id"));
+				order.setSid(rs.getString("sid"));
+				order.setOghowpay(rs.getString("oghowpay"));
+
+				return order;
+			}
+
+		});
+		return (list.size() != 0) ? list.get(0) : null;
+	}
 }

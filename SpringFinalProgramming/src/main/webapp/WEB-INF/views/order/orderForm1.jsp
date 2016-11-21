@@ -41,11 +41,15 @@
 			<tr>
 				<th style="border: 1px solid black;">${menuList.mid}</th>
 				<th style="border: 1px solid black;">${menuList.msavedfile}</th>
-				<th style="border: 1px solid black;"><a href="orderItems2?mid=${menuList.mid}">${menuList.mname}</a></th>
+				<th style="border: 1px solid black;"><a href="orderItems2?mname=${menuList.mname}">${menuList.mname}</a></th>
 			</tr>
 		</c:forEach>
 		</table>
-	
+		
+		<form action="/myweb/order/orderpay">
+			<input type="submit" value="결제"/>
+		</form>
+		
 		<div style="width: 600px">
 			<a href="list?pageNo=1">[처음]</a>
 			<c:if test="${groupNo>1 }">

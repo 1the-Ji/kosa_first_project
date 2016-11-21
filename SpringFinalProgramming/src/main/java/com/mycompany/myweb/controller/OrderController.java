@@ -55,7 +55,7 @@ public class OrderController {
 	StoreService storeService;
 	
 	//주문전체 내역 페이지
-	@RequestMapping("/list")
+	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
 		int intPageNo = 1;
 		if(pageNo == null){
@@ -241,7 +241,7 @@ public class OrderController {
 		model.addAttribute("endPageNo", endPageNo);
 		model.addAttribute("list", list);
 		
-		return "order/orderForm";
+		return "order/orderForm1";
 	}
 	
 	
@@ -347,9 +347,68 @@ public class OrderController {
 	
 	//주문하기(진행 중)
 	@RequestMapping(value="/orderItems2",method=RequestMethod.GET)
-	public String order(){
+	public String orderForm2(String mname, Model model){
+		List<Menu> menu = menuService.infoByMname(mname);
+		model.addAttribute("menu", menu.get(0));
 		
 		return "order/orderForm2";
+	}
+	
+	//주문하기(진행 중)
+	@RequestMapping(value="/orderItems2",method=RequestMethod.POST)
+	public String orderItems2(String mname,
+			int ordercount,String hot_ice, 
+			String xname1, String xname2, String xname3,HttpSession session){
+		//ordercount는 맨 나중에 order
+		
+		logger.info("mname: "+mname);
+		logger.info("ordercount: "+ordercount);
+		logger.info("hot_ice: "+hot_ice);
+		logger.info("xname1: "+xname1);
+		logger.info("xname2: "+xname2);
+		logger.info("xname3: "+xname3);
+		
+		Menu menu = menuService.infoByMnameHot_Ice(mname, hot_ice);
+		int mid = menu.getMid();
+		Extra extra1 = extraService.infoByXname(xname1);
+		Extra extra2 = extraService.infoByXname(xname2);
+		Extra extra3 = extraService.infoByXname(xname3);
+		int xid1 = extra1.getXid();
+		int xid2 = extra2.getXid();
+		int xid3 = extra3.getXid();
+		
+		
+		Date start = new Date();
+		//Order_Total 테이블을 추가해야 함(ogid 유지해야 함)
+		//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)
+		//위의 두 데이터는 임의의 테스트 데이터로 대체
+		Order order = new Order();
+		order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
+		order.setUser_id("user1");
+		String sid = (String) session.getAttribute("login");
+		order.setSid(sid);
+		order.setOghowpay("카드 결제");
+		orderService.addOrder(order);
+		Date end = new Date();
+		Order orderTotal = orderService.searchOneByTime(start,end);
+		int ogid = orderTotal.getOgid();
+		
+		//Order_Item 테이블을 추가해야 함
+		orderItemService.writeOid(ogid, mid, ordercount);
+		OrderItem orderItem = orderItemService.searchOrderItemByOgidMid(ogid,mid);
+		//Extra_Order 테이블을 추가해야 함
+		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
+		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
+		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
+		
+		return "order/orderForm1";
+	}
+	
+	//결제
+	@RequestMapping(value="/orderpay",method=RequestMethod.GET)
+	public String orderpay(){
+		
+		return "redirect:/order/list";
 	}
 	
 }

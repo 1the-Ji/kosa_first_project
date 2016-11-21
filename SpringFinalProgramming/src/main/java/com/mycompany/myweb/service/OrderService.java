@@ -44,6 +44,11 @@ public class OrderService {
 		return orderDao.selectByTerm(pageNo, rowsPerPage, term1, term2);
 	}
 	
+	//주문 기간 조회(완료)(주문할 때)
+	public Order searchOneByTime(Date start, Date end){
+		return orderDao.selectByTime(start, end);
+	}
+	
 	//주문 전체 조회(완료)
 	public List<Order> listAll(int pageNo, int rowsPerPage){
 		return orderDao.selectByPage(pageNo,rowsPerPage);

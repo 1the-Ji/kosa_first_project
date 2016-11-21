@@ -42,10 +42,9 @@ public class OrderItemDao {
 	
 	//주문 품목 삽입(1개)
 	public int insertOrderItem(OrderItem orderitem){
-		String sql = "insert into order_item(oid, ogid, mid, ordercount) values(?,?,?,?)";
+		String sql = "insert into order_item(oid, ogid, mid, ordercount) values(seq_order_item_oid.nextval,?,?,?)";
 		int row = jdbcTemplate.update(
 				sql,
-				orderitem.getOid(),
 				orderitem.getOgid(),
 				orderitem.getMid(),
 				orderitem.getOrdercount()
@@ -78,6 +77,32 @@ public class OrderItemDao {
 				
 		});
 		return (list.size() != 0)?list.get(0):null;
+	}
+	
+	//주문 품목 검색(1개)(oid)
+	public OrderItem selectOrderItemByOgidMid(int ogid,int mid){
+		String sql = "select oid,ogid,mid,ordercount from order_item where ogid=? and mid=?";
+		List<OrderItem> list = jdbcTemplate.query(sql, new Object[]{ogid,mid}, new RowMapper<OrderItem>(){
+			@Override
+			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
+				OrderItem orderitem = new OrderItem();
+				orderitem.setOid(rs.getInt("oid"));
+				orderitem.setOgid(rs.getInt("ogid"));
+				orderitem.setMid(rs.getInt("mid"));
+				orderitem.setOrdercount(rs.getInt("ordercount"));
+					
+				return orderitem;
+			}
+				
+		});
+		return (list.size() != 0)?list.get(0):null;
+	}
+	
+	//주문 품목 삽입(1개)(주문할 때 필요)
+	public int insertOrderItem2(int ogid, int mid, int ordercount) {
+		String sql = "insert into order_item(oid, ogid, mid, ordercount) values(seq_order_item_oid,?,?,?)";
+		int row = jdbcTemplate.update(sql, ogid, mid, ordercount);
+		return row;		
 	}
 		
 	//------------------------------------------------------------------------------

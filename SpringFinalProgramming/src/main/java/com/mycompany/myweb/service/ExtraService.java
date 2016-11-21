@@ -46,6 +46,11 @@ public class ExtraService {
 		return extraDao.selectByXid(xid);
 	}
 	
+	//[명진]
+	public Extra infoByXname (String xname){
+		return extraDao.selectByXname(xname);
+	}
+	
 	public List<Extra> getList(int xid){
 		return extraDao.selectAll(xid);
 	}
