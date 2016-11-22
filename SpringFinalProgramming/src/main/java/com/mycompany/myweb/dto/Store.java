@@ -14,7 +14,7 @@ public class Store {
 	private String sopen;	//매장 오픈 시간
 	private String sclosed;	//매장 닫는 시간
 	
-	private String sbeacon;	//비콘 번호
+	private int sbeacon;	//비콘 번호
 	
 	public String getSid() {
 		return sid;
@@ -71,10 +71,10 @@ public class Store {
 	public void setSclosed(String sclosed) {
 		this.sclosed = sclosed;
 	}
-	public String getSbeacon() {
+	public int getSbeacon() {
 		return sbeacon;
 	}
-	public void setSbeacon(String sbeacon) {
+	public void setSbeacon(int sbeacon) {
 		this.sbeacon = sbeacon;
 	}
 	

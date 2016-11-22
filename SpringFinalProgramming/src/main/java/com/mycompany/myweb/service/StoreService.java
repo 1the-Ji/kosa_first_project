@@ -90,5 +90,11 @@ public class StoreService {
 		}
 		return MODIFY_SUCCESS;
 	}
+	
+	
+	//김정호 test
+	public Store findStore(int sbeacon){
+		return storeDao.selectByBeacon(sbeacon);
+	}
 
 }
