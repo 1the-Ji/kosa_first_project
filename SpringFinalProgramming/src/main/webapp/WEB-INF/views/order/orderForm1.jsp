@@ -46,7 +46,7 @@
 		</c:forEach>
 		</table>
 		
-		<form action="/myweb/order/orderpay">
+		<form action="/myweb/order/detailList?pay=결제">
 			<input type="submit" value="결제"/>
 		</form>
 		

@@ -44,6 +44,11 @@ public class OrderService {
 		return orderDao.selectByTerm(pageNo, rowsPerPage, term1, term2);
 	}
 	
+	//주문 가격 수정(완료)
+	public int modifyOgprice(String ogid,int ogprice){
+		return orderDao.updateOgprice(ogid, ogprice);
+	}
+	
 	//주문 기간 조회(완료)(주문할 때)(지워질 듯)
 	public Order searchOneByTime(Date start, Date end){
 		return orderDao.selectByTime(start, end);

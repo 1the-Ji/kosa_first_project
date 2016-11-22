@@ -160,4 +160,11 @@ public class OrderDao {
 		});
 		return (list.size() != 0) ? list.get(0) : null;
 	}
+
+	//주문 가격 수정(완료)
+	public int updateOgprice(String ogid, int ogprice) {
+		String sql = "update order_total set ogtotalprice = ? where ogid like ?";
+		int row = jdbcTemplate.update(sql, ogprice, ogid);
+		return row;
+	}
 }
