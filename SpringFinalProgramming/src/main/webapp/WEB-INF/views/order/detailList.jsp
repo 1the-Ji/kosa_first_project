@@ -31,9 +31,9 @@
 			</tr>
 		</c:forEach>
 	</table>
+		총 가격 : <c:out value="${requestScope.resultprice}"/> <br/>
 		<c:forEach var="detailOrders" items="${detailOrders}" begin="1" end="1">
- 			<p>총 가격 : ${detailOrders.totalprice}</p>
-			<p>결제방법 : ${detailOrders.oghowpay}</p>
+ 			<p>결제방법 : ${detailOrders.oghowpay}</p>
 		</c:forEach>
 
 </body>
