@@ -12,22 +12,12 @@
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 	    <!-- Bootstrap Core Css -->
 	    <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.css" rel="stylesheet">
-	    <!-- Waves Effect Css -->
-	    <link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" />
-	    <!-- Animation Css -->
-	    <link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet" />
 	    <!-- Custom Css -->
 	    <link href="${pageContext.servletContext.contextPath}/resources/css/style.css" rel="stylesheet">
 	    <link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet">
     <!-- CSS END -->
     
     <!-- SCRIPT -->
-    	<!-- Jquery Core Js -->
-	    <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.min.js"></script>
-	    <!-- Bootstrap Core Js -->
-	    <script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap.js"></script>
-	    <!-- Waves Effect Plugin Js -->
-	    <script src="${pageContext.servletContext.contextPath}/resources/js/waves.js"></script>
 	    <!-- Validation Plugin Js -->
 	    <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.validate.js"></script>
 	    <!-- Custom Js -->

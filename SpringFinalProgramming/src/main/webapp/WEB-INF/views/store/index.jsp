@@ -105,12 +105,12 @@
 					</p>
 					<p></p>
 					<p></p>
-					<p><span>Travis Crown</span></p>
+					<p><span><a href="${pageContext.servletContext.contextPath}/order/orderItems">주문하기</a></span></p>
 					<p><a href="${pageContext.servletContext.contextPath}/order/list">주문리스트</a></p>
 					<p></p>
 					<p><span>Best Qualified  Goods</span></p>
 					<p></p>
-					<p><span><a href="${pageContext.servletContext.contextPath}/order/orderItems">주문하기</a></span></p>
+					<p><span>sport</span></p>
 				</div>
 				
 				     
