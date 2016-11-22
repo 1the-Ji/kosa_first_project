@@ -7,18 +7,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 //이명진
 public class Order {
 	
-	private int ogid;//주문 아이디(시퀀스)
+	private String ogid;//주문 아이디(문자열 기본키)
 	private int ogtotalprice;//총 주문 금액
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date ogtime;//주문 날짜
+	@DateTimeFormat(pattern="yyyy-MM-dd-HH-mm-ss")
+	private Date ogtime;//주문 날짜(중요!)
 	private String user_id;//일반 회원 아이디
 	private String sid;//매장 회원 아이디
 	private String oghowpay;//주문 결재방법
 	
-	public int getOgid() {
+	public String getOgid() {
 		return ogid;
 	}
-	public void setOgid(int ogid) {
+	public void setOgid(String ogid) {
 		this.ogid = ogid;
 	}
 	public int getOgtotalprice() {

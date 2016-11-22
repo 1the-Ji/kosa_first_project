@@ -20,8 +20,8 @@ public class OrderItemDao {
 	
 	//중요
 	//1개 주문에 대한 모든 품목 리스트 찾기
-	public List<OrderItem> selectOrderItemsByOgid(int ogid){
-		String sql = "select oid,ogid,mid,ordercount from order_item where ogid=?";
+	public List<OrderItem> selectOrderItemsByOgid(String ogid){
+		String sql = "select oid,ogid,mid,ordercount from order_item where ogid like ?";
 		List<OrderItem> orderItems =  jdbcTemplate.query(sql, 
 				new Object[]{ogid}, 
 				new RowMapper<OrderItem>(){
@@ -30,7 +30,7 @@ public class OrderItemDao {
 			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
 				OrderItem orderItem = new OrderItem();
 				orderItem.setOid(rs.getInt("oid"));
-				orderItem.setOgid(rs.getInt("ogid"));
+				orderItem.setOgid(rs.getString("ogid"));
 				orderItem.setMid(rs.getInt("mid"));
 				orderItem.setOrdercount(rs.getInt("ordercount"));
 				
@@ -40,18 +40,24 @@ public class OrderItemDao {
 		return orderItems;
 	}
 	
+	//주문 품목 삽입(1개)(주문할 때 필요)
+	public int insertOrderItem(String ogid, int mid, int ordercount) {
+		String sql = "insert into order_item(oid, ogid, mid, ordercount) values(seq_order_item_oid.nextval,?,?,?)";
+		int row = jdbcTemplate.update(sql, ogid, mid, ordercount);
+		return row;		
+	}
+	
 	//주문 품목 삽입(1개)
-	public int insertOrderItem(OrderItem orderitem){
-		String sql = "insert into order_item(oid, ogid, mid, ordercount) values(?,?,?,?)";
+	/*public int insertOrderItem(OrderItem orderitem){
+		String sql = "insert into order_item(oid, ogid, mid, ordercount) values(seq_order_item_oid.nextval,?,?,?)";
 		int row = jdbcTemplate.update(
 				sql,
-				orderitem.getOid(),
 				orderitem.getOgid(),
 				orderitem.getMid(),
 				orderitem.getOrdercount()
 		);
 		return row;		
-	}
+	}*/
 	
 	//1개 주문 품목 삭제
 	public int deleteOrderItem(OrderItem orderitem){
@@ -69,7 +75,7 @@ public class OrderItemDao {
 			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
 				OrderItem orderitem = new OrderItem();
 				orderitem.setOid(rs.getInt("oid"));
-				orderitem.setOgid(rs.getInt("ogid"));
+				orderitem.setOgid(rs.getString("ogid"));
 				orderitem.setMid(rs.getInt("mid"));
 				orderitem.setOrdercount(rs.getInt("ordercount"));
 					
@@ -79,6 +85,27 @@ public class OrderItemDao {
 		});
 		return (list.size() != 0)?list.get(0):null;
 	}
+	
+	//주문 품목 검색(1개)(oid)
+	public OrderItem selectOrderItemByOgidMid(String ogid,int mid){
+		String sql = "select oid,ogid,mid,ordercount from order_item where ogid like ? and mid=?";
+		List<OrderItem> list = jdbcTemplate.query(sql, new Object[]{ogid,mid}, new RowMapper<OrderItem>(){
+			@Override
+			public OrderItem mapRow(ResultSet rs, int row) throws SQLException {
+				OrderItem orderitem = new OrderItem();
+				orderitem.setOid(rs.getInt("oid"));
+				orderitem.setOgid(rs.getString("ogid"));
+				orderitem.setMid(rs.getInt("mid"));
+				orderitem.setOrdercount(rs.getInt("ordercount"));
+					
+				return orderitem;
+			}
+				
+		});
+		return (list.size() != 0)?list.get(0):null;
+	}
+	
+	
 		
 	//------------------------------------------------------------------------------
 	

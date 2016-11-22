@@ -51,6 +51,13 @@ public class ExtraOrderDao {
 		return row;		
 	}
 	
+	//주문 품목 사이드오더 삽입(다수)
+	public int insertExtraOrder(int xid, int oid){
+		String sql = "insert into extra_order(xid,oid) values(?,?)";
+		int row = jdbcTemplate.update(sql,xid,oid);
+		return row;		
+	}
+	
 	//1개 주문 품목 사이드오더 삭제
 	public int deleteExtraOrder(ExtraOrder extraOrder){
 		String sql = "delete from extra_order where oid=?";

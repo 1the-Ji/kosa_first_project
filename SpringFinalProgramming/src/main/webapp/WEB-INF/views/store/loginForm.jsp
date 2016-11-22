@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%--2016-11-16(수)--%>
+<%-- 보나 20161122 STORE ID/PW 관련 수정 --%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,16 +22,16 @@
 		로그인
 		<hr/>
 		<form method="post"><%--action=~ 이 없으면 현재 넘어간 요청경로로 다시 이동하다.--%>
-			아이디: <input type="text" name="user_id" value="${findUser_id}"><br/>
+			아이디: <input type="text" name="sid" value="${findSid}"><br/>
 			<c:if test="${error == 'LOGIN_FAIL_USER_ID'}">*아이디가 존재하지 않습니다.</c:if>
-			패스워드: <input type="password" name="user_pw"><br/>
+			패스워드: <input type="password" name="spw" value="${findSpw}"><br/>
 			<c:if test="${error == 'LOGIN_FAIL_USER_PW'}">*패스워드가 틀립니다.</c:if>
 			<br/>
 			<input type="submit" value="로그인"/>
 		</form>
 		
 		<a href ="${pageContext.servletContext.contextPath}/user/join">회원 가입</a><br/><%--상대경로 --%>
-		<a href ="findUser_id">아이디 찾기</a><br/>											<%--절대경로 --%>
-		<a href ="findUser_pw">비밀번호 찾기</a><br/>
+		<a href ="findSid">아이디 찾기</a><br/>											<%--절대경로 --%>
+		<a href ="findSpw">비밀번호 찾기</a><br/>
 	</body>
 </html>

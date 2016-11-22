@@ -35,17 +35,16 @@
 			<th style="border: 1px solid black;">가격</th>
 			<th style="border: 1px solid black;">결제 내용</th>
 		</tr>
-
-
 		<c:forEach var="orderList" items="${list}">
 			<tr>
-				<th style="border: 1px solid black;"><a href="detailList?ogid=${orderList.ogid}">${orderList.ogid }</a></th>
+				<th style="border: 1px solid black;"><a href="detailList?ogid=${orderList.ogid}">${orderList.ogid}</a></th>
 				<th style="border: 1px solid black;">${orderList.user_id}</th>
-				<th style="border: 1px solid black;">${orderList.ogtime }</th>
-				<th style="border: 1px solid black;">${orderList.ogtotalprice }</th>
-				<th style="border: 1px solid black;">${orderList.oghowpay }</th>
+				<th style="border: 1px solid black;">${orderList.ogtime}</th>
+				<th style="border: 1px solid black;">${orderList.ogtotalprice}</th>
+				<th style="border: 1px solid black;">${orderList.oghowpay}</th>
 			</tr>
 		</c:forEach>
+
 	</table>
 
 

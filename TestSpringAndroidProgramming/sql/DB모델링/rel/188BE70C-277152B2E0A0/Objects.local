@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="4B32EC96-EBC1-E8A7-E8C4-0F56C9EC8083" name="freeboard" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.Table" propertyParentId="188BE70C-45C7-BD34-86B8-277152B2E0A0" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="52AF96ED-3893-20A5-15BA-39D8C83E90C7" name="photoboard" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.Table" propertyParentId="188BE70C-45C7-BD34-86B8-277152B2E0A0" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Table" objectID="58D89750-5FF3-A2D4-6204-FD9983C86642" name="member" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.Table" propertyParentId="188BE70C-45C7-BD34-86B8-277152B2E0A0" propertySourceId="" propertyTargetId=""/>
+   <object objectType="FKIndexAssociation" objectID="9454C4C9-5A6A-5228-6C56-DE90B445AB06" name="freeboard_member_FK" containerID="4B32EC96-EBC1-E8A7-E8C4-0F56C9EC8083" refContainerID="58D89750-5FF3-A2D4-6204-FD9983C86642" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" propertyParentId="188BE70C-45C7-BD34-86B8-277152B2E0A0" propertySourceId="58D89750-5FF3-A2D4-6204-FD9983C86642" propertyTargetId="4B32EC96-EBC1-E8A7-E8C4-0F56C9EC8083"/>
+   <object objectType="FKIndexAssociation" objectID="AD65B101-CD2E-3998-D509-DA04F7B6A83B" name="" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

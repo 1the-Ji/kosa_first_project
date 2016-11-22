@@ -42,6 +42,18 @@ public class MenuService {
 		return menuDao.selectByMname(pageNo, rowsPerPage, mname);
 	}
 	
+	//[명진]
+	public Menu infoByMnameHot_Ice(String mname,String hot_ice){
+
+		return menuDao.selectByMnameHot_Ice(mname,hot_ice);
+	}
+	
+	//[명진]//지우게 될 듯
+	public List<Menu> listByMid(int mid){
+
+		return menuDao.selectByMidforList(mid);
+	}
+		
 	public int write(Menu menu){
 		menuDao.insert(menu);
 		return WRITE_SUCCESS;
@@ -61,6 +73,11 @@ public class MenuService {
 	
 	public Menu info(int mid){
 		return menuDao.selectByMid(mid);
+	}
+	
+	//[명진]
+	public List<Menu> infoByMname(String mname){
+		return menuDao.selectByMname(mname);
 	}
 	
 	public int getCount(){

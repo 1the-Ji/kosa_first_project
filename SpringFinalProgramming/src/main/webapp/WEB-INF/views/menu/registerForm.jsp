@@ -30,7 +30,7 @@
    				<td style="background-color:gold; width:70px">아이스/핫</td>
    				<td>
    					<input type="radio" name="hot_ice" checked value="HOT"> HOT
-   					<input type="radio" name="hot_ice" value="ICED"> ICED
+   					<input type="radio" name="hot_ice" value="ICE"> ICE
    					<input type="radio" name="hot_ice" value=" "> 없음
    				</td>
    			</tr>

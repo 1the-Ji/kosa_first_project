@@ -28,7 +28,9 @@ import com.mycompany.myweb.service.StoreService;
 
 @Controller
 public class StoreController {
-//김정호
+// 김정호
+// 보나 20161122 - 아이디&비번찾기 추가 
+	
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
 	@Autowired
@@ -50,7 +52,7 @@ public class StoreController {
 		
 		if (result == StoreService.LOGIN_FAIL_SPW) {
 			
-			model.addAttribute("error", "LOGIN");
+			model.addAttribute("error", "LOGIN_FAIL_SPW");
 			logger.info("login_실패");
 			return "index";
 			
@@ -82,10 +84,23 @@ public class StoreController {
 			model.addAttribute("error", "이메일 not found");
 			return "store/findSidForm";
 		}
-		
 		session.setAttribute("findSid", sid);
-		return "redirect:/store/login";
+		return "store/resultFindSid";
 	}
+	
+	
+	@RequestMapping(value="/resultFindSid", method=RequestMethod.GET)
+	public String resultFindSid(){
+		return "store/resultFindSid";
+	}
+	
+	@RequestMapping(value="/resultFindSid", method=RequestMethod.POST)
+	public String resultFindSid(String findSid, Model model, HttpSession session){
+		String sid = (String)session.getAttribute(findSid);
+		
+		return "redirect:/";
+	}
+	
 	
 	@RequestMapping(value="/findSpw", method=RequestMethod.GET)
 	public String findSpwForm(){
@@ -94,14 +109,26 @@ public class StoreController {
 	
 	@RequestMapping(value="/findSpw", method=RequestMethod.POST)
 	public String findSpw(String sid, String semail, Model model, HttpSession session){
-		String Spw = storeService.findSpw(sid, semail);
-		if (Spw == null) {
+		String spw = storeService.findSpw(sid, semail);
+		if (spw == null) {
 			model.addAttribute("error","이메일 및 아이디가 존재 하지 않음.");
 			return "store/findSpwForm";
 		}
-		session.setAttribute("findSpw", Spw);
-		return "redirect:/store/login";
+		session.setAttribute("findSpw", spw);
+		return "store/resultFindSpw";
 	}
+	
+	@RequestMapping(value="/findResultSpw", method=RequestMethod.GET)
+	public String findResultSpw(){
+		return "store/findResultSpw";
+	}
+	
+	@RequestMapping(value="/findResultSpw", method=RequestMethod.POST)
+	public String findResultSpw(String findSpw, Model model, HttpSession session){
+		String spw = (String) session.getAttribute(findSpw);
+		return "redirect:/";
+	}
+	
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String joinForm(){

@@ -1,13 +1,12 @@
 package com.mycompany.myweb.dto;
 
 //명진 - 어쩔 수 없이 만듬
-public class DetailOrder {
-	private String mname;
-	private int sameItemCount;
-	private String xname;
-	private int sameItemPrice;
-	private int totalprice;
-	private String oghowpay;
+public class DetailOrder {//1품목에 대한
+	private String mname;//메뉴명
+	private int sameItemCount;//수량
+	private String xname;//사이드 이름들
+	private int sameItemPrice;//가격
+	private String oghowpay;//결제방식
 	
 	public String getMname() {
 		return mname;
@@ -32,12 +31,6 @@ public class DetailOrder {
 	}
 	public void setSameItemPrice(int sameItemPrice) {
 		this.sameItemPrice = sameItemPrice;
-	}
-	public int getTotalprice() {
-		return totalprice;
-	}
-	public void setTotalprice(int totalprice) {
-		this.totalprice = totalprice;
 	}
 	public String getOghowpay() {
 		return oghowpay;

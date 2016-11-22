@@ -51,6 +51,14 @@ public class ExtraOrderService {
 		return INSERT_FAIL;
 	}
 	
+	//주문 품목 사이드오더 삽입(다수)(주문 시 필요)
+	public int addExtraOrder(int xid, int oid){
+		if(extraOrderDao.insertExtraOrder(xid, oid)==1){
+			return INSERT_SUCCESS;
+		}
+		return INSERT_FAIL;
+	}
+	
 	//1개 주문 품목 사이드오더 삭제
 	public int removeExtraOrder(ExtraOrder extraorder){
 		if(extraOrderDao.deleteExtraOrder(extraorder)==1){
