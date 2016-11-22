@@ -30,7 +30,7 @@
 					<li><a href="#">Order</a></li>
 				</ul>
 				<div style="position:relative; top:90%;" class="form-group text-center">
-                   <button class="btn btn-success btn-login-submit">Login</button>
+                   <button class="btn btn-success btn-login-submit"><a href="#">Login</a></button>
                 </div>
 
 			</nav>
@@ -47,9 +47,6 @@
 					<p></p>
 					<p><span>Clothes</span></p>
 					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>	
 				</div>
 				
 				<!-- 두 번째 박스 -->
@@ -64,15 +61,11 @@
 					<p></p>
 					<p></p>
 					<p><span>Travis Crown</span></p>
-					<p>
-						<video loop autoplay preload >
-							<source src="resource/photo/vid.mp4" type="video/mp4" />					
-						</video>
-					</p>
+					<p><span><a href="${pageContext.servletContext.contextPath}/store/info">매장정보보기</a></span></p>
 					<p></p>
 					<p><span>Best Qualified  Goods</span></p>
 					<p></p>
-					<p><span>Sports</span></p>
+					<p><span><a href="${pageContext.servletContext.contextPath}/sphoto/write">사진첨부하기</a></span></p>
 				</div>
 				
 				<!-- 세 번째 박스 -->
@@ -83,29 +76,26 @@
 					<p></p>
 					<p></p>
 					<p></p>
-					<p><span>Accessories</span></p>
+					<p><span><a href="${pageContext.servletContext.contextPath}/menu/list">메뉴리스트</a></span></p>
 					<p></p>
-					<p><span>Jewelry</span></p>
+					<p><span><a href="#">메뉴옵션</a></span></p>
 					<p></p>
 					<p></p>
 				</div>
 				
-				<!-- 세 번째 박스 -->
-				<div class="box1 ">
+				<!-- 네 번째 박스 -->
+				<div class="box4 ">
 					<p></p>
-					<p><span>Play & Dolls</span></p>
+					<p><span><a href="${pageContext.servletContext.contextPath}/event/list">이벤트리스트</a></span></p>
 					<p></p>
 					<p><strong>Vogue Kids</strong></p>
 					<p></p>
-					<p><span>Clothes</span></p>
+					<p><span><a href="#">이벤트등록</a></span></p>
 					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>	
 				</div>
 				
 				<!-- 다섯 번째 박스 -->
-				<div class="box2">
+				<div class="box5">
 					<p><strong>Vogue Homme</strong></p>
 					<p></p>
 					<p>	
@@ -116,15 +106,11 @@
 					<p></p>
 					<p></p>
 					<p><span>Travis Crown</span></p>
-					<p>
-						<video loop autoplay preload >
-							<source src="resource/photo/vid.mp4" type="video/mp4" />					
-						</video>
-					</p>
+					<p><a href="${pageContext.servletContext.contextPath}/order/list">주문리스트</a></p>
 					<p></p>
 					<p><span>Best Qualified  Goods</span></p>
 					<p></p>
-					<p><span>Sports</span></p>
+					<p><span><a href="${pageContext.servletContext.contextPath}/order/orderItems">주문하기</a></span></p>
 				</div>
 				
 				     

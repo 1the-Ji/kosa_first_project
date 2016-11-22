@@ -18,6 +18,7 @@
 	    <link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet" />
 	    <!-- Custom Css -->
 	    <link href="${pageContext.servletContext.contextPath}/resources/css/style.css" rel="stylesheet">
+	    <link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet">
     <!-- CSS END -->
     
     <!-- SCRIPT -->
