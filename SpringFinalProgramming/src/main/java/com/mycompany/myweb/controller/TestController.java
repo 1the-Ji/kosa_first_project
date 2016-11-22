@@ -26,6 +26,8 @@ public class TestController {
 		Store store = storeService.findStore(sbeacon);
 		model.addAttribute("store", store);
 		
+		logger.info("android 요청");
+		
 		return "beaconList";
 	}
 }
