@@ -19,9 +19,10 @@ public class OrderDao {
 	
 	//주문 삽입
 	public int insertOrder(Order order) {
-		String sql = "insert into order_total(ogid,ogtotalprice,ogtime,user_id,sid,oghowpay) values(seq_order_ogid.nextval,?,sysdate,?,?,?)";
+		String sql = "insert into order_total(ogid,ogtotalprice,ogtime,user_id,sid,oghowpay) values(?,?,sysdate,?,?,?)";
 		int row = jdbcTemplate.update(
-				sql, 
+				sql,
+				order.getOgid(),
 				order.getOgtotalprice(),
 				order.getUser_id(),
 				order.getSid(),
@@ -33,8 +34,8 @@ public class OrderDao {
 	
 	
 	//1개 주문 검색
-	public Order selectByOgid(int ogid) {
-		String sql = "select ogid,ogtotalprice,ogtime,user_id,sid,oghowpay from order_total where ogid=?";
+	public Order selectByOgid(String ogid) {
+		String sql = "select ogid,ogtotalprice,ogtime,user_id,sid,oghowpay from order_total where ogid like ?";
 		List<Order> list = jdbcTemplate.query(sql, 
 				new Object[] {ogid},
 				new RowMapper<Order>() {
@@ -42,7 +43,7 @@ public class OrderDao {
 			@Override
 			public Order mapRow(ResultSet rs, int row) throws SQLException {
 				Order order = new Order();
-				order.setOgid(rs.getInt("ogid"));
+				order.setOgid(rs.getString("ogid"));
 				order.setOgtotalprice(rs.getInt("ogtotalprice"));
 				order.setOgtime(rs.getDate("ogtime"));
 				order.setUser_id(rs.getString("user_id"));
@@ -62,7 +63,7 @@ public class OrderDao {
 		sql += "select rn, ogid, ogtotalprice, ogtime, user_id, sid, oghowpay ";
 		sql += "from( ";
 		sql += "select rownum as rn, ogid, ogtotalprice, ogtime, user_id, sid, oghowpay ";
-		sql += "from(select ogid, ogtotalprice, ogtime, user_id, sid, oghowpay from order_total where ogtime between ? AND ? order by ogid desc) ";
+		sql += "from(select ogid, ogtotalprice, ogtime, user_id, sid, oghowpay from order_total where ogtime between ? AND ? order by ogtime desc) ";
 		sql += "where rownum<=? ";
 		sql += ") ";
 		sql += "where rn>=? ";
@@ -73,7 +74,7 @@ public class OrderDao {
 					@Override
 					public Order mapRow(ResultSet rs, int row) throws SQLException {
 						Order order = new Order();
-						order.setOgid(rs.getInt("ogid"));
+						order.setOgid(rs.getString("ogid"));
 						order.setOgtotalprice(rs.getInt("ogtotalprice"));
 						order.setOgtime(rs.getDate("ogtime"));
 						order.setUser_id(rs.getString("user_id"));
@@ -93,7 +94,7 @@ public class OrderDao {
 		sql += "select rn, ogid, ogtotalprice, ogtime, user_id, sid, oghowpay ";
 		sql += "from( ";
 		sql += "select rownum as rn, ogid, ogtotalprice, ogtime, user_id, sid, oghowpay ";
-		sql += "from(select ogid, ogtotalprice, ogtime, user_id, sid, oghowpay from order_total order by ogid desc) ";
+		sql += "from(select ogid, ogtotalprice, ogtime, user_id, sid, oghowpay from order_total order by ogtime desc) ";
 		sql += "where rownum<=? ";
 		sql += ") ";
 		sql += "where rn>=? ";
@@ -104,7 +105,7 @@ public class OrderDao {
 					@Override
 					public Order mapRow(ResultSet rs, int row) throws SQLException {
 						Order order = new Order();
-						order.setOgid(rs.getInt("ogid"));
+						order.setOgid(rs.getString("ogid"));
 						order.setOgtotalprice(rs.getInt("ogtotalprice"));
 						order.setOgtime(rs.getDate("ogtime"));
 						order.setUser_id(rs.getString("user_id"));
@@ -120,8 +121,8 @@ public class OrderDao {
 	}
 	
 	//주문 삭제
-	public int deleteOrder(int ogid) {
-		String sql = "delete from order_total where ogid=?";
+	public int deleteOrder(String ogid) {
+		String sql = "delete from order_total where ogid like ?";
 		int row = jdbcTemplate.update(sql, ogid);
 		return row;
 	}
@@ -136,7 +137,7 @@ public class OrderDao {
 	//------------------------------------------------------------------
 
 
-	//주문 기간 조회(완료)(주문할 때)
+	//주문 기간 조회(완료)(주문할 때)(지워질 듯)
 	public Order selectByTime(Date start, Date end) {
 		String sql = "select ogid,ogtotalprice,ogtime,user_id,sid,oghowpay from order_total where ogtime between ? and ?";
 		List<Order> list = jdbcTemplate.query(sql, 
@@ -146,7 +147,7 @@ public class OrderDao {
 			@Override
 			public Order mapRow(ResultSet rs, int row) throws SQLException {
 				Order order = new Order();
-				order.setOgid(rs.getInt("ogid"));
+				order.setOgid(rs.getString("ogid"));
 				order.setOgtotalprice(rs.getInt("ogtotalprice"));
 				order.setOgtime(rs.getDate("ogtime"));
 				order.setUser_id(rs.getString("user_id"));

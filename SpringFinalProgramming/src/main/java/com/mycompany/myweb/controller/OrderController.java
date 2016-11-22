@@ -148,7 +148,7 @@ public class OrderController {
 	
 	//주문내역 상세보기(1개 주문 당)
 	@RequestMapping(value="/detailList", method=RequestMethod.GET)
-	public String detailList(int ogid, Model model){
+	public String detailList(String ogid, Model model){
 		//1주문당 (품목, 수량, 사이드, 가격) -> 구해서 같이 넘겨야 됨
 		List<OrderItem> orderItems = orderItemService.allOrderItemByOgid(ogid);
 		List<DetailOrder> detailOrders = new ArrayList<>();
@@ -184,7 +184,7 @@ public class OrderController {
 			logger.info("가격:"+detailOrder.getSameItemPrice());
 			
 			detailOrder.setTotalprice(totalprice);//1 주문 총가격
-			detailOrder.setOghowpay(orderService.SearchOne(ogid).getOghowpay());//결제 방법
+			detailOrder.setOghowpay(orderService.searchOne(ogid).getOghowpay());//결제 방법
 			detailOrders.add(i,detailOrder);
 		}
 		
@@ -359,17 +359,18 @@ public class OrderController {
 	public String orderItems2(String mname,
 			int ordercount,String hot_ice, 
 			String xname1, String xname2, String xname3,HttpSession session){
-		//ordercount는 맨 나중에 order
+		//ordercount는 맨 나중에 order_total 수정해야
 		
-		logger.info("mname: "+mname);
-		logger.info("ordercount: "+ordercount);
-		logger.info("hot_ice: "+hot_ice);
-		logger.info("xname1: "+xname1);
-		logger.info("xname2: "+xname2);
-		logger.info("xname3: "+xname3);
+		//logger.info("mname: "+mname);
+		//logger.info("ordercount: "+ordercount);
+		//logger.info("hot_ice: "+hot_ice);
+		//logger.info("xname1: "+xname1);
+		//logger.info("xname2: "+xname2);
+		//logger.info("xname3: "+xname3);
 		
 		Menu menu = menuService.infoByMnameHot_Ice(mname, hot_ice);
 		int mid = menu.getMid();
+		logger.info("mid: "+mid);
 		Extra extra1 = extraService.infoByXname(xname1);
 		Extra extra2 = extraService.infoByXname(xname2);
 		Extra extra3 = extraService.infoByXname(xname3);
@@ -378,30 +379,53 @@ public class OrderController {
 		int xid3 = extra3.getXid();
 		
 		
-		Date start = new Date();
 		//Order_Total 테이블을 추가해야 함(ogid 유지해야 함)
 		//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)
 		//위의 두 데이터는 임의의 테스트 데이터로 대체
 		Order order = new Order();
-		order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
-		order.setUser_id("user1");
 		String sid = (String) session.getAttribute("login");
-		order.setSid(sid);
-		order.setOghowpay("카드 결제");
-		orderService.addOrder(order);
-		Date end = new Date();
-		Order orderTotal = orderService.searchOneByTime(start,end);
-		int ogid = orderTotal.getOgid();
+		//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
+		String ogid=null;
+		if(session.getAttribute("ogid")==null){
+			long time = System.currentTimeMillis(); double random = Math.random();
+			ogid = ""+sid+time+random;
+			session.setAttribute("ogid", ogid);
+			//
+			order.setOgid(ogid);
+			order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
+			order.setUser_id("user1");
+			order.setSid(sid);
+			order.setOghowpay("카드 결제");
+			orderService.addOrder(order);
+			//logger.info("ogtotalprice : "+order.getOgtotalprice());
+			//logger.info("ogtime : "+order.getOgtime());
+			//logger.info("user_id : "+order.getUser_id());
+			//logger.info("sid : "+order.getSid());
+			//logger.info("oghowpay : "+order.getOghowpay());
+			
+			//
+			logger.info("여기까지 옴1");
+			logger.info("ogid : "+ogid);
+			logger.info("mid : "+mid);
+			logger.info("ordercount: "+ordercount);
+		}else{
+			ogid = (String) session.getAttribute("ogid");
+		}
+		
 		
 		//Order_Item 테이블을 추가해야 함
-		orderItemService.writeOid(ogid, mid, ordercount);
+		orderItemService.addOrderItem(ogid, mid, ordercount);
+		logger.info("여기까지 옴2");
 		OrderItem orderItem = orderItemService.searchOrderItemByOgidMid(ogid,mid);
+		
+		
 		//Extra_Order 테이블을 추가해야 함
 		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
 		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
 		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
+		logger.info("여기까지 옴3");
 		
-		return "order/orderForm1";
+		return "redirect:/order/orderItems";
 	}
 	
 	//결제

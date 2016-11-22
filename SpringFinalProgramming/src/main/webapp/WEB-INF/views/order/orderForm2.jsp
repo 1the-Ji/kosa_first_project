@@ -30,7 +30,7 @@
 		주문 하기2
 		<hr/>
 		<c:set var="mname" value="${requestScope.menu.mname}" scope="session" /> 
-		<c:out value="${requestScope.menu.mname}"/> <br/>
+			<c:out value="${requestScope.menu.mname}"/> <br/>
  			<c:out value="${requestScope.menu.msavedfile}"/>&nbsp;&nbsp;
  			<c:out value="${requestScope.menu.mname}"/> <br/>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -53,15 +53,15 @@
 							
 			시럽: <input type="text" name="xname2">
 				<select name="xnameBox2"  onChange="getSelectValue2(this.form);">
-						<option selected value="option1">설탕 시럽</option>
-						<option value="option2">초코 시럽</option>
-						<option value="option3">딸기 시럽</option>			
+						<option selected value="option1">설탕시럽</option>
+						<option value="option2">초코시럽</option>
+						<option value="option3">딸기시럽</option>			
 				</select><br/><br/>
 			샷: <input type="text" name="xname3">
 				<select name="xnameBox3"  onChange="getSelectValue3(this.form);">
-						<option selected value="option1">샷 추가1</option>
-						<option value="option2">샷 추가2</option>
-						<option value="option3">샷 추가3</option>					
+						<option selected value="option1">샷추가1</option>
+						<option value="option2">샷추가2</option>
+						<option value="option3">샷추가3</option>					
 				</select><br/><br/>		
 			
 			

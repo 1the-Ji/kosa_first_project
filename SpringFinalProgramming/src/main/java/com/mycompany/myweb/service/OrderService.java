@@ -35,7 +35,7 @@ public class OrderService {
 	}
 	
 	//주문 1개 조회(완료)
-	public Order SearchOne(int ogid){
+	public Order searchOne(String ogid){
 		return orderDao.selectByOgid(ogid);
 	}
 	
@@ -44,7 +44,7 @@ public class OrderService {
 		return orderDao.selectByTerm(pageNo, rowsPerPage, term1, term2);
 	}
 	
-	//주문 기간 조회(완료)(주문할 때)
+	//주문 기간 조회(완료)(주문할 때)(지워질 듯)
 	public Order searchOneByTime(Date start, Date end){
 		return orderDao.selectByTime(start, end);
 	}
@@ -55,7 +55,7 @@ public class OrderService {
 	}
 	
 	//주문 제거(완료)
-	public int remove(int ogid){
+	public int removeByOgid(String ogid){
 		int row = orderDao.deleteOrder(ogid);
 		if(row == 1) return REMOVE_SUCCESS;
 		else return REMOVE_FAIL;

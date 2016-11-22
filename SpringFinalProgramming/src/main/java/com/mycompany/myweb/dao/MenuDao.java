@@ -181,7 +181,7 @@ public class MenuDao {
 	
 	//[명진]
 	public List<Menu> selectByMname(String mname) {
-		String sql = "select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where mname=?";
+		String sql = "select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where mname like ?";
 		List<Menu> list = jdbcTemplate.query(sql, 
 				new Object[]{mname}, 
 				new RowMapper<Menu>(){

@@ -45,13 +45,13 @@ public class OrderItemService {
 	
 	//중요
 	//1개 주문에 대한 모든 품목 리스트 찾기
-	public List<OrderItem> allOrderItemByOgid(int ogid){
+	public List<OrderItem> allOrderItemByOgid(String ogid){
 		List<OrderItem> orderItems = orderItemtDao.selectOrderItemsByOgid(ogid);
 		return orderItems;
 	}
 	
 	//1개 주문에 대한 품목 찾기(주문 시 필요)
-	public OrderItem searchOrderItemByOgidMid(int ogid,int mid){
+	public OrderItem searchOrderItemByOgidMid(String ogid,int mid){
 		OrderItem orderItems = orderItemtDao.selectOrderItemByOgidMid(ogid,mid);
 		return orderItems;
 	}
@@ -65,24 +65,26 @@ public class OrderItemService {
 	}*/
 	
 	//1개 주문 품목 추가(MenuDao의 selectByMid(mid)쓰임)()
-	public int writeOid(OrderItem orderitem){
-		if(orderItemtDao.insertOrderItem(orderitem)==1){
+	public int addOrderItem(String ogid, int mid, int ordercount){
+		if(orderItemtDao.insertOrderItem(ogid, mid, ordercount)==1){
 			return INSERT_SUCCESS;
 		}
 		return INSERT_FAIL;
 	}
 	
 	//1개 주문 품목 추가(MenuDao의 selectByMid(mid)쓰임)()
-	public int writeOid(int ogid, int mid, int ordercount){
-		if(orderItemtDao.insertOrderItem2(ogid, mid, ordercount)==1){
+	/*public int writeOid(OrderItem orderitem){
+		if(orderItemtDao.insertOrderItem(orderitem)==1){
 			return INSERT_SUCCESS;
 		}
 		return INSERT_FAIL;
-	}
+	}*/
+	
+	
 		
 		
 	//1개 주문 품목 제거
-	public int removeOrid(OrderItem orderitem){
+	public int removeByOrid(OrderItem orderitem){
 		if(orderItemtDao.deleteOrderItem(orderitem)==1){
 			return DELETE_SUCCESS;
 		}
