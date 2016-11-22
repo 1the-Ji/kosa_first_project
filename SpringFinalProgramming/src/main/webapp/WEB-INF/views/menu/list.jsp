@@ -19,9 +19,7 @@
    				<td>
    					<c:forEach var="menu" items="${list}">
    					<a href="info?mid=${menu.mid}">
-	   					<div style="width:120px; height:130px; margin:5px; display:inline-block;
-	   					background-image:url(showPhoto?msavedfile=${menu.msavedfile});
-	   					background-size: 120px 130px;"><br/>
+	   					<div style="width:120px; height:130px; margin:5px; display:inline-block; background-image:url(showPhoto?msavedfile=${menu.msavedfile}); background-size: 120px 130px;"><br/>
 	   					${menu.mname} ${menu.hot_ice}<br/>
 		   				${menu.mprice}<br/>
 	   					</div>
