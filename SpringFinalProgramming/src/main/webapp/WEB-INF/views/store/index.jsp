@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css"> 
 	</head>
 	<body>
-	
+	 
 		<div class="wrap">
 		
 			<!-- nav 영역을 호출할 버튼  -->
