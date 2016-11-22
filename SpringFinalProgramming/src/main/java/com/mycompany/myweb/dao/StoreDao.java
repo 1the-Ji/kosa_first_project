@@ -83,7 +83,7 @@ public class StoreDao {
 				store.setStel(rs.getString("stel"));
 				store.setSopen(rs.getString("sopen"));
 				store.setSclosed(rs.getString("sclosed"));
-				store.setSbeacon(rs.getString("sbeacon"));
+				store.setSbeacon(rs.getInt("sbeacon"));
 			
 				return store;
 			}
@@ -117,6 +117,32 @@ public class StoreDao {
 				return rs.getString("spw");
 			}
 		
+		});
+		return (list.size() != 0)? list.get(0):null;
+	}
+
+	public Store selectByBeacon(int sbeacon) {
+		// TODO Auto-generated method stub
+		String sql = "select sid, sname, slocal, saddr, stel, sopen, sclosed, sbeacon from store where sbeacon=? ";
+		
+		List<Store> list = jdbcTemplate.query(sql, new Object[]{sbeacon}, new RowMapper<Store>(){
+
+			@Override
+			public Store mapRow(ResultSet rs, int rowNum) throws SQLException {
+				// TODO Auto-generated method stub
+				Store store = new Store();
+				store.setSid(rs.getString("sid"));
+				store.setSname(rs.getString("sname"));
+				store.setSlocal(rs.getString("slocal"));
+				store.setSaddr(rs.getString("saddr"));
+				store.setStel(rs.getString("stel"));
+				store.setSopen(rs.getString("sopen"));
+				store.setSclosed(rs.getString("sclosed"));
+				store.setSbeacon(rs.getInt("sbeacon"));
+			
+				return store;
+			}
+			
 		});
 		return (list.size() != 0)? list.get(0):null;
 	}
