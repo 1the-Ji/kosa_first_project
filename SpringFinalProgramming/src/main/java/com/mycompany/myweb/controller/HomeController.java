@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	@RequestMapping("/")
-	public String index(){
+	public String index(HttpSession session){
+		int flag = 0;//명진 수정
+		session.setAttribute("flag", flag);//명진 수정
 		logger.info("index실행");
 		return "index";
 	}
