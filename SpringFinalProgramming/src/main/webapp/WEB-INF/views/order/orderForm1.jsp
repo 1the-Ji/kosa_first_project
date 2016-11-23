@@ -37,7 +37,7 @@
 		</tr>
 
 
-		<c:forEach var="menuList" items="${list}">
+		<c:forEach var="menuList" items="${menuList}">
 			<tr>
 				<th style="border: 1px solid black;">${menuList.mid}</th>
 				<th style="border: 1px solid black;">${menuList.msavedfile}</th>
@@ -46,7 +46,7 @@
 		</c:forEach>
 		</table>
 		
-		<form action="/myweb/order/detailList?pay=결제">
+		<form method="get" action="/myweb/index#">
 			<input type="submit" value="결제"/>
 		</form>
 		

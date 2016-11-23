@@ -57,6 +57,13 @@ public class OrderController {
 	//주문전체 내역 페이지(1차 검토 완료)
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
+		
+		//총 금액 order_total의 ogtotalprice에 넣어주기
+		String ogid = (String) session.getAttribute("ogid");
+		int resultprice = (Integer) session.getAttribute("resultprice");
+		orderService.modifyOgprice(ogid, resultprice);
+				
+		
 		int intPageNo = 1;
 		if(pageNo == null){
 			pageNo = (String)session.getAttribute("pageNo");
@@ -202,29 +209,66 @@ public class OrderController {
 		
 		int resultprice=0;
 		for(int i=0;i<detailOrders.size();i++){
-			resultprice += detailOrders.get(i).getSameItemPrice();
-		}
+				resultprice += detailOrders.get(i).getSameItemPrice();
+			}
 		
 		//1주문 총 금액 저장 및 JSP에 보내기
 		session.setAttribute("resultprice", resultprice);
 		model.addAttribute("resultprice", resultprice);
 		
-		//총 금액 order_total의 ogtotalprice에 넣어주기
+		/*//총 금액 order_total의 ogtotalprice에 넣어주기
 		orderService.modifyOgprice(ogid, resultprice);
-		
+		*/
 		return "order/detailList";
 	}
 	
 	
 	
 	//---------------------------------------------------------------------
-	
-	//주문하기(진행 중)(검토 필요)
+	int count = 0;
+	//주문하기(진행 중)(검토 필요)(중요)(여기서부터 주문의 시작!)
 	@RequestMapping(value="/orderItems",method=RequestMethod.GET)
-	public String orderForm(String pageNo, Model model,HttpSession session){
+	public String orderForm(String pageNo, Model model, HttpSession session){
+		int flag = (Integer) session.getAttribute("flag");
+		count = flag;
+		session.setAttribute("flag",1);
+		
 		//sid를 참조하는 mid를 통한 모든 메뉴 리스트를 model에 담아 넘겨야 함(주문 눌렀을 때 전체 보기)
 		String sid = (String) session.getAttribute("login");
 		
+		count++;
+		
+		if(count==1){			
+			//새로운 ogid 여기서 부터 생성되야 함
+			//sid, ogid 유지되야 함
+			//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
+			session.setAttribute("ogid",null);
+			String ogid= null;
+			
+			long time = System.currentTimeMillis(); double random = Math.random();
+			ogid = ""+sid+time+random;
+			session.setAttribute("ogid", ogid);		
+			
+			//나중에 새로고침 계속 했을 때 쓸모없는 주문 데이터 삽입을 방지하기 위해서
+			//totalprice가 0인 order_table 데이터는 지울 수 있는 코드 삽입(중요!!!)
+			
+			//Order_Total 테이블을 추가해야 함
+			//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)(중요!!!!!!!!!!!!!!!!!!!!)
+			//위의 두 데이터는 임의의 테스트 데이터(user_id, oghowpay)로 대체
+			Order order = new Order();	
+			ogid = (String) session.getAttribute("ogid");	
+			
+			order.setOgid(ogid);
+			order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
+			order.setUser_id("user1");//임의 데이터
+			order.setSid(sid);
+			order.setOghowpay("카드 결제");//임의 데이터
+			
+			orderService.addOrder(order);
+		}
+		
+
+		//---------
 		int intPageNo = 1;
 		if (pageNo == null) {
 			pageNo = (String) session.getAttribute("pageNo");
@@ -252,10 +296,9 @@ public class OrderController {
 			endPageNo = totalPageNo;
 		}
 		
-		List<Menu> list = menuService.list(intPageNo, rowsPerPage, sid);
+		List<Menu> menuList = menuService.list(intPageNo, rowsPerPage, sid);
 		logger.info("intPageNo : "+intPageNo);
 		logger.info("rowsPerPage : "+rowsPerPage);
-		logger.info("sid : "+sid);
 		
 		model.addAttribute("sid",sid);
 		model.addAttribute("pageNo", intPageNo);
@@ -266,7 +309,8 @@ public class OrderController {
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
-		model.addAttribute("list", list);
+		
+		model.addAttribute("menuList", menuList);
 		
 		return "order/orderForm1";
 	}
@@ -368,7 +412,7 @@ public class OrderController {
 		return "order/orderSearchMname";
 	}	
 	
-	//주문하기(진행 중)(검토 필요)
+	//주문하기(진행 중)(검토 필요)(중요)
 	@RequestMapping(value="/orderItems2",method=RequestMethod.GET)
 	public String orderForm2(String mname, Model model){
 		List<Menu> menu = menuService.infoByMname(mname);
@@ -377,24 +421,21 @@ public class OrderController {
 		return "order/orderForm2";
 	}
 	
-	//주문하기(진행 중)(검토 필요)
+	//주문하기(진행 중)(검토 필요)(중요)
 	@RequestMapping(value="/orderItems2",method=RequestMethod.POST)
-	public String orderItems2(String mname,
-			int ordercount,String hot_ice, 
-			String xname1, String xname2, String xname3,HttpSession session){
+	public String orderItems2(
+			String mname,int ordercount,String hot_ice, 
+			String xname1, String xname2, String xname3,
+			HttpSession session){
+		
 		//ordercount는 맨 나중에 order_total 수정해야
-		logger.info("담고 일로 옴");
+		//나중에 xname1,2,3 모두 안와도 널 포인터 익셉션 에러 안나도록 코드 수정(중요!!!)
 		
-		logger.info("mname: "+mname);
-		logger.info("ordercount: "+ordercount);
-		logger.info("hot_ice: "+hot_ice);
-		logger.info("xname1: "+xname1);
-		logger.info("xname2: "+xname2);
-		logger.info("xname3: "+xname3);
-		
+		//실제 정확한 메뉴가 뭔지 알기 위해
 		Menu menu = menuService.infoByMnameHot_Ice(mname, hot_ice);
 		int mid = menu.getMid();
 		
+		//사이드 이름들에 대한 사이드들이 뭔지 찾기 위해
 		Extra extra1 = extraService.infoByXname(xname1);
 		Extra extra2 = extraService.infoByXname(xname2);
 		Extra extra3 = extraService.infoByXname(xname3);
@@ -402,15 +443,50 @@ public class OrderController {
 		int xid2 = extra2.getXid();
 		int xid3 = extra3.getXid();
 		
+		//------------------------------------------------------------
+		//ogid 얻기
+		String ogid = (String) session.getAttribute("ogid");
 		
-		//Order_Total 테이블을 추가해야 함(ogid 유지해야 함)
+		//Order_Item 테이블을 추가하고 다시 찾는 부분
+		orderItemService.addOrderItem(ogid, mid, ordercount);
+		OrderItem orderItem = orderItemService.searchOrderItemByOgidMid(ogid,mid);
+		
+		//Extra_Order 테이블을 추가하는 부분
+		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
+		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
+		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
+		
+		
+		/*//Order_Total 테이블을 추가해야 함(ogid 유지해야 함)
 		//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)
 		//위의 두 데이터는 임의의 테스트 데이터로 대체
 		Order order = new Order();
 		String sid = (String) session.getAttribute("login");
+		
+		//ogid 가져옴
 		//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
 		String ogid=null;
-		if(session.getAttribute("ogid")==null){
+		ogid = (String) session.getAttribute("ogid");
+		
+		
+		logger.info("ogid: "+ogid);
+		logger.info("mid: "+mid);
+		logger.info("sid: "+sid);
+		logger.info("ordercount: "+ordercount);
+		
+		order.setOgid(ogid);
+		order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
+		order.setUser_id("user1");
+		order.setSid(sid);
+		order.setOghowpay("카드 결제");
+		orderService.addOrder(order);
+		//logger.info("ogtotalprice : "+order.getOgtotalprice());
+		//logger.info("ogtime : "+order.getOgtime());
+		//logger.info("user_id : "+order.getUser_id());
+		//logger.info("sid : "+order.getSid());
+		//logger.info("oghowpay : "+order.getOghowpay());
+		*/
+		/*if(session.getAttribute("ogid")==null){
 			logger.info("여기1");
 			long time = System.currentTimeMillis(); double random = Math.random();
 			ogid = ""+sid+time+random;
@@ -436,20 +512,11 @@ public class OrderController {
 		}else{
 			logger.info("여기2");
 			ogid = (String) session.getAttribute("ogid");
-		}
+		}*/
 		
+		//ogid 가져옴
+		//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
 		
-		//Order_Item 테이블을 추가해야 함
-		orderItemService.addOrderItem(ogid, mid, ordercount);
-		logger.info("여기까지 옴2");
-		OrderItem orderItem = orderItemService.searchOrderItemByOgidMid(ogid,mid);
-		
-		
-		//Extra_Order 테이블을 추가해야 함
-		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
-		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
-		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
-		logger.info("여기까지 옴3");
 		
 		return "redirect:/order/orderItems";
 	}
@@ -458,7 +525,7 @@ public class OrderController {
 	@RequestMapping(value="/orderpay",method=RequestMethod.GET)
 	public String orderpay(){
 		
-		return "redirect:/order/list";
+		return "store/index";
 	}
 	
 }

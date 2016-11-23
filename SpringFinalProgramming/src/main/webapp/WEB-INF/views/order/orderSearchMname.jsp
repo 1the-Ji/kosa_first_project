@@ -20,9 +20,9 @@
 		<hr/>
 		[검색]&nbsp;&nbsp;&nbsp;
 		<a href="allMenuSearch">전체</a>&nbsp;&nbsp;&nbsp;
-		<a href="someMenuSearch?mgroup=커피">커피</a>&nbsp;&nbsp;&nbsp;
-		<a href="someMenuSearch?mgroup=차">차</a>&nbsp;&nbsp;&nbsp;
-		<a href="someMenuSearch?mgroup=디저트">기타</a><br/><br/><br/>
+		<a href="someMenuSearchMgroup?mgroup=커피">커피</a>&nbsp;&nbsp;&nbsp;
+		<a href="someMenuSearchMgroup?mgroup=차">차</a>&nbsp;&nbsp;&nbsp;
+		<a href="someMenuSearchMgroup?mgroup=디저트">기타</a><br/><br/><br/>
 		
 		<form method="post" action="/myweb/order/someMenuSearchMname">
 			메뉴단어검색: <input type="text" name="mname" value="">&nbsp;&nbsp;&nbsp;

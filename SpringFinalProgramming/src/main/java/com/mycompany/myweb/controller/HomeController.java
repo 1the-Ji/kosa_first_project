@@ -1,5 +1,7 @@
 package com.mycompany.myweb.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/index")
-	public String home(){
+	public String home(HttpSession session){//명진 수정
+		int flag = 0;//명진 수정
+		session.setAttribute("flag", flag);//명진 수정
 		logger.info("home실행");
 		return "store/index";
 	}
