@@ -1,5 +1,4 @@
 /* Navbar ====================================== */
-@import url(materialize.css);
 .navbar {
   font-family: "Roboto", sans-serif;
   -webkit-border-radius: 0;
@@ -2505,11 +2504,13 @@ section.content {
 .btn-info:focus {
   background-color: #00b0e4 !important; }
 
-.btn-success,
+.btn-success{
+  background-color: #000000 
+}
 .btn-success:hover,
 .btn-success:active,
 .btn-success:focus {
-  background-color: #2b982b !important; }
+  background-color: #222 !important; }
 
 .btn-primary,
 .btn-primary:hover,

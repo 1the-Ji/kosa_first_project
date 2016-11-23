@@ -8,13 +8,10 @@
 	<head>
 		<meta charset="UTF-8">
 	</head>
-	<body>
+	<body> 
 		아이디 찾기
 		<hr/>
-		<form method="post"><%--action=~ 이 없으면 현재 넘어간 요청경로로 다시 이동하다.--%>
-			아이디: ${findSid} 
-			<input type="submit" value="submit로그인"/>
-			<a href="../myweb"> <input type="button" value="button로그인"/> </a>
-		</form>
+			아이디: ${findSid} 											<br/>
+			<a href="login"><button>로그인</button></a>
 	</body>
 </html>

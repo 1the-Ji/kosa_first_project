@@ -39,13 +39,13 @@ public class StoreController {
 	@Autowired
 	private SphotoService sphotoService;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="/store/login", method=RequestMethod.GET)
 	public String loginForm(){
 		logger.info("login 페이지 열림");
-		return "index";
+		return "store/login";
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.POST)
+	@RequestMapping(value="/store/login", method=RequestMethod.POST)
 	public String login(String sid, String spw, HttpSession session, Model model){
 		int result = storeService.login(sid, spw);
 		logger.info("login 페이지 열림2");
@@ -54,60 +54,47 @@ public class StoreController {
 			
 			model.addAttribute("error", "LOGIN_FAIL_SPW");
 			logger.info("login_실패");
-			return "index";
+			return "store/login";
 			
 		} else if (result == StoreService.LOGIN_FAIL_SID) {
 			
 			model.addAttribute("error", "LOGIN_FAIL_SID");
 			logger.info("login_실패");
-			return "index";
+			return "store/login";
 			
 		} else {
 			
 			session.setAttribute("login", sid);
 			logger.info("login_성공");
-			return "redirect:/index";
+			return "redirect:/";
 		}
 		
 		
 	}
 	
-	@RequestMapping(value="/findSid", method=RequestMethod.GET)
+	@RequestMapping(value="/store/findSid", method=RequestMethod.GET)
 	public String findSidForm(){
 		return "store/findSidForm";
 	}
 	
-	@RequestMapping(value="/findSid", method=RequestMethod.POST)
+	@RequestMapping(value="/store/findSid", method=RequestMethod.POST)
 	public String findSid(String semail, Model model, HttpSession session){
 		String sid = storeService.findSid(semail);
 		if (sid == null) {
-			model.addAttribute("error", "이메일 not found");
+			model.addAttribute("error", "not found");
 			return "store/findSidForm";
 		}
 		session.setAttribute("findSid", sid);
 		return "store/resultFindSid";
 	}
+
 	
-	
-	@RequestMapping(value="/resultFindSid", method=RequestMethod.GET)
-	public String resultFindSid(){
-		return "store/resultFindSid";
-	}
-	
-	@RequestMapping(value="/resultFindSid", method=RequestMethod.POST)
-	public String resultFindSid(String findSid, Model model, HttpSession session){
-		String sid = (String)session.getAttribute(findSid);
-		
-		return "redirect:/";
-	}
-	
-	
-	@RequestMapping(value="/findSpw", method=RequestMethod.GET)
+	@RequestMapping(value="/store/findSpw", method=RequestMethod.GET)
 	public String findSpwForm(){
 		return "store/findSpwForm";
 	}
 	
-	@RequestMapping(value="/findSpw", method=RequestMethod.POST)
+	@RequestMapping(value="/store/findSpw", method=RequestMethod.POST)
 	public String findSpw(String sid, String semail, Model model, HttpSession session){
 		String spw = storeService.findSpw(sid, semail);
 		if (spw == null) {
@@ -118,25 +105,13 @@ public class StoreController {
 		return "store/resultFindSpw";
 	}
 	
-	@RequestMapping(value="/findResultSpw", method=RequestMethod.GET)
-	public String findResultSpw(){
-		return "store/findResultSpw";
-	}
-	
-	@RequestMapping(value="/findResultSpw", method=RequestMethod.POST)
-	public String findResultSpw(String findSpw, Model model, HttpSession session){
-		String spw = (String) session.getAttribute(findSpw);
-		return "redirect:/";
-	}
-	
-	
-	@RequestMapping(value="/join", method=RequestMethod.GET)
+	@RequestMapping(value="/store/join", method=RequestMethod.GET)
 	public String joinForm(){
 		logger.info("joinForm 진입 성공");
 		return "store/joinForm";
 	}
 	
-	@RequestMapping(value="/join",method=RequestMethod.POST)
+	@RequestMapping(value="/store/join",method=RequestMethod.POST)
 	public String join(Store store,Sphoto sphoto, HttpSession session){
 		try {
 			int result = storeService.join(store);
@@ -276,7 +251,7 @@ public class StoreController {
 	}
 	
 	
-	@RequestMapping("/withdraw")
+	@RequestMapping("/store/withdraw")
 	public String withdraw(HttpSession session){
 		return "store/index";
 	}
