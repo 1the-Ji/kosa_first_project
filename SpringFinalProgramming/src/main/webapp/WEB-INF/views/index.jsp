@@ -20,7 +20,7 @@
 				
 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
-	</head>
+	</head> 
 	<body>
 		<div class="wrap">
 			<!-- nav 영역을 호출할 버튼  -->
