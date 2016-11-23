@@ -53,4 +53,9 @@ public class EventService {
 	public List<Event> getList(String sid){
 		return eventDao.selectAll(sid);
 	}
+	
+	/*android List*/
+	public List<Event> getEventList(String sid){
+		return eventDao.selectAllEvent(sid);
+	}
 }

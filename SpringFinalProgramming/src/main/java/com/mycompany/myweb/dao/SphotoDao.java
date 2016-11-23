@@ -87,6 +87,7 @@ public class SphotoDao {
 				Sphoto sphoto = new Sphoto();
 				sphoto.setSpic_id(rs.getInt("spic_id"));
 				sphoto.setSpic_savedfile(rs.getString("spic_savedfile"));
+				sphoto.setSid(rs.getString("sid"));
 				sphoto.setSpic_mimetype(rs.getString("spic_mimetype"));
 				return sphoto;
 			}

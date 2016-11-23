@@ -96,5 +96,29 @@ public class EventDao {
 		);
 		return list;
 	}
+	
+	//김정호 안드로이드 이벤트 리스트 받는 쿼리 작성
+	public List<Event> selectAllEvent(String sid){
+		String sql = "select eid, estartperiod, elastperiod,etitle, econtents, esavedfile, emimetype, sid from event where sid=?";
+		List<Event> list = jdbcTemplate.query(sql, new Object[]{sid}, new RowMapper<Event>(){
+			
+			@Override
+			public Event mapRow(ResultSet rs, int row) throws SQLException {
+				Event event = new Event();
+				event.setEid(rs.getInt("eid"));
+				event.setEstartperiod(rs.getDate("estartperiod"));
+				event.setElastperiod(rs.getDate("elastperiod"));
+				event.setEtitle(rs.getString("etitle"));
+				event.setEcontents(rs.getString("econtents"));
+				event.setEsavedfile(rs.getString("esavedfile"));
+				event.setEmimetype(rs.getString("emimetype"));
+				event.setSid(rs.getString("sid"));
+
+				return event;
+			}
+		}
+		);
+		return list;
+	}
 }
 

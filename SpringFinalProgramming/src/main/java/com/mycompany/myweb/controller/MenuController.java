@@ -85,7 +85,7 @@ public class MenuController {
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.GET)
 	public String registerForm(HttpSession session){
-		return "/menu/registerForm";
+		return "menu/registerForm";
 	} 
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.POST)
