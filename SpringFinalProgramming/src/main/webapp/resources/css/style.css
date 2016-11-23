@@ -89,7 +89,7 @@ section>div>p>em>a>i:hover { transform:scale(1.2); opacity:1;}
 .box3>p:nth-child(10) { width:25%;	background:url(../../resources/photo/w6.jpg) no-repeat center top; background-size:cover;}
 .box3>p:nth-child(11) { width:25%;	background:#fff;	background:url(../../resources/photo/w7.jpg) no-repeat center center; background-size:cover;}
 
-/* box4 */
+/* box4 */ 
 .box4>p {	width:25%;height:25%; float:left;}
 .box4>p:nth-child(1) { width:50%;height:100%; background:#fff; background:url(../../resources/photo/k1.jpg) no-repeat center top; background-size:cover;}
 .box4>p:nth-child(2) { background:#555;}
