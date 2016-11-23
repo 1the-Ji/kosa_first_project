@@ -22,7 +22,6 @@
 			"esavedfile":"${event.esavedfile}",
 			"sid":"${event.sid}",
 			"mid":"${event.mid}"
-			
 		}
 		<c:if test="${!status.last}">,</c:if>
 	</c:forEach>
