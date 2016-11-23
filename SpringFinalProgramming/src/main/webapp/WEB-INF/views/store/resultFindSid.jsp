@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="UTF-8">
 	</head>
-	<body>
+	<body> 
 		아이디 찾기
 		<hr/>
 			아이디: ${findSid} 											<br/>
