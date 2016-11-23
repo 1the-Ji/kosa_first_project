@@ -12,7 +12,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String index(){
 		logger.info("index실행");
-		return "/sign-in";
+		return "/index";
 	}
 	
 	@RequestMapping("/index")

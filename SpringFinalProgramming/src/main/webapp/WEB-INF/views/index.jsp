@@ -188,7 +188,7 @@
 		        <h4 class="modal-title">Modal title</h4>
 		      </div>
 		      <div class="modal-body">
-		        <div class="container">
+		         <div class="container">
 				  <div  class="row col-md-6 col-md-offset-2 custyle">
 				    <table class="table table-striped custab">
 					    <thead>
@@ -234,6 +234,14 @@
 		  </div>
 		</div>
 		<!-- ################### -->  
+		
+		<!-- 윤주 -->
+		
+		
+		
+		
+		<!-- 윤주 끝 -->
+		
 			
 	</body>
 </html>
