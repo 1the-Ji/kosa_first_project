@@ -18,7 +18,6 @@ public class HomeController {
 		session.setAttribute("flag", flag);//명진 수정
 		return "index";
 	}
-<<<<<<< HEAD
 	
 	/*	
 	@RequestMapping("/index")
@@ -28,7 +27,4 @@ public class HomeController {
 		logger.info("home실행");
 		return "store/index";
 	}*/
-=======
-
->>>>>>> branch 'master' of https://github.com/JiSeungHoon/TeamRepository
 }
