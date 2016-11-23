@@ -105,18 +105,6 @@ public class StoreController {
 		return "store/resultFindSpw";
 	}
 	
-	@RequestMapping(value="/store/findResultSpw", method=RequestMethod.GET)
-	public String findResultSpw(){
-		return "store/findResultSpw";
-	}
-	
-	@RequestMapping(value="/store/findResultSpw", method=RequestMethod.POST)
-	public String findResultSpw(String findSpw, Model model, HttpSession session){
-		String spw = (String) session.getAttribute(findSpw);
-		return "redirect:/";
-	}
-	
-	
 	@RequestMapping(value="/store/join", method=RequestMethod.GET)
 	public String joinForm(){
 		logger.info("joinForm 진입 성공");
