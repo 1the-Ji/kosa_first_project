@@ -43,7 +43,7 @@
 			비밀번호  확인: <input type="password" name="" value=""><br/>
 			카페명: <input type="text" name="sname" />
 			<select name="snameBox"  onChange="getSelectValue(this.form);">
-						<option selected value="option1">직접 입력</option>
+						<option selected value="option0">직접 입력</option>
 						<option value="option1">스타벅스</option>
 						<option value="option2">탐앤탐스</option>
 						<option value="option3">할리스 커피</option>
