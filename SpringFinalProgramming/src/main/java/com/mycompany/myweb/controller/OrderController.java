@@ -58,11 +58,21 @@ public class OrderController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
 		
-		//총 금액 order_total의 ogtotalprice에 넣어주기
-		String ogid = (String) session.getAttribute("ogid");
-		int resultprice = (Integer) session.getAttribute("resultprice");
-		orderService.modifyOgprice(ogid, resultprice);
+		//그냥 맨처음 주문 리스트 보는 경우와 주문하고 나서 리스트를 보는 경우를 다뤄야 함
+		if((String) session.getAttribute("ogid")!=null){
+			if((Integer) session.getAttribute("resultprice")==null){
+				session.setAttribute("ogid",null);
+			}else{
+				//총 금액 order_total의 ogtotalprice에 넣어주기
+				String ogid = (String) session.getAttribute("ogid");
+				logger.info("ogid: "+ogid);
 				
+				int resultprice = (Integer) session.getAttribute("resultprice");
+				if(resultprice != 0){
+					orderService.modifyOgprice(ogid, resultprice);
+				}
+			}
+		}
 		
 		int intPageNo = 1;
 		if(pageNo == null){
