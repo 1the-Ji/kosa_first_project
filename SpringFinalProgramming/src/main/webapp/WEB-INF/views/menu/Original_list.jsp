@@ -14,8 +14,10 @@
    		</c:if>
    		<a href="${pageContext.servletContext.contextPath}/index">[메인ㄱㄱ]</a>
    		
-   		<table style="width:600px">
+   		<table style="width:600px" id="menulist">
+   			<dialog>
    			<tr>
+   			
    				<td>
    					<c:forEach var="menu" items="${list}">
    					<a href="info?mid=${menu.mid}">
@@ -28,6 +30,7 @@
    					</c:forEach>
    				</td>
    			</tr>
+   			</dialog>
    		</table>
    		
    		<br/><br/>
