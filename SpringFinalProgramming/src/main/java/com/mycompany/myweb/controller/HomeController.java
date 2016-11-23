@@ -18,7 +18,8 @@ public class HomeController {
 		logger.info("index실행");
 		return "index";
 	}
-/*	
+	
+	/*	
 	@RequestMapping("/index")
 	public String home(HttpSession session){//명진 수정
 		int flag = 0;//명진 수정
