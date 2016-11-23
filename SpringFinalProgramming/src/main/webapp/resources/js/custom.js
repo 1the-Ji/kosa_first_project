@@ -16,8 +16,6 @@
 		$("section>div").removeClass("on");
 		$("section>div").eq(i).addClass("on");
 	});		
-	
-	
 });
 
 

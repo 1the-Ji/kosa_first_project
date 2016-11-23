@@ -2,19 +2,24 @@
 <!DOCTYPE html >
 <html>
 	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />	
 		<title> ex3 step6 </title>
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-		
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">		
 		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />	
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/prefixfree.min.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/custom.js"></script>
-		
 		<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css"> 
+    	<link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" >
+    	<link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet"/>
+	    <link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet"/>
+		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>  		
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/custom.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/bootstrap.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/waves.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/admin.js"></script>
+				
+		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
 	</head>
 	<body>
 		<div class="wrap">
@@ -31,7 +36,7 @@
 					<li><a href="#">Order</a></li>
 				</ul>
 				<div style="position:relative; top:90%;" class="form-group text-center">
-                 <a href="store/login"><button class="btn btn-success btn-login-submit">Login</button></a>
+                 <a id="btnLogin" href="#"><button class="btn btn-success btn-login-submit">Login</button></a>
                 </div>
                 <div style="position:relative; top:90%;" class="form-group text-center">
                  <a href="/"><button class="btn btn-success btn-login-submit">LoginTest</button></a>
@@ -118,6 +123,63 @@
 				</div>
 			</section>
 		</div>
+		
+		<!-- ######### Login Modal ########## -->
+		<div id="loginModal" class="modal fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document"  style="left: 100px; position: relative;">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Admin<b>BSB</b></h4>
+		      </div>
+		      <div class="modal-body">
+				<form id="sign_in" method="POST">
+				    <div class="msg">Sign in to start your session</div>
+				    <div class="input-group">
+				        <span class="input-group-addon">
+				            <i class="material-icons">person</i>
+				        </span>
+				        <div class="form-line">
+				            <input type="text" class="form-control" name="sid" placeholder="Username" required autofocus>
+				        </div>
+				    </div>
+				    <div class="input-group">
+				        <span class="input-group-addon">
+				            <i class="material-icons">lock</i>
+				        </span>
+				        <div class="form-line">
+				            <input type="password" class="form-control" name="spw" placeholder="Password" required>
+				        </div>
+				    </div>
+				    <div class="row">
+				        <div class="col-xs-8 p-t-5">
+				            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+				            <label for="rememberme">Remember Me</label>
+				        </div>
+				        <div class="col-xs-4">
+				            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+				        </div>
+				    </div>
+				    <div class="row m-t-15 m-b--20">
+				        <div class="col-xs-6">
+				            <a href="join">Register Now!</a>
+				        </div>
+				        <div class="col-xs-6 align-right">
+				          <a href="findSid">Forgot ID</a> / <a href="findSpw">Password</a>
+				        </div>
+				    </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <!-- 
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button> 
+		        -->
+		      </div>
+		    </div>
+		  </div>
+		</div>   
+		<!-- ################### -->  		
 	</body>
 </html>
 
