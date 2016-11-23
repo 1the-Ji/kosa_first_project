@@ -46,7 +46,8 @@
 		</c:forEach>
 		</table>
 		
-		<form method="get" action="/myweb/index#">
+		<!-- 중요 -->
+		<form method="get" action="/myweb/#">
 			<input type="submit" value="결제"/>
 		</form>
 		

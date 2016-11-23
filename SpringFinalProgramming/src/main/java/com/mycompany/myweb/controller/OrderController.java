@@ -58,21 +58,29 @@ public class OrderController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
 		
+		String ogid = null; int resultprice = 0;
 		//그냥 맨처음 주문 리스트 보는 경우와 주문하고 나서 리스트를 보는 경우를 다뤄야 함
 		if((String) session.getAttribute("ogid")!=null){
 			if((Integer) session.getAttribute("resultprice")==null){
 				session.setAttribute("ogid",null);
 			}else{
 				//총 금액 order_total의 ogtotalprice에 넣어주기
-				String ogid = (String) session.getAttribute("ogid");
+				ogid = (String) session.getAttribute("ogid");
 				logger.info("ogid: "+ogid);
-				
-				int resultprice = (Integer) session.getAttribute("resultprice");
+					
+				resultprice = (Integer) session.getAttribute("resultprice");
 				if(resultprice != 0){
 					orderService.modifyOgprice(ogid, resultprice);
+					
 				}
 			}
 		}
+		
+		/*//총 금액 order_total의 ogtotalprice에 넣어주기
+		String ogid = (String) session.getAttribute("ogid");
+		int resultprice = (Integer) session.getAttribute("resultprice");
+		orderService.modifyOgprice(ogid, resultprice);*/
+				
 		
 		int intPageNo = 1;
 		if(pageNo == null){
@@ -240,6 +248,7 @@ public class OrderController {
 	@RequestMapping(value="/orderItems",method=RequestMethod.GET)
 	public String orderForm(String pageNo, Model model, HttpSession session){
 		int flag = (Integer) session.getAttribute("flag");
+		logger.info("flag: "+flag);
 		count = flag;
 		session.setAttribute("flag",1);
 		
@@ -248,7 +257,8 @@ public class OrderController {
 		
 		count++;
 		
-		if(count==1){			
+		if(count==1){
+			logger.info("이쪽으로 옴");
 			//새로운 ogid 여기서 부터 생성되야 함
 			//sid, ogid 유지되야 함
 			//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
@@ -276,8 +286,8 @@ public class OrderController {
 			
 			orderService.addOrder(order);
 		}
-		
-
+		logger.info("저쪽으로 감");
+		logger.info("count:" + count);	
 		//---------
 		int intPageNo = 1;
 		if (pageNo == null) {
@@ -307,8 +317,6 @@ public class OrderController {
 		}
 		
 		List<Menu> menuList = menuService.list(intPageNo, rowsPerPage, sid);
-		logger.info("intPageNo : "+intPageNo);
-		logger.info("rowsPerPage : "+rowsPerPage);
 		
 		model.addAttribute("sid",sid);
 		model.addAttribute("pageNo", intPageNo);
@@ -501,7 +509,6 @@ public class OrderController {
 			long time = System.currentTimeMillis(); double random = Math.random();
 			ogid = ""+sid+time+random;
 			session.setAttribute("ogid", ogid);
-
 			logger.info("ogid: "+ogid);
 			logger.info("mid: "+mid);
 			logger.info("sid: "+sid);
