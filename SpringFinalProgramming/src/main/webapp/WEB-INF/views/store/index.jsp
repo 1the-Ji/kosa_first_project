@@ -94,7 +94,7 @@
 					<p></p>
 				</div>
 				
-				<!-- 다섯 번째 박스 --><!-- 명진 -->
+				<!-- 다섯 번째 박스 -->
 				<div class="box5">
 					<p><strong>Vogue Homme</strong></p>
 					<p></p>
