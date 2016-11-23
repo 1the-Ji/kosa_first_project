@@ -3,14 +3,17 @@
 <html>
 	<head>
 		<title> ex3 step6 </title>
+			   
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">	
+		<link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet"/>		
 		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />	
+		
 		<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css"> 
     	<link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" >
     	<link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet"/>
-	    <link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet"/>
+
 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>  		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/custom.js"></script>
@@ -35,13 +38,9 @@
 					<li><a href="#">Event</a></li>
 					<li><a href="#">Order</a></li>
 				</ul>
-				<div style="position:relative; top:90%;" class="form-group text-center">
+				<div style="position:relative; top:80%;" class="form-group text-center">
                  <a id="btnLogin" href="#"><button class="btn btn-success btn-login-submit">Login</button></a>
                 </div>
-                <div style="position:relative; top:90%;" class="form-group text-center">
-                 <a href="/"><button class="btn btn-success btn-login-submit">LoginTest</button></a>
-                </div>
-
 			</nav>
 			
 			<!-- 3개의 컨텐츠 박스가 들어갈 section 영역 -->
@@ -125,7 +124,7 @@
 		</div>
 		
 		<!-- ######### Login Modal ########## -->
-		<div id="loginModal" class="modal fade" tabindex="-1" role="dialog">
+		<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" >
 		  <div class="modal-dialog" role="document"  style="left: 100px; position: relative;">
 		    <div class="modal-content">
 		      <div class="modal-header">
