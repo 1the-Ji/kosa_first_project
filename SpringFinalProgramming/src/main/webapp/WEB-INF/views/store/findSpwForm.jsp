@@ -19,17 +19,16 @@
 			rel="stylesheet" />
 	</head>
 	<body>
-		로그인
+		비밀번호 찾기
 		<hr/>
 		<form method="post"><%--action=~ 이 없으면 현재 넘어간 요청경로로 다시 이동하다.--%>
 			아이디: <input type="text" name="sid"><br/>
 			이메일: <input type="email" name="semail"><br/>
 			${error}
 			<input type="submit" value="찾기"/>
-			<a href="../myweb"> <input type="button" value="돌아가기"/> </a>
+			<a href="login"> <input type="button" value="돌아가기"/> </a>
 		</form>
 		
-		<a href ="${pageContext.servletContext.contextPath}/store/join">회원 가입</a><br/><%--상대경로 --%>
 		<a href ="findSid">아이디 찾기</a><br/>											<%--절대경로 --%>
 		
 	</body>
