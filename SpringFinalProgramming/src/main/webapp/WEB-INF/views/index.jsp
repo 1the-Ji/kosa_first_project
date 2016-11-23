@@ -84,7 +84,7 @@
 					<p></p>
 					<p></p>
 					<p></p>
-					<p><span><a href="${pageContext.servletContext.contextPath}/menu/list" class="btn-modal">메뉴리스트</a></span></p>
+					<p><span><a href="${pageContext.servletContext.contextPath}/menu/list">메뉴리스트</a></span></p>
 					<p></p>
 					<p><span><a href="#">메뉴옵션</a></span></p>
 					<p></p>
