@@ -131,6 +131,14 @@
 		
 		<%@ include file="event/eventModal.jsp" %>
 		<%@ include file="order/orderModal.jsp" %>
+		<%@ include file="order/detailListModal.jsp" %>
+		<%-- <%@ include file="order/termListModal.jsp" %>
+		<%@ include file="order/orderForm1Modal.jsp" %>
+		<%@ include file="order/orderForm2Modal.jsp" %>
+		<%@ include file="order/mgroupCoffModal.jsp" %>
+		<%@ include file="order/mgroupTeaModal.jsp" %>
+		<%@ include file="order/mgroupDigertModal.jsp" %>
+		<%@ include file="order/mnameSearchModal.jsp" %> --%>
 	</body>
 </html>
 

@@ -1,8 +1,15 @@
 $(function() {
 	$(".detailList").on("click", function() {
-		$("#orderModal").modal("hide");
-		$("#detailListModal").modal("show");
+		$("#orderModal").css("opacity","0.5");
+		$("#detailListModal").modal({
+			backdrop:"static",
+			show:true
+		});
 	});
+	$("#detailListModal").on('hidden.bs.modal',function(){
+		$("#orderModal").css("opacity","1");
+	})
+	
 	
 	$("#orderForm1").on("click", function() {
 		$("#orderModal").modal("hide");
