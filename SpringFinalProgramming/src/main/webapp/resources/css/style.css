@@ -18,8 +18,8 @@ img {border:0;}
 }
 
 /* 카테고리 그룹 */
-nav { position:fixed; width:150px;height:100%; background:#eee;	z-index:2;	transform:rotateY(120deg); transform-origin:left center; opacity:0; z-index:2;	transition:all 0.8s;}
-nav.on {	transform:rotateY(15deg); opacity:1;}
+nav { position:fixed; width:250px;height:100%; background:orange;	z-index:2;	opacity:0; z-index:2;	transition:all 0.8s;}
+nav.on {opacity:1;}
 
 /* 로고 */
 nav h1 { width:100px; position:absolute; top:80px; left:50%; margin-left:-50px;}
@@ -52,18 +52,18 @@ section>div>p>em>a>i:hover { transform:scale(1.2); opacity:1;}
 /* box1 */
 .box1>p {	width:25%;height:25%; float:left;}
 .box1>p:nth-child(1) { width:50%;height:100%; background:#fff; background:url(../../resources/photo/k1.jpg) no-repeat center top; background-size:cover;}
-.box1>p:nth-child(2) { background:#555;}
+.box1>p:nth-child(2) { background:background:url(../../resources/photo/w2.jpg) no-repeat center center; background-size:cover;}
 .box1>p:nth-child(3) { background:url(../../resources/photo/k2.jpg) no-repeat center center; background-size:cover;}
-.box1>p:nth-child(4) { width:50%; background:#222;}
+.box1>p:nth-child(4) { width:50%; background:url(../../resources/photo/w7.jpg) no-repeat center center; background-size:cover;}
 .box1>p:nth-child(5) { height:50%; background:url(../../resources/photo/k3.jpg) no-repeat center top; background-size:cover;}
-.box1>p:nth-child(6) { background:#777;}
+.box1>p:nth-child(6) { background:url(../../resources/photo/w5.jpg) no-repeat center center; background-size:cover;}
 .box1>p:nth-child(7) { background:url(../../resources/photo/k4.jpg) no-repeat center center;	background-size:cover;}
 
 /* box2 */
 .box2>p {	height:25%;	float:left;	text-align:center;	position:relative;}
-.box2>p:nth-child(1) { width:50%; background-color:#333;}
+.box2>p:nth-child(1) { width:50%; background:url(../../resources/photo/k2.jpg) no-repeat center center; background-size:cover;}
 .box2>p:nth-child(2) { width:25%; background:#ccc; background:url(../../resources/photo/m1.jpg) no-repeat right center; background-size:cover;}
-.box2>p:nth-child(3) { width:25%; background:#444;	}
+.box2>p:nth-child(3) { width:25%; background:url(../../resources/photo/m2.jpg) no-repeat center center; background-size:cover;	}
 .box2>p:nth-child(3) ul { position:absolute; top:50%;}
 .box2>p:nth-child(4) { width:50%;height:50%;background:url(../../resources/photo/m2.jpg) no-repeat center top; background-size:cover; float:right}
 .box2>p:nth-child(5) { width:25%;background:url(../../resources/photo/m3.jpg) no-repeat left center; background-color:#fff; background-size:cover; float:right}

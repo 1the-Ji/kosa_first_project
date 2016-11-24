@@ -254,6 +254,7 @@ public class OrderController {
 		
 		//sid를 참조하는 mid를 통한 모든 메뉴 리스트를 model에 담아 넘겨야 함(주문 눌렀을 때 전체 보기)
 		String sid = (String) session.getAttribute("login");
+		logger.info("sid : "+sid);//문제
 		
 		count++;
 		
@@ -268,6 +269,7 @@ public class OrderController {
 			long time = System.currentTimeMillis(); double random = Math.random();
 			ogid = ""+sid+time+random;
 			session.setAttribute("ogid", ogid);		
+			logger.info("ogid : "+ogid);
 			
 			//나중에 새로고침 계속 했을 때 쓸모없는 주문 데이터 삽입을 방지하기 위해서
 			//totalprice가 0인 order_table 데이터는 지울 수 있는 코드 삽입(중요!!!)
@@ -276,7 +278,7 @@ public class OrderController {
 			//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)(중요!!!!!!!!!!!!!!!!!!!!)
 			//위의 두 데이터는 임의의 테스트 데이터(user_id, oghowpay)로 대체
 			Order order = new Order();	
-			ogid = (String) session.getAttribute("ogid");	
+			ogid = (String) session.getAttribute("ogid");	 logger.info("ogid : "+ogid);
 			
 			order.setOgid(ogid);
 			order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
@@ -473,67 +475,6 @@ public class OrderController {
 		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
 		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
 		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
-		
-		
-		/*//Order_Total 테이블을 추가해야 함(ogid 유지해야 함)
-		//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)
-		//위의 두 데이터는 임의의 테스트 데이터로 대체
-		Order order = new Order();
-		String sid = (String) session.getAttribute("login");
-		
-		//ogid 가져옴
-		//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
-		String ogid=null;
-		ogid = (String) session.getAttribute("ogid");
-		
-		
-		logger.info("ogid: "+ogid);
-		logger.info("mid: "+mid);
-		logger.info("sid: "+sid);
-		logger.info("ordercount: "+ordercount);
-		
-		order.setOgid(ogid);
-		order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
-		order.setUser_id("user1");
-		order.setSid(sid);
-		order.setOghowpay("카드 결제");
-		orderService.addOrder(order);
-		//logger.info("ogtotalprice : "+order.getOgtotalprice());
-		//logger.info("ogtime : "+order.getOgtime());
-		//logger.info("user_id : "+order.getUser_id());
-		//logger.info("sid : "+order.getSid());
-		//logger.info("oghowpay : "+order.getOghowpay());
-		*/
-		/*if(session.getAttribute("ogid")==null){
-			logger.info("여기1");
-			long time = System.currentTimeMillis(); double random = Math.random();
-			ogid = ""+sid+time+random;
-			session.setAttribute("ogid", ogid);
-			logger.info("ogid: "+ogid);
-			logger.info("mid: "+mid);
-			logger.info("sid: "+sid);
-			logger.info("ordercount: "+ordercount);
-			
-			order.setOgid(ogid);
-			order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
-			order.setUser_id("user1");
-			order.setSid(sid);
-			order.setOghowpay("카드 결제");
-			orderService.addOrder(order);
-			//logger.info("ogtotalprice : "+order.getOgtotalprice());
-			//logger.info("ogtime : "+order.getOgtime());
-			//logger.info("user_id : "+order.getUser_id());
-			//logger.info("sid : "+order.getSid());
-			//logger.info("oghowpay : "+order.getOghowpay());
-			
-		}else{
-			logger.info("여기2");
-			ogid = (String) session.getAttribute("ogid");
-		}*/
-		
-		//ogid 가져옴
-		//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
-		
 		
 		return "redirect:/order/orderItems";
 	}

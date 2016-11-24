@@ -10,8 +10,8 @@
 	// nav 영역안의 메뉴 선택시 실행 될 모션
 	$("nav li").on("click",function(){
 		$(".btnMenu").fadeIn();
-		$("section").removeClass("on");
-		$("nav").removeClass("on");	
+		//$("section").removeClass("on");
+		//$("nav").removeClass("on");	
 		var i = $(this).index();			
 		$("section>div").removeClass("on");
 		$("section>div").eq(i).addClass("on");
