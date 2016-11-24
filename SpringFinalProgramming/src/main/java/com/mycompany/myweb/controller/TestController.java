@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.myweb.dto.Event;
+import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.dto.Sphoto;
 import com.mycompany.myweb.dto.Store;
 import com.mycompany.myweb.service.EventService;
+import com.mycompany.myweb.service.MenuService;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
 
@@ -30,6 +32,9 @@ public class TestController {
 	
 	@Autowired
 	private SphotoService sphotoService;
+	
+	@Autowired
+	private MenuService menuService;
 	
 	@RequestMapping("/eventAndroid")
 	public String getEvent(int sbeacon, Model model){
@@ -70,4 +75,12 @@ public class TestController {
 		
 		return "android/sphotoAndroid";
 	}
+	
+	/*@RequestMapping("/menuAndroid")
+	public String getMenu(String sid){
+		
+		List<Menu> list = menuService.list(pageNo, rowsPerPage, sid);
+		
+		return "android/menuAndroid";
+	}*/
 }
