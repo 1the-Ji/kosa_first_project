@@ -254,6 +254,7 @@ public class OrderController {
 		
 		//sid를 참조하는 mid를 통한 모든 메뉴 리스트를 model에 담아 넘겨야 함(주문 눌렀을 때 전체 보기)
 		String sid = (String) session.getAttribute("login");
+		logger.info("sid : "+sid);//문제
 		
 		count++;
 		
@@ -268,6 +269,7 @@ public class OrderController {
 			long time = System.currentTimeMillis(); double random = Math.random();
 			ogid = ""+sid+time+random;
 			session.setAttribute("ogid", ogid);		
+			logger.info("ogid : "+ogid);
 			
 			//나중에 새로고침 계속 했을 때 쓸모없는 주문 데이터 삽입을 방지하기 위해서
 			//totalprice가 0인 order_table 데이터는 지울 수 있는 코드 삽입(중요!!!)
@@ -276,7 +278,7 @@ public class OrderController {
 			//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)(중요!!!!!!!!!!!!!!!!!!!!)
 			//위의 두 데이터는 임의의 테스트 데이터(user_id, oghowpay)로 대체
 			Order order = new Order();	
-			ogid = (String) session.getAttribute("ogid");	
+			ogid = (String) session.getAttribute("ogid");	 logger.info("ogid : "+ogid);
 			
 			order.setOgid(ogid);
 			order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
