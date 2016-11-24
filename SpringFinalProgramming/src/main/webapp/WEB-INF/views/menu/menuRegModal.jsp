@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<div id="menuRegModal" class="modal fade" role="dialog" >
-  <div class="modal-dialog" style="width:900px; height:600px;" tabindex="-1" role="document">
+<div id="menuRegModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document" style="width:800px;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><b>MenuList</b></h4>
+        <h4 class="modal-title"><b>MenuReg</b></h4>
       </div>
       <div class="modal-body">
       	<form method="post" enctype="multipart/form-data">
@@ -48,12 +48,10 @@
 	   		</table>
 		 </form>
       </div>
-      
       <div class="modal-footer">
 	      <button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
 	      <button type="button" class="btn btn-default" data-dismiss="modal">초기화</button>
       </div>
-      
     </div>
   </div>
 </div> 

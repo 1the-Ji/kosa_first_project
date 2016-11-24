@@ -9,15 +9,14 @@
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">	
-		<link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet"/>		
+		<link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet"/>	
 		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />	
 		
 		<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css"> 
     	<link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" >
     	<link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet"/>
 
-		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/> 
-		<link href="${pageContext.servletContext.contextPath}/resources/css/menuModal.css" rel="stylesheet"/> 		
+		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>  		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/custom.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/bootstrap.js"></script>
@@ -26,12 +25,11 @@
 				
 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
-
-		<%--명진 --%><link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css">
-		<%--명진 --%><script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/order_lmj.js"></script>
-		<%--명진 --%><link rel="stylesheet" href= "${pageContext.servletContext.contextPath}/resources/css/lmj1.css"/>	
-
+		
+		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>		
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>		
 	</head> 
 	<body>
 		<div class="wrap">
@@ -127,19 +125,12 @@
 		<%-- Modal --%>
 		<%@ include file="store/loginModal.jsp" %>
 		<%@ include file="store/storeModal.jsp" %>
+		
 		<%@ include file="menu/menuModal.jsp" %>
 		<%@ include file="menu/menuRegModal.jsp" %>
-		<%@ include file="event/eventModal.jsp" %>
-		<%@ include file="order/orderModal.jsp" %><%--이명진 --%>
-		<%@ include file="order/detailListModal.jsp" %><%--이명진 --%>
-		<%@ include file="order/termListModal.jsp" %><%--이명진 --%>
-		<%@ include file="order/orderForm1Modal.jsp" %><%--이명진 --%>
-		<%@ include file="order/orderForm2Modal.jsp" %><%--이명진 --%>
-		<%@ include file="order/mgroupCoffModal.jsp" %><%--이명진 --%>
-		<%@ include file="order/mgroupTeaModal.jsp" %><%--이명진 --%>
-		<%@ include file="order/mgroupDigertModal.jsp" %><%--이명진 --%>
-		<%@ include file="order/mnameSearchModal.jsp" %><%--이명진 --%>
 		
+		<%@ include file="event/eventModal.jsp" %>
+		<%@ include file="order/orderModal.jsp" %>
 	</body>
 </html>
 

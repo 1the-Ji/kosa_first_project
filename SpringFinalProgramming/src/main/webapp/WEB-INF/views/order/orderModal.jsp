@@ -1,9 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%--이명진 --%>
-
-<div id="orderModal" class="modal fade" tabindex="-1" role="dialog">
+<div id="orderModal" class="modal fade" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,61 +8,59 @@
         <h4 class="modal-title"><b>주문 내역 전체 보기</b></h4>
       </div>
       <div class="modal-body">
-		<%--여기부터 --%>
-		<div class="wrapper" align="center">
-		<form action = "/myweb/order/termList" accept-charset="utf-8" name = "termList" method = "post"> 
-           <fieldset style = "width:350"><br>
-                    조회 날짜 : <input type = "date" min = "1987-07-01" max = "2020-08-01" name = "date1" step = "1">
-                    ~ <input type = "date" min = "1987-07-01" max = "2020-08-01" name = "date2" step = "1">
-                    <input id="termList" type = "submit" onclick="termList()" value = "검색"/>
-                    <input type = "reset" value = "리셋"/>
-            </fieldset>
-    	</form>
-    	
-        <table id="acrylic">
-            <thead>
-                <tr>
-                    <th>주문번호</th>
-                    <th>고객아이디</th>
-                    <th>주문시간</th>
-                    <th>총 가격</th>
-                    <th>결제 방식</th>
-                </tr>
-            </thead>
-            <tbody>
-            	<%--테스트 데이터 --%>
-            		<tr>
-                    	<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="#">주문번호1</a></td>
-                    	<td data-label="고객아이디">user1</td>
-                    	<td data-label="주문시간">2016-11-26</td>
-                    	<td data-label="총 가격">23000</td>
-                    	<td data-label="결제 방식">현금결제</td>
-                	</tr>
-                	<tr>
-                    	<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="#">주문번호2</a></td>
-                    	<td data-label="고객아이디">user2</td>
-                    	<td data-label="주문시간">2016-11-28</td>
-                    	<td data-label="총 가격">30000</td>
-                    	<td data-label="결제 방식">카드결제</td>
-                	</tr>
-            	<c:forEach var="orderList" items="${list}">
-                	<tr>
-                    	<td class="detailList" data-label="주문번호"><a  type="button" class="btn btn-primary" href="#">${orderList.ogid}</a></td>
-                    	<td data-label="고객아이디">${orderList.user_id}</td>
-                    	<td data-label="주문시간">${orderList.ogtime}</td>
-                    	<td data-label="총 가격">${orderList.ogtotalprice}</td>
-                    	<td data-label="결제 방식">${orderList.oghowpay}</td>
-                	</tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
-		
-      <%--주문하기 다이얼로그 위한 버튼--%>
-      <a id="orderForm1" type="button" class="btn btn-primary" href="#">주문하기</a>
 
-		<%--pagination--%>
+		<div class="wrapper" align="center">
+			<form action = "/myweb/order/termList" accept-charset="utf-8" name = "termList" method = "post"> 
+	           <fieldset style = "width:350"><br>
+	                    조회 날짜 : <input type = "date" min = "1987-07-01" max = "2020-08-01" name = "date1" step = "1">
+	                    ~ <input type = "date" min = "1987-07-01" max = "2020-08-01" name = "date2" step = "1">
+	                    <input id="termList" type = "submit" onclick="termList()" value = "검색"/>
+	                    <input type = "reset" value = "리셋"/>
+	            </fieldset>
+	    	</form>
+	    	
+	        <table id="acrylic">
+	            <thead>
+	                <tr>
+	                    <th>주문번호</th>
+	                    <th>고객아이디</th>
+	                    <th>주문시간</th>
+	                    <th>총 가격</th>
+	                    <th>결제 방식</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	            	<%--테스트 데이터 --%>
+	            		<tr>
+	                    	<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="#">주문번호1</a></td>
+	                    	<td data-label="고객아이디">user1</td>
+	                    	<td data-label="주문시간">2016-11-26</td>
+	                    	<td data-label="총 가격">23000</td>
+	                    	<td data-label="결제 방식">현금결제</td>
+	                	</tr>
+	                	<tr>
+	                    	<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="#">주문번호2</a></td>
+	                    	<td data-label="고객아이디">user2</td>
+	                    	<td data-label="주문시간">2016-11-28</td>
+	                    	<td data-label="총 가격">30000</td>
+	                    	<td data-label="결제 방식">카드결제</td>
+	                	</tr>
+	            	<c:forEach var="orderList" items="${list}">
+	                	<tr>
+	                    	<td class="detailList" data-label="주문번호"><a  type="button" class="btn btn-primary" href="#">${orderList.ogid}</a></td>
+	                    	<td data-label="고객아이디">${orderList.user_id}</td>
+	                    	<td data-label="주문시간">${orderList.ogtime}</td>
+	                    	<td data-label="총 가격">${orderList.ogtotalprice}</td>
+	                    	<td data-label="결제 방식">${orderList.oghowpay}</td>
+	                	</tr>
+	                </c:forEach>
+	            </tbody>
+	        </table>
+    	</div>
+		<a id="orderForm1" type="button" class="btn btn-primary" href="#">주문하기</a>
+      </div>
       <div class="modal-footer">
+
       	<a type="button" class="btn btn-primary" href="list?pageNo=1">처음</a>
       	
 		<c:if test="${groupNo>1 }">
@@ -81,16 +76,8 @@
 		</c:if>
 		
 		<a type="button" class="btn btn-primary" href="list?pageNo=${totalPageNo }">맨끝</a>  
-      </div>
-      
-      <%--여기까지 --%>
-
 
       </div>
-      
-      
-    
     </div>
   </div>
 </div> 
-
