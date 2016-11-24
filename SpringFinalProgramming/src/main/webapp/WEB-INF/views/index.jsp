@@ -16,7 +16,8 @@
     	<link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" >
     	<link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet"/>
 
-		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>  		
+		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/> 
+		<link href="${pageContext.servletContext.contextPath}/resources/css/menuModal.css" rel="stylesheet"/> 		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/custom.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/bootstrap.js"></script>
@@ -25,6 +26,7 @@
 				
 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
 	</head> 
 	<body>
 		<div class="wrap">
@@ -121,6 +123,7 @@
 		<%@ include file="store/loginModal.jsp" %>
 		<%@ include file="store/storeModal.jsp" %>
 		<%@ include file="menu/menuModal.jsp" %>
+		<%@ include file="menu/menuRegModal.jsp" %>
 		<%@ include file="event/eventModal.jsp" %>
 		<%@ include file="order/orderModal.jsp" %>
 	</body>
