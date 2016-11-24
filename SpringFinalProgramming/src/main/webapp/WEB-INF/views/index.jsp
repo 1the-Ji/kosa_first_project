@@ -27,6 +27,11 @@
 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
+
+		<%--명진 --%><link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css">
+		<%--명진 --%><script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/order_lmj.js"></script>
+		<%--명진 --%><link rel="stylesheet" href= "${pageContext.servletContext.contextPath}/resources/css/lmj1.css"/>	
+
 	</head> 
 	<body>
 		<div class="wrap">
@@ -125,7 +130,16 @@
 		<%@ include file="menu/menuModal.jsp" %>
 		<%@ include file="menu/menuRegModal.jsp" %>
 		<%@ include file="event/eventModal.jsp" %>
-		<%@ include file="order/orderModal.jsp" %>
+		<%@ include file="order/orderModal.jsp" %><%--이명진 --%>
+		<%@ include file="order/detailListModal.jsp" %><%--이명진 --%>
+		<%@ include file="order/termListModal.jsp" %><%--이명진 --%>
+		<%@ include file="order/orderForm1Modal.jsp" %><%--이명진 --%>
+		<%@ include file="order/orderForm2Modal.jsp" %><%--이명진 --%>
+		<%@ include file="order/mgroupCoffModal.jsp" %><%--이명진 --%>
+		<%@ include file="order/mgroupTeaModal.jsp" %><%--이명진 --%>
+		<%@ include file="order/mgroupDigertModal.jsp" %><%--이명진 --%>
+		<%@ include file="order/mnameSearchModal.jsp" %><%--이명진 --%>
+		
 	</body>
 </html>
 
