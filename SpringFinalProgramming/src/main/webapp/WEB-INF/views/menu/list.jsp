@@ -6,7 +6,11 @@
 <html>
    <head>
       <meta charset="UTF-8">
-       
+      
+       <%--<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css">--%>
+       <link href="${pageContext.servletContext.contextPath}/resources/css/menulist.css" rel="stylesheet"/> 
+       <script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menulist.js"></script>  
+      
       	<%-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"/>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>	
@@ -17,15 +21,15 @@
     	<link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" />
     	<link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet"/>
 
-		<link href="${pageContext.servletContext.contextPath}/resources/css/menulist.css" rel="stylesheet"/>  		
+		 		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/custom.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/bootstrap.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/waves.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/admin.js"></script>
-				
-		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menulist.js"></script> --%>
+		--%>	
+						
+		
    </head>
    <body>
    <%-- 
