@@ -6,83 +6,63 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>로그인</title>
-    <!-- CSS -->
-	    <!-- Google Fonts -->
-	    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-	    <!-- Bootstrap Core Css -->
-	    <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.css" rel="stylesheet">
-	    <!-- Waves Effect Css -->
-	    <link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" />
-	    <!-- Animation Css -->
-	    <link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet" />
-	    <!-- Custom Css -->
-	    <link href="${pageContext.servletContext.contextPath}/resources/css/style.css" rel="stylesheet">
-    <!-- CSS END -->
-    
-    <!-- SCRIPT -->
-    	<!-- Jquery Core Js -->
-	    <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.min.js"></script>
-	    <!-- Bootstrap Core Js -->
+
+	    <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 	    <script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap.js"></script>
-	    <!-- Waves Effect Plugin Js -->
-	    <script src="${pageContext.servletContext.contextPath}/resources/js/waves.js"></script>
-	    <!-- Validation Plugin Js -->
-	    <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.validate.js"></script>
-	    <!-- Custom Js -->
-	    <script src="${pageContext.servletContext.contextPath}/resources/js/admin.js"></script>
-	    <script src="${pageContext.servletContext.contextPath}/resources/js/sign-in.js"></script>
-    <!-- SCRIPT END -->
+    <style>
+    .custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
     
+    </style>
 </head>
 
-<body class="login-page">
-    <div class="login-box">
-        <div class="logo">
-            <a href="javascript:void(0);">Admin<b>BSB</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
-        </div>
-        <div class="card">
-            <div class="body">
-                <form id="sign_in" method="POST">
-                    <div class="msg">Sign in to start your session</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                            <label for="rememberme">Remember Me</label>
-                        </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
-                        </div>
-                    </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            <a href="sign-up.html">Register Now!</a>
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">Forgot Password?</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<body >
+<div class="container">
+  <div class="row col-md-6 col-md-offset-2 custyle">
+    <table class="table table-striped custab">
+	    <thead>
+	    <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+	        <tr>
+	            <th>No.</th>
+	            <th>Title</th>
+	            <th>time</th>
+	            <th>content</th>
+	            <th class="text-center">Action</th>
+	        </tr>
+	    </thead>
+         <tr>
+             <td>1</td>
+             <td>News</td>
+             <td>News Cate</td>
+             <td>new content</td>
+             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+         </tr>
+         <tr>
+             <td>2</td>
+             <td>Products</td>
+             <td>Main Products</td>
+             <td>new content</td>
+             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+         </tr>
+         <tr>
+             <td>3</td>
+             <td>Blogs</td>
+             <td>Parent Blogs</td>
+             <td>new content</td>
+             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+         </tr>
+    </table>
     </div>
+</div>
 
 </body>
 
