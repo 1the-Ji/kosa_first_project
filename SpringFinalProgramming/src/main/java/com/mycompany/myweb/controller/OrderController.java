@@ -93,7 +93,7 @@ public class OrderController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		int rowsPerPage = 10;
+		int rowsPerPage = 4;
 		int pagesPerGroup = 5;
 		int totalBoardNo = orderService.getCount();
 		int totalPageNo = totalBoardNo/rowsPerPage+((totalBoardNo%rowsPerPage!=0)?1:0);
@@ -143,7 +143,7 @@ public class OrderController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		int rowsPerPage = 10;
+		int rowsPerPage = 4;
 		int pagesPerGroup = 5;
 		int totalBoardNo = orderService.getCount();
 		int totalPageNo = totalBoardNo/rowsPerPage+((totalBoardNo%rowsPerPage!=0)?1:0);
@@ -302,7 +302,7 @@ public class OrderController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		int rowsPerPage = 8;
+		int rowsPerPage = 4;
 		int pagesPerGroup = 5;
 		
 		int totalBoardNo = menuService.getCount();
@@ -355,7 +355,7 @@ public class OrderController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		int rowsPerPage = 8;
+		int rowsPerPage = 4;
 		int pagesPerGroup = 5;
 		
 		int totalBoardNo = menuService.getCount();
@@ -401,7 +401,7 @@ public class OrderController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 			
-		int rowsPerPage = 8;
+		int rowsPerPage = 4;
 		int pagesPerGroup = 5;
 		
 		int totalBoardNo = menuService.getCount();

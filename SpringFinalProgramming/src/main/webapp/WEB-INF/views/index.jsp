@@ -29,7 +29,9 @@
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
 		
 		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>		
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>		
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/store.js"></script>
+				
 	</head> 
 	<body>
 		<div class="wrap">
@@ -46,7 +48,9 @@
 					<li><a id="btnOrder" href="#">Order</a></li>
 				</ul>
 				<div style="position:relative; top:80%;" class="form-group text-center">
-                 <a id="btnLogin" href="#"><button class="btn btn-success btn-login-submit">Login</button></a>
+                 	<a id="btnLogin" href="#">
+                 		<button class="btn btn-success btn-login-submit">Login</button>
+                 	</a>
                 </div>
 			</nav>
 			
