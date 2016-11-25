@@ -39,7 +39,7 @@
 	   			</tr>
 	   			<tr>
 	   				<td style="background-color:gold; width:70px">설명</td>
-	   				<td><input type="text" name="mcontents" style="width:600px;"></td>
+	   				<td><input type="text" name="mcontents" style="width:600px; height:300px"></td>
 	   			</tr>
 	   			<tr>
 					<td style="background-color:gold; width:70px">사진</td>
@@ -49,8 +49,8 @@
 		 </form>
       </div>
       <div class="modal-footer">
-	      <button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
-	      <button type="button" class="btn btn-default" data-dismiss="modal">초기화</button>
+	      <button class="btnMenuReg" type="button" class="btn btn-default">등록</button>
+	      <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
       </div>
     </div>
   </div>

@@ -78,14 +78,14 @@ public class MenuController {
 		model.addAttribute("endPageNo", endPageNo);
 		model.addAttribute("list", list);
 		
-		return "menu/list";
+		return "menu/menuModal";
 	
 	} // list
 	
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.GET)
 	public String registerForm(HttpSession session){
-		return "menu/registerForm";
+		return "menu/menuRegForm";
 	} 
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.POST)
@@ -105,11 +105,11 @@ public class MenuController {
 			
 			int result = menuService.write(menu);
 			logger.info(""+result);
-			return "redirect:/menu/list";		
+			return "redirect:/menu/menuModal";		
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.info(e.getMessage());
-			return "menu/registerForm";
+			return "menu/menuRegForm";
 		}
 	} // register
 	
@@ -144,14 +144,14 @@ public class MenuController {
 		Menu menu = menuService.info(mid);
 		menuService.modify(menu);
 		model.addAttribute("menu", menu);
-		return "menu/info";
+		return "menu/menuInfoModal";
 	} // info
 	
 	@RequestMapping(value="/menu/modify", method=RequestMethod.GET)
 	public String modifyForm(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		model.addAttribute("menu", menu);
-		return "menu/modify";
+		return "menu/menuModModal";
 	} // modifyForm
 	
 	
@@ -171,13 +171,13 @@ public class MenuController {
 			menu.setMmimetype(menu.getPhoto().getContentType());
 			menuService.modify(menu);
 		}catch(Exception e){}
-		return "redirect:/menu/list";
+		return "redirect:/menu/menuModal";
 	} //modify
 	
 	@RequestMapping("/menu/remove")
 	public String remove(int mid){
 		menuService.remove(mid);
-		return "redirect:/menu/list";
+		return "redirect:/menu/menuModal";
 	}
 
 } // class
