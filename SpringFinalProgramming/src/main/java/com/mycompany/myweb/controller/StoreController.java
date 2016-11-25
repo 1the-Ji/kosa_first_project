@@ -47,26 +47,32 @@ public class StoreController {
 	
 	@RequestMapping(value="/store/login", method=RequestMethod.POST)
 	public String login(String sid, String spw, HttpSession session, Model model){
+		logger.info("sid: "+sid);
+		logger.info("spw: "+spw);
+		
 		int result = storeService.login(sid, spw);
-		logger.info("login 페이지 열림2");
+		logger.info("result"+result);
 		
 		if (result == StoreService.LOGIN_FAIL_SPW) {
 			
 			model.addAttribute("error", "LOGIN_FAIL_SPW");
-			logger.info("login_실패");
+			logger.info("login_실패1");
 			return "store/login";
 			
 		} else if (result == StoreService.LOGIN_FAIL_SID) {
 			
 			model.addAttribute("error", "LOGIN_FAIL_SID");
-			logger.info("login_실패");
+			logger.info("login_실패2");
 			return "store/login";
 			
 		} else {
-			
+			String end = "success";
+			model.addAttribute("result", end);
 			session.setAttribute("login", sid);
 			logger.info("login_성공");
-			return "redirect:/";
+			String login = (String)session.getAttribute("login");
+			logger.info("login: "+login);
+			return "store/result";
 		}
 		
 		

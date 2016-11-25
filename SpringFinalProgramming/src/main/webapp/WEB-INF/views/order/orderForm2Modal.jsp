@@ -25,23 +25,67 @@
      <div class="modal-content">
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         <h4 class="modal-title"><b>주문 2차 화면</b></h4>
+         <h4 class="modal-title"><b>Order Detail SideMenu Option</b></h4>
        </div>
        <div class="modal-body">
  	<%--여기부터 --%>
- 			<c:set var="mname" value="${requestScope.menu.mname}" scope="session" /> 
-  			<c:out value="${requestScope.menu.mname}"/> <br/>
-   			<c:out value="${requestScope.menu.msavedfile}"/>&nbsp;&nbsp;
-  		<form method="post">
-  			수량 : <input type="number" name="ordercount" min="1" max="5"><br/><br/>
-  			
-  			핫or아이스: <input type="radio" name="hot_ice" value="HOT" checked> HOT &nbsp;&nbsp;
-  			
-  			<input type="submit" value="담기"/>&nbsp;&nbsp;
-  			<input type="button" onclick="alert('결제 기능 추가 예정')" value="바로 주문">
- 
- 		</form>	<c:out value="${requestScope.menu.mname}"/> <br/>
- 	
+	
+			<div class="container" style="width: 80%; height: 80%">
+				<div class="row">
+					<div class="bs-docs-example">
+						  <table>
+						  	<tr>
+						  		<th class="btn btn-default" width="100px;">사이드 종류</th>
+						  		<th width="100px;" style="padding-left: 20px;">사이드 내용</th>
+						  	</tr>
+						  	<tr>
+						  		<th class="btn btn-warning" width="100px;">HOT.ICE</th>
+						  		<th width="100px;">
+						  			<select class="selectpicker"  style="margin-left: 20px;" data-style="btn-primary" style="display: inline;">
+						      			<option>HOT</option>
+						      			<option>ICE</option>
+						  			</select>
+						  		</th>
+						  	</tr>
+						  	
+						  	<tr>
+						  		<th class="btn btn-danger" width="100px;">SIZE</th>
+						  		<th width="100px;">
+									<select class="selectpicker"  style="margin-left: 20px;" data-style="btn-info" style="display: inline;">
+						      			<option>Midium</option>
+						      			<option>Large</option>
+						      			<option>Small</option>
+						  			</select>
+								</th>
+						  	</tr>
+						  	<tr>
+						  		<th class="btn btn-warning" width="100px;">SIRUP</th>
+						  		<th width="100px;">
+						  			<select class="selectpicker"  style="margin-left: 20px;" data-style="btn-success" style="display: inline;">
+						      			<option>설탕시럽</option>
+						      			<option>딸기시럽</option>
+						      			<option>초코시럽</option>
+						  			</select>
+						  		</th>
+						  	</tr>
+						  	<tr>
+						  		<th class="btn btn-danger" width="100px;">SHOT</th>
+						  		<th>
+									<select class="selectpicker"  style="margin-left: 20px;" data-style="btn-success" style="display: inline;">
+						      			<option>샷추가1</option>
+						      			<option>샷추가2</option>
+						      			<option>샷추가3</option>
+						  				</select>
+								</th>
+						  	</tr>
+						  </table>
+						  <br/>
+						  <input class="btn btn-primary" type="submit" value="담기"/>&nbsp;&nbsp;&nbsp;
+			  			  <input class="btn btn-primary" type="button" onclick="alert('결제 기능 추가 예정')" value="바로 주문">				      
+					  </div>
+				</div>
+			</div>
+
  	<%--여기까지 --%>
  	
      </div>

@@ -15,7 +15,7 @@
 		            <i class="material-icons">person</i>
 		        </span>
 		        <div class="form-line">
-		            <input type="text" class="form-control" name="sid" placeholder="Username" required autofocus>
+		            <input id="storeId" type="text" class="form-control" name="sid" placeholder="Username" required autofocus>
 		        </div>
 		    </div>
 		    <div class="input-group">
@@ -23,7 +23,7 @@
 		            <i class="material-icons">lock</i>
 		        </span>
 		        <div class="form-line">
-		            <input type="password" class="form-control" name="spw" placeholder="Password" required>
+		            <input id="storePw" type="password" class="form-control" name="spw" placeholder="Password" required>
 		        </div>
 		    </div>
 		    <div class="row">
@@ -32,7 +32,7 @@
 		            <label for="rememberme">Remember Me</label>
 		        </div>
 		        <div class="col-xs-4">
-		            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+		            <button id="signIn" onclick="onClickLogin()" class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
 		        </div>
 		    </div>
 		    <div class="row m-t-15 m-b--20">

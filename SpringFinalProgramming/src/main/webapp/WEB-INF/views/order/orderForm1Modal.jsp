@@ -14,7 +14,7 @@
      <div class="modal-content">
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         <h4 class="modal-title"><b>주문 1차 화면&모든 메뉴 화면</b></h4>
+         <h4 class="modal-title"><b>Order Start All Menu</b></h4>
        </div>
        <div class="modal-body">
  		<%--여기부터 --%>
@@ -46,10 +46,13 @@
              </div>
          </div><br/>
          
-         <form method="post">
- 			메뉴단어검색: <input type="text" name="mname" value="">&nbsp;&nbsp;&nbsp;
+         <div>
+         		메뉴단어검색: <input id="mnameDate" type="text" name="mname" value="">&nbsp;&nbsp;&nbsp;
  					   <input id="mnameSearch" type="submit" onclick="mnameSearch()" value="검색"/>
- 		</form>
+ 		
+         </div>
+         
+ 		
  		
  		<div class="wrapper" align="center">
      	
@@ -87,7 +90,7 @@
          
          <%--다시 메인페이지로 가면서 결제 완료 됨 --%>
          <form method="get" action="/myweb/#">
- 			<input type="submit" value="결제"/>
+ 			<input class="btn btn-danger" type="submit" value="결제"/>
  		</form>
      </div>
      
