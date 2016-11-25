@@ -23,7 +23,7 @@
 	            <thead>
 	                <tr>
 	                    <th>주문번호</th>
-	                    <th>고객아이디</th>
+	                    <th>아이디</th>
 	                    <th>주문시간</th>
 	                    <th>총 가격</th>
 	                    <th>결제 방식</th>
@@ -33,14 +33,14 @@
 	            	<%--테스트 데이터 --%>
 	            		<tr>
 	                    	<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="#">주문번호1</a></td>
-	                    	<td data-label="고객아이디">user1</td>
+	                    	<td data-label="아이디">user1</td>
 	                    	<td data-label="주문시간">2016-11-26</td>
 	                    	<td data-label="총 가격">23000</td>
 	                    	<td data-label="결제 방식">현금결제</td>
 	                	</tr>
 	                	<tr>
 	                    	<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="#">주문번호2</a></td>
-	                    	<td data-label="고객아이디">user2</td>
+	                    	<td data-label="아이디">user2</td>
 	                    	<td data-label="주문시간">2016-11-28</td>
 	                    	<td data-label="총 가격">30000</td>
 	                    	<td data-label="결제 방식">카드결제</td>
@@ -48,7 +48,7 @@
 	            	<c:forEach var="orderList" items="${list}">
 	                	<tr>
 	                    	<td class="detailList" data-label="주문번호"><a  type="button" class="btn btn-primary" href="#">${orderList.ogid}</a></td>
-	                    	<td data-label="고객아이디">${orderList.user_id}</td>
+	                    	<td data-label="아이디">${orderList.user_id}</td>
 	                    	<td data-label="주문시간">${orderList.ogtime}</td>
 	                    	<td data-label="총 가격">${orderList.ogtotalprice}</td>
 	                    	<td data-label="결제 방식">${orderList.oghowpay}</td>

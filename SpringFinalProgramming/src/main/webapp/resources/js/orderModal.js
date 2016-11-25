@@ -9,19 +9,21 @@ $(function() {
 	$("#detailListModal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
 	})
-	
-	
-	$("#orderForm1").on("click", function() {
-		$("#orderModal").modal("hide");
-		$("#orderForm1Modal").modal("show");
-	});
-	
-	$(".orderForm2").on("click", function() {
-		$("#orderForm1Modal").modal("hide");
-		$("#orderForm2Modal").modal("show");
-	});
-	
 });
+
+$(function() {
+	$("#orderForm1").on("click", function() {
+		$("#orderModal").css("opacity","0.5");
+		$("#orderForm1Modal").modal({
+			backdrop:"static",
+			show:true
+		});
+	});
+	$("#orderForm1Modal").on('hidden.bs.modal',function(){
+		$("#orderModal").css("opacity","1");
+	})
+});
+
 
 $(function termList() {
 	$("#termList").on("click", function() {
