@@ -29,9 +29,15 @@
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
 		
 		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>		
+<<<<<<< HEAD
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/store.js"></script>
 				
+=======
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
+		
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
+>>>>>>> branch 'master' of https://github.com/JiSeungHoon/TeamRepository
 	</head> 
 	<body>
 		<div class="wrap">
