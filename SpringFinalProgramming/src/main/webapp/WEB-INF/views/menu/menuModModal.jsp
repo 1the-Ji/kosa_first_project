@@ -49,7 +49,7 @@
 		 </form>
       </div>
       <div class="modal-footer">
-	      <button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
+	      <button type="button" class="btn btn-default">수정</button>
 	      <button type="button" class="btn btn-default" data-dismiss="modal">초기화</button>
       </div>
     </div>
