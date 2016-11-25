@@ -133,8 +133,9 @@
 		<%@ include file="order/orderModal.jsp" %>
 		<%@ include file="order/detailListModal.jsp" %>
 		<%@ include file="order/orderForm1Modal.jsp" %>
-		<%-- <%@ include file="order/orderForm2Modal.jsp" %>
-		<%@ include file="order/termListModal.jsp" %>
+		<%@ include file="order/orderForm2Modal.jsp" %>
+		
+		<%-- <%@ include file="order/termListModal.jsp" %>
 		
 		<%@ include file="order/mgroupCoffModal.jsp" %>
 		<%@ include file="order/mgroupTeaModal.jsp" %>

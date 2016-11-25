@@ -24,12 +24,35 @@ $(function() {
 	})
 });
 
+$(function() {
+	$(".orderForm2").on("click", function() {
+		console.log("orderForm2");
+		$("#orderModal").css("opacity","0.5");
+		$("#orderForm1Modal").css("opacity","0.7");
+		$("#orderForm2Modal").modal({
+			backdrop:"static",
+			show:true
+		});
+	});
+	$("#orderForm2Modal").on('hidden.bs.modal',function(){
+		$("#orderForm1Modal").css("opacity","1");
+	})
+	
+	
+});
+
 
 $(function termList() {
 	$("#termList").on("click", function() {
-		$("#orderModal").modal("hide");
-		$("#termListModal").modal("show");
+		$("#orderModal").css("opacity","0.5");
+		$("#termListModal").modal({
+			backdrop:"static",
+			show:true
+		});
 	});
+	$("#termListModal").on('hidden.bs.modal',function(){
+		$("#orderModal").css("opacity","1");
+	})
 });
 
 

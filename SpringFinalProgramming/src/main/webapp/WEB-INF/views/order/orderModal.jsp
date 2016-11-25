@@ -5,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><b>주문 내역 전체 보기</b></h4>
+        <h4 class="modal-title"><b>All Order List</b></h4>
       </div>
       <div class="modal-body">
 
