@@ -29,7 +29,7 @@
 	          <label class="col-sm-3 control-label" for="inputSemail">이메일</label>
 	        <div class="col-sm-6">
 	          <input class="form-control" id="inputSemail" type="text" placeholder="이메일">@<input class="form-control" id="inputSemail2" type="text" value="">
-	          <select style="width:100px;margin-right:10px" name="selectEmail" id="selectEmail">
+	          <select style="width:100px;margin-right:10px" name="selectSemail" id="selectEmail">
 			     <option value="naver.com" selected>naver.com</option>
 			     <option value="hanmail.net">hanmail.net</option>
 			     <option value="hotmail.com">hotmail.com</option>
