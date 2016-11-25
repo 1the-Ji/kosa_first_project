@@ -10,14 +10,15 @@
       <div class="modal-body">
 
 		<div class="wrapper" align="center">
-			<form action = "/myweb/order/termList" accept-charset="utf-8" name = "termList" method = "post"> 
-	           <fieldset style = "width:350"><br>
-	                    조회 날짜 : <input type = "date" min = "1987-07-01" max = "2020-08-01" name = "date1" step = "1">
-	                    ~ <input type = "date" min = "1987-07-01" max = "2020-08-01" name = "date2" step = "1">
-	                    <input id="termList" type = "submit" onclick="termList()" value = "검색"/>
-	                    <input type = "reset" value = "리셋"/>
-	            </fieldset>
-	    	</form>
+			<div>
+		           <fieldset style = "width:350"><br>
+		                    조회 날짜 : <input id="datepicker1" type = "date" min = "1987-07-01" max = "2020-08-01" name = "date1" step = "1">
+		                    ~ <input id="datepicker2" type = "date" min = "1987-07-01" max = "2020-08-01" name = "date2" step = "1">
+		                    <input  id="termList" type = "submit" onclick="termList()" value = "검색"/>
+		                    <input type = "reset" value = "리셋"/>
+		            </fieldset>
+			</div>
+			
 	    	
 	        <table id="acrylic">
 	            <thead>

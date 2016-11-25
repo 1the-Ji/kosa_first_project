@@ -19,37 +19,6 @@
        <div class="modal-body">
  		<%--여기부터 --%>
  		<div class="row">
-     	<div class="btn-group btn-group-justified">
-             <div class="btn-group">
-                 <button id="mgroupAll" onclick="mgroupAll()" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-folder-close"></span>
-     			    <p>전체</p>
-                 </button>
-             </div>
-             <div class="btn-group">
-                 <button id="mgroupCoff" onclick="mgroupCoff()" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-calendar"></span>
-     			    <p>커피</p>
-                 </button>
-             </div>
-             <div class="btn-group">
-                 <button id="mgroupTea" onclick="mgroupTea()" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-globe"></span>
-     			    <p>차</p>
-                 </button>
-             </div>
-             <div class="btn-group">
-                 <button id="mgroupDigert" onclick="mgroupDigert()" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-leaf"></span>
-     			    <p>기타</p>
-                 </button>
-             </div>
-         </div><br/>
-         
-         <form method="post">
- 			메뉴단어검색: <input type="text" name="mname" value="">&nbsp;&nbsp;&nbsp;
- 					   <input id="mnameSearch" type="submit" onclick="mnameSearch()" value="검색"/>
- 		</form>
  		
  		<div class="wrapper" align="center">
      	
@@ -85,10 +54,6 @@
              </tbody>
          </table>
          
-         <%--다시 메인페이지로 가면서 결제 완료 됨 --%>
-         <form method="get" action="/myweb/#">
- 			<input type="submit" value="결제"/>
- 		</form>
      </div>
      
      <%--pagination--%>

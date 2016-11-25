@@ -46,10 +46,13 @@
              </div>
          </div><br/>
          
-         <form method="post">
- 			메뉴단어검색: <input type="text" name="mname" value="">&nbsp;&nbsp;&nbsp;
+         <div>
+         		메뉴단어검색: <input id="mnameDate" type="text" name="mname" value="">&nbsp;&nbsp;&nbsp;
  					   <input id="mnameSearch" type="submit" onclick="mnameSearch()" value="검색"/>
- 		</form>
+ 		
+         </div>
+         
+ 		
  		
  		<div class="wrapper" align="center">
      	
@@ -87,7 +90,7 @@
          
          <%--다시 메인페이지로 가면서 결제 완료 됨 --%>
          <form method="get" action="/myweb/#">
- 			<input type="submit" value="결제"/>
+ 			<input class="btn btn-danger" type="submit" value="결제"/>
  		</form>
      </div>
      
