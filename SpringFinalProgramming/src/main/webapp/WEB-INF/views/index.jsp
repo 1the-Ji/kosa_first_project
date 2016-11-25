@@ -128,6 +128,7 @@
 		
 		<%@ include file="menu/menuModal.jsp" %>
 		<%@ include file="menu/menuRegModal.jsp" %>
+		<%@ include file="menu/menuModModal.jsp" %>
 		
 		<%@ include file="event/eventModal.jsp" %>
 		<%@ include file="order/orderModal.jsp" %>
