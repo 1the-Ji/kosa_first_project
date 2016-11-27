@@ -1,7 +1,14 @@
 package com.mycompany.myweb.controller;
 
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,11 +83,55 @@ public class TestController {
 		return "android/sphotoAndroid";
 	}
 	
-	/*@RequestMapping("/menuAndroid")
-	public String getMenu(String sid){
+	@RequestMapping("/menuAndroid")
+	public String getMenu(String sid, Model model){
 		
-		List<Menu> list = menuService.list(pageNo, rowsPerPage, sid);
+		logger.info("menuAndroid 실행");
+		if(sid.equals("store444")){
+		//List<Menu> list = menuService.list(pageNo, rowsPerPage, sid);
+		List<Menu> list = new ArrayList<>();
+		list.add(new Menu(1, "커피", "아메리카노", "HOT", 3000, "따뜻한 아메리카노", "coffee1.png", "store444"));
+		list.add(new Menu(2, "커피", "아메리카노", "ICED", 3500, "차가운 아메리카노", "coffee2.png", "store444"));
+		list.add(new Menu(3, "차", "홍차", "HOT", 5000, "따뜻한 홍차", "tea1.png", "store444"));
+		list.add(new Menu(4, "차", "홍차", "ICED", 5500, "차가운 홍차", "tea2.png", "store444"));
+		list.add(new Menu(5, "커피", "헤이즐넛", "HOT", 5000, "따뜻한 헤이즐넛", "coffee3.png", "store444"));
+		list.add(new Menu(6, "커피", "헤이즐넛", "ICED", 5500, "차가운 헤이즐넛", "coffee4.png", "store444"));
+		list.add(new Menu(7, "케익", "트라미수", "없음", 7000, "티라미슈 케익", "cake1.png", "store444"));
+		list.add(new Menu(8, "베이글", "치즈베이글", "없음", 6000, "치즈 베이글", "etc1.png", "store444"));
 		
+		model.addAttribute("list",list);
+		}
 		return "android/menuAndroid";
-	}*/
+	}
+	
+	//menu test
+	@RequestMapping("/getImage")
+	public void getImage(String fileName, HttpServletRequest request,HttpServletResponse response){
+		//직접 응답을 만들어 보내기 때문에 따로 JSP에 요청하지 않아도 된다.
+		try{
+			
+			String mimeType = request.getServletContext().getMimeType(fileName);
+			response.setContentType(mimeType);//Content-Type 설정
+			
+			OutputStream os = response.getOutputStream();
+			
+			String filePath = request.getServletContext().getRealPath("/resources/image/"+fileName);
+			
+			logger.info(filePath);
+			
+			InputStream is = new FileInputStream(filePath);
+			byte[] values =new byte[1024];
+			int byteNum = -1;
+			while ((byteNum = is.read(values)) != -1 ) {
+				os.write(values, 0, byteNum);
+			}
+			logger.info("android 요청" + fileName);
+			os.flush();
+			is.close();
+			os.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

@@ -15,6 +15,21 @@ public class Menu {
 	private String mmimetype;
 	private String sid;
 	
+	public Menu(){};
+	
+	//김정호 안드로이드 테스트
+	public Menu(int mid, String mgroup, String mname, String hot_ice, int mprice, String mcontents, String msavedfile,
+			String sid) {
+		super();
+		this.mid = mid;
+		this.mgroup = mgroup;
+		this.mname = mname;
+		this.hot_ice = hot_ice;
+		this.mprice = mprice;
+		this.mcontents = mcontents;
+		this.msavedfile = msavedfile;
+		this.sid = sid;
+	}
 	
 	public int getMid() {
 		return mid;
