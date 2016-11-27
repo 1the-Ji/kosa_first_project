@@ -25,7 +25,7 @@ import com.mycompany.myweb.dto.Store;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
 
-
+//패스워드 찾기, 아이디 찾기
 @Controller
 public class StoreController {
 // 김정호

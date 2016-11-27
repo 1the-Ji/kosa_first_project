@@ -2,20 +2,16 @@
 
 
 <div id="storeModal" class="modal fade" tabindex="-1" role="dialog">
-	  <div class="modal-dialog" role="document">
+	  <div class="modal-dialog" role="document" style="width:800px">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title">매장정보 확인</h4>
+	        <h4 class="modal-title"><h2>회원가입 <small>Membership application</small></h2></h4>
 	
 	      </div>
 	      <div class="modal-body">
 	      
 	      <article  class="container">
-	        <div class="col-md-12">
-	        <div class="page-header">
-	    	    <h1>회원가입 <small>Membership application</small></h1>
-	        </div>
 	        <form class="form-horizontal">
 	        
 	        <div class="form-group">
@@ -26,27 +22,28 @@
 	        </div>
 	        
 	        <div class="form-group">
-	          <label class="col-sm-3 control-label" for="inputSemail">이메일</label>
-	        <div class="col-sm-6">
-	          <input class="form-control" id="inputSemail" type="text" placeholder="이메일">@<input class="form-control" id="inputSemail2" type="text" value="">
-	          <select style="width:100px;margin-right:10px" name="selectSemail" id="selectEmail">
-			     <option value="naver.com" selected>naver.com</option>
-			     <option value="hanmail.net">hanmail.net</option>
-			     <option value="hotmail.com">hotmail.com</option>
-			     <option value="nate.com">nate.com</option>
-			     <option value="yahoo.co.kr">yahoo.co.kr</option>
-			     <option value="empas.com">empas.com</option>
-			     <option value="dreamwiz.com">dreamwiz.com</option>
-			     <option value="freechal.com">freechal.com</option>
-			     <option value="lycos.co.kr">lycos.co.kr</option>
-			     <option value="korea.com">korea.com</option>
-			     <option value="gmail.com">gmail.com</option>
-			     <option value="hanmir.com">hanmir.com</option>
-			     <option value="paran.com">paran.com</option>
-			     <option value="1">직접입력</option>
-			</select>
-	          
-	        </div>
+
+	          	<label class="col-sm-3 control-label" for="inputSemail">이메일</label>
+		        <div class="col-md-9">
+		          <input id="inputSemail" type="text" placeholder="이메일">@<input id="inputSemail2" type="text" value="">
+		          <select id="selectEmail" style="width:100px;margin-right:10px" name="selectEmail">
+					     <option value="naver.com">naver.com</option>
+					     <option value="hanmail.net">hanmail.net</option>
+					     <option value="hotmail.com">hotmail.com</option>
+					     <option value="nate.com">nate.com</option>
+					     <option value="yahoo.co.kr">yahoo.co.kr</option>
+					     <option value="empas.com">empas.com</option>
+					     <option value="dreamwiz.com">dreamwiz.com</option>
+					     <option value="freechal.com">freechal.com</option>
+					     <option value="lycos.co.kr">lycos.co.kr</option>
+					     <option value="korea.com">korea.com</option>
+					     <option value="gmail.com">gmail.com</option>
+					     <option value="hanmir.com">hanmir.com</option>
+					     <option value="paran.com">paran.com</option>
+					     <option value="" selected>직접입력</option>
+					</select>
+		        </div>
+
 	        </div>
 	        
 	        <div class="form-group">
@@ -64,27 +61,27 @@
 	                <p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 	             </div>
 	          </div>
-	        <div class="form-group">
+ 	        <div class="form-group">
 	            <label class="col-sm-3 control-label" for="inputSname">카페명</label>
-	          <div class="col-sm-6">
-	            <input class="form-control" id="inputSname" type="text">
-	            <select id="snameBox"  onChange="selectSname();">
-					<option valeu="option1">스타벅스</option>
-					<option value="option2">탐앤탐스</option>
-					<option value="option3">할리스 커피</option>
-					<option value="option4">투썸플레이스</option>					
-					<option value="option5">커핀그루나루</option>		
-					<option value="option6">카페베네</option>
-					<option value="option7">드롭탑</option>
-					<option value="option8">파스쿠찌</option>
-					<option value="option9">엔제리너스</option>					
-					<option value="option10">커피빈</option>	
-					<option value="option11">이디야</option>		
-					<option value="1">직접입력</option>					
+	          <div class="col-md-9">
+	            <input id="inputSname" type="text">
+	            <select id="selectSname">
+					<option valeu="스타벅스">스타벅스</option>
+					<option value="탐앤탐스">탐앤탐스</option>
+					<option value="할리스">할리스 커피</option>
+					<option value="투썸플레이스">투썸플레이스</option>					
+					<option value="커핀그루나루">커핀그루나루</option>		
+					<option value="카페베네">카페베네</option>
+					<option value="드롭탑">드롭탑</option>
+					<option value="파스쿠찌">파스쿠찌</option>
+					<option value="엔제리너스">엔제리너스</option>					
+					<option value="커피빈">커피빈</option>	
+					<option value="이디야">이디야</option>		
+					<option value="" selected>직접입력</option>					
 				</select><br/>
 	          </div>
-	        </div>
-	        
+	        </div> 
+	      
 	        <div class="form-group">
 	            <label class="col-sm-3 control-label" for="inputSlocal">지점명</label>
 	          <div class="col-sm-6">

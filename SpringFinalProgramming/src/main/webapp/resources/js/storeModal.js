@@ -1,16 +1,11 @@
- $(function(){
-		$("#storeModal").modal("show");
+$(function(){
+	$("#selectEmail").on("change", function() {
+		$("#inputSemail2").val($("#selectEmail").val());
 	});
+});
 
- 
-/* $(function(){
-	 getSemail(val){
- }
-	 if(val=="1"){ 
-	  document.getElementById("inputSemail2").style.dislpay="inline";
-	  document.getElementById("inputSemail2").docus();
-	 } else{
-	  document.getElementById("inputSemail2").style.display="none";
-	  doucment.getElementById("inpuetSemail12").value="";
-	  }
-	 }*/
+$(function(){
+	$("#selectSname").on("change", function() {
+		$("#inputSname").val($("#selectSname").val());
+	});
+});
