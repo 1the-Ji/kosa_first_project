@@ -6,7 +6,7 @@
 		$("section").addClass("on");
 		$("nav").addClass("on");
 	});
-	
+	 
 	// nav 영역안의 메뉴 선택시 실행 될 모션
 	$("nav li").on("click",function(){
 		$(".btnMenu").fadeIn();

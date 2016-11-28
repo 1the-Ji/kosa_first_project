@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dao.MenuDao;
 import com.mycompany.myweb.dto.Menu;
-
+ 
 @Component 
 public class MenuService {
 	public static final int WRITE_SUCCESS = 0;
@@ -18,22 +18,17 @@ public class MenuService {
 	
 	public static final int REMOVE_SUCCESS = 0;
 	public static final int REMOVE_FAIL = 1;
-	
+	 
 	@Autowired
 	private MenuDao menuDao;
 	
 	public List<Menu> list(int pageNo, int rowsPerPage, String sid){
-		
-		/*if( != null){
-			return menuDao.searchBySid(sid);
-		}*/
 		return menuDao.selectByPage(pageNo, rowsPerPage, sid);
 	}
 	
 	//[명진]
-	public List<Menu> listByMgroup(int pageNo, int rowsPerPage, String mgroup){
-
-		return menuDao.selectByMgroup(pageNo, rowsPerPage, mgroup);
+	public List<Menu> listByMgroup(String sid, String mgroup){
+		return menuDao.selectByMgroup(sid, mgroup);
 	}
 	
 	//[명진]

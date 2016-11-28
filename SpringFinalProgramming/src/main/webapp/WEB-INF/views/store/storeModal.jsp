@@ -34,6 +34,7 @@
 	             <td>09:00</td>
 	             <td>23:00</td>
 	             <td>sb1</td>
+	             <td>사진1</td>
 	             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> 수정</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a></td>
 	         </tr>
 	         <tr>
@@ -45,7 +46,8 @@
 	             <td>0233912233</td>
 	             <td>09:00</td>
 	             <td>23:00</td>
-	             <td>sb2</td>	            
+	             <td>sb2</td>	
+	             <td>사진2</td>            
 	             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> 수정</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a></td>
 	         </tr>
 	         <tr>
@@ -57,7 +59,8 @@
 	             <td>0233912234</td>
 	             <td>09:00</td>
 	             <td>23:00</td>
-	             <td>sb3</td>	            
+	             <td>sb3</td>	
+	             <td>사진3</td>            
 	             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> 수정</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a></td>
 	         </tr>
 	    </table>

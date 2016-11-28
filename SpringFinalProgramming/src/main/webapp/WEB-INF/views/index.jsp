@@ -25,16 +25,22 @@
 				
 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
 		
-		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>		
+		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/store.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
+<<<<<<< HEAD
 		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/joinModal.js"></script>
+=======
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/event.js"></script>
+	
+>>>>>>> branch 'master' of https://github.com/JiSeungHoon/TeamRepository
 	</head> 
-	<body>
+	<body style="padding-top:0px;">
 		<div class="wrap">
 			<!-- nav 영역을 호출할 버튼  -->
 			<a class="btnMenu" href="#"><i class="fa fa-navicon"></i> </a>
@@ -44,12 +50,14 @@
 				<ul id="gnb">
 					<li><a href="#">Home</a></li>
 					<li><a id="btnStore" href="#">Store</a></li>
-					<li><a id="btnMenu" href="#">Menu</a></li>
+					<li><a id="btnMenu" href="javascript:menuList(${menu.sid})">Menu</a></li>
 					<li><a id="btnEvent" href="#">Event</a></li>
 					<li><a id="btnOrder" href="#">Order</a></li>
 				</ul>
 				<div style="position:relative; top:80%;" class="form-group text-center">
-                 <a id="btnLogin" href="#"><button class="btn btn-success btn-login-submit">Login</button></a>
+                 	<a id="btnLogin" href="#">
+                 		<button class="btn btn-success btn-login-submit">Login</button>
+                 	</a>
                 </div>
 			</nav>
 			
@@ -136,10 +144,16 @@
 		<%@ include file="menu/menuInfoModal.jsp" %>
 		
 		<%@ include file="event/eventModal.jsp" %>
+		<%@ include file="event/eventRegModal.jsp" %>
+		
+		
+		
 		<%@ include file="order/orderModal.jsp" %>
 		<%@ include file="order/detailListModal.jsp" %>
 		<%@ include file="order/orderForm1Modal.jsp" %>
 		<%@ include file="order/orderForm2Modal.jsp" %>
+		
+		
 		<%-- <%@ include file="order/termListModal.jsp" %>
 		<%@ include file="order/mnameSearchModal.jsp" %>
 		<%@ include file="order/mgroupCoffModal.jsp" %>
