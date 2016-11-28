@@ -26,6 +26,7 @@ import com.mycompany.myweb.service.MenuService;
 
 
 @Controller
+@RequestMapping("/menu")
 public class MenuController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
@@ -33,7 +34,7 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 	
-	@RequestMapping(value="/menu/list")
+	@RequestMapping(value="/list")
 	public String list(String pageNo, Model model, HttpSession session, String msid){
 		
 		String sid = (String) session.getAttribute("login");
@@ -88,7 +89,7 @@ public class MenuController {
 		return "menu/menuRegForm";
 	} 
 	
-	@RequestMapping(value = "/menu/register", method=RequestMethod.POST)
+	@RequestMapping(value = "/register", method=RequestMethod.POST)
 	public String register(HttpSession session, Menu menu){
 		logger.info("ggg");
 		try {
@@ -114,7 +115,7 @@ public class MenuController {
 	} // register
 	
 	
-	@RequestMapping("/menu/showPhoto")
+	@RequestMapping("/showPhoto")
 	public void showPhoto(String msavedfile, HttpServletRequest request, HttpServletResponse response){
 		try{
 			String fileName = msavedfile;
@@ -139,7 +140,7 @@ public class MenuController {
 		}
 	} // showPhoto 
 	
-	@RequestMapping(value="/menu/info")
+	@RequestMapping(value="/info")
 	public String info(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		menuService.modify(menu);
@@ -147,7 +148,7 @@ public class MenuController {
 		return "menu/menuInfoModal";
 	} // info
 	
-	@RequestMapping(value="/menu/modify", method=RequestMethod.GET)
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyForm(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		model.addAttribute("menu", menu);
@@ -155,7 +156,7 @@ public class MenuController {
 	} // modifyForm
 	
 	
-	@RequestMapping(value="/menu/modify", method=RequestMethod.POST)
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Menu menu, HttpSession session, Model model){
 		
 		try{
@@ -174,7 +175,7 @@ public class MenuController {
 		return "redirect:/menu/menuModal";
 	} //modify
 	
-	@RequestMapping("/menu/remove")
+	@RequestMapping("/remove")
 	public String remove(int mid){
 		menuService.remove(mid);
 		return "redirect:/menu/menuModal";
