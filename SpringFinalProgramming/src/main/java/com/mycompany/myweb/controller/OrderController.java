@@ -93,7 +93,7 @@ public class OrderController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		int rowsPerPage = 4;
+		int rowsPerPage = 5;
 		int pagesPerGroup = 5;
 		int totalBoardNo = orderService.getCount();
 		int totalPageNo = totalBoardNo/rowsPerPage+((totalBoardNo%rowsPerPage!=0)?1:0);

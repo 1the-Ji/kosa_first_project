@@ -12,7 +12,8 @@ $(function() {
 });
 
 $(function() {
-	$("#orderForm1").on("click", function() {
+	$("#btnNewOrder").on("click", function() {
+		console.log("newOrder");
 		$("#orderModal").css("opacity","0.5");
 		$("#orderForm1Modal").modal({
 			backdrop:"static",
