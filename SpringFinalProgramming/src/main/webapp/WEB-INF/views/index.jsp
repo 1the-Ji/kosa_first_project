@@ -32,6 +32,7 @@
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/event.js"></script>
+	
 	</head> 
 	<body style="padding-top:0px;">
 		<div class="wrap">
