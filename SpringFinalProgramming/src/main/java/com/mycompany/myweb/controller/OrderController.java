@@ -57,7 +57,7 @@ public class OrderController {
 	//주문전체 내역 페이지(1차 검토 완료)
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
-		
+		logger.info("여기까지 옴");
 		String ogid = null; int resultprice = 0;
 		//그냥 맨처음 주문 리스트 보는 경우와 주문하고 나서 리스트를 보는 경우를 다뤄야 함
 		if((String) session.getAttribute("ogid")!=null){
@@ -119,7 +119,7 @@ public class OrderController {
 		
 		model.addAttribute("list", list);
 		
-		return "order/list";
+		return "order/orderList";
 	}
 
 	//주문내역 기간보기(1차 검토 완료)

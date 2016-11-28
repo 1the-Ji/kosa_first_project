@@ -25,19 +25,14 @@
 				
 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
 		
-		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>		
-<<<<<<< HEAD
+		<link href="${pageContext.servletContext.contextPath}/resources/css/order.css" rel="stylesheet"/>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/store.js"></script>
-				
-=======
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
-		
+	
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
->>>>>>> branch 'master' of https://github.com/JiSeungHoon/TeamRepository
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/store.js"></script>
+		
 	</head> 
 	<body>
 		<div class="wrap">

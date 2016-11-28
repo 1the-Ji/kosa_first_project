@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+
+
 <div id="orderModal" class="modal fade" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -31,7 +33,7 @@
 	                </tr>
 	            </thead>
 	            <tbody>
-	            	<%--테스트 데이터 --%>
+	            	<%--테스트 데이터 
 	            		<tr>
 	                    	<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="#">주문번호1</a></td>
 	                    	<td data-label="아이디">user1</td>
@@ -45,7 +47,7 @@
 	                    	<td data-label="주문시간">2016-11-28</td>
 	                    	<td data-label="총 가격">30000</td>
 	                    	<td data-label="결제 방식">카드결제</td>
-	                	</tr>
+	                	</tr>--%>
 	            	<c:forEach var="orderList" items="${list}">
 	                	<tr>
 	                    	<td class="detailList" data-label="주문번호"><a  type="button" class="btn btn-primary" href="#">${orderList.ogid}</a></td>

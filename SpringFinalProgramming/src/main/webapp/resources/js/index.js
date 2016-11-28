@@ -19,7 +19,20 @@ $(function() {
 		$("#eventModal").modal("show");
 	});
 	
-	$("#btnOrder").on("click", function() {
+	$("#btnOrder").on("click", function () {
+		/*$.ajax({
+			url: "order/list",
+			data: {"pageNo":null},
+			method: "get",
+			success: function(data) {
+				if(data.list != null){
+					alert("리스트 성공");
+				}else{
+					alert("리스트 실패");
+				}
+				
+			}
+		});*/
 		$("#orderModal").modal("show");
 	});
 });
