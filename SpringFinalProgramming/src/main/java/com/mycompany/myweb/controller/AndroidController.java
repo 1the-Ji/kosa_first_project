@@ -27,9 +27,9 @@ import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
 
 @Controller
-public class TestController {
+public class AndroidController {
 
-	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AndroidController.class);
 	
 	@Autowired
 	private StoreService storeService;
