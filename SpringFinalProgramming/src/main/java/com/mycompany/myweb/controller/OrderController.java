@@ -57,7 +57,7 @@ public class OrderController {
 	//주문전체 내역 페이지(1차 검토 완료)
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
-		
+		logger.info("여기까지 옴");
 		String ogid = null; int resultprice = 0;
 		//그냥 맨처음 주문 리스트 보는 경우와 주문하고 나서 리스트를 보는 경우를 다뤄야 함
 		if((String) session.getAttribute("ogid")!=null){
@@ -75,7 +75,7 @@ public class OrderController {
 				}
 			}
 		}
-		
+		logger.info("ogid: "+ogid);
 		/*//총 금액 order_total의 ogtotalprice에 넣어주기
 		String ogid = (String) session.getAttribute("ogid");
 		int resultprice = (Integer) session.getAttribute("resultprice");

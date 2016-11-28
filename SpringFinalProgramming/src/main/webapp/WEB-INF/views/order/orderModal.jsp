@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+
+
 <div id="orderModal" class="modal fade" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document" style="width:1000px;">
     <div class="modal-content" style="height:700px">
@@ -34,7 +36,7 @@
 	                </tr>
 	            </thead>
 	            <tbody id="orderTbody">
-	            </tbody>
+				</tbody>
 	        </table>
     	</div>
       </div>

@@ -23,7 +23,7 @@
    				<c:forEach var="menu" items="${list}">
 	   				<td style="text-align: center;">
 		        		<div style="width:150px;height:150px;display:inline-block; margin:10px;" data-status="${menu.mgroup}">
-		        			<a href="javascript:showInfo"><img class="menuImg" width="150px" height="150px" src="${pageContext.servletContext.contextPath}/resources/photo/m5.jpg" /></a>
+		        			<a href="javascript:showMenuInfo(${menu.mid})"><img width="150px" height="150px" src="showPhoto?msavedfile=${menu.msavedfile}" /></a>
 		        			<br/>
 		        			${menu.mname} ${menu.hot_ice}
 							<br/>
@@ -81,7 +81,7 @@
 				        5800won
 	                </div> 
 	                --%>
-   				</td>
+   					</td>
    			</tr>
   		</table>
       </div>

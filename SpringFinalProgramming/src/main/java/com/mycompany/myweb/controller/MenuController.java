@@ -34,7 +34,7 @@ public class MenuController {
 	private MenuService menuService;
 	
 	@RequestMapping(value="/menu/list")
-	public String list(String pageNo, Model model, HttpSession session){
+	public String list(String pageNo, Model model, HttpSession session, String msid){
 		
 		String sid = (String) session.getAttribute("login");
 	
