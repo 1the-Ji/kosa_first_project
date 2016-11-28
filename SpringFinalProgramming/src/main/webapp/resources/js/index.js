@@ -84,7 +84,7 @@ function showPageList(pageNo) {
    });
 
 }
-
+ 
 function eventList(){
 	$.ajax({
 		url:"event/eventList",
