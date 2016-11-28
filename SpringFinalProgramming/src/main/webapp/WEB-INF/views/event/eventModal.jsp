@@ -19,14 +19,8 @@
 		            <th class="text-center">Action</th>
 		        </tr>
 		    </thead>
-		    <tbody id="eventTbody">
-	         </tbody>
-	         
+		  	  <tbody id="eventTbody"></tbody>
 	    </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button> 
       </div>
     </div>
   </div>

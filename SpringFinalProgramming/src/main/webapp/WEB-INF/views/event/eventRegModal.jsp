@@ -13,21 +13,21 @@
 				        <div class="form-group">
 				          <label class="control-label col-sm-3">이벤트 제목<span class="text-danger">*</span></label>
 				          <div class="col-md-8 col-sm-9">
-				            <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="이벤트 제목 입력" value="">
+				            <input type="text" name="mem_name" id="mem_name" placeholder="이벤트 제목 입력" value="">
 				          </div>
 				        </div>
 				        
 				        <div class="form-group">
 				          <label class="control-label col-sm-3">기간 <span class="text-danger">*</span></label>
 				          <div class="col-md-5 col-sm-8">
-				            <input id="date" type="date" class="form-control" name="contactnum2" id="contactnum2" placeholder="내용 입력" value="">~
-				            <input id="date" type="date" class="form-control" name="contactnum2" id="contactnum2" placeholder="내용 입력" value="">
+				            <input id="date" type="date" name="contactnum2" value="">~
+				            <input id="date" type="date" name="contactnum2" value="">
 				          </div>
 				        </div>
 				        <div class="form-group">
 				          <label class="control-label col-sm-3">내용</label>
 				          <div class="col-md-5 col-sm-8">
-				            <input type="text" class="form-control" name="contactnum2" id="contactnum2" placeholder="내용 입력" value="">
+				            <input type="text" name="contactnum2" id="contactnum2" placeholder="내용 입력" value="">
 				          </div>
 				        </div>
 				        <div class="form-group">
