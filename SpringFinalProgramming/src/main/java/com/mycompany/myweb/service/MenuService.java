@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dao.MenuDao;
 import com.mycompany.myweb.dto.Menu;
-
+ 
 @Component 
 public class MenuService {
 	public static final int WRITE_SUCCESS = 0;
