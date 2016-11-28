@@ -62,10 +62,11 @@
 	                <p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 	             </div>
 	          </div>
+	          
  	        <div class="form-group">
 	            <label class="col-sm-3 control-label" for="inputSname">카페명</label>
 	          <div class="col-md-9">
-	            <input id="inputSname" type="text">
+	            <input id="inputSname" placeholder="카페명" type="text">
 	            <select id="selectSname">
 					<option valeu="스타벅스">스타벅스</option>
 					<option value="탐앤탐스">탐앤탐스</option>

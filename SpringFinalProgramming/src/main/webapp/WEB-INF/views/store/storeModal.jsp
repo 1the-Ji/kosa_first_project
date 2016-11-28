@@ -1,153 +1,72 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-
-<div id="storeModal" class="modal fade" tabindex="-1" role="dialog">
-	  <div class="modal-dialog" role="document" style="width:800px">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title"><h2>회원가입 <small>Membership application</small></h2></h4>
-	
-	      </div>
-	      <div class="modal-body">
-	      
-	      <article  class="container">
-	        <form class="form-horizontal">
-	        
-	        <div class="form-group">
-	          <label class="col-sm-3 control-label" for="inputSid">아이디</label>
-	        <div class="col-sm-6">
-	          <input class="form-control" id="inputSid" type="text" placeholder="아이디">
-	        </div>
-	        </div>
-	        
-	        <div class="form-group">
-	          	<label class="col-sm-3 control-label" for="inputSemail">이메일</label>
-		        <div class="col-md-9">
-		          <input id="inputSemail" type="text" placeholder="이메일">@<input id="inputSemail2" type="text">
-		          <select id="selectSemail" style="width:100px;margin-right:10px">
-					     <option value="naver.com">naver.com</option>
-					     <option value="hanmail.net">hanmail.net</option>
-					     <option value="hotmail.com">hotmail.com</option>
-					     <option value="nate.com">nate.com</option>
-					     <option value="yahoo.co.kr">yahoo.co.kr</option>
-					     <option value="empas.com">empas.com</option>
-					     <option value="dreamwiz.com">dreamwiz.com</option>
-					     <option value="freechal.com">freechal.com</option>
-					     <option value="lycos.co.kr">lycos.co.kr</option>
-					     <option value="korea.com">korea.com</option>
-					     <option value="gmail.com">gmail.com</option>
-					     <option value="hanmir.com">hanmir.com</option>
-					     <option value="paran.com">paran.com</option>
-					     <option value="" selected>직접입력</option>
-					</select>
-		        </div>
-
-	        </div>
-	        
-	        <div class="form-group">
-	          <label class="col-sm-3 control-label" for="inputSpw">비밀번호</label>
-	        <div class="col-sm-6">
-	          <input class="form-control" id="inputSpw" type="password" placeholder="비밀번호">
-	        <p class="help-block">숫자, 특수문자 포함 8자 이상</p>
-	        </div>
-	        </div>
-	        
-	         <div class="form-group">
-	              <label class="col-sm-3 control-label" for="inputSpwCheck">비밀번호 확인</label>
-	             <div class="col-sm-6">
-	              <input class="form-control" id="inputSPwCheck" type="password" placeholder="비밀번호 확인">
-	                <p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
-	             </div>
-	          </div>
- 	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="inputSname">카페명</label>
-	          <div class="col-md-9">
-	            <input id="inputSname" type="text">
-	            <select id="selectSname">
-					<option valeu="스타벅스">스타벅스</option>
-					<option value="탐앤탐스">탐앤탐스</option>
-					<option value="할리스 커피">할리스 커피</option>
-					<option value="투썸플레이스">투썸플레이스</option>					
-					<option value="커핀그루나루">커핀그루나루</option>		
-					<option value="카페베네">카페베네</option>
-					<option value="드롭탑">드롭탑</option>
-					<option value="파스쿠찌">파스쿠찌</option>
-					<option value="엔제리너스">엔제리너스</option>					
-					<option value="커피빈">커피빈</option>	
-					<option value="이디야">이디야</option>		
-					<option value="" selected>직접입력</option>					
-				</select><br/>
-	          </div>
-	        </div> 
-	      
-	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="inputSlocal">지점명</label>
-	          <div class="col-sm-6">
-	            <input class="form-control" id="inputSlocal" type="text" >
-	          </div>
-	        </div>
-	        
-	        
-	        
-	        
-	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="inputStel">대표전화</label>
-	        <div class="col-sm-6">
-	           <input type="tel" class="form-control" id="inputNumber" placeholder="- 없이 입력해 주세요" />
-              	  </div>
-               </div>
-               
-            <div class="form-group">
-	            <label class="col-sm-3 control-label" for="inputSopen">오픈시간</label>
-	          <div class="col-sm-6">
-	            <input class="form-control" id="inputSopen" type="time" >
-	          </div>
-	        </div>
-	        
-	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="inputSclosed">마감시간</label>
-	          <div class="col-sm-6">
-	            <input class="form-control" id="inputSclosed" type="time" >
-	          </div>
-	        </div>
-	        
-	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="inputSbeacon">비콘번호</label>
-	          <div class="col-sm-6">
-	            <input class="form-control" id="inputSbeacon" type="text" >
-	          </div>
-	        </div>
-	        
-	       <div class="form-group">
-	          	<label class="col-sm-3 control-label" for="inputSphoto">사진첨부</label>
-		       <div class="col-md-9">
-		          <input id="inputSphoto" type="file" multiple="multiple">  
-       			</div>
-	        </div>
-	       
-	        <div class="form-group">
-	              <label class="col-sm-3 control-label" for="inputAgree">약관 동의</label>
-	            <div class="col-sm-6" data-toggle="buttons">
-	              <label class="btn btn-warning active">
-	                <input id="agree" type="checkbox" autocomplete="off" chacked>
-	                  <span class="fa fa-check"></span>
-	              </label>
-	              <a href="#">이용약관</a> 에 동의 합니다.
-	            </div>
-	          </div>
-	     
-	        </form>
-	          <hr>
-	        </div>
-	      </article>
-	      
-	      <div class="modal-footer"> 
-	        <button class="btn btn-primary" type="submit">Join</button>
-	        <button class="btn btn-danger" type="reset" >Cancel</button>
-	        <button class="btn btn-default" data-dismiss="modal">Close</button>
+<div id="storeModal" class="modal fade" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><b>가맹점 정보</b></h4>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+      <div class="modal-body">
+	    <table class="table table-striped custab">
+		    <thead>
+		    <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+		        <tr>
+		            <th>매장아이디</th>
+		            <th>매장이메일</th>
+		            <th>매장이름</th>
+		            <th>지점명</th>
+		            <th>매장주소</th>
+		            <th>매장전화번호</th>
+		            <th>매장오픈시간</th>
+		            <th>매장마감시간</th>
+		            <th>비콘번호</th>
+		            <th class="text-center">수정/삭제</th>
+		        </tr>
+		    </thead>
+	         <tr>
+	             <td>store1</td>
+	             <td>store1@naver.com</td>
+	             <td>스타벅스</td>
+	             <td>가락시장점</td>
+	             <td>송파구 가락동 79</td>
+	             <td>0233912232</td>
+	             <td>09:00</td>
+	             <td>23:00</td>
+	             <td>sb1</td>
+	             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> 수정</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a></td>
+	         </tr>
+	         <tr>
+	             <td>store2</td>
+	             <td>store2@naver.com</td>
+	             <td>이디야</td>
+	             <td>가락시장점</td>
+	             <td>송파구 가락동 80</td>
+	             <td>0233912233</td>
+	             <td>09:00</td>
+	             <td>23:00</td>
+	             <td>sb2</td>	            
+	             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> 수정</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a></td>
+	         </tr>
+	         <tr>
+	             <td>store3</td>
+	             <td>store3@naver.com</td>
+	             <td>자스</td>
+	             <td>가락시장점</td>
+	             <td>송파구 가락동 81</td>
+	             <td>0233912234</td>
+	             <td>09:00</td>
+	             <td>23:00</td>
+	             <td>sb3</td>	            
+	             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> 수정</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a></td>
+	         </tr>
+	    </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">변경사항 저장</button> 
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        
+      </div>
+    </div>
+  </div>
+</div> 

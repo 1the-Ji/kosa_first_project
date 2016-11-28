@@ -32,6 +32,7 @@
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
 		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/joinModal.js"></script>
 	</head> 
 	<body>
 		<div class="wrap">
@@ -127,6 +128,7 @@
 		<%-- Modal --%>
 		<%@ include file="store/loginModal.jsp" %>
 		<%@ include file="store/storeModal.jsp" %>
+		<%@ include file="store/joinModal.jsp" %>
 		
 		<%@ include file="menu/menuModal.jsp" %>
 		<%@ include file="menu/menuRegModal.jsp" %>
@@ -143,6 +145,7 @@
 		<%@ include file="order/mgroupCoffModal.jsp" %>
 		<%@ include file="order/mgroupTeaModal.jsp" %>
 		<%@ include file="order/mgroupDigertModal.jsp" %> --%>
+		
 		
 	</body>
 </html>
