@@ -13,7 +13,6 @@
 		"mcontents":"${menu.mcontents}",
 		"msavedfile":"${menu.msavedfile}",
 		"sid": "${menu.sid}"
-		
 	}
 	<c:if test="${!status.last}">,</c:if><%-- 마지막 행 전까지 ','를 넣어라 --%>
 </c:forEach>
