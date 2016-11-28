@@ -75,7 +75,7 @@ public class OrderController {
 				}
 			}
 		}
-		
+		logger.info("ogid: "+ogid);
 		/*//총 금액 order_total의 ogtotalprice에 넣어주기
 		String ogid = (String) session.getAttribute("ogid");
 		int resultprice = (Integer) session.getAttribute("resultprice");
@@ -119,7 +119,7 @@ public class OrderController {
 		
 		model.addAttribute("list", list);
 		
-		return "order/orderList";
+		return "order/list";
 	}
 
 	//주문내역 기간보기(1차 검토 완료)
