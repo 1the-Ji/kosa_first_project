@@ -18,6 +18,9 @@
   font-family: Roboto;
 }
 
+.form-control label div{
+	padding:0px;
+}
 /* .custab{
     border: 1px solid #ccc;
     padding: 5px;
