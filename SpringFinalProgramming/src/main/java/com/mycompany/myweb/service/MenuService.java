@@ -18,7 +18,7 @@ public class MenuService {
 	
 	public static final int REMOVE_SUCCESS = 0;
 	public static final int REMOVE_FAIL = 1;
-	
+	 
 	@Autowired
 	private MenuDao menuDao;
 	
