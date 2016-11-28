@@ -37,7 +37,7 @@ function showPageList(pageNo) {
             var order = data.list[i];
             $("#orderTbody").append(
                '<tr>' +
-                   '<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="#">' + order.ogid.substring(0, 5) + '</a></td>' +
+                   '<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="javascript:detailOrderList(' + order.ogid + ')">' + order.ogid.substring(4, 7) + order.ogid.substring(11, 14) +'</a></td>' +
                    '<td data-label="아이디">' + order.user_id + '</td>' +
                    '<td data-label="주문시간">' + order.ogtime + '</td>' +
                    '<td data-label="총 가격">' + order.ogtotalprice + '</td>' +
@@ -83,4 +83,6 @@ function showPageList(pageNo) {
       }
    });
 
-}
+};
+
+

@@ -1,15 +1,43 @@
-$(function() {
-	$(".detailList").on("click", function() {
-		$("#orderModal").css("opacity","0.5");
-		$("#detailListModal").modal({
-			backdrop:"static",
-			show:true
-		});
-	});
+function detailOrderList(ogid){
+	console.log("여기 옴");
+	$("#orderModal").css("opacity","0.5");
+	$.ajax({
+	      url: "order/detailList",
+	      data: {"ogid": ogid},
+	      success: function(data) {
+	    	  $("#detailTbody").empty();
+	          $("#detailListModal .modal-footer").empty();
+	         for(var i=0; i<data.detailList.length; i++) {
+	            var detail = data.detailList[i];
+	            $("#detailTbody").append(
+	            	   '<tr>' +
+	                   	'<td data-label="제품명">' + detail.mname + '</td>' +
+	                   	'<td data-label="수량">' + detail.sameItemCount + '</td>' +
+	                   	'<td data-label="사이드">' + detail.xname + '</td>' +
+	                   	'<td data-label="가격">' + detail.sameItemPrice + '</td>' +
+	                   '</tr>'
+	               );
+	            
+	         }
+	         
+	         var resultprice = data.resultprice;
+	         var oghowpay = data.oghowpay;
+	         
+	         
+	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>');
+	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+oghowpay+'</p>');
+	         
+	         
+	         $("#detailListModal").modal({
+	 			backdrop:"static",
+				show:true
+			});
+	      }
+	   });
 	$("#detailListModal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
-	})
-});
+	});
+};
 
 $(function() {
 	$("#btnNewOrder").on("click", function() {
@@ -23,7 +51,7 @@ $(function() {
 	
 	$("#orderForm1Modal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
-	})
+	});
 });
 
 $(function() {
@@ -37,7 +65,7 @@ $(function() {
 	});
 	$("#orderForm2Modal").on('hidden.bs.modal',function(){
 		$("#orderForm1Modal").css("opacity","1");
-	})
+	});
 });
 
 
@@ -60,7 +88,7 @@ function orderMenuList(mgroup) {
 			}
 		}
 	});
-}
+};
 
 var activeEl = 2;
 $(function() {
