@@ -1,4 +1,5 @@
 $(function() {
+	
 	$("#btnMenuRegForm").on("click", function() {
 		$("#menuModal").css("opacity", "0.5");
 		$("#menuRegModal").modal({
@@ -13,7 +14,7 @@ $(function() {
 	
 	
 	$("#btnMenuReg").on("click", function(){
-		var mid = $("mid").val();
+		var mid = $("#mid").val();
 		var mgroup = $("#mgroup").val();
 		var mname = $("#mname").val();
 		var hot_ice = $("#hot_ice").val();
@@ -23,14 +24,15 @@ $(function() {
 		
 		$.ajax({
 			url: "../menu/register",
-			data:{},
+			data: {},
 			method: "post",
 			success: function(data){
 				if(data.result == "success"){
+					alert("추가 성공");
 					$("#menuRegModal").modal("hide");
 					location.reload();
 				} else if(data.result == "wrongData"){
-					
+					alert("입력 데이터가 올바르지 않음");
 				}
 			}
 		})
