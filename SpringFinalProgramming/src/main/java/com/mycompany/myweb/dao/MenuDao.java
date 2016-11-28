@@ -113,18 +113,16 @@ public class MenuDao {
 	}
 	
 	//[명진]
-	public List<Menu> selectByMgroup(int pageNo, int rowsPerPage, String mgroup){
-		String sql="";
-		sql += "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
-		sql += "from ( ";
-		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
-		sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
-		sql += "where rownum<=? ";
-		sql += ") ";
-		sql += "where rn>=? and mgroup=?";
+	public List<Menu> selectByMgroup(String sid, String mgroup){
+		String sql="select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where sid=? and mgroup=? order by mid desc";
+		Object[] conditions = new Object[]{sid, mgroup};
+		if(mgroup == null) {
+			sql="select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where sid=? order by mid desc";
+			conditions = new Object[]{sid};
+		}
 		List<Menu> list = jdbcTemplate.query(
 				sql,
-				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), mgroup},
+				conditions,
 				new RowMapper<Menu>(){
 					@Override
 					public Menu mapRow(ResultSet rs, int row) throws SQLException {
