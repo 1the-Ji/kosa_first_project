@@ -9,41 +9,63 @@
       </div>
       <div class="modal-body">
       	<form method="post" enctype="multipart/form-data">
-	   		<table>
+	   		<table id = "acrylic">
 	   			<tr>
-	   				<td style="background-color:gold; width:70px">분류</td>
-	   				<td>
-	   					<select name="mgroup">
-	   						<option selected>커피</option>
-	   						<option>차</option>
-	   						<option>디저트</option>
-	   						<option>기타</option>
-	   					</select>
-	   				</td>
+	   				<thead>
+	   					<td style="width:70px">분류</td>
+	   				</thead>
+	   				<tbody>
+		   				<td>
+		   					<select name="mgroup">
+		   						<option selected>커피</option>
+		   						<option>차</option>
+		   						<option>디저트</option>
+		   						<option>기타</option>
+		   					</select>
+		   				</td>
+	   				</tbody>
 	   			</tr>
 	   			<tr>
-	   				<td style="background-color:gold; width:70px">메뉴명</td>
+	   				<thead>
+	   					<td style="width:70px">분류</td>
+	   				</thead>
 	   				<td><input type="text" name="mname" style="width:200px;"></td>
 	   			</tr>
 	   			<tr>
-	   				<td style="background-color:gold; width:70px">아이스/핫</td>
-	   				<td>
+	   				<thead>
+	   					<td style="width:70px">Hot/Ice</td>
+	   				</thead>
+	   				<tbody>
+	   					<td>
 	   					<input type="radio" name="hot_ice" checked value="HOT"> HOT
 	   					<input type="radio" name="hot_ice" value="ICE"> ICE
 	   					<input type="radio" name="hot_ice" value=" "> 없음
 	   				</td>
+	   				</tbody>
 	   			</tr>
 	   			<tr>
-	   				<td style="background-color:gold; width:70px">가격</td>
-	   				<td><input type="text" name="mprice" style="width:100px;"></td>
+	   				<thead>
+	   					<td style="width:70px">가격</td>
+	   				</thead>
+	   				<tbody>
+	   					<td><input type="text" name="mprice" style="width:100px;"></td>
+	   				</tbody>
 	   			</tr>
 	   			<tr>
-	   				<td style="background-color:gold; width:70px">설명</td>
-	   				<td><input type="text" name="mcontents" style="width:600px; height:300px"></td>
+	   				<thead>
+	   					<td style="width:70px">설명</td>
+	   				</thead>
+	   				<tbody>
+	   					<td><input type="text" name="mcontents" style="width:600px; height:300px"></td>
+	   				</tbody>
 	   			</tr>
 	   			<tr>
-					<td style="background-color:gold; width:70px">사진</td>
-					<td><input type="file" name="photo"/></td>
+					<thead>
+	   					<td style="width:70px">사진</td>
+	   				</thead>
+					<tbody>
+						<td><input type="file" name="photo"/></td>
+					</tbody>
 				</tr>
 	   		</table>
 		 </form>
