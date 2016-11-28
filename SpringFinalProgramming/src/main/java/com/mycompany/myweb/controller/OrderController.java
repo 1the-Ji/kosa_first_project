@@ -93,7 +93,7 @@ public class OrderController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		int rowsPerPage = 4;
+		int rowsPerPage = 5;
 		int pagesPerGroup = 5;
 		int totalBoardNo = orderService.getCount();
 		int totalPageNo = totalBoardNo/rowsPerPage+((totalBoardNo%rowsPerPage!=0)?1:0);
@@ -243,148 +243,19 @@ public class OrderController {
 	
 	
 	//---------------------------------------------------------------------
-	int count = 0;
-	//주문하기(진행 중)(검토 필요)(중요)(여기서부터 주문의 시작!)
-	@RequestMapping(value="/orderItems",method=RequestMethod.GET)
-	public String orderForm(String pageNo, Model model, HttpSession session){
-		int flag = (Integer) session.getAttribute("flag");
-		logger.info("flag: "+flag);
-		count = flag;
-		session.setAttribute("flag",1);
-		
-		//sid를 참조하는 mid를 통한 모든 메뉴 리스트를 model에 담아 넘겨야 함(주문 눌렀을 때 전체 보기)
+	@RequestMapping(value="/menuList")
+	public String orderForm(String mgroup, Model model, HttpSession session){
 		String sid = (String) session.getAttribute("login");
-		logger.info("sid : "+sid);//문제
-		
-		count++;
-		
-		if(count==1){
-			logger.info("이쪽으로 옴");
-			//새로운 ogid 여기서 부터 생성되야 함
-			//sid, ogid 유지되야 함
-			//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
-			session.setAttribute("ogid",null);
-			String ogid= null;
-			
-			long time = System.currentTimeMillis(); double random = Math.random();
-			ogid = ""+sid+time+random;
-			session.setAttribute("ogid", ogid);		
-			logger.info("ogid : "+ogid);
-			
-			//나중에 새로고침 계속 했을 때 쓸모없는 주문 데이터 삽입을 방지하기 위해서
-			//totalprice가 0인 order_table 데이터는 지울 수 있는 코드 삽입(중요!!!)
-			
-			//Order_Total 테이블을 추가해야 함
-			//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)(중요!!!!!!!!!!!!!!!!!!!!)
-			//위의 두 데이터는 임의의 테스트 데이터(user_id, oghowpay)로 대체
-			Order order = new Order();	
-			ogid = (String) session.getAttribute("ogid");	 logger.info("ogid : "+ogid);
-			
-			order.setOgid(ogid);
-			order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
-			order.setUser_id("user1");//임의 데이터
-			order.setSid(sid);
-			order.setOghowpay("카드 결제");//임의 데이터
-			
-			orderService.addOrder(order);
-		}
-		logger.info("저쪽으로 감");
-		logger.info("count:" + count);	
-		//---------
-		int intPageNo = 1;
-		if (pageNo == null) {
-			pageNo = (String) session.getAttribute("pageNo");
-			if(pageNo != null){
-				intPageNo = Integer.parseInt(pageNo);
-			}
-		} else {
-			intPageNo = Integer.parseInt(pageNo);
-		}
-		session.setAttribute("pageNo", String.valueOf(intPageNo));
-		
-		int rowsPerPage = 4;
-		int pagesPerGroup = 5;
-		
-		int totalBoardNo = menuService.getCount();
-		
-		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
-		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
-		
-		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
-		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
-		int endPageNo = startPageNo + pagesPerGroup - 1;
-		
-		if(groupNo == totalGroupNo){
-			endPageNo = totalPageNo;
-		}
-		
-		List<Menu> menuList = menuService.list(intPageNo, rowsPerPage, sid);
-		
-		model.addAttribute("sid",sid);
-		model.addAttribute("pageNo", intPageNo);
-		model.addAttribute("rowsPerPage", rowsPerPage);
-		model.addAttribute("pagesPerGroup", pagesPerGroup);
-		model.addAttribute("totalBoardNo", totalBoardNo);
-		model.addAttribute("totalPageNo", totalPageNo);
-		model.addAttribute("groupNo", groupNo);
-		model.addAttribute("startPageNo", startPageNo);
-		model.addAttribute("endPageNo", endPageNo);
-		
-		model.addAttribute("menuList", menuList);
-		
-		return "order/orderForm1";
+		if(mgroup.equals("전체")) mgroup = null;
+		List<Menu> menuList = menuService.listByMgroup(sid, mgroup);
+		model.addAttribute("list", menuList);
+		return "order/menuList";
 	}
 	
 	//메뉴 전체 검색(1차 검토 완료)
 	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
 	public String allMenuSearch(String pageNo, Model model,HttpSession session){
 		return "redirect:/order/orderItems";
-	}
-	
-	//메뉴 커피or티or디저트 검색 //메뉴 그룹 검색(1차 검토 완료)
-	@RequestMapping(value="/someMenuSearchMgroup",method=RequestMethod.GET)
-	public String someMenuSearchMgroup(String pageNo, Model model,HttpSession session, String mgroup){
-		int intPageNo = 1;
-		if (pageNo == null) {
-			pageNo = (String) session.getAttribute("pageNo");
-			if(pageNo != null){
-				intPageNo = Integer.parseInt(pageNo);
-			}
-		} else {
-			intPageNo = Integer.parseInt(pageNo);
-		}
-		session.setAttribute("pageNo", String.valueOf(intPageNo));
-		
-		int rowsPerPage = 4;
-		int pagesPerGroup = 5;
-		
-		int totalBoardNo = menuService.getCount();
-		
-		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
-		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
-		
-		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
-		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
-		int endPageNo = startPageNo + pagesPerGroup - 1;
-		
-		if(groupNo == totalGroupNo){
-			endPageNo = totalPageNo;
-		}
-		
-		List<Menu> list = menuService.listByMgroup(intPageNo, rowsPerPage, mgroup);
-		
-		model.addAttribute("mgroup",mgroup);
-		model.addAttribute("pageNo", intPageNo);
-		model.addAttribute("rowsPerPage", rowsPerPage);
-		model.addAttribute("pagesPerGroup", pagesPerGroup);
-		model.addAttribute("totalBoardNo", totalBoardNo);
-		model.addAttribute("totalPageNo", totalPageNo);
-		model.addAttribute("groupNo", groupNo);
-		model.addAttribute("startPageNo", startPageNo);
-		model.addAttribute("endPageNo", endPageNo);
-		model.addAttribute("list", list);
-		
-		return "order/orderSearchMgroup";
 	}
 	
 	//메뉴 키워드(이름) 검색(1차 검토 완료)

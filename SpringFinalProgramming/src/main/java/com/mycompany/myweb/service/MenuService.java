@@ -23,17 +23,12 @@ public class MenuService {
 	private MenuDao menuDao;
 	
 	public List<Menu> list(int pageNo, int rowsPerPage, String sid){
-		
-		/*if( != null){
-			return menuDao.searchBySid(sid);
-		}*/
 		return menuDao.selectByPage(pageNo, rowsPerPage, sid);
 	}
 	
 	//[명진]
-	public List<Menu> listByMgroup(int pageNo, int rowsPerPage, String mgroup){
-
-		return menuDao.selectByMgroup(pageNo, rowsPerPage, mgroup);
+	public List<Menu> listByMgroup(String sid, String mgroup){
+		return menuDao.selectByMgroup(sid, mgroup);
 	}
 	
 	//[명진]
