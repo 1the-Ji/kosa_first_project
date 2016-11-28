@@ -28,7 +28,6 @@
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
 		
 		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/store.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>
