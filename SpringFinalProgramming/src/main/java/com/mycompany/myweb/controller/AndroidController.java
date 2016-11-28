@@ -104,6 +104,40 @@ public class AndroidController {
 		return "android/menuAndroid";
 	}
 	
+	@RequestMapping("/detailMenuAndroid")
+	public String getDetailMenu(int mid, Model model){
+		logger.info("detailMenuAndroid 실행");
+		
+		if(mid == 1){
+		Menu menu = new Menu(1, "커피", "아메리카노", "HOT", 3000, "따뜻한 아메리카노", "coffee1.png", "store444");
+		model.addAttribute("menu", menu);
+		} else if(mid == 2){
+			Menu menu = new Menu(2, "커피", "아메리카노", "ICED", 3500, "차가운 아메리카노", "coffee2.png", "store444");
+			model.addAttribute("menu", menu);
+		} else if(mid == 3){
+			Menu menu = new Menu(3, "차", "홍차", "HOT", 5000, "따뜻한 홍차", "tea1.png", "store444");
+			model.addAttribute("menu", menu);
+		} else if(mid == 4){
+			Menu menu = new Menu(4, "차", "홍차", "ICED", 5500, "차가운 홍차", "tea2.png", "store444");
+			model.addAttribute("menu", menu);
+		} else if(mid == 5){
+			Menu menu = new Menu(5, "커피", "헤이즐넛", "HOT", 5000, "따뜻한 헤이즐넛", "coffee3.png", "store444");
+			model.addAttribute("menu", menu);
+		} else if(mid == 6){
+			Menu menu = new Menu(6, "커피", "헤이즐넛", "ICED", 5500, "차가운 헤이즐넛", "coffee4.png", "store444");
+			model.addAttribute("menu", menu);
+		} else if(mid == 7){
+			Menu menu = new Menu(7, "케익", "트라미수", "없음", 7000, "티라미슈 케익", "cake1.png", "store444");
+			model.addAttribute("menu", menu);
+		} else if(mid == 8){
+			Menu menu = new Menu(8, "베이글", "치즈베이글", "없음", 6000, "치즈 베이글", "etc1.png", "store444");
+			model.addAttribute("menu", menu);
+		}
+		
+		return "android/detailMenuAndroid";
+		
+	}
+	
 	//menu test
 	@RequestMapping("/getImage")
 	public void getImage(String fileName, HttpServletRequest request,HttpServletResponse response){
