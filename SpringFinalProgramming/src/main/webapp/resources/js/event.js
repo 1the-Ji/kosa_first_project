@@ -1,6 +1,14 @@
 $(function() {
 	$("#btnRegEvent").on("click",function() {
-		$("#eventRegister").modal("show");
+		$("#eventModal").css("opacity","0.5");
+		$("#eventRegister").modal({
+			backdrop:"static",
+			show:true
+		});
 	});
-	console.log("찍혀라~");
+	$("#eventRegister").on('hidden.bs.modal',function(){
+		$("#eventModal").css("opacity","1");
+	})
 });
+
+
