@@ -10,7 +10,7 @@
       <div class="modal-body">
 	    <table class="table table-striped custab">
 		    <thead>
-		    <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+		    <a href="#" id="btnRegEvent" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
 		        <tr>
 		            <th>No.</th>
 		            <th>Title</th>

@@ -25,7 +25,6 @@
 				
 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
 		
 		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
@@ -33,6 +32,7 @@
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/store.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/event.js"></script>
 	</head> 
 	<body style="padding-top:0px;">
 		<div class="wrap">
@@ -137,10 +137,16 @@
 		<%@ include file="menu/menuInfoModal.jsp" %>
 		
 		<%@ include file="event/eventModal.jsp" %>
+		<%@ include file="event/eventRegModal.jsp" %>
+		
+		
+		
 		<%@ include file="order/orderModal.jsp" %>
 		<%@ include file="order/detailListModal.jsp" %>
 		<%@ include file="order/orderForm1Modal.jsp" %>
 		<%@ include file="order/orderForm2Modal.jsp" %>
+		
+		
 		<%-- <%@ include file="order/termListModal.jsp" %>
 		<%@ include file="order/mnameSearchModal.jsp" %>
 		<%@ include file="order/mgroupCoffModal.jsp" %>
