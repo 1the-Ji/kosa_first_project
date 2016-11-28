@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+<%--2016-11-28(월)--%>
+<%--작성자: 이윤주--%>
 
-<div id="storeModal" class="modal fade" tabindex="-1" role="dialog">
+<div id="joinModal" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document" style="width:800px">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -141,6 +143,7 @@
 	          <hr>
 	        </div>
 	      </article>
+
 	      
 	      <div class="modal-footer"> 
 	        <button class="btn btn-primary" type="submit">Join</button>
