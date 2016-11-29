@@ -54,7 +54,7 @@ public class OrderController {
 	@Autowired
 	StoreService storeService;
 	
-	//주문전체 내역 페이지(1차 검토 완료)
+	//주문전체 내역 페이지(검토 완료)
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
 		String ogid = null; int resultprice = 0;
@@ -121,7 +121,7 @@ public class OrderController {
 		return "order/list";
 	}
 	
-	//주문내역 상세보기(1개 주문 당)(검토 필요)
+	//주문내역 상세보기(1개 주문 당)(검토 완료)
 	@RequestMapping(value="/detailList", method=RequestMethod.GET)
 	public String detailList(String ogid, Model model, HttpSession session){
 		logger.info("디테일리스트 시작");
@@ -195,15 +195,19 @@ public class OrderController {
 		return "order/detailList";
 	}
 
-	//주문내역 기간보기(1차 검토 완료)
-	@RequestMapping(value="/termList", method=RequestMethod.POST)
-	public String termList(String date1, String date2, String pageNo, Model model, HttpSession session) throws ParseException{
+	//주문내역 기간보기(날짜 정확하게 검색하기 위한 수정 필요)
+	@RequestMapping(value="/termList", method=RequestMethod.GET)
+	public String termList(String term1, String term2, String pageNo, Model model, HttpSession session) throws ParseException{
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date term1 = transFormat.parse(date1);
-		Date term2 = transFormat.parse(date2);
 		
-		logger.info(""+term1);
-		logger.info(""+term2);
+		Date date1 = transFormat.parse(term1);
+		Date date2 = transFormat.parse(term2);
+		
+		/*Date date1 = transFormat.parse(term1);
+		Date date2 = transFormat.parse(term2);
+		*/
+		logger.info(""+date1);
+		logger.info(""+date2);
 		
 		int intPageNo = 1;
 		if(pageNo == null){
@@ -216,7 +220,7 @@ public class OrderController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		int rowsPerPage = 4;
+		int rowsPerPage = 5;
 		int pagesPerGroup = 5;
 		int totalBoardNo = orderService.getCount();
 		int totalPageNo = totalBoardNo/rowsPerPage+((totalBoardNo%rowsPerPage!=0)?1:0);
@@ -228,7 +232,8 @@ public class OrderController {
 			endPageNo = totalPageNo;
 		}
 		
-		List<Order> list = orderService.listTerm(intPageNo, rowsPerPage, term1, term2);
+		List<Order> termList = orderService.listTerm(intPageNo, rowsPerPage, date1, date2);
+		logger.info("termList: "+termList);
 		
 		model.addAttribute("pageNo",intPageNo);
 		model.addAttribute("rowsPerPage",rowsPerPage);
@@ -239,8 +244,8 @@ public class OrderController {
 		model.addAttribute("groupNo",groupNo);
 		model.addAttribute("startPageNo",startPageNo);
 		model.addAttribute("endPageNo",endPageNo);
-		model.addAttribute("list", list);
-			
+		model.addAttribute("termList", termList);
+		
 		return "order/termList";
 	}
 	
@@ -249,6 +254,7 @@ public class OrderController {
 	
 	
 	//---------------------------------------------------------------------
+	//주문의 시작 폼 및 카페 당 메뉴리스트 페이지(검토 완료)
 	@RequestMapping(value="/menuList")
 	public String orderForm(String mgroup, Model model, HttpSession session){
 		String sid = (String) session.getAttribute("login");
@@ -258,7 +264,61 @@ public class OrderController {
 		return "order/menuList";
 	}
 	
-	//메뉴 전체 검색(1차 검토 완료)
+	//주문하기(진행 중)(검토 필요)(중요)
+	@RequestMapping(value="/sideList",method=RequestMethod.GET)
+	public String orderForm2(String mname, Model model){
+		List<Menu> menu = menuService.infoByMname(mname);
+		model.addAttribute("menu", menu.get(0));
+		
+		return "order/orderForm2";
+	}
+		
+	//주문하기(진행 중)(검토 필요)(중요)
+	@RequestMapping(value="/orderItems2",method=RequestMethod.POST)
+	public String orderItems2(
+			String mname,int ordercount,String hot_ice, 
+			String xname1, String xname2, String xname3,
+			HttpSession session){
+		
+		//ordercount는 맨 나중에 order_total 수정해야
+		//나중에 xname1,2,3 모두 안와도 널 포인터 익셉션 에러 안나도록 코드 수정(중요!!!)
+		
+		//실제 정확한 메뉴가 뭔지 알기 위해
+		Menu menu = menuService.infoByMnameHot_Ice(mname, hot_ice);
+		int mid = menu.getMid();
+		
+		//사이드 이름들에 대한 사이드들이 뭔지 찾기 위해
+		Extra extra1 = extraService.infoByXname(xname1);
+		Extra extra2 = extraService.infoByXname(xname2);
+		Extra extra3 = extraService.infoByXname(xname3);
+		int xid1 = extra1.getXid();
+		int xid2 = extra2.getXid();
+		int xid3 = extra3.getXid();
+			
+		//------------------------------------------------------------
+		//ogid 얻기
+		String ogid = (String) session.getAttribute("ogid");
+		
+		//Order_Item 테이블을 추가하고 다시 찾는 부분
+		orderItemService.addOrderItem(ogid, mid, ordercount);
+		OrderItem orderItem = orderItemService.searchOrderItemByOgidMid(ogid,mid);
+		
+		//Extra_Order 테이블을 추가하는 부분
+		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
+		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
+		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
+		
+		return "redirect:/order/orderItems";
+	}
+		
+	//결제(미완성)
+	@RequestMapping(value="/orderpay",method=RequestMethod.GET)
+	public String orderpay(){
+			
+		return "store/index";
+	}
+	
+	/*//메뉴 전체 검색(1차 검토 완료)
 	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
 	public String allMenuSearch(String pageNo, Model model,HttpSession session){
 		return "redirect:/order/orderItems";
@@ -307,60 +367,8 @@ public class OrderController {
 		model.addAttribute("list", list);
 		
 		return "order/orderSearchMname";
-	}	
+	}*/	
 	
-	//주문하기(진행 중)(검토 필요)(중요)
-	@RequestMapping(value="/orderItems2",method=RequestMethod.GET)
-	public String orderForm2(String mname, Model model){
-		List<Menu> menu = menuService.infoByMname(mname);
-		model.addAttribute("menu", menu.get(0));
-		
-		return "order/orderForm2";
-	}
 	
-	//주문하기(진행 중)(검토 필요)(중요)
-	@RequestMapping(value="/orderItems2",method=RequestMethod.POST)
-	public String orderItems2(
-			String mname,int ordercount,String hot_ice, 
-			String xname1, String xname2, String xname3,
-			HttpSession session){
-		
-		//ordercount는 맨 나중에 order_total 수정해야
-		//나중에 xname1,2,3 모두 안와도 널 포인터 익셉션 에러 안나도록 코드 수정(중요!!!)
-		
-		//실제 정확한 메뉴가 뭔지 알기 위해
-		Menu menu = menuService.infoByMnameHot_Ice(mname, hot_ice);
-		int mid = menu.getMid();
-		
-		//사이드 이름들에 대한 사이드들이 뭔지 찾기 위해
-		Extra extra1 = extraService.infoByXname(xname1);
-		Extra extra2 = extraService.infoByXname(xname2);
-		Extra extra3 = extraService.infoByXname(xname3);
-		int xid1 = extra1.getXid();
-		int xid2 = extra2.getXid();
-		int xid3 = extra3.getXid();
-		
-		//------------------------------------------------------------
-		//ogid 얻기
-		String ogid = (String) session.getAttribute("ogid");
-		
-		//Order_Item 테이블을 추가하고 다시 찾는 부분
-		orderItemService.addOrderItem(ogid, mid, ordercount);
-		OrderItem orderItem = orderItemService.searchOrderItemByOgidMid(ogid,mid);
-		
-		//Extra_Order 테이블을 추가하는 부분
-		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
-		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
-		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
-		
-		return "redirect:/order/orderItems";
-	}
-	
-	//결제(미완성)
-	@RequestMapping(value="/orderpay",method=RequestMethod.GET)
-	public String orderpay(){
-		
-		return "store/index";
-	}
 	
 }

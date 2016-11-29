@@ -42,7 +42,7 @@ function showPageList(pageNo) {
                    '<td data-label="주문시간">' + order.ogtime + '</td>' +
                    '<td data-label="총 가격">' + order.ogtotalprice + '</td>' +
                    '<td data-label="결제 방식">' + order.oghowpay + '</td>' +
-                   '</tr>'
+               '</tr>'
                );
             
          }

@@ -9,7 +9,7 @@ public class Order {
 	
 	private String ogid;//주문 아이디(문자열 기본키)
 	private int ogtotalprice;//총 주문 금액
-	@DateTimeFormat(pattern="yyyy-MM-dd-HH-mm-ss")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date ogtime;//주문 날짜(중요!)
 	private String user_id;//일반 회원 아이디
 	private String sid;//매장 회원 아이디
