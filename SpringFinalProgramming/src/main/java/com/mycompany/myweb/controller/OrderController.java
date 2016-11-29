@@ -57,13 +57,12 @@ public class OrderController {
 	//주문전체 내역 페이지(1차 검토 완료)
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
-		logger.info("여기까지 옴");
 		String ogid = null; int resultprice = 0;
 		//그냥 맨처음 주문 리스트 보는 경우와 주문하고 나서 리스트를 보는 경우를 다뤄야 함
 		if((String) session.getAttribute("ogid")!=null){
-			if((Integer) session.getAttribute("resultprice")==null){
+			if((Integer) session.getAttribute("resultprice")==null){//주문 중에 있을 때
 				session.setAttribute("ogid",null);
-			}else{
+			}else{//주문 완료 후에
 				//총 금액 order_total의 ogtotalprice에 넣어주기
 				ogid = (String) session.getAttribute("ogid");
 				logger.info("ogid: "+ogid);
@@ -74,8 +73,8 @@ public class OrderController {
 					
 				}
 			}
-		}
-		logger.info("ogid: "+ogid);
+		}//맨처음 주문 리스트 보는 경우(ogid에 대해 아무것도)
+		
 		/*//총 금액 order_total의 ogtotalprice에 넣어주기
 		String ogid = (String) session.getAttribute("ogid");
 		int resultprice = (Integer) session.getAttribute("resultprice");
@@ -120,6 +119,80 @@ public class OrderController {
 		model.addAttribute("list", list);
 		
 		return "order/list";
+	}
+	
+	//주문내역 상세보기(1개 주문 당)(검토 필요)
+	@RequestMapping(value="/detailList", method=RequestMethod.GET)
+	public String detailList(String ogid, Model model, HttpSession session){
+		logger.info("디테일리스트 시작");
+		
+		logger.info("ogid:"+ogid);
+		
+		//1주문당 (품목, 수량, 사이드, 가격) -> 구해서 같이 넘겨야 됨
+		//가격은 구매가 마칠 때 총 금액 구해서 업데이트 해줘야 됨
+		
+		List<OrderItem> orderItems = orderItemService.allOrderItemByOgid(ogid);
+		List<DetailOrder> detailOrders = new ArrayList<>();
+		logger.info("orderItems : "+orderItems);
+		
+		//int resultprice = 0;
+		for(int i=0;i<orderItems.size();i++){
+			DetailOrder detailOrder = new DetailOrder();
+			String xname = "";//1품목 모든 사이드 이름들 
+			int itemOneprice = 0;//1품목 총 금액 //int itemprice = 0;
+			
+			Menu menu = menuService.info(orderItems.get(i).getMid());//메뉴명
+			detailOrder.setMname(menu.getMname());//1품목 메뉴명 보존하기
+			logger.info("품목:"+detailOrder.getMname());
+			
+			detailOrder.setSameItemCount(orderItems.get(i).getOrdercount());//1품목 수량 보존하기
+			logger.info("수량:"+detailOrder.getSameItemCount());
+			
+			itemOneprice += menu.getMprice();
+			
+			//주문 품목에 대한 모든 사이드 찾기
+			List<ExtraOrder> extraOrders = extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid());
+			for(int j=0;j<extraOrders.size();j++){
+				Extra extra = new Extra();
+				extra =	extraService.info(extraOrders.get(j).getXid());
+				xname += extra.getXname()+" ";//1품목 사이드 이름 더하기
+				itemOneprice += extra.getXprice();//1품목 사이드 가격 더하기
+			}
+			detailOrder.setXname(xname);//더해진 사이드 이름들 보존하기
+			logger.info("사이드 이름들:"+detailOrder.getXname());
+			
+			//1품목의 총 금액
+			itemOneprice = itemOneprice*detailOrder.getSameItemCount();
+			detailOrder.setSameItemPrice(itemOneprice);//1품목 총 금액 보존하기
+			logger.info("가격:"+detailOrder.getSameItemPrice());
+			
+			detailOrder.setOghowpay(orderService.searchOne(ogid).getOghowpay());//결제 방법
+			
+			detailOrders.add(i,detailOrder);
+			
+			/*int tempitemprice = itemprice*orderItems.get(i).getOrdercount();
+			detailOrder.setSameItemPrice(tempitemprice);//1주문 동일 품목(메뉴 사이드) 가격
+			totalprice += tempitemprice;
+			resultprice += totalprice;*/
+			
+			//detailOrder.setTotalprice(totalprice);//1 주문 총 가격
+			
+		}
+		model.addAttribute("detailList", detailOrders);
+			
+		int resultprice=0;
+		for(int i=0;i<detailOrders.size();i++){
+				resultprice += detailOrders.get(i).getSameItemPrice();
+			}
+			
+		//1주문 총 금액 저장 및 JSP에 보내기
+		session.setAttribute("resultprice", resultprice);
+		model.addAttribute("resultprice", resultprice);
+			
+		/*//총 금액 order_total의 ogtotalprice에 넣어주기
+		orderService.modifyOgprice(ogid, resultprice);
+		*/
+		return "order/detailList";
 	}
 
 	//주문내역 기간보기(1차 검토 완료)
@@ -171,74 +244,7 @@ public class OrderController {
 		return "order/termList";
 	}
 	
-	//주문내역 상세보기(1개 주문 당)(검토 필요)
-	@RequestMapping(value="/detailList", method=RequestMethod.GET)
-	public String detailList(String ogid, Model model, HttpSession session){
-		//1주문당 (품목, 수량, 사이드, 가격) -> 구해서 같이 넘겨야 됨
-		//가격은 구매가 마칠 때 총 금액 구해서 업데이트 해줘야 됨
-		
-		List<OrderItem> orderItems = orderItemService.allOrderItemByOgid(ogid);
-		List<DetailOrder> detailOrders = new ArrayList<>();
-		
-		 //int resultprice = 0;
-		for(int i=0;i<orderItems.size();i++){
-			DetailOrder detailOrder = new DetailOrder();
-			String xname = "";//1품목 모든 사이드 이름들 
-			int itemOneprice = 0;//1품목 총 금액 //int itemprice = 0;
-			
-			Menu menu = menuService.info(orderItems.get(i).getMid());//메뉴명
-			detailOrder.setMname(menu.getMname());//1품목 메뉴명 보존하기
-			logger.info("품목:"+detailOrder.getMname());
-			
-			detailOrder.setSameItemCount(orderItems.get(i).getOrdercount());//1품목 수량 보존하기
-			logger.info("수량:"+detailOrder.getSameItemCount());
-			
-			itemOneprice += menu.getMprice();
-			
-			//주문 품목에 대한 모든 사이드 찾기
-			List<ExtraOrder> extraOrders = extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid());
-			for(int j=0;j<extraOrders.size();j++){
-				Extra extra = new Extra();
-				extra =	extraService.info(extraOrders.get(j).getXid());
-				xname += extra.getXname()+" ";//1품목 사이드 이름 더하기
-				itemOneprice += extra.getXprice();//1품목 사이드 가격 더하기
-			}
-			detailOrder.setXname(xname);//더해진 사이드 이름들 보존하기
-			logger.info("사이드 이름들:"+detailOrder.getXname());
-			
-			//1품목의 총 금액
-			itemOneprice = itemOneprice*detailOrder.getSameItemCount();
-			detailOrder.setSameItemPrice(itemOneprice);//1품목 총 금액 보존하기
-			logger.info("가격:"+detailOrder.getSameItemPrice());
-			
-			detailOrder.setOghowpay(orderService.searchOne(ogid).getOghowpay());//결제 방법
-			
-			detailOrders.add(i,detailOrder);
-			
-			/*int tempitemprice = itemprice*orderItems.get(i).getOrdercount();
-			detailOrder.setSameItemPrice(tempitemprice);//1주문 동일 품목(메뉴 사이드) 가격
-			totalprice += tempitemprice;
-			resultprice += totalprice;*/
-			
-			//detailOrder.setTotalprice(totalprice);//1 주문 총 가격
-			
-		}
-		model.addAttribute("detailOrders", detailOrders);
-		
-		int resultprice=0;
-		for(int i=0;i<detailOrders.size();i++){
-				resultprice += detailOrders.get(i).getSameItemPrice();
-			}
-		
-		//1주문 총 금액 저장 및 JSP에 보내기
-		session.setAttribute("resultprice", resultprice);
-		model.addAttribute("resultprice", resultprice);
-		
-		/*//총 금액 order_total의 ogtotalprice에 넣어주기
-		orderService.modifyOgprice(ogid, resultprice);
-		*/
-		return "order/detailList";
-	}
+	
 	
 	
 	
