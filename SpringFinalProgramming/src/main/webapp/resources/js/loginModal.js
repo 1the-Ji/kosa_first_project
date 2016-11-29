@@ -4,8 +4,6 @@ function onClickLogin() {
 		console.log(sid);
 		console.log(spw);
 		
-		location.reload();
-		
 		$.ajax({
 			url: "store/login",
 			data: {"sid":sid, "spw":spw},

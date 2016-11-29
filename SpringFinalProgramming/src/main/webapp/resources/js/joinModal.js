@@ -1,5 +1,5 @@
 $(function() {
-	$("#btnLogin").on("click", function() {
+	$("#btnJoin").on("click", function() {
 		$("#joinModal").modal("show");
 	});
 	
