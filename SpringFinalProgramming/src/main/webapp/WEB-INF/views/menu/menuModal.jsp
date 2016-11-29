@@ -10,16 +10,16 @@
       </div>
       <div class="modal-body" align="center">
       	<div class="btn-group">
-      		<button type="button" class="btn btn-info btn-filter" data-target="All">All</button>
-			<button type="button" class="btn btn-danger btn-filter" data-target="커피">Coffee</button>
-			<button type="button" class="btn btn-warning btn-filter" data-target="차">Tea</button>
-			<button type="button" class="btn btn-success btn-filter" data-target="디저트">Dessert</button>
-			<button type="button" class="btn btn-default btn-filter" data-target="기타">Etc</button>
+      		<button onclick="btnMenuList('전체')" type="button" class="btn btn-info btn-filter">All</button>
+			<button onclick="btnMenuList('커피')" type="button" class="btn btn-info btn-filter">Coffee</button>
+			<button onclick="btnMenuList('차')" type="button" class="btn btn-info btn-filter">Tea</button>
+			<button onclick="btnMenuList('디저트')" type="button" class="btn btn-info btn-filter">Dessert</button>
+			<button onclick="btnMenuList('기타')" type="button" class="btn btn-info btn-filter">Etc</button>
 		</div>
 		<hr/>
      		
    		<table style="width:100%">
-   			<tr>
+   			<tr id="menuListBody">
    				<c:forEach var="menu" items="${list}">
 	   				<td style="text-align: center;">
 		        		<div style="width:150px;height:150px;display:inline-block; margin:10px;" data-status="${menu.mgroup}">
@@ -30,57 +30,7 @@
 							${menu.mprice}won	
 		        		</div>
 		        </c:forEach>
-	        		<%-- 
-	                <div style="width:150px;height:150px;display:inline-block; margin:10px;" data-status="${menu.mgroup}">
-	                	<a href="#"><img class="menuImg" width="150px" height="150px" src="${pageContext.servletContext.contextPath}/resources/photo/w5.jpg" /></a>
-	                	<br/>
-	                	아메리카노 ICE
-				        <br/>
-				        4500won
-	                </div>
-	                <div style="width:150px;height:150px;display:inline-block; margin:10px;">
-	                	<a href="#"><img class="menuImg" width="150px" height="150px" src="${pageContext.servletContext.contextPath}/resources/photo/m3.jpg" /></a>
-	                	<br/>
-	                	누텔라쿠키
-				        <br/>
-				        4500won
-	                </div>
-	                <div style="width:150px;height:150px;display:inline-block; margin:10px;">
-	                	<a href="#"><img class="menuImg" width="150px" height="150px" src="${pageContext.servletContext.contextPath}/resources/photo/m3.jpg" /></a>
-	                	<br/>
-	                	슈크림 쿠키
-				        <br/>
-				        2000won
-	                </div>
-	            	<div style="width:150px;height:150px;display:inline-block; margin:10px;">
-	            		<a href="#"><img class="menuImg" width="150px" height="150px" src="${pageContext.servletContext.contextPath}/resources/photo/w4.jpg" /></a>
-	            		<br/>
-	            		코코아 HOT
-				        <br/>
-				        5000won
-	            	</div>
-	                <div style="width:150px;height:150px;display:inline-block; margin:10px;">
-	                	<a href="#"><img class="menuImg" width="150px" height="150px" src="${pageContext.servletContext.contextPath}/resources/photo/w2.jpg" /></a>
-	                	<br/>
-	                	자스민티 ICE
-				        <br/>
-				        5500won
-	                </div>
-	                <div style="width:150px;height:150px;display:inline-block; margin:10px;">
-	                	<a href="#"><img class="menuImg" width="150px" height="150px" src="${pageContext.servletContext.contextPath}/resources/photo/w4.jpg" /></a>
-	                	<br/>
-	                	마시멜로라떼 HOT
-				        <br/>
-				        6000won
-	                </div>
-	                <div style="width:150px;height:150px;display:inline-block; margin:10px;">
-	                	<a href="#"><img class="menuImg" width="150px" height="150px" src="${pageContext.servletContext.contextPath}/resources/photo/w7.jpg" /></a>
-	                	<br/>
-	                	에스프레소프랍 ICE
-				        <br/>
-				        5800won
-	                </div> 
-	                --%>
+	        		
    					</td>
    			</tr>
   		</table>
