@@ -25,12 +25,12 @@
 				
  		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>		
 		
 		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/loginModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
-		
+		 
  		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/joinModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/eventModal.js"></script> 
@@ -134,6 +134,7 @@
 		<%@ include file="store/joinModal.jsp" %>
 		
 		<%@ include file="menu/menuModal.jsp" %>
+		<%@ include file="menu/menuList.jsp" %>
 		<%@ include file="menu/menuRegModal.jsp" %>
 		<%@ include file="menu/menuModModal.jsp" %>
 		<%@ include file="menu/menuInfoModal.jsp" %>
