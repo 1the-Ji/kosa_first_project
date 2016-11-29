@@ -81,16 +81,17 @@ public class MenuController {
 		model.addAttribute("endPageNo", endPageNo);
 		model.addAttribute("list", list);
 		
-		return "menu/menuModal";
+		return "menu/menuList";
 	
 	} // list
 	
 	// 페이징+그룹핑 기능 리스트
-	@RequestMapping(value="/mgroupList")
+	@RequestMapping(value="/menuList")
 	public String mgroupList(String mgroup, String pageNo, Model model, HttpSession session){
 		logger.info("메뉴리스트 그룹+페이징 컨트롤러");
 		String sid = (String) session.getAttribute("login");
-	
+		if(mgroup.equals("전체")) mgroup = null;
+		
 		int intPageNo = 1;
 		if (pageNo == null) {
 			pageNo = (String) session.getAttribute("pageNo");
@@ -118,7 +119,6 @@ public class MenuController {
 			endPageNo = totalPageNo;
 		}
 		
-		if(mgroup.equals("전체")) mgroup = null;
 		List<Menu> list = menuService.listPageMgroup(intPageNo, rowsPerPage, sid, mgroup);
 		
 		model.addAttribute("sid",sid);
@@ -160,7 +160,7 @@ public class MenuController {
 			
 			int result = menuService.write(menu);
 			logger.info(""+result);
-			return "redirect:/menu/menuModal";		
+			return "menu/menuList";		
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.info(e.getMessage());
@@ -226,13 +226,13 @@ public class MenuController {
 			menu.setMmimetype(menu.getPhoto().getContentType());
 			menuService.modify(menu);
 		}catch(Exception e){}
-		return "redirect:/menu/menuModal";
+		return "/menu/menuModal";
 	} //modify
 	
 	@RequestMapping("/remove")
 	public String remove(int mid){
 		menuService.remove(mid);
-		return "redirect:/menu/menuModal";
+		return "/menu/menuModal";
 	}
 
 } // class

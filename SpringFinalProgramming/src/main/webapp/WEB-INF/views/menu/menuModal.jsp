@@ -18,9 +18,9 @@
 		</div>
 		<hr/>
      		
-   		<table id="menuListBody" style="width:100%">
-   			
-   			<%--<tr>
+   		<table style="width:100%">
+   			<tr id="menuListBody">
+   			<%--
    				 <c:forEach var="menu" items="${list}">
 	   				<td style="text-align: center;">
 		        		<div style="width:150px;height:150px;display:inline-block; margin:10px;" data-status="${menu.mgroup}">
@@ -30,10 +30,10 @@
 							<br/>
 							${menu.mprice}won	
 		        		</div>
-		        </c:forEach>
+		        </c:forEach> 
 	        		
-   					</td>
-   			</tr> --%>
+   					</td>--%>
+   			</tr>
   		</table>
       </div>
       

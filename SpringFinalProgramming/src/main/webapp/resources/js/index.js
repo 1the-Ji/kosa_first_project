@@ -7,7 +7,7 @@ $(function() {
 		$("#storeModal").modal("show");
 	});
 	
-	$("#btnMenu").on("click", function menuList(data) {
+	$("#btnMenu").on("click", function() {
 		$("#menuModal").modal("show");
 		showPageMenuList(1, mgroup);
 	});
