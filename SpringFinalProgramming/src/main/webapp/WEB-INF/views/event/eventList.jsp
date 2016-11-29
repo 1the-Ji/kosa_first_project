@@ -9,6 +9,7 @@
 			"estartperiod":"${event.estartperiod}",
 			"elastperiod":"${event.elastperiod}",
 			"econtents":"${event.econtents}"
+			
 		}
 		<c:if test="${!status.last}">,</c:if>
 		</c:forEach>

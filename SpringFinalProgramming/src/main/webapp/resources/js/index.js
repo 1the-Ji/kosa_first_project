@@ -7,11 +7,13 @@ $(function() {
 		$("#storeModal").modal("show");
 	});
 	
-	$("#btnMenu").on("click", function menuList(data) {
-		showPageMenuList(1);
+	$("#btnMenu").on("click", function() {
+		$("#menuModal").modal("show");
+		showPageMenuList(1, "전체");
 	});
 	
 	$("#btnEvent").on("click", function() {
+		$("#eventModal").modal("show");
 		eventList();
 	});
 	

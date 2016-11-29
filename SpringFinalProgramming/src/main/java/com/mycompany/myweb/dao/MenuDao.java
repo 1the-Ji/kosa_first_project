@@ -121,7 +121,7 @@ public class MenuDao {
 		sql += "where rownum<=? ";
 		sql += ") ";
 		sql += "where rn>=? and sid=? and mgroup=?";
-		Object[] conditions = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup};
+		Object[] sqlcondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup};
 		if(mgroup == null){
 			sql = "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
 			sql += "from ( ";
@@ -130,11 +130,11 @@ public class MenuDao {
 			sql += "where rownum<=? ";
 			sql += ") ";
 			sql += "where rn>=? and sid=?";
-			conditions = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
+			sqlcondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
 		}
 		List<Menu> list = jdbcTemplate.query(
 				sql,
-				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup},
+				sqlcondition,
 				new RowMapper<Menu>(){
 					@Override
 					public Menu mapRow(ResultSet rs, int row) throws SQLException {
