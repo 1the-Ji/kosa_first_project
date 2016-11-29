@@ -10,7 +10,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">	
 		<link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet"/>	
-		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />	
+		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />	 
 		
 		<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css"> 
     	<link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" >
