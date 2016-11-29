@@ -2112,7 +2112,7 @@ pre code {
 		width: 33.33333333%
 	}
 	.col-sm-3 {
-		width: 25%
+		width: 30%
 	}
 	.col-sm-2 {
 		width: 16.66666667%
@@ -2239,10 +2239,7 @@ pre code {
 	}
 }
 
-/* @media ( min-width :992px) {
-=======
 @media ( min-width :1200px) {
->>>>>>> branch 'master' of https://github.com/JiSeungHoon/TeamRepository
 	.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3,
 		.col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
 		float: left
@@ -2560,7 +2557,7 @@ pre code {
 	.col-lg-offset-0 {
 		margin-left: 0
 	}
-} */
+}
 
 table {
 	background-color: transparent
@@ -2834,7 +2831,7 @@ output {
 	line-height: 1.42857143;
 	color: #555
 }
-     
+
 .form-control {
 	display: block;
 	width: 100%;
@@ -7397,7 +7394,7 @@ button.close {
 }
 /
 *
-
+#
  
 sourceMappingURL
 =bootstrap
