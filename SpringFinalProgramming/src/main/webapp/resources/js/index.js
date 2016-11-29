@@ -13,6 +13,7 @@ $(function() {
 	});
 	
 	$("#btnEvent").on("click", function() {
+		$("#eventModal").modal("show");
 		eventList();
 	});
 	

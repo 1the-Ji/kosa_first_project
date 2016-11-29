@@ -1,26 +1,48 @@
 $(function() {
 	$("#btnRegEvent").on("click",function() {
 		$("#eventModal").css("opacity","0.5");
-		$("#eventRegister").modal({
+		$("#eventRegModal").modal({
 			backdrop:"static",
 			show:true
 		});
 	});
-	$("#eventRegister").on('hidden.bs.modal',function(){
+	
+	$("#eventRegModal").on('hidden.bs.modal',function(){
 		$("#eventModal").css("opacity","1");
-	})
+	});
 	
 	
 	$("#regEvent").on("click",function() {
 		var etitle = $("#etitle").val();
 		var estartperiod = $("#estartperiod").val();
 		var elastperiod = $("#elastperiod").val();
-		var econtent =$("econtent").val();
+		var econtents =$("#econtents").text();
+		var photo = $("#photo")[0];
 		
-		console.log(etitle);
-		console.log(estartperiod);
-		console.log(elastperiod);
-		console.log(econtent);
+		var data = new FormData();
+		data.append("etitle", etitle);
+		data.append("estartperiod", estartperiod);
+		data.append("elastperiod", elastperiod);
+		data.append("econtents", econtents);
+		
+		if(photo.files.length != 0) {
+			data.append("photo", photo.files[0]);
+		}			
+		
+		$.ajax({
+			url:"event/register",
+			method: "post",
+			data: data,
+			cache: false,
+			processData: false,
+			contentType: false,
+			success: function(data) {
+				if(data.result == "success") {
+					$("#eventRegModal").modal("hide");
+					eventList();
+				}
+			}
+		});
 		
 	});
 });
@@ -43,7 +65,6 @@ function eventList(){
 			         '</tr>'
             	);
 			}
-			$("#eventModal").modal("show");
 		}
 	});
 };
