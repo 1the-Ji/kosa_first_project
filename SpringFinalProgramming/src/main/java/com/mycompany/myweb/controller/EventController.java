@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.myweb.dto.Event;
 import com.mycompany.myweb.service.EventService;
@@ -69,11 +70,12 @@ public class EventController {
 		return "event/register";
 	}
 	@RequestMapping(value="/info")
-	public String info(int eid, Model model){
-		logger.info("이벤트 세부정보 form실행");
-		Event event = eventService.info(eid);
+	public String info(@RequestParam(required=false,defaultValue="500")String eid, Model model){
+		int newEid = Integer.parseInt(eid);
+		Event event = eventService.info(newEid);
 		model.addAttribute("event",event);
-		return "event/info";
+		logger.info("들어가랍!!");
+		return "event/eventInfo";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)

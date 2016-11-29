@@ -8,8 +8,8 @@
 			"etitle":"${event.etitle}",
 			"estartperiod":"${event.estartperiod}",
 			"elastperiod":"${event.elastperiod}",
-			"econtents":"${event.econtents}"
-			
+			"econtents":"${event.econtents}",
+			"emimetype":"${event.emimetype}"
 		}
 		<c:if test="${!status.last}">,</c:if>
 		</c:forEach>
