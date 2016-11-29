@@ -17,7 +17,7 @@
 	    						<a href="#"><img src="" alt=""/></a>
 	    					</div>
 	    					<div class="icerik-bilgi">
-	    						<h2>${menu.mname} ${menu.hot_ice</h2>
+	    						<h2>${menu.mname} ${menu.hot_ice}</h2>
 	    						<p></p>
 	    						<div class="btn-group">
 	    							
