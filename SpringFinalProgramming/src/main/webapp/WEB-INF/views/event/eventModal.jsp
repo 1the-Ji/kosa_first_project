@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-
 <div id="eventModal" class="modal fade" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -19,14 +18,8 @@
 		            <th class="text-center">Action</th>
 		        </tr>
 		    </thead>
-		    <tbody id="eventTbody">
-	         </tbody>
-	         
+		  	  <tbody id="eventTbody"></tbody>
 	    </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button> 
       </div>
     </div>
   </div>

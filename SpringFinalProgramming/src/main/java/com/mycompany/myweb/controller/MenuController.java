@@ -23,9 +23,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.service.MenuService;
+// 메뉴관련코드작성자: 보나 (20161107~)
 
 
+// 일반적인 페이징처리 메뉴 리스트
 @Controller
+@RequestMapping("/menu")
 public class MenuController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
@@ -33,8 +36,8 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 	
-	@RequestMapping(value="/menu/list")
-	public String list(String pageNo, Model model, HttpSession session, String msid){
+	@RequestMapping(value="/list")
+	public String list(String pageNo, Model model, HttpSession session){
 		
 		String sid = (String) session.getAttribute("login");
 	
@@ -82,15 +85,67 @@ public class MenuController {
 	
 	} // list
 	
+	// 페이징+그룹핑 기능 리스트
+	@RequestMapping(value="/mgroupList")
+	public String mgroupList(String mgroup, String pageNo, Model model, HttpSession session){
+		logger.info("메뉴리스트 그룹+페이징 컨트롤러");
+		String sid = (String) session.getAttribute("login");
+	
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
+		
+		int rowsPerPage = 8;
+		int pagesPerGroup = 5;
+		
+		int totalBoardNo = menuService.getCount();
+		
+		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+		int endPageNo = startPageNo + pagesPerGroup - 1;
+		
+		if(groupNo == totalGroupNo){
+			endPageNo = totalPageNo;
+		}
+		
+		if(mgroup.equals("전체")) mgroup = null;
+		List<Menu> list = menuService.listPageMgroup(intPageNo, rowsPerPage, sid, mgroup);
+		
+		model.addAttribute("sid",sid);
+		model.addAttribute("mgroup", mgroup);
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("list", list);
+		
+		return "menu/menuList";
+	
+	} // mgrouplist
+	
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.GET)
 	public String registerForm(HttpSession session){
 		return "menu/menuRegForm";
 	} 
 	
-	@RequestMapping(value = "/menu/register", method=RequestMethod.POST)
+	@RequestMapping(value = "/register", method=RequestMethod.POST)
 	public String register(HttpSession session, Menu menu){
-		logger.info("ggg");
+		logger.info("메뉴등록");
 		try {
 			String sid = (String)session.getAttribute("login");
 			menu.setSid(sid);
@@ -114,7 +169,7 @@ public class MenuController {
 	} // register
 	
 	
-	@RequestMapping("/menu/showPhoto")
+	@RequestMapping("/showPhoto")
 	public void showPhoto(String msavedfile, HttpServletRequest request, HttpServletResponse response){
 		try{
 			String fileName = msavedfile;
@@ -139,7 +194,7 @@ public class MenuController {
 		}
 	} // showPhoto 
 	
-	@RequestMapping(value="/menu/info")
+	@RequestMapping(value="/info")
 	public String info(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		menuService.modify(menu);
@@ -147,7 +202,7 @@ public class MenuController {
 		return "menu/menuInfoModal";
 	} // info
 	
-	@RequestMapping(value="/menu/modify", method=RequestMethod.GET)
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyForm(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		model.addAttribute("menu", menu);
@@ -155,7 +210,7 @@ public class MenuController {
 	} // modifyForm
 	
 	
-	@RequestMapping(value="/menu/modify", method=RequestMethod.POST)
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Menu menu, HttpSession session, Model model){
 		
 		try{
@@ -174,7 +229,7 @@ public class MenuController {
 		return "redirect:/menu/menuModal";
 	} //modify
 	
-	@RequestMapping("/menu/remove")
+	@RequestMapping("/remove")
 	public String remove(int mid){
 		menuService.remove(mid);
 		return "redirect:/menu/menuModal";
