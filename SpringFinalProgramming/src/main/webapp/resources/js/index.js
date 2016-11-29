@@ -86,15 +86,16 @@ function showPageList(pageNo) {
 
 function showMenuList(pageNo, mgroup){
 	$("#menuListBody").empty();
+	console.log("Menulist ajax전")
 	$.ajax({
-		url: "menu/menuList",
+		url: "/menu/mgroupList",
 		data: {"pageNo": pageNo, "mgroup": mgroup},
 		success: function(data){
 			$("#menuListBody").empty();
 			$("#menuModal .modal-footer").empty();
 			for(var i=0; i<data.list.length; i++){
 				var menu = data.list[i];
-				$("menuTbody").append(
+				$("menuListBody").append(
 					'<tr>' +
 						'<td style="text-align: center;">' +
 			        		'<div style="width:150px;height:150px;display:inline-block; margin:10px;" ${menu.mgroup}">' +
@@ -119,7 +120,7 @@ function showMenuList(pageNo, mgroup){
 	        var startPageNo = data.startPageNo;
 	        var endPageNo = data.endPageNo;
 	        
-	        $("##menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(1)">처음</a>');
+	        $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(1)">처음</a>');
 
 	         if(groupNo>1) {
 	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(' + (startPageNo-1) + ')">이전</a>');
@@ -139,7 +140,12 @@ function showMenuList(pageNo, mgroup){
 
 
 	         $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(' + totalPageNo + ')">맨끝</a>');
-
+	         
+	         if(login != null){
+	        	 '<div align="center">' +
+	        	 	'<a id="btnMenuRegForm" type="button" class="btn btn-info" href="#">메뉴 등록</a>' +
+	        	 '</div>'
+	         }
 
 	         $("#menuModal").modal("show");
 		}
