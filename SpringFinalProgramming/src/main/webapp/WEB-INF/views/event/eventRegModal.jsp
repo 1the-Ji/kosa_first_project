@@ -16,7 +16,7 @@
 				            <input type="text" name="mem_name" id="mem_name" placeholder="이벤트 제목 입력" value="">
 				          </div>
 				        </div>
-				          
+
 				        <div class="form-group">
 				          <label class="control-label col-sm-3">기간 <span class="text-danger">*</span></label>
 				          <div class="col-md-5 col-sm-8">
