@@ -2,6 +2,7 @@ package com.mycompany.myweb.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
@@ -50,24 +51,22 @@ public class EventController {
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String registerForm(Event event, HttpSession session){
 		logger.info("event 등록 성공");
-		try{
-			String sid = (String)session.getAttribute("login");
-			event.setSid(sid);
-			
-			String savedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
-			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);//저장할 파일의 절대 파일 시스템 경로를 얻는다.
-			logger.info(realpath);
-			event.getPhoto().transferTo(new File(realpath));//클라이언트에서 저장한 파일을 해당 경로(realpath)에 저장 실제 파일을 저장
-			event.setEsavedfile(savedfile);
-			
-			event.setEmimetype(event.getPhoto().getContentType());//저장할 파일의 mime type 얻어냄.
-			int result = eventService.write(event);		
-			return "redirect:/event/list";
+		String sid = (String)session.getAttribute("login");
+		event.setSid(sid);
 		
-		}catch(Exception e){
+		String savedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
+		String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);//저장할 파일의 절대 파일 시스템 경로를 얻는다.
+		logger.info(realpath);
+		try {
+			event.getPhoto().transferTo(new File(realpath));
+		} catch (Exception e) {
 			e.printStackTrace();
-			return "event/registerForm";
 		}
+		event.setEsavedfile(savedfile);
+		
+		event.setEmimetype(event.getPhoto().getContentType());
+		eventService.write(event);		
+		return "event/register";
 	}
 	@RequestMapping(value="/info")
 	public String info(int eid, Model model){

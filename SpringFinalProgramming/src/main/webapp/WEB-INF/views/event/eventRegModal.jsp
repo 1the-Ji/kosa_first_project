@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-		 <div id="eventRegister" class="modal fade" tabindex="-1" role="dialog">
+
+		 <div id="eventRegModal" class="modal fade" tabindex="-1" role="dialog">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -13,20 +14,20 @@
 					       <div class="form-group">
 					          <label class="control-label col-sm-3">제목. <span class="text-danger">*</span></label>
 					          <div class="col-md-8 col-sm-9">
-					            <input type="text" class="form-control" name="etitle" id="etitle" placeholder="Enter your Name here" value="">
+					            <input type="text" class="form-control" name="etitle" id="etitle" placeholder="Enter your Name here" value="제목1">
 					          </div>
 					        </div>
 					        <div class="form-group">
 					          <label class="control-label col-sm-3">기간. <span class="text-danger">*</span></label>
 					          <div class="col-md-8 col-sm-9">
-					            <input type="date" class="form-control" name="estartperiod" id="estartperiod" placeholder="Enter your Name here" value=""> ~
-					            <input type="date" class="form-control" name="elastperiod" id="elastperiod" placeholder="Enter your Name here" value=""> 
+					            <input type="date" class="form-control" name="estartperiod" id="estartperiod" placeholder="Enter your Name here" value="2016-05-30"> ~
+					            <input type="date" class="form-control" name="elastperiod" id="elastperiod" placeholder="Enter your Name here" value="2016-06-30"> 
 					          </div>
 					        </div>
 					        <div class="form-group">
 					          <label class="control-label col-sm-3">내용. <span class="text-danger">*</span></label>
 					          <div class="col-md-8 col-sm-9">
-					            <textarea cols=20 rows=3 class="form-control" name="econtent" id="econtent" placeholder="Enter your Name here"></textarea>
+					            <textarea cols=20 rows=3 class="form-control" name="econtents" id="econtents" placeholder="Enter your Name here">내용</textarea>
 					          </div>
 					        </div>
 					        <div class="form-group">
