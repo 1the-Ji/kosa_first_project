@@ -58,7 +58,7 @@ function eventList(){
 				$("#eventTbody").append(
 			         '<tr>'+
 		             '<td>'+ event.eid +'</td>' +
-		             '<td><a href="info?eid=${event.eid}">'+ event.etitle +'</td>'+
+		             '<td><a href="javascript:eventInfo(\''+ event.eid + '\')">'+ event.etitle +'</td>'+
 		             '<td>'+ event.estartperiod + ' ~ ' + event.elastperiod + '</td>'+
 		             '<td>'+ event.econtents + '~' + '</td>'+
 		             '<td class="text-center"><a class="btn btn-info btn-xs" href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>'+
@@ -69,4 +69,34 @@ function eventList(){
 	});
 };
 
-
+function eventInfo(eid){
+	console.log("들어가니?");
+	$.ajax({
+		url:"event/info",
+		data: {"eid":eid},
+		success: function(data){
+			console.log("성공!");
+			var info = data.eventInfo;
+			$(".well").append(
+		  '<div class="media">' +
+		    '<img class="media-object" width=150px src="showPhoto?esavedfile=' + info.esavedfile + '">' +
+		  		 '<div class="media-body">' +
+		    		'<h4 class="media-heading" id="etitle">' + info.etitle +'</h4>' +
+		            '<p>' + info.econtents+ '</p>' +
+		  			'<span><i class="glyphicon glyphicon-calendar"></i>'+ info.estartperiod + '~' + info.elastperiod +'</span>' +
+		        '</div>' +
+		    '</div>'
+			);
+			$("#eventModal").css("opacity","0.5");
+			$("#eventInfoModal").modal({
+				backdrop:"static",
+				show:true
+			});
+		}
+	});
+	
+	$("#eventInfoModal").on('hidden.bs.modal',function(){
+		$("#eventModal").css("opacity","1");
+	});
+	
+}
