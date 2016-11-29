@@ -66,6 +66,8 @@ $(function() {
 	
 });
 
+
+
 function showPageMenuList(pageNo, mgroup) {
 	$("#menuListBody").empty();
 	console.log("Menulist ajax전")
