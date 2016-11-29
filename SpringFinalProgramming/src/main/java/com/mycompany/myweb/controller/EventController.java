@@ -31,14 +31,14 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 	
-	@RequestMapping("/list")
+	@RequestMapping("/eventList")
 	public String list(Model model, HttpSession session){
 		logger.info("service list 실행1");
 		String sid = (String) session.getAttribute("login");
 		List<Event> list = eventService.getList(sid);
 		model.addAttribute("eventList",list);
 		logger.info("service list 실행2");
-		return "event/list";
+		return "event/eventList";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)

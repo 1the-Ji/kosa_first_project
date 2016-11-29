@@ -37,7 +37,7 @@
 		    </div>
 		    <div class="row m-t-15 m-b--20">
 		        <div class="col-xs-6">
-		            <a href="join">Register Now!</a>
+		            <a id="btnLogin" href="#">Register Now!</a>
 		        </div>
 		        <div class="col-xs-6 align-right">
 		          <a href="findSid">Forgot ID</a> / <a href="findSpw">Password</a>
