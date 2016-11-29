@@ -17,7 +17,7 @@ $(function() {
 	
 	$("#btnOrder").on("click", function() {
 		showPageList(1);
-	});
+	}); 
 });
 
 
