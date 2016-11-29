@@ -12,12 +12,16 @@ $(function() {
 	
 	
 	$("#regEvent").on("click",function() {
-		console.log("regEvent");
 		var etitle = $("#etitle").val();
 		var estartperiod = $("#estartperiod").val();
 		var elastperiod = $("#elastperiod").val();
 		var econtent =$("econtent").val();
-	
+		
+		console.log(etitle);
+		console.log(estartperiod);
+		console.log(elastperiod);
+		console.log(econtent);
+		
 	});
 });
 

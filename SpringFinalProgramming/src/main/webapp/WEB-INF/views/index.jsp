@@ -24,16 +24,16 @@
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/admin.js"></script>
 				
  		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>		
+ 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
 		
-		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
+ 		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/loginModal.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>
 		 
- 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
+  		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/joinModal.js"></script>
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/eventModal.js"></script> 
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/eventModal.js"></script>
 	</head> 
 	<body style="padding-top:0px;">
 		<div class="wrap">
@@ -133,11 +133,10 @@
 		<%@ include file="store/storeModal.jsp" %>
 		<%@ include file="store/joinModal.jsp" %>
 		
-		<%@ include file="menu/menuModal.jsp" %>
-		<%@ include file="menu/menuList.jsp" %>
+ 		<%@ include file="menu/menuModal.jsp" %>
 		<%@ include file="menu/menuRegModal.jsp" %>
 		<%@ include file="menu/menuModModal.jsp" %>
-		<%@ include file="menu/menuInfoModal.jsp" %>
+		<%@ include file="menu/menuInfoModal.jsp" %> 
 		
 		<%@ include file="event/eventModal.jsp" %>
 		<%@ include file="event/eventRegModal.jsp" %>
