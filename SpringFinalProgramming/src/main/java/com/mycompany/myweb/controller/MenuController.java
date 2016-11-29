@@ -23,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.service.MenuService;
+// 메뉴관련코드작성자: 보나 (20161107~)
 
 
+// 일반적인 페이징처리 메뉴 리스트
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
@@ -35,7 +37,7 @@ public class MenuController {
 	private MenuService menuService;
 	
 	@RequestMapping(value="/list")
-	public String list(String pageNo, Model model, HttpSession session, String msid){
+	public String list(String pageNo, Model model, HttpSession session){
 		
 		String sid = (String) session.getAttribute("login");
 	
@@ -83,6 +85,58 @@ public class MenuController {
 	
 	} // list
 	
+	// 페이징+그룹핑 기능 리스트
+	@RequestMapping(value="/mgroupList")
+	public String mgroupList(String mgroup, String pageNo, Model model, HttpSession session){
+		logger.info("메뉴리스트 그룹+페이징 컨트롤러");
+		String sid = (String) session.getAttribute("login");
+	
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
+		
+		int rowsPerPage = 8;
+		int pagesPerGroup = 5;
+		
+		int totalBoardNo = menuService.getCount();
+		
+		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+		int endPageNo = startPageNo + pagesPerGroup - 1;
+		
+		if(groupNo == totalGroupNo){
+			endPageNo = totalPageNo;
+		}
+		
+		if(mgroup.equals("전체")) mgroup = null;
+		List<Menu> list = menuService.listPageMgroup(intPageNo, rowsPerPage, sid, mgroup);
+		
+		model.addAttribute("sid",sid);
+		model.addAttribute("mgroup", mgroup);
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("list", list);
+		
+		return "menu/menuList";
+	
+	} // mgrouplist
+	
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.GET)
 	public String registerForm(HttpSession session){
@@ -91,7 +145,7 @@ public class MenuController {
 	
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
 	public String register(HttpSession session, Menu menu){
-		logger.info("ggg");
+		logger.info("메뉴등록");
 		try {
 			String sid = (String)session.getAttribute("login");
 			menu.setSid(sid);

@@ -18,9 +18,9 @@
 		</div>
 		<hr/>
      		
-   		<table style="width:100%">
-   			<tr id="menuListBody">
-   				<c:forEach var="menu" items="${list}">
+   		<table id="menuListBody" style="width:100%">
+   			<%--<tr>
+   				 <c:forEach var="menu" items="${list}">
 	   				<td style="text-align: center;">
 		        		<div style="width:150px;height:150px;display:inline-block; margin:10px;" data-status="${menu.mgroup}">
 		        			<a href="javascript:showMenuInfo(${menu.mid})"><img width="150px" height="150px" src="showPhoto?msavedfile=${menu.msavedfile}" /></a>
@@ -32,12 +32,12 @@
 		        </c:forEach>
 	        		
    					</td>
-   			</tr>
+   			</tr> --%>
   		</table>
       </div>
       
       <div class="modal-footer">
-      	<div align="center">
+      	<%-- <div align="center">
       		<a href="list?pageNo=1"><button type="button" class="btn btn-warning">처음</button></a>
 			
 			<c:if test="${groupNo>1 }">
@@ -56,12 +56,12 @@
 			</c:if>
 			
 			<a href="list?pageNo=${totalPageNo }"><button type="button" class="btn btn-warning">[맨끝]</button></a>
-      	</div>
-      	<div>
+      	</div> --%>
+      	<%-- <div>
       		<c:if test="${login != null}">
       		<a id="btnMenuRegForm" type="button" class="btn btn-info" href="#">메뉴 등록</a>
       		</c:if>
-      	</div>
+      	</div> --%>
 			
       </div>
     </div>

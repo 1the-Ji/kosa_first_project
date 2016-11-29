@@ -112,6 +112,49 @@ public class MenuDao {
 		return list;
 	}
 	
+	public List<Menu> selectByPageMgroup(int pageNo, int rowsPerPage, String sid, String mgroup){
+		String sql="";
+		sql += "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "from ( ";
+		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+		sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
+		sql += "where rownum<=? ";
+		sql += ") ";
+		sql += "where rn>=? and sid=? and mgroup=?";
+		Object[] conditions = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup};
+		if(mgroup == null){
+			sql = "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+			sql += "from ( ";
+			sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
+			sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
+			sql += "where rownum<=? ";
+			sql += ") ";
+			sql += "where rn>=? and sid=?";
+			conditions = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
+		}
+		List<Menu> list = jdbcTemplate.query(
+				sql,
+				new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup},
+				new RowMapper<Menu>(){
+					@Override
+					public Menu mapRow(ResultSet rs, int row) throws SQLException {
+						Menu menu = new Menu();
+						menu.setMid(rs.getInt("mid"));
+						menu.setMgroup(rs.getString("mgroup"));
+						menu.setMname(rs.getString("mname"));
+						menu.setHot_ice(rs.getString("hot_ice"));
+						menu.setMprice(rs.getInt("mprice"));
+						menu.setMcontents(rs.getString("mcontents"));
+						menu.setMsavedfile(rs.getString("msavedfile"));
+						menu.setMmimetype(rs.getString("mmimetype"));
+						menu.setSid(rs.getString("sid"));
+						return menu;
+					}
+				}
+		);
+		return list;
+	}
+	
 	//[명진]
 	public List<Menu> selectByMgroup(String sid, String mgroup){
 		String sql="select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where sid=? and mgroup=? order by mid desc";

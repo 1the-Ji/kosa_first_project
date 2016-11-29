@@ -26,6 +26,11 @@ public class MenuService {
 		return menuDao.selectByPage(pageNo, rowsPerPage, sid);
 	}
 	
+	// 페이징+그룹핑 리스트
+	public List<Menu> listPageMgroup(int pageNo, int rowsPerPage, String sid, String mgroup){
+		return menuDao.selectByPageMgroup(pageNo, rowsPerPage, sid, mgroup);
+	}
+	
 	//[명진]
 	public List<Menu> listByMgroup(String sid, String mgroup){
 		return menuDao.selectByMgroup(sid, mgroup);
