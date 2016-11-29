@@ -13,27 +13,27 @@
 					       <div class="form-group">
 					          <label class="control-label col-sm-3">제목. <span class="text-danger">*</span></label>
 					          <div class="col-md-8 col-sm-9">
-					            <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="Enter your Name here" value="">
+					            <input type="text" class="form-control" name="etitle" id="etitle" placeholder="Enter your Name here" value="">
 					          </div>
 					        </div>
 					        <div class="form-group">
 					          <label class="control-label col-sm-3">기간. <span class="text-danger">*</span></label>
 					          <div class="col-md-8 col-sm-9">
-					            <input type="date" class="form-control" name="mem_name" id="mem_name" placeholder="Enter your Name here" value=""> ~
-					            <input type="date" class="form-control" name="mem_name" id="mem_name" placeholder="Enter your Name here" value=""> 
+					            <input type="date" class="form-control" name="estartperiod" id="estartperiod" placeholder="Enter your Name here" value=""> ~
+					            <input type="date" class="form-control" name="elastperiod" id="elastperiod" placeholder="Enter your Name here" value=""> 
 					          </div>
 					        </div>
 					        <div class="form-group">
 					          <label class="control-label col-sm-3">내용. <span class="text-danger">*</span></label>
 					          <div class="col-md-8 col-sm-9">
-					            <textarea cols=20 rows=3 class="form-control" name="mem_name" id="mem_name" placeholder="Enter your Name here"></textarea>
+					            <textarea cols=20 rows=3 class="form-control" name="econtent" id="econtent" placeholder="Enter your Name here"></textarea>
 					          </div>
 					        </div>
 					        <div class="form-group">
 					          <label class="control-label col-sm-3">첨부파일. </label>
 					          <div class="col-md-5 col-sm-8">
 					            <div class="input-group"> <span class="input-group-addon" id="file_upload"><i class="glyphicon glyphicon-upload"></i></span>
-					              <input type="file" name="file_nm" id="file_nm" placeholder="" aria-describedby="file_upload">
+					              <input type="file" name="photo" id="photo" placeholder="" aria-describedby="file_upload">
 					            </div>
 					          </div>
 					        </div>
@@ -42,7 +42,7 @@
 					</div>
 				 </div>
 			      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary">등록하기</button>
+		       	<input type="button" id="regEvent" class="btn btn-primary" value="등록하기"/>
 		      </div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->

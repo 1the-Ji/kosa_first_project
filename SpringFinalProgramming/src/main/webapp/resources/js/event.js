@@ -9,6 +9,20 @@ $(function() {
 	$("#eventRegister").on('hidden.bs.modal',function(){
 		$("#eventModal").css("opacity","1");
 	})
+	
+	
+	$("#regEvent").on("click",function(){
+		var etitle = $("#etitle").val();
+		var estartperiod = $("#estartperiod").val();
+		var elastperiod = $("#elastperiod").val();
+		var econtent =$("econtent").val();
+		
+		$.ajasx({
+			type:"POST",
+			url:"/event/register"
+		};
+	});
+	
 });
 
 
