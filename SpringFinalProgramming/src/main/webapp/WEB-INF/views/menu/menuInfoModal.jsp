@@ -14,11 +14,11 @@
 	    		    <div class="panel-body">
 	    				
 	    					<div class="thumbnail">
-	    						<a href="#"><img src="http://www.istanbluegayrimenkul.com/wp-content/uploads/2014/05/image6.jpg" alt=""/></a>
+	    						<a href="#"><img src="" alt=""/></a>
 	    					</div>
 	    					<div class="icerik-bilgi">
-	    						<a href="#"><h2>Lorem ipsum dolor sit amet</h2></a>
-	    						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut condimentum eget nunc quis semper. Nunc pellentesque nec libero sed viverra. Donec turpis velit, suscipit sit amet mauris quis, viverra ornare massa. Morbi tellus eros, fringilla eu sodales id, ultricies ut sapien. Duis et tristique enim, vitae mattis neque. Aliquam efficitur, dui id laoreet blandit, lorem […]</p>
+	    						<h2>${menu.mname} ${menu.hot_ice</h2>
+	    						<p></p>
 	    						<div class="btn-group">
 	    							
 	    						</div>

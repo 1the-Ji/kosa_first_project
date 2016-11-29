@@ -85,7 +85,6 @@ function showPageMenuList(pageNo, mgroup) {
 			for(var i=0; i<data.list.length; i++){
 				var menu = data.list[i];
 				$("menuListBody").append(
-					
 						'<td style="text-align: center;">' +
 			        		'<div style="width:150px;height:150px;display:inline-block; margin:10px;"' + menu.mgroup + '>' +
 			        			'<a href="javascript:showMenuInfo(' + menu.mid + ')"><img width="150px" height="150px" src="showPhoto?msavedfile=' + menu.msavedfile + '" /></a>' + 
