@@ -9,7 +9,7 @@ $(function() {
 	
 	$("#btnMenu").on("click", function() {
 		$("#menuModal").modal("show");
-		showPageMenuList(1, mgroup);
+		showPageMenuList(1, "전체");
 	});
 	
 	$("#btnEvent").on("click", function() {

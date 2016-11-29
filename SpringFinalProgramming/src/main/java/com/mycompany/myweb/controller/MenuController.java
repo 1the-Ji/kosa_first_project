@@ -118,7 +118,7 @@ public class MenuController {
 		if(groupNo == totalGroupNo){
 			endPageNo = totalPageNo;
 		}
-		
+		logger.info("before model addAttribute");
 		List<Menu> list = menuService.listPageMgroup(intPageNo, rowsPerPage, sid, mgroup);
 		
 		model.addAttribute("sid",sid);
@@ -132,10 +132,10 @@ public class MenuController {
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
 		model.addAttribute("list", list);
-		
+		logger.info(sid, mgroup);
 		return "menu/menuList";
 	
-	} // mgrouplist
+	} // menuList
 	
 	
 	@RequestMapping(value = "/menu/register", method=RequestMethod.GET)

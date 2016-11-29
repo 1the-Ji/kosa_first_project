@@ -10,11 +10,11 @@
       </div>
       <div class="modal-body" align="center">
       	<div class="btn-group">
-      		<button onclick="btnMenuList('전체')" type="button" class="btn btn-info btn-filter">All</button>
-			<button onclick="btnMenuList('커피')" type="button" class="btn btn-info btn-filter">Coffee</button>
-			<button onclick="btnMenuList('차')" type="button" class="btn btn-info btn-filter">Tea</button>
-			<button onclick="btnMenuList('디저트')" type="button" class="btn btn-info btn-filter">Dessert</button>
-			<button onclick="btnMenuList('기타')" type="button" class="btn btn-info btn-filter">Etc</button>
+      		<button onclick="btnMgroup('전체')" type="button" class="btn btn-info btn-filter">All</button>
+			<button onclick="btnMgroup('커피')" type="button" class="btn btn-info btn-filter">Coffee</button>
+			<button onclick="btnMgroup('차')" type="button" class="btn btn-info btn-filter">Tea</button>
+			<button onclick="btnMgroup('디저트')" type="button" class="btn btn-info btn-filter">Dessert</button>
+			<button onclick="btnMgroup('기타')" type="button" class="btn btn-info btn-filter">Etc</button>
 		</div>
 		<hr/>
      		

@@ -1,4 +1,10 @@
 $(function() {
+	
+	$("#btnMenuGroup").on("click", function(){
+		showPageMenuList(1, mgroup);
+	});
+	
+	
 	$("#btnMenuRegForm").on("click", function() {
 		$("#menuModal").css("opacity", "0.5");
 		$("#menuRegModal").modal({
@@ -69,7 +75,6 @@ $(function() {
 
 
 function showPageMenuList(pageNo, mgroup) {
-	//$("#menuListBody").empty();
 	console.log("Menulist ajax전")
 	$.ajax({
 		url: "menu/menuList",
