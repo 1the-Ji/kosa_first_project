@@ -45,7 +45,7 @@
 				<ul id="gnb">
 					<li><a href="#">Home</a></li>
 					<li><a id="btnStore" href="#">Store</a></li>
-					<li><a id="btnMenu" href="javascript:menuList(${menu.sid})">Menu</a></li>
+					<li><a id="btnMenu" href="#">Menu</a></li>
 					<li><a id="btnEvent" href="#">Event</a></li>
 					<li><a id="btnOrder" href="#">Order</a></li>
 				</ul>

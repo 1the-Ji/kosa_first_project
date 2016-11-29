@@ -19,6 +19,7 @@
 		<hr/>
      		
    		<table id="menuListBody" style="width:100%">
+   			
    			<%--<tr>
    				 <c:forEach var="menu" items="${list}">
 	   				<td style="text-align: center;">

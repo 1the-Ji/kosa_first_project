@@ -8,7 +8,8 @@ $(function() {
 	});
 	
 	$("#btnMenu").on("click", function menuList(data) {
-		showPageMenuList(1);
+		$("#menuModal").modal("show");
+		showPageMenuList(1, mgroup);
 	});
 	
 	$("#btnEvent").on("click", function() {

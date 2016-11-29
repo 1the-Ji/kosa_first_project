@@ -70,7 +70,7 @@ function showPageMenuList(pageNo, mgroup) {
 	$("#menuListBody").empty();
 	console.log("Menulist ajax전")
 	$.ajax({
-		url: "/menu/mgroupList",
+		url: "menu/mgroupList",
 		data: {"pageNo": pageNo, "mgroup": mgroup},
 		success: function(data){
 			$("#menuListBody").empty();
@@ -128,8 +128,6 @@ function showPageMenuList(pageNo, mgroup) {
 	        	 	'<a id="btnMenuRegForm" type="button" class="btn btn-info" href="#">메뉴 등록</a>' +
 	        	 '</div>'
 	         }
-
-	         $("#menuModal").modal("show");
 		}
 	});
 }
