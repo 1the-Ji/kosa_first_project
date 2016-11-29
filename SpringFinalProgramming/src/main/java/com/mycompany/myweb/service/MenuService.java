@@ -76,8 +76,8 @@ public class MenuService {
 	}
 	
 	//[명진]
-	public List<Menu> infoByMname(String mname){
-		return menuDao.selectByMname(mname);
+	public Menu infoByMid(int mid){
+		return menuDao.selectByMid(mid);
 	}
 	
 	public int getCount(){

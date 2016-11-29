@@ -193,9 +193,9 @@ function orderMenuList(mgroup) {
 				var menu = data[i];
 				$("#menuTbody").append(
 	         		'<tr>' + 
-	         		  '<td style="width:120px" data-label="메뉴번호">' + menu.mid + '</td>' + 
-	             	  '<td style="width:120px" data-label="메뉴사진"><img src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" width="50px" height="50px"/></td>' + 
-	             	  '<td style="width:120px" data-label="메뉴이름"><a type="button" class="btn btn-primary" href="javascript:newOrderSide(\'' + menu.mname + '\')">' + menu.mname + '</a></td>' +
+	         		  '<td style="width:180px; font-size:30px;" data-label="메뉴번호">' + menu.mid + '</td>' + 
+	             	  '<td style="width:175px" data-label="메뉴사진"><img src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" width="50px" height="50px"/></td>' + 
+	             	  '<td style="width:165px" data-label="메뉴이름"><a type="button" class="btn btn-primary" href="javascript:newOrderSideForm(\'' + menu.mid + '\')">' + menu.mname + '</a></td>' +
 	             	'</tr>'
              	);
 			}
@@ -203,24 +203,21 @@ function orderMenuList(mgroup) {
 	});
 };
 
-function newOrderSide(mname){
-	console.log(mname);
+function newOrderSideForm(mid){
+	console.log(mid);
 	$("#orderForm1Modal").css("opacity","0.5");
 	
 	$.ajax({
 		url: "order/sideList",
-		data: {"mname": mname},
+		data: {"mid": mid},
+		type: "get",
 		success: function(data) {
-			for(var i=0; i<data.length; i++) {
-				var menu = data[i];
-				$("#menuTbody").append(
-	         		'<tr>' + 
-	         		  '<td style="width:120px" data-label="메뉴번호">' + menu.mid + '</td>' + 
-	             	  '<td style="width:120px" data-label="메뉴사진"><img src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" width="50px" height="50px"/></td>' + 
-	             	  '<td style="width:120px" data-label="메뉴이름"><a type="button" class="btn btn-primary" href="javascript:newOrderSide(\'' + menu.mname + '\')">' + menu.mname + '</a></td>' +
-	             	'</tr>'
-             	);
+			if(data != null){
+				console.log("메뉴 존재");
+			}else{
+				console.log("메뉴 에러");
 			}
+			
 		}
 	});
 	
@@ -234,6 +231,62 @@ function newOrderSide(mname){
 	});
 };
 
+function newOrderSave(){
+	var ordercount = $("#orderQuantity").val();
+	var hot_ice = $("#orderHotice").val();
+	var orderSize = $("#orderSize").val();
+	var orderSyrup = $("#orderSyrup").val();
+	var orderShot = $("#orderShot").val();
+	
+	$.ajax({
+		url: "order/sideList",
+		data: {"ordercount": ordercount,"hot_ice":hot_ice,"orderSize":orderSize,"orderSyrup":orderSyrup,"orderShot":orderShot},
+		type: "post",
+		success: function(data) {
+			if(data != null){
+				console.log("주문 저장 성공");
+			}else{
+				console.log("주문 저장 실패");
+			}
+			
+		}
+	});
+	$("#orderForm2Modal").modal('hide');
+	$("#orderForm1Modal").modal({
+		backdrop:"static",
+		show:true
+	});
+	
+	$("#orderForm1Modal").on('hidden.bs.modal',function(){
+		$("#orderModal").css("opacity","1");
+	});
+};
+
+function resultOrder(){
+	
+	$.ajax({
+		url: "order/orderpay",
+		success: function(data) {
+			if(data != null){
+				console.log("총 주문 완료");
+			}else{
+				console.log("총 주문 실패");
+			}
+			
+		}
+	});
+	
+	$("#orderForm1Modal").modal('hide');
+	
+	$("#orderModal").modal({
+		backdrop:"static",
+		show:true
+	});
+	
+	$("#orderForm1Modal").on('hidden.bs.modal',function(){
+		$("#orderModal").css("opacity","1");
+	});
+};
 
 var activeEl = 2;
 $(function() {

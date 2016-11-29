@@ -53,12 +53,12 @@
          </div><br/>
          
          <div class="wrapper" align="center" style="margin-bottom: 0px;">
-			<table id="acrylic" style="width:650px; margin-right: 23px; margin-bottom: 0px;">
+			<table id="acrylic" style="width:620px; margin-right: 23px; margin-bottom: 0px;">
 	             <thead>
 	                 <tr>
-	                     <th style="width:120px">메뉴번호</th>
-	                     <th style="width:120px">메뉴사진</th>
-	                     <th>메뉴이름</th>
+	                     <th style="width:100px">메뉴번호</th>
+	                     <th style="width:100px">메뉴사진</th>
+	                     <th style="width:70px">메뉴이름</th>
 	                 </tr>
 	             </thead>
 	        </table>
@@ -74,7 +74,7 @@
      
      <%--pagination--%>
        <div class="modal-footer">
-       		<input id="payOrder" onclick="payOrder()" class="btn btn-danger" type="submit" value="결제"/>
+       		<input id="payOrder" onclick="resultOrder()" class="btn btn-danger" type="submit" value="결제"/>
        </div>
      
  	</div>
