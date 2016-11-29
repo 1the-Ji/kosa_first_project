@@ -30,7 +30,7 @@
 		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/loginModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>	
-		
+		 
  		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/joinModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/eventModal.js"></script> 
