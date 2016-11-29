@@ -63,7 +63,7 @@ public class OrderDao {
 		sql += "select rn, ogid, ogtotalprice, ogtime, user_id, sid, oghowpay ";
 		sql += "from( ";
 		sql += "select rownum as rn, ogid, ogtotalprice, ogtime, user_id, sid, oghowpay ";
-		sql += "from(select ogid, ogtotalprice, ogtime, user_id, sid, oghowpay from order_total where ogtime between ? AND ? order by ogtime desc) ";
+		sql += "from(select ogid, ogtotalprice, ogtime, user_id, sid, oghowpay from order_total where ogtime>=? and ogtime<=? order by ogtime desc) ";
 		sql += "where rownum<=? ";
 		sql += ") ";
 		sql += "where rn>=? ";

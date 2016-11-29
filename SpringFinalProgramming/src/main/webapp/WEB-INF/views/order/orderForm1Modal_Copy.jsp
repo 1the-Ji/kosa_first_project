@@ -59,6 +59,7 @@
 	                     <th style="width:120px">메뉴번호</th>
 	                     <th style="width:120px">메뉴사진</th>
 	                     <th>메뉴이름</th>
+	                     <th>주문수량</th>
 	                 </tr>
 	             </thead>
 	        </table>
@@ -74,7 +75,7 @@
      
      <%--pagination--%>
        <div class="modal-footer">
-       		<input id="payOrder" onclick="payOrder()" class="btn btn-danger" type="submit" value="결제"/>
+       		<input class="btn btn-danger" type="submit" value="결제"/>
        </div>
      
  	</div>
