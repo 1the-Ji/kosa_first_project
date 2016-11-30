@@ -75,7 +75,6 @@
      <%--pagination--%>
        <div class="modal-footer">
        		<input id="payOrder" onclick="resultOrder()" class="btn btn-danger" type="submit" value="결제"/>&nbsp;&nbsp;
-       		<input id="modifyOrder" onclick="modifyOrder()" class="btn btn-info" type="submit" value="수정"/>&nbsp;&nbsp;
        		<input id="cancelOrder" onclick="cancelOrder()" class="btn btn-success" type="submit" value="취소"/>
        </div>
      

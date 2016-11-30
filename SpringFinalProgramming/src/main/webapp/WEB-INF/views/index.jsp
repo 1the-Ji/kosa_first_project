@@ -49,7 +49,7 @@
 					<li><a id="btnEvent" href="#">Event</a></li>
 					<li><a id="btnOrder" href="#">Order</a></li>
 				</ul>
-				<div style="position:relative; top:80%;" class="form-group text-center">
+				<div style="position:relative; top:85%;" class="form-group text-center">
                  	<a id="btnLogin" href="#">
                  		<button class="btn btn-success btn-login-submit">Login</button>
                  	</a>
@@ -147,6 +147,7 @@
 		<%@ include file="order/orderForm1Modal.jsp" %>
 		<%@ include file="order/orderForm2Modal.jsp" %>
 		<%@ include file="order/termListModal.jsp" %>
+		<%@ include file="order/orderModifyModal.jsp" %>
 
 	</body>
 </html>

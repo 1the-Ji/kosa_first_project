@@ -87,8 +87,9 @@ function detailOrderList(ogid){
 	         }
 	         
 	         
-	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>');
-	         $("#detailListModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>');
+	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
+	         $("#detailListModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
+	         $("#detailListModal .modal-footer").append('주문수정 : <input id="modifyOrderForm" onclick="modifyOrderForm(\''+ogid+'\')" class="btn btn-info" type="submit" value="수정하기"/>');
 	         
 	         
 	         $("#detailListModal").modal({
@@ -315,6 +316,65 @@ function cancelOrder(){
 	
 	$("#orderForm1Modal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
+	});
+}
+
+function modifyOrderForm(ogid){
+	
+	$("#detailListModal").css("opacity","0.5");
+		
+	$.ajax({
+	      url: "order/detailList",
+	      data: {"ogid": ogid},
+	      success: function(data) {
+	    	  $("#orderModifyTbody").empty();
+	          $("#orderModifyTbody .modal-footer").empty();
+	         for(var i=0; i<data.detailList.length; i++) {
+	            var detail = data.detailList[i];
+	            console.log(detail);
+	            $("#orderModifyTbody").append(
+	            	   '<tr>' +
+	                   		'<th width="100px;" data-label="제품명">' + detail.mname + '</th>' +
+	                   		'<th width="100px;" data-label="수량"><input id="modifyQuantity" type="number" data-style="btn-primary" style="margin-left: 20px;" name="quantity" min="1" max="5" value="1" style="display: inline;"></th>' +
+	                   		'<th width="100px;" data-label="orderHotice"><select id="modifyHotice" style="margin-left: 20px;" data-style="btn-primary" style="display: inline;"><option>HOT</option><option>ICE</option></select></td>' +
+	                   		'<th width="100px;" data-label="orderSize"><select id="modifySize" style="margin-left: 20px;" data-style="btn-info" style="display: inline;"><option>Midium</option><option>Large</option><option>Small</option></select></td>' +
+	                   		'<th width="100px;" data-label="orderSyrup"><select id="modifySyrup" style="margin-left: 20px;" data-style="btn-success" style="display: inline;"><option>설탕시럽</option><option>딸기시럽</option><option>초코시럽</option></select></td>' +
+	                   		'<th width="100px;" data-label="orderShot"><select id="modifyShot" style="margin-left: 20px;" data-style="btn-success" style="display: inline;"><option>샷추가1</option><option>샷추가2</option><option>샷추가3</option></select></td>' +    
+	                   '</tr>'
+	               );
+	            
+	         }
+	         if(detail==null){
+	        	 var resultprice = 0;
+		         var oghowpay = "카드 결제";
+	         }else{
+	        	 var resultprice = data.resultprice;
+		         var oghowpay = detail.oghowpay; 
+	         }
+	         
+	         
+	         $("#orderModifyModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
+	         $("#orderModifyModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
+	         $("#orderModifyModal .modal-footer").append('수정하기 : <input id="modifyOrder" onclick="modifyOrder()" class="btn btn-info" type="submit" value="적용"/>&nbsp;&nbsp;');
+	         
+	         $("#orderModifyModal").modal({
+	     		backdrop:"static",
+	     		show:true
+	     	});
+	      }
+	   });
+	$("#orderModifyModal").on('hidden.bs.modal',function(){
+		$("#detailListModal").css("opacity","1");
+		$("#detailListModal").modal("hide");
+	});
+	
+}
+
+function orderModify(ogid){
+	$("#detailListModal").css("opacity","0.5");
+
+	$("#orderModifyModal").on('hidden.bs.modal',function(){
+		$("#detailListModal").css("opacity","1");
 	});
 }
 
