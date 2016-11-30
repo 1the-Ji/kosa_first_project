@@ -55,7 +55,7 @@ function showPageList(pageNo) {
       }
    });
 
-};
+}
 
 function detailOrderList(ogid){
 	console.log("여기 옴");
@@ -78,9 +78,13 @@ function detailOrderList(ogid){
 	               );
 	            
 	         }
-	         
-	         var resultprice = data.resultprice;
-	         var oghowpay = detail.oghowpay;
+	         if(detail==null){
+	        	 var resultprice = 0;
+		         var oghowpay = "카드 결제";
+	         }else{
+	        	 var resultprice = data.resultprice;
+		         var oghowpay = detail.oghowpay; 
+	         }
 	         
 	         
 	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>');
@@ -96,7 +100,7 @@ function detailOrderList(ogid){
 	$("#detailListModal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
 	});
-};
+}
 
 function termList(pageNo) {
 	var term1 = $("#datepicker1").val();
@@ -166,7 +170,7 @@ function termList(pageNo) {
       }
    });
 
-};
+}
 
 $(function() {
 	$("#btnNewOrder").on("click", function() {
@@ -201,7 +205,7 @@ function orderMenuList(mgroup) {
 			}
 		}
 	});
-};
+}
 
 function newOrderSideForm(mid){
 	console.log(mid);
@@ -229,7 +233,7 @@ function newOrderSideForm(mid){
 	$("#orderForm2Modal").on('hidden.bs.modal',function(){
 		$("#orderForm1Modal").css("opacity","1");
 	});
-};
+}
 
 function newOrderSave(){
 	var ordercount = $("#orderQuantity").val();
@@ -260,7 +264,7 @@ function newOrderSave(){
 	$("#orderForm1Modal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
 	});
-};
+}
 
 function resultOrder(){
 	
@@ -286,7 +290,33 @@ function resultOrder(){
 	$("#orderForm1Modal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
 	});
-};
+}
+
+function cancelOrder(){
+	
+	$.ajax({
+		url: "order/ordercancel",
+		success: function(data) {
+			if(data == null){
+				console.log("주문 취소 완료");
+			}else{
+				console.log("주문 취소 실패");
+			}
+			
+		}
+	});
+	
+	$("#orderForm1Modal").modal('hide');
+	
+	$("#orderModal").modal({
+		backdrop:"static",
+		show:true
+	});
+	
+	$("#orderForm1Modal").on('hidden.bs.modal',function(){
+		$("#orderModal").css("opacity","1");
+	});
+}
 
 var activeEl = 2;
 $(function() {
