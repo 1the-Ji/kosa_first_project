@@ -12,64 +12,52 @@
 			<fieldset>
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="mgroup">분류</label>  
-				  <div class="col-md-4">
-				  	<select name="mgroup">
-   						<option selected>커피</option>
+					<label style="width:70px" for="mgroup">분류</label>  
+				  	<select name="mgroup" id="mgroup">
+   						<option selected value="커피">커피</option>
    						<option>차</option>
    						<option>디저트</option>
    						<option>기타</option>
    					</select>
-				  </div>
 				</div>
 				
 				<!-- Text input-->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="mname">메뉴이름</label>  
-				  <div class="col-md-4">
-				  	<input name="netmask" type="text" placeholder="예: 아메리카노" class="form-control input-md" required="">
-				  </div>
+				<div>
+					<label style="width:70px" for="mname">메뉴이름</label>  
+					<input name="mname" id="mname" type="text" style="width:400px"placeholder="예: 아메리카노">
 				</div>
 				
 				<!-- Text input-->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="hot_ice">핫/아이스</label>  
-				  <div class="col-md-4">
+				<div>
+					<label style="width:70px" for="hot_ice">핫/아이스</label>  
 				  	<input type="radio" name="hot_ice" checked value="HOT"> HOT
 	   				<input type="radio" name="hot_ice" value="ICE"> ICE
-	   				<input type="radio" name="hot_ice" value=" "> 없음
-				  </div>
+	   				<input type="radio" name="hot_ice" value=" "> 없음 
 				</div>
 				
 				<!-- Text input-->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="mprice">가격</label>  
-				  <div class="col-md-4">
-				  	<input name="mprice" type="text" placeholder="예: 2500" class="form-control input-md">원
-				  </div>
+				<div>
+					<label style="width:70px" for="mprice">가격</label>
+				  	<input name="mprice" id="mprice" type="text" style="width:200px" placeholder="예: 2500">원
 				</div>
 				
 				<!-- Textarea -->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="mcontents">설명</label>
-				  <div class="col-md-4">                     
-				    <textarea class="form-control" placeholder="예: 따뜻한 아메리카노입니다." name="mcontents"></textarea>
-				  </div>
+				<div>
+					<label style="width:70px" for="mcontents">설명</label>
+				    <textarea name="mcontents" id="mcontents" style="width:400px; height:300px" placeholder="예: 따뜻한 아메리카노입니다."></textarea>
 				</div>
 				
-				<!-- Textarea -->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="photo">사진</label>
-				  <div class="col-md-4">                     
-				    <input type="file" name="photo" /></textarea>
-				  </div>
+				<!-- Photo -->
+				<div>
+					<label style="width:70px" for="photo">사진</label>
+				    <input type="file" name="photo" id="photo" name="photo"/>
 				</div>
 			</fieldset>
 		</form>
       </div>
        
       <div class="modal-footer">
-	      <button class="btnMenuReg" type="button" class="btn btn-default">등록</button>
+	      <button id="btnMenuReg" type="button" class="btn btn-warning">등록</button>
 	      <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
       </div>
     </div>

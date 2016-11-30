@@ -83,4 +83,8 @@ public class MenuService {
 	public int getCount(){
 		return menuDao.count();
 	}
+	
+	public int getCountMgroup(String sid, String mgroup){
+		return menuDao.countMgroup(sid, mgroup);
+	}
 }

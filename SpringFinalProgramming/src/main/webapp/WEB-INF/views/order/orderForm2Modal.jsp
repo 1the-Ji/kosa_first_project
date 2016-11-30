@@ -37,7 +37,7 @@
 						  	<tr>
 						  		<th class="btn btn-default" width="100px;">수량</th>
 						  		<th width="100px;">
-						  			<input id="orderQuantity" type="number" data-style="btn-primary" style="margin-left: 20px;" name="quantity" min="1" max="5" style="display: inline;">
+						  			<input id="orderQuantity" type="number" data-style="btn-primary" style="margin-left: 20px;" name="quantity" min="1" max="5" value="1" style="display: inline;">
 						  		</th>
 						  	</tr>
 						  	<tr>
@@ -77,7 +77,7 @@
 						      			<option>샷추가1</option>
 						      			<option>샷추가2</option>
 						      			<option>샷추가3</option>
-						  				</select>
+						  			</select>
 								</th>
 						  	</tr>
 						  </table>

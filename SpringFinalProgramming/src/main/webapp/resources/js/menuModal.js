@@ -1,10 +1,4 @@
-$(function() {
-	/*
-	$("#btnMenuGroup").on("click", function(){
-		showPageMenuList(1, mgroup);
-	});
-	*/
-	
+$(function() {	
 	
 	$("#btnMenuRegForm").on("click", function() {
 		$("#menuModal").css("opacity", "0.5");
@@ -13,32 +7,49 @@ $(function() {
 			show:true			
 		});
 	});
-	
+	 
 	$("#menuRegModal").on("hidden.bs.modal", function () {
 		$("#menuModal").css("opacity", "1");
 	})
 	
 	
 	$("#btnMenuReg").on("click", function(){
-		var mid = $("#mid").val();
+		
+		logger.info("메뉴입력후등록클릭");
+
 		var mgroup = $("#mgroup").val();
 		var mname = $("#mname").val();
-		var hot_ice = $("#hot_ice").val();
+		var hot_ice = $("input:radio[name=hot_ice]:checked").val();
+		//var rel = parseInt($('.doAction:checked').attr('rel'));
 		var mprice = $("#mprice").val();
-		var photo = $("photo").val();
-		var sid = $("#sid").val();
+		var econtents = $("#mcontents").text();
+		var photo = $("#photo")[0];
+		
+		var data = new FormData();
+		data.append("mgroup", mgroup);
+		data.append("mname", mname);
+		data.append("hot_ice", hot_ice);
+		data.append("mprice", mprice);
+		data.append("mcontents", mcontents);
+		
+		if(photo.files.length != 0) {
+			data.append("photo", photo.files[0]);
+			
+		}
 		
 		$.ajax({
 			url: "menu/register",
-			data: data,
 			method: "post",
+			data: data,
+			cache: false,
+			processData:false,
 			success: function(data){
 				if(data.result == "success"){
-					alert("추가 성공");
+					logger.info("메뉴등록 성공");
 					$("#menuRegModal").modal("hide");
-					location.reload();
-				} else if(data.result == "wrongData"){
-					alert("입력 데이터가 올바르지 않음");
+					showPageMenuList(1, "mgroup");
+				} else {
+					logger.info("메뉴등록 실패");
 				}
 			}
 		})
@@ -99,6 +110,7 @@ function showPageMenuList(pageNo, mgroup) {
 				);
 			}
 			
+			var mgroup = data.mgroup;
 			var pageNo = data.pageNo;
 	        var rowsPerPage = data.rowsPerPage;
 	        var pagesPerGroup = data.pagesPerGroup;
@@ -109,25 +121,25 @@ function showPageMenuList(pageNo, mgroup) {
 	        var startPageNo = data.startPageNo;
 	        var endPageNo = data.endPageNo;
 	        
-	        $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(1, ' + menu.mgroup + ')">처음</a>');
+	        $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(1, ' + mgroup + ')">처음</a>');
         	 
 	         if(groupNo>1) {
-	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + (startPageNo-1) + ', ' + menu.mgroup + ')">이전</a>');
+	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + (startPageNo-1) + ', ' + mgroup + ')">이전</a>');
 	         }
 
 	         for(var i=startPageNo; i<=endPageNo; i++) {
 	            if(pageNo == i) {
-	               $("#menuModal .modal-footer").append('<a type="button" class="btn btn-danger" href="javascript:showPageMenuList(' + i + ', ' + menu.mgroup + ')">' + i + '</a>');
+	               $("#menuModal .modal-footer").append('<a type="button" class="btn btn-danger" href="javascript:showPageMenuList(' + i + ', ' + mgroup + ')">' + i + '</a>');
 	            } else {
-	               $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + i + ', ' + menu.mgroup + ')">' + i + '</a>');
+	               $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + i + ', ' + mgroup + ')">' + i + '</a>');
 	            }
 	         }
 
 	         if(groupNo<totalGroupNo) {
-	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + (startPageNo+1) + ', ' + menu.mgroup + ')">다음</a>');
+	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + (startPageNo+1) + ', ' + mgroup + ')">다음</a>');
 	         }
 
-	         $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + totalPageNo + ', ' + menu.mgroup + ')">맨끝</a>');
+	         $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + totalPageNo + ', ' + mgroup + ')">맨끝</a>');
 	         
 		},
 		error:function(request,status,error){
