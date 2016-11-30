@@ -16,15 +16,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.myweb.dto.Event;
 import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.dto.Sphoto;
 import com.mycompany.myweb.dto.Store;
+import com.mycompany.myweb.dto.User;
 import com.mycompany.myweb.service.EventService;
 import com.mycompany.myweb.service.MenuService;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
+import com.mycompany.myweb.service.UserService;
 
 @Controller
 public class AndroidController {
@@ -42,6 +45,9 @@ public class AndroidController {
 	
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/eventAndroid")
 	public String getEvent(int sbeacon, Model model){
@@ -136,6 +142,17 @@ public class AndroidController {
 		
 		return "android/detailMenuAndroid";
 		
+	}
+	
+	@RequestMapping(value="/joinAndroid", method=RequestMethod.POST)
+	public String join(User user){
+			int result = userService.join(user);
+			if(result == UserService.JOIN_SUCCESS) {
+			logger.info("회원가입 성공");
+			return "android/joinAndroid";
+			} 
+			logger.info("회원가입 실패");
+			return "";
 	}
 	
 	//menu test
