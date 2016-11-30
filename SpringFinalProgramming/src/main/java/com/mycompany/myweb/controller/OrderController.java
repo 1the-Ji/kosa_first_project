@@ -261,26 +261,33 @@ public class OrderController {
 		//새로운 ogid 여기서 부터 생성되야 함
 		//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
 		String sid = (String) session.getAttribute("login");
+		
 		String ogid= null;
-		long time = System.currentTimeMillis(); double random = Math.random();
-		ogid = ""+sid+time+random;
-		session.setAttribute("ogid", ogid);		
-		logger.info("ogid: "+session.getAttribute("ogid"));
-		//나중에 새로고침 계속 했을 때 쓸모없는 주문 데이터 삽입을 방지하기 위해서
-		//totalprice가 0인 order_table 데이터는 지울 수 있는 코드 삽입(중요!!!)
+		ogid = (String) session.getAttribute("ogid");
+		if(ogid == null){
+			long time = System.currentTimeMillis(); double random = Math.random();
+			ogid = ""+sid+time+random;
+			session.setAttribute("ogid", ogid);		
+			logger.info("ogid: "+session.getAttribute("ogid"));
+			
+			//나중에 새로고침 계속 했을 때 쓸모없는 주문 데이터 삽입을 방지하기 위한 유효성검사 필요!
+			//totalprice가 0인 order_table 데이터는 지울 수 있는 코드 삽입되어야 함
+			
+			//Order_Total 테이블을 추가해야 함
+			//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)(중요!!)
+			//위의 두 데이터는 임의의 테스트 데이터(user_id, oghowpay)로 대체
+			Order order = new Order();	
+			ogid = (String) session.getAttribute("ogid");	
+			order.setOgid(ogid);
+			order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
+			order.setUser_id("user1");//임의 데이터!
+			order.setSid(sid);
+			order.setOghowpay("카드 결제");//임의 데이터!
+			
+			orderService.addOrder(order);
+			
+		}
 		
-		//Order_Total 테이블을 추가해야 함
-		//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)(중요!!)
-		//위의 두 데이터는 임의의 테스트 데이터(user_id, oghowpay)로 대체
-		Order order = new Order();	
-		ogid = (String) session.getAttribute("ogid");	
-		order.setOgid(ogid);
-		order.setOgtotalprice(0);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
-		order.setUser_id("user1");//임의 데이터!
-		order.setSid(sid);
-		order.setOghowpay("카드 결제");//임의 데이터!
-		
-		orderService.addOrder(order);
 		
 		//---------------------------------------------------
 		//String sid = (String) session.getAttribute("login");
@@ -344,7 +351,7 @@ public class OrderController {
 		return "order/confirmItem";
 	}
 		
-	//결제(미완성)
+	//결제 완료하기
 	@RequestMapping(value="/orderpay",method=RequestMethod.GET)
 	public String orderpay(Model model, HttpSession session){
 		logger.info("주문 흐름 3");
@@ -416,7 +423,22 @@ public class OrderController {
 		logger.info(""+(String) session.getAttribute("ogid")); 
 		return "order/orderResult";
 	}
+	//결제 수정하기
 	
+	//결제 취소하기(완료)
+	@RequestMapping(value="/ordercancel",method=RequestMethod.GET)
+	public String ordercansel(Model model, HttpSession session){
+		String ogid = (String) session.getAttribute("ogid");
+		orderService.removeByOgid(ogid);
+		logger.info("결제 취소 완료");
+		
+		session.setAttribute("ogid",null);
+		model.addAttribute("ogid", ogid);
+		logger.info("ogid: "+(String) session.getAttribute("ogid")); 
+		return "order/confirmItem";
+	}
+	
+	//-----------------------------------------------------밑에는 보류
 	/*//메뉴 전체 검색(1차 검토 완료)
 	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
 	public String allMenuSearch(String pageNo, Model model,HttpSession session){
