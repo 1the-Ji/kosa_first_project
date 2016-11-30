@@ -1,14 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<%--2016-11-28(월)--%>
-<%--작성자: 이윤주--%>
+<%--2016-12-01 새벽 1시 47분(월)--%>
+<%--작성자: 지승훈(건드리지마시오.)--%>
 
 <div id="joinModal" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document" style="width:800px">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title"><h2>회원가입 <small>Membership application</small></h2></h4>
+	        <h4 class="modal-title"><h2>회원가입<small>Membership application</small></h2></h4>
 	
 	      </div>
 	      <div class="modal-body">
@@ -24,7 +24,7 @@
 	        
 	        <div class="form-group">
 	          	<label class="col-sm-3 control-label" for="inputSemail">이메일</label>
-		        <div class="col-md-9">
+		        <div class="col-sm-8">
 		          <input id="inputSemail" type="text" placeholder="이메일">@<input id="inputSemail2" type="text">
 		          <select id="selectSemail" style="width:100px;margin-right:10px">
 					     <option value="naver.com">naver.com</option>
@@ -64,7 +64,7 @@
 	          
  	        <div class="form-group">
 	            <label class="col-sm-3 control-label" for="inputSname">카페명</label>
-	          <div class="col-md-9">
+	          <div class="col-md-8">
 	            <input id="inputSname" placeholder="카페명" type="text">
 	            <select id="selectSname">
 					<option value="스타벅스">스타벅스</option>
@@ -123,7 +123,7 @@
 	        
 	       <div class="form-group">
 	          	<label class="col-sm-3 control-label" for="inputSphoto">사진첨부</label>
-		       <div class="col-md-9">
+		       <div class="col-md-8">
 		          <input id="inputSphoto" style="margin-top:5px;" type="file" multiple="multiple">  
        			</div>
 	        </div>
