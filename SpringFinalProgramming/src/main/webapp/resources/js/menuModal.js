@@ -15,15 +15,22 @@ $(function() {
 	
 	$("#btnMenuReg").on("click", function(){
 		
-		logger.info("메뉴입력후등록클릭");
+		console.info("메뉴입력후등록클릭");
 
-		var mgroup = $("#mgroup").val();
-		var mname = $("#mname").val();
-		var hot_ice = $("input:radio[name=hot_ice]:checked").val();
+		var mgroup = $("#menuRegModal #mgroup").val();
+		var mname = $("#menuRegModal #mname").val();
+		var hot_ice = $("#menuRegModal input:radio[name=hot_ice]:checked").val();
 		//var rel = parseInt($('.doAction:checked').attr('rel'));
-		var mprice = $("#mprice").val();
-		var econtents = $("#mcontents").text();
-		var photo = $("#photo")[0];
+		var mprice = $("#menuRegModal #mprice").val();
+		var econtents = $("#menuRegModal #mcontents").text();
+		var photo = $("#menuRegModal #photo")[0];
+		
+		console.log(mgroup);
+		console.log(mname);
+		console.log(hot_ice);
+		console.log(mprice);
+		console.log(econtents);
+		console.log(photo.files[0]);
 		
 		var data = new FormData();
 		data.append("mgroup", mgroup);
@@ -34,7 +41,6 @@ $(function() {
 		
 		if(photo.files.length != 0) {
 			data.append("photo", photo.files[0]);
-			
 		}
 		
 		$.ajax({
