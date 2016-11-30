@@ -64,7 +64,7 @@ $(function() {
 		var photo = $("#photo")[0];
 		console.log(photo.files);
 		
-		
+		 
 		var data = new FormData();
 		data.append("etitle", etitle);
 		data.append("estartperiod", estartperiod);
