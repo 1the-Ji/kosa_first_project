@@ -80,7 +80,7 @@ function showPageMenuList(pageNo, mgroup) {
 		data: {"pageNo": pageNo, "mgroup": mgroup},
 		success: function(data){
 			console.log(data);
-			$("#menuListBody").empty();
+			$("#menuListTd").empty();
 			$("#menuModal .modal-footer").empty();
 			for(var i=0; i<data.list.length; i++){
 				var menu = data.list[i];
