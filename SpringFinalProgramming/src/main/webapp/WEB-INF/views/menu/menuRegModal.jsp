@@ -67,7 +67,7 @@
 			</fieldset>
 		</form>
       </div>
-      
+       
       <div class="modal-footer">
 	      <button class="btnMenuReg" type="button" class="btn btn-default">등록</button>
 	      <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
