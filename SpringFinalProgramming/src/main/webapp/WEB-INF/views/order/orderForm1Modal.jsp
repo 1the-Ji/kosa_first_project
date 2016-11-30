@@ -68,7 +68,7 @@
      	
          <table id="acrylic" style="width:650px;margin-top: 0px;">
              <tbody id="menuTbody">
-             </tbody>
+             </tbody> 
          </table>
      </div>
      
