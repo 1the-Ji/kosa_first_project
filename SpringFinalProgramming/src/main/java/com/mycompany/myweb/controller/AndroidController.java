@@ -211,6 +211,38 @@ public class AndroidController {
 			return "";
 	}
 	
+	@RequestMapping(value="/loginAndroid", method=RequestMethod.POST)
+	public String login(String user_id, String user_pw, HttpSession session, Model model){
+		String strResult = "LOGIN_SUCCESS";
+		int result = userService.login(user_id, user_pw);
+
+		if (result == UserService.LOGIN_FAIL_USER_PW) {
+			model.addAttribute("error","LOGIN_FAIL_USER_PW");
+			strResult = "LOGIN_FAIL_USER_PW";
+		
+		} else if(result == UserService.LOGIN_FAIL_USER_ID) {
+			model.addAttribute("error","LOGIN_FAIL_USER_ID");
+			strResult = "LOGIN_FAIL_USER_ID";
+		
+		}
+			logger.info(""+result);
+			//session.setAttribute("login", user_id);//성공 시 session에 저장	
+			model.addAttribute("result", strResult);
+			return "android/loginAndroid";
+	}
+	
+	/*String strResult = "LOGIN_SUCCESS";
+      int result = memberService.login(mid, mpassword);
+      if(result == MemberService.LOGIN_FAIL_MPASSWORD){
+         strResult = "LOGIN_FAIL_MPASSWORD";
+      } else if(result == MemberService.LOGIN_FAIL_MID) {
+         strResult = "LOGIN_FAIL_MID";
+      } else {
+         session.setAttribute("login", mid); 
+      }
+      model.addAttribute("result", strResult);
+      return "member/login";*/
+	
 	//menu test
 	@RequestMapping("/getImage")
 	public void getImage(String fileName, HttpServletRequest request,HttpServletResponse response){
