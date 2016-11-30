@@ -11,6 +11,7 @@
 				"hot_ice": "${menu.hot_ice}",
 				"mprice": "${menu.mprice}",
 				"mcontents": "${menu.mcontents}",
+				"msavedfile": "${menu.msavedfile}",
 				"mmimetype": "${menu.mmimetype}",
 				"sid": "${menu.sid}"
 			}

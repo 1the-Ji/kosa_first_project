@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,15 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.myweb.dto.Event;
 import com.mycompany.myweb.dto.Menu;
 import com.mycompany.myweb.dto.Sphoto;
 import com.mycompany.myweb.dto.Store;
+import com.mycompany.myweb.dto.User;
 import com.mycompany.myweb.service.EventService;
 import com.mycompany.myweb.service.MenuService;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
+import com.mycompany.myweb.service.UserService;
 
 @Controller
 public class AndroidController {
@@ -42,6 +46,9 @@ public class AndroidController {
 	
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/eventAndroid")
 	public String getEvent(int sbeacon, Model model){
@@ -83,7 +90,7 @@ public class AndroidController {
 		return "android/sphotoAndroid";
 	}
 	
-	@RequestMapping("/menuAndroid")
+	/*@RequestMapping("/menuAndroid")
 	public String getMenu(String sid, Model model){
 		
 		logger.info("menuAndroid 실행");
@@ -102,9 +109,56 @@ public class AndroidController {
 		model.addAttribute("list",list);
 		}
 		return "android/menuAndroid";
-	}
+	}*/
 	
-	@RequestMapping("/detailMenuAndroid")
+	@RequestMapping(value="/menuAndroid")
+	public String list(String sid, String pageNo, Model model, HttpSession session){
+		
+	
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
+		
+		int rowsPerPage = 8;
+		int pagesPerGroup = 5;
+		
+		int totalBoardNo = menuService.getCount();
+		
+		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+		int endPageNo = startPageNo + pagesPerGroup - 1;
+		
+		if(groupNo == totalGroupNo){
+			endPageNo = totalPageNo;
+		}
+		
+		List<Menu> list = menuService.list(intPageNo, rowsPerPage, sid);
+		
+		model.addAttribute("sid",sid);
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("list", list);
+		
+		return "android/menuAndroid";
+	} // list
+	
+	/*@RequestMapping("/detailMenuAndroid")
 	public String getDetailMenu(int mid, Model model){
 		logger.info("detailMenuAndroid 실행");
 		
@@ -136,6 +190,25 @@ public class AndroidController {
 		
 		return "android/detailMenuAndroid";
 		
+	}*/
+	
+	@RequestMapping(value="/detailMenuAndroid")
+	public String info(int mid, Model model){
+		Menu menu = menuService.info(mid);
+		menuService.modify(menu);
+		model.addAttribute("menu", menu);
+		return "android/detailMenuAndroid";
+	} 
+	
+	@RequestMapping(value="/joinAndroid", method=RequestMethod.POST)
+	public String join(User user){
+			int result = userService.join(user);
+			if(result == UserService.JOIN_SUCCESS) {
+			logger.info("회원가입 성공");
+			return "android/joinAndroid";
+			} 
+			logger.info("회원가입 실패");
+			return "";
 	}
 	
 	//menu test

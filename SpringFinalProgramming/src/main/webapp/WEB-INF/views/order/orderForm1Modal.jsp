@@ -68,13 +68,14 @@
      	
          <table id="acrylic" style="width:650px;margin-top: 0px;">
              <tbody id="menuTbody">
-             </tbody>
+             </tbody> 
          </table>
      </div>
      
      <%--pagination--%>
        <div class="modal-footer">
-       		<input id="payOrder" onclick="resultOrder()" class="btn btn-danger" type="submit" value="결제"/>
+       		<input id="payOrder" onclick="resultOrder()" class="btn btn-danger" type="submit" value="결제"/>&nbsp;&nbsp;
+       		<input id="cancelOrder" onclick="cancelOrder()" class="btn btn-success" type="submit" value="취소"/>
        </div>
      
  	</div>
