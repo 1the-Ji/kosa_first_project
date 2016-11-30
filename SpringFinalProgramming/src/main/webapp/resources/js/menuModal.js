@@ -7,7 +7,7 @@ $(function() {
 			show:true			
 		});
 	});
-	
+	 
 	$("#menuRegModal").on("hidden.bs.modal", function () {
 		$("#menuModal").css("opacity", "1");
 	})
