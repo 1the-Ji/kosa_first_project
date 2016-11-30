@@ -139,4 +139,12 @@ public class EventController {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	@RequestMapping("/remove")
+	public String remove(int eid){
+		logger.info("event remove 실행");
+		eventService.remove(eid);
+		return "event/eventList";
+	}
 }

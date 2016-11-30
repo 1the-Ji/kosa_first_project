@@ -7,17 +7,18 @@ $(function() {
 		});
 	});
 	
+	
 	$("#eventRegModal").on('hidden.bs.modal',function(){
 		$("#eventModal").css("opacity","1");
 	});
 	
 	
 	$("#regEvent").on("click",function() {
-		var etitle = $("#etitle").val();
-		var estartperiod = $("#estartperiod").val();
-		var elastperiod = $("#elastperiod").val();
-		var econtents =$("#econtents").val();
-		var photo = $("#photo")[0];
+		var etitle = $("#eventRegModal #etitle").val();
+		var estartperiod = $("#eventRegModal #estartperiod").val();
+		var elastperiod = $("#eventRegModal #elastperiod").val();
+		var econtents =$("#eventRegModal #econtents").val();
+		var photo = $("#eventRegModal #photo")[0];
 		
 		var data = new FormData();
 		data.append("etitle", etitle);
@@ -25,11 +26,11 @@ $(function() {
 		data.append("elastperiod", elastperiod);
 		data.append("econtents", econtents);
 		
-		console.log("eventInfo 성공 " + etitle);
-		console.log("eventInfo 성공 " + estartperiod);
-		console.log("eventInfo 성공 " + elastperiod);
-		console.log("eventInfo 성공 " + econtents);
-		console.log("eventInfo 성공 " + photo);
+		console.log("eventReg 성공 " + etitle);
+		console.log("eventReg 성공 " + estartperiod);
+		console.log("eventReg 성공 " + elastperiod);
+		console.log("eventReg 성공 " + econtents);
+		console.log("eventReg 성공 " + photo);
 		
 		
 		
@@ -119,7 +120,7 @@ function eventList(){
 		             '<td><a href="javascript:eventInfo('+ event.eid + ')">'+ event.etitle +'</td>'+
 		             '<td>'+ event.estartperiod + ' ~ ' + event.elastperiod + '</td>'+
 		             '<td>'+ event.econtents + '~' + '</td>'+
-		             '<td class="text-center"><a class="btn btn-info btn-xs" href="javascript:eventModify(' + event.eid +')" id="btnModiEvent"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>'+
+		             '<td class="text-center"><a class="btn btn-info btn-xs" href="javascript:eventModify(' + event.eid +')" id="btnModiEvent"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="javascript:eventRemove(' + event.eid +')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>'+
 			         '</tr>'
             	);
 			}
@@ -204,5 +205,15 @@ function eventModify(eid){
 	
 	$("#eventModiModal").on('hidden.bs.modal',function(){
 		$("#eventModal").css("opacity","1");
+	});
+}
+
+function eventRemove(eid){
+	$.ajax({
+		url:"event/remove",
+		data:{"eid":eid},
+		success:function(){
+			eventList();
+		}
 	});
 }
