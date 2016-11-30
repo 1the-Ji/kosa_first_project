@@ -71,31 +71,28 @@ $(function() {
 	})
 	
 });
-
+ 
 
 
 function showPageMenuList(pageNo, mgroup) {
-	console.log("Menulist ajax전")
 	$.ajax({
 		url: "menu/menuList",
 		data: {"pageNo": pageNo, "mgroup": mgroup},
 		success: function(data){
-			$("#menuListBody").empty();
+			console.log(data);
+			$("#menuListTd").empty();
 			$("#menuModal .modal-footer").empty();
 			for(var i=0; i<data.list.length; i++){
 				var menu = data.list[i];
-				$("menuListBody").append(
-					
-						'<td style="text-align: center;">' +
-			        		'<div style="width:150px;height:150px;display:inline-block; margin:10px;"' + menu.mgroup + '>' +
-			        			'<a href="javascript:showMenuInfo(' + menu.mid + ')"><img width="150px" height="150px" src="showPhoto?msavedfile=' + menu.msavedfile + '" /></a>' + 
-			        			'<br/>' +
-			        			menu.mname + ' ' + menu.hot_ice + 
-								'<br/>' +
-								menu.mprice + 'won' +	
-			        		'</div>' +
-			        	'</td>'
-					 
+				console.log(menu);
+				$("#menuListTd").append(
+	        		'<div style="width:150px;height:150px;display:inline-block; margin:10px;"' + menu.mgroup + '>' +
+	        			'<a href="javascript:showMenuInfo(' + menu.mid + ')"><img width="150px" height="150px" src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" /></a>' + 
+	        			'<br/>' +
+	        			menu.mname + ' ' + menu.hot_ice + 
+						'<br/>' +
+						menu.mprice + 'won' +	
+	        		'</div>'
 				);
 			}
 			
@@ -109,33 +106,32 @@ function showPageMenuList(pageNo, mgroup) {
 	        var startPageNo = data.startPageNo;
 	        var endPageNo = data.endPageNo;
 	        
-	        //'<div align="center">'
-		        $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(1)">처음</a>');
-	        	 
-		         if(groupNo>1) {
-		            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(' + (startPageNo-1) + ')">이전</a>');
-		         }
-	
-		         for(var i=startPageNo; i<=endPageNo; i++) {
-		            if(pageNo == i) {
-		               $("#menuModal .modal-footer").append('<a type="button" class="btn btn-danger" href="javascript:showPageList(' + i + ')">' + i + '</a>');
-		            } else {
-		               $("#menuModal .modal-footer").append('<a type="button" class="btn btn-danger" href="javascript:showPageList(' + i + ')">' + i + '</a>');
-		            }
-		         }
-	
-		         if(groupNo<totalGroupNo) {
-		            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(' + (startPageNo+1) + ')">다음</a>');
-		         }
-	         //'</div>'
+	        $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(1)">처음</a>');
+        	 
+	         if(groupNo>1) {
+	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(' + (startPageNo-1) + ')">이전</a>');
+	         }
+
+	         for(var i=startPageNo; i<=endPageNo; i++) {
+	            if(pageNo == i) {
+	               $("#menuModal .modal-footer").append('<a type="button" class="btn btn-danger" href="javascript:showPageList(' + i + ')">' + i + '</a>');
+	            } else {
+	               $("#menuModal .modal-footer").append('<a type="button" class="btn btn-danger" href="javascript:showPageList(' + i + ')">' + i + '</a>');
+	            }
+	         }
+
+	         if(groupNo<totalGroupNo) {
+	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(' + (startPageNo+1) + ')">다음</a>');
+	         }
 
 	         $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageList(' + totalPageNo + ')">맨끝</a>');
 	         
 	         
-        	 '<div align="center">' +
-        	 	'<a id="btnMenuRegForm" type="button" class="btn btn-info" href="#">메뉴 등록</a>' +
-        	 '</div>'
-	         
+	         $("#menuModal .modal-footer").append(
+        		 '<div align="center">' +
+        		 	'<a id="btnMenuRegForm" type="button" class="btn btn-info" href="#">메뉴 등록</a>' +
+        		 '</div>'
+	         );
 		}
 	});
 }

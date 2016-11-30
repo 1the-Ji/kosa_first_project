@@ -7,7 +7,7 @@
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
        <h4 class="modal-title">Event 등록</h4>
      </div> 
-		<div class="well">
+		<div id="eventInfo" class="well">
 		      <div class="media">
 		    		<img class="media-object" width=150px src="${event.esavedfile}">
 		  		<div class="media-body">

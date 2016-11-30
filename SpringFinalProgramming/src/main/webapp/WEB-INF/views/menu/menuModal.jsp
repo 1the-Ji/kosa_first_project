@@ -19,51 +19,15 @@
 		<hr/>
      		
    		<table style="width:100%">
-   			<tr id="menuListBody">
-   			<%--
-   				 <c:forEach var="menu" items="${list}">
-	   				<td style="text-align: center;">
-		        		<div style="width:150px;height:150px;display:inline-block; margin:10px;" data-status="${menu.mgroup}">
-		        			<a href="javascript:showMenuInfo(${menu.mid})"><img width="150px" height="150px" src="showPhoto?msavedfile=${menu.msavedfile}" /></a>
-		        			<br/>
-		        			${menu.mname} ${menu.hot_ice}
-							<br/>
-							${menu.mprice}won	
-		        		</div>
-		        </c:forEach> 
-	        		
-   					</td>--%>
+   			<tr>
+				<td id="menuListTd">
+				
+				</td>
    			</tr>
   		</table>
       </div>
       
       <div class="modal-footer">
-      	<%-- <div align="center">
-      		<a href="list?pageNo=1"><button type="button" class="btn btn-warning">처음</button></a>
-			
-			<c:if test="${groupNo>1 }">
-				<a href="list?pageNo=${startPageNo-1}"><button type="button" class="btn btn-warning">이전</button></a>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPageNo}" end="${endPageNo}">
-				<a href="list?pageNo=${i}">
-					<c:if test="${pageNo==i}">style="color:red"</c:if>
-				 	<button type="button" class="btn btn-danger">${i}</button>
-			 	</a>
-			</c:forEach> 
-			
-			<c:if test="${groupNo<totalGroupNo }">
-				<a href="list?pageNo=${endPageNo+1 }"><button type="button" class="btn btn-warning">다음</button></a>
-			</c:if>
-			
-			<a href="list?pageNo=${totalPageNo }"><button type="button" class="btn btn-warning">[맨끝]</button></a>
-      	</div> --%>
-      	<%-- <div>
-      		<c:if test="${login != null}">
-      		<a id="btnMenuRegForm" type="button" class="btn btn-info" href="#">메뉴 등록</a>
-      		</c:if>
-      	</div> --%>
-			
       </div>
     </div>
   </div>

@@ -82,8 +82,8 @@ public class MenuController {
 		model.addAttribute("list", list);
 		
 		return "menu/menuList";
-	
 	} // list
+	 
 	
 	// 페이징+그룹핑 기능 리스트
 	@RequestMapping(value="/menuList")
@@ -128,6 +128,7 @@ public class MenuController {
 		model.addAttribute("pagesPerGroup", pagesPerGroup);
 		model.addAttribute("totalBoardNo", totalBoardNo);
 		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("totalGroupNo", totalGroupNo);
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
