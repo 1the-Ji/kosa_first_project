@@ -55,7 +55,7 @@ public class MenuController {
 		int rowsPerPage = 8;
 		int pagesPerGroup = 5;
 		
-		int totalBoardNo = (int)menuService.getCount();
+		int totalBoardNo = menuService.getCount();
 		
 		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
 		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
@@ -107,11 +107,16 @@ public class MenuController {
 		int pagesPerGroup = 5;
 		
 		int totalBoardNo = menuService.getCountMgroup(sid, mgroup);
-		int totalPageNo = 0;
+		
 		logger.info(""+totalBoardNo);
-		if (totalBoardNo!=0){
-			totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+		
+		if (totalBoardNo == 0){
+			totalBoardNo = 1;
 		}
+		
+		logger.info("if문 처리 후"+totalBoardNo);
+		
+		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
 		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
 		int groupNo = (intPageNo-1)/pagesPerGroup + 1;
 		int startPageNo = (groupNo-1)*pagesPerGroup + 1;
@@ -149,26 +154,26 @@ public class MenuController {
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
 	public String register(HttpSession session, Menu menu){
 		logger.info("메뉴등록");
-		try {
+	
 			String sid = (String)session.getAttribute("login");
 			menu.setSid(sid);
 			logger.info(""+sid);
-			String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();
-			
+			/*String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();*/
+			String msavedfile = menu.getPhoto().getOriginalFilename();
 			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/" + msavedfile);
 			logger.info(realpath);
-			menu.getPhoto().transferTo(new File(realpath));
+			try {
+				menu.getPhoto().transferTo(new File(realpath));
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
 			menu.setMsavedfile(msavedfile);
 			menu.setMmimetype(menu.getPhoto().getContentType());
 			
 			int result = menuService.write(menu);
 			logger.info(""+result);
-			return "menu/menuList";		
-		} catch (IOException e) {
-			e.printStackTrace();
-			logger.info(e.getMessage());
-			return "menu/menuRegForm";
-		}
+			return "menu/menuRegister";		
+	
 	} // register
 	
 	
@@ -229,13 +234,13 @@ public class MenuController {
 			menu.setMmimetype(menu.getPhoto().getContentType());
 			menuService.modify(menu);
 		}catch(Exception e){}
-		return "/menu/menuModal";
+		return "menu/menuModal";
 	} //modify
 	
 	@RequestMapping("/remove")
 	public String remove(int mid){
 		menuService.remove(mid);
-		return "/menu/menuModal";
+		return "menu/menuModal";
 	}
 
 } // class
