@@ -55,7 +55,8 @@ public class EventController {
 		String sid = (String)session.getAttribute("login");
 		event.setSid(sid);
 		
-		String savedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
+		//String savedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
+		String savedfile = event.getPhoto().getOriginalFilename();
 		String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);//저장할 파일의 절대 파일 시스템 경로를 얻는다.
 		logger.info(realpath);
 		try {
@@ -89,24 +90,25 @@ public class EventController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Event event, HttpSession session){
-		try{
-			String sid = (String)session.getAttribute("login");
-			event.setSid(sid);
-			
-			String savedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
-			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);//저장할 파일의 절대 파일 시스템 경로를 얻는다.
-			logger.info(realpath);
-			event.getPhoto().transferTo(new File(realpath));//클라이언트에서 저장한 파일을 해당 경로(realpath)에 저장 실제 파일을 저장
-			event.setEsavedfile(savedfile);
-			
-			event.setEmimetype(event.getPhoto().getContentType());//저장할 파일의 mime type 얻어냄
-			eventService.modify(event);
-			
-		}catch(Exception e){
+		String sid = (String)session.getAttribute("login");
+		event.setSid(sid);
+		
+		//String savedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
+		String savedfile = event.getPhoto().getOriginalFilename();
+		String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);//저장할 파일의 절대 파일 시스템 경로를 얻는다.
+		logger.info(realpath);
+		try {
+			event.getPhoto().transferTo(new File(realpath));
+		} catch (Exception e) {
 			e.printStackTrace();
-			return "redirect:/event/modify";
-		}
-		return "redirect:/event/list";
+		}//클라이언트에서 저장한 파일을 해당 경로(realpath)에 저장 실제 파일을 저장
+		event.setEsavedfile(savedfile);
+		
+		event.setEmimetype(event.getPhoto().getContentType());//저장할 파일의 mime type 얻어냄
+		
+		eventService.modify(event);
+		
+		return "event/modifyResult";
 	}
 	@RequestMapping("/showPhoto")
 	public void showPhoto(String esavedfile, HttpServletRequest request, HttpServletResponse response){

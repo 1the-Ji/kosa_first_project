@@ -56,16 +56,18 @@ $(function() {
 	
 	
 	
-	$("#modiEvent").on("click",function() {
-		var etitle = $("#etitle").val();
-		var estartperiod = $("#estartperiod").val();
-		var elastperiod = $("#elastperiod").val();
-		var econtents =$("#econtents").val();
-		var photo = $("#photo")[0];
-		console.log(photo.files);
+	$("#eventModiModal #modiEvent").on("click",function() {
+		var eid = $("#eventModiModal #eid").val();
+		var etitle = $("#eventModiModal #etitle").val();
+		var estartperiod = $("#eventModiModal #estartperiod").val();
+		var elastperiod = $("#eventModiModal #elastperiod").val();
+		var econtents =$("#eventModiModal #econtents").val();
+		var photo = $("#eventModiModal #photo")[0];
+		console.log(photo.files[0]);
 		
 		 
 		var data = new FormData();
+		data.append("eid", eid);
 		data.append("etitle", etitle);
 		data.append("estartperiod", estartperiod);
 		data.append("elastperiod", elastperiod);
@@ -99,8 +101,6 @@ $(function() {
 		});
 		
 	});
-	
-
 });
 
 function eventList(){
@@ -168,12 +168,10 @@ function eventInfo(eid){
 }
 
 function eventModify(eid){
-	$("#btnModiEvent").on("click",function() {
-		$("#eventModal").css("opacity","0.5");
-		$("#eventModiModal").modal({
-			backdrop:"static",
-			show:true
-		});
+	$("#eventModal").css("opacity","0.5");
+	$("#eventModiModal").modal({
+		backdrop:"static",
+		show:true
 	});
 	console.log("eventModify(): "+eid);
 	$.ajax({
@@ -189,46 +187,17 @@ function eventModify(eid){
 			console.log("ajax modify성공 " + data.elastperiod);
 			console.log("ajax modify성공 " + data.esavedfile);
 			console.log("----------------------------------");
+			$("#eventModiModal #eid").val(data.eid);
+			$("#eventModiModal #etitle").val(data.etitle);
+			$("#eventModiModal #estartperiod").val(data.estartperiod);
+			$("#eventModiModal #elastperiod").val(data.elastperiod);
+			$("#eventModiModal #econtents").text(data.econtents);
+			$("#eventModiModal #esavedfile").attr("src", "event/showPhoto?esavedfile=" + data.esavedfile);
 			
-			$("#eventModi").empty();
-			$("#eventModi").append(
-					'<div class="col-md-8">' +
-				     '<form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data" >'  +      
-				       '<div class="form-group">' +
-				          '<label class="control-label col-sm-3">제목. <span class="text-danger">*</span></label>' +
-				          '<div class="col-md-8 col-sm-9">' +
-				            '<input type="text" class="form-control" name="etitle" id="etitle" placeholder="Enter your Name here" value="' + data.etitle + '">'+
-				          '</div>' +
-				        '</div>' +
-				        '<div class="form-group">' +
-				          '<label class="control-label col-sm-3">기간. <span class="text-danger">*</span></label>' +
-				          '<div class="col-md-8 col-sm-9">' +
-				            '<input type="date" class="form-control" name="estartperiod" id="estartperiod" placeholder="Enter your Name here" value="' + data.estartperiod + '"> ~ ' +
-				            '<input type="date" class="form-control" name="elastperiod" id="elastperiod" placeholder="Enter your Name here" value="' + data.elastperiod + '">'  +
-				          '</div>' +
-				        '</div>' +
-				        '<div class="form-group">' +
-				          '<label class="control-label col-sm-3">내용. <span class="text-danger">*</span></label>' +
-				          '<div  class="col-md-8 col-sm-9">' +
-				            '<textarea cols=20 rows=3 class="form-control" name="econtents" id="econtents" placeholder="Enter your Name here">' + data.econtents + '</textarea>' +
-				          '</div>' +
-				        '</div>' +
-				        '<div class="form-group">' +
-				          '<label class="control-label col-sm-3">첨부파일. </label>' +
-				          '<div class="col-md-5 col-sm-8">' +
-				          '<img class="media-object" width=150px src="event/showPhoto?esavedfile=' + data.esavedfile + '">' +
-				            '<div class="input-group"> <span class="input-group-addon" id="file_upload"><i class="glyphicon glyphicon-upload"></i></span>' +
-				              '<input type="file" name="photo" id="photo" placeholder="" aria-describedby="file_upload">' +
-				            '</div>' +
-				          '</div>' +
-				        '</div>' +
-				      '</form>' +
-				    '</div>'
-			);
 		},
 		error:function(request,status,error){
 	        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	       }
+	    }
 		
 	});
 	
