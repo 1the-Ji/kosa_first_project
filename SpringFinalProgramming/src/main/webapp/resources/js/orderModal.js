@@ -352,7 +352,7 @@ function modifyOrderForm(ogid){
 		         var oghowpay = detail.oghowpay; 
 	         }
 	         
-	         
+	          
 	         $("#orderModifyModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
 	         $("#orderModifyModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
 	         $("#orderModifyModal .modal-footer").append('수정하기 : <input id="modifyOrder" onclick="modifyOrder()" class="btn btn-info" type="submit" value="적용"/>&nbsp;&nbsp;');
