@@ -19,7 +19,7 @@ $(function() {
 		var elastperiod = $("#eventRegModal #elastperiod").val();
 		var econtents =$("#eventRegModal #econtents").val();
 		var photo = $("#eventRegModal #photo")[0];
-		
+		 
 		var data = new FormData();
 		data.append("etitle", etitle);
 		data.append("estartperiod", estartperiod);
