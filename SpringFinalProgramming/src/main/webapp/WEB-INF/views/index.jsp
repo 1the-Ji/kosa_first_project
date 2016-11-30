@@ -141,6 +141,7 @@
 		<%@ include file="event/eventModal.jsp" %>
 		<%@ include file="event/eventRegModal.jsp" %>
 		<%@ include file="event/eventInfoModal.jsp" %>
+		<%@ include file="event/eventModiModal.jsp" %>
 
 		<%@ include file="order/orderModal.jsp" %>
 		<%@ include file="order/detailListModal.jsp" %>

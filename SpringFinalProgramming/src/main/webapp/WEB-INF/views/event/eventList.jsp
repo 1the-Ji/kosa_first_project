@@ -6,12 +6,12 @@
 		{
 			"eid":"${event.eid}",
 			"etitle":"${event.etitle}",
-			"estartperiod":"${event.estartperiod}",
-			"elastperiod":"${event.elastperiod}",
 			"econtents":"${event.econtents}",
-			"emimetype":"${event.emimetype}"
+			"estartperiod":"${event.estartperiod}",
+			"elastperiod":"${event.elastperiod}"
 		}
 		<c:if test="${!status.last}">,</c:if>
 		</c:forEach>
 	]	
 }  
+

@@ -35,11 +35,11 @@ public class EventController {
 	
 	@RequestMapping("/eventList")
 	public String list(Model model, HttpSession session){
-		logger.info("service list 실행1");
+		logger.info("Controller eventlist 시작");
 		String sid = (String) session.getAttribute("login");
 		List<Event> list = eventService.getList(sid);
 		model.addAttribute("eventList",list);
-		logger.info("service list 실행2");
+		logger.info("Controller eventlist 끝");
 		return "event/eventList";
 	}
 	
@@ -70,19 +70,20 @@ public class EventController {
 		return "event/register";
 	}
 	@RequestMapping(value="/info")
-	public String info(@RequestParam(required=false,defaultValue="500")String eid, Model model){
-		int newEid = Integer.parseInt(eid);
-		Event event = eventService.info(newEid);
+	public String info(int eid, Model model){
+		Event event = eventService.info(eid);
 		model.addAttribute("event",event);
-		logger.info("들어가랍!!");
+		logger.info(""+event);
 		return "event/eventInfo";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modify(int eid, Model model){
-		logger.info("이벤트 수정폼 form실행");
+		logger.info("이벤트 GET실행");
 		Event event = eventService.info(eid);
+		logger.info("이벤트 GET 실행2");
 		model.addAttribute("event",event);
+		logger.info(""+event);
 		 return "event/modify";
 	}
 	

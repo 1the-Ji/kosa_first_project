@@ -15,7 +15,7 @@ import com.mycompany.myweb.dto.Event;
 
 @Component
 public class EventService {
-	
+	private static final Logger logger = LoggerFactory.getLogger(EventService.class);
 	@Autowired
 	private EventDao eventDao;
 	
@@ -36,6 +36,7 @@ public class EventService {
 	 
 	public int modify(Event event){
 		int row = eventDao.update(event);	
+		logger.info("수정 service 실행");
 		if(row == 0) { return MODIFY_FAIL; }
 		return MODIFY_SUCCESS;
 	}
