@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
   
- <%--이명진 --%>
+<%--이명진 --%>
+<%--중요 --%>
+
  	<script type="text/javascript">
   		function getSelectValue1(frm)
   		{
@@ -38,15 +40,6 @@
 						  		<th class="btn btn-default" width="100px;">수량</th>
 						  		<th width="100px;">
 						  			<input id="orderQuantity" type="number" data-style="btn-primary" style="margin-left: 20px;" name="quantity" min="1" max="5" value="1" style="display: inline;">
-						  		</th>
-						  	</tr>
-						  	<tr>
-						  		<th class="btn btn-warning" width="100px;">HOT.ICE</th>
-						  		<th width="100px;">
-						  			<select id="orderHotice"  style="margin-left: 20px;" data-style="btn-primary" style="display: inline;">
-						      			<option>HOT</option>
-						      			<option>ICE</option>
-						  			</select>
 						  		</th>
 						  	</tr>
 						  	
