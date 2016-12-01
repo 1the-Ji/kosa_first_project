@@ -7,8 +7,8 @@
         <h4 class="modal-title"><b>Menu Information</b></h4>
       </div>
       <div class="modal-body">
-		 <div class="left-panel">
-	        
+		 <div class="left-panel"> 
+	         
 			<div class="panel panel-default">
    		    	<div class="panel-body">
    					<div class="thumbnail">
