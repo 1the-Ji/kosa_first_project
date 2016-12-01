@@ -3,6 +3,16 @@ $(function() {
 		$("#loginModal").modal("show");
 	});
 	
+	$("nav #btnLogout").on("click",function(){
+		$.ajax({
+			url:"/store/logout",
+			success: function(data){
+				alert("success");
+			}
+		});
+	});
+	
+	
 	$("#btnStore").on("click", function () {
 		$("#storeModal").modal("show");
 	});

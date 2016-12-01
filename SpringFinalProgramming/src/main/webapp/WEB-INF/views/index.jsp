@@ -49,11 +49,31 @@
 					<li><a id="btnEvent" href="#">Event</a></li>
 					<li><a id="btnOrder" href="#">Order</a></li>
 				</ul>
+				
+			<!--
 				<div style="position:relative; top:85%;" class="form-group text-center">
                  	<a id="btnLogin" href="#">
                  		<button class="btn btn-success btn-login-submit">Login</button>
                  	</a>
+                </div> 
+                -->
+                
+                
+                
+            <c:if test="${empty login}">
+                <div style="position:relative; top:85%;" class="form-group text-center">
+               		 <a id="btnLogin" href="#"><button class="btn btn-success btn-login-submit">Login</button></a>
+                 	<a id="btnLogout" href="#"><button style="display: none;" class="btn btn-success btn-login-submit">Logout</button></a>
                 </div>
+            </c:if>
+            <c:if test="${not empty login}">
+               <div style="position:relative; top:85%;" class="form-group text-center">
+               		 <a id="btnLogin" href="#"><button style="display: none;" class="btn btn-success btn-login-submit">Login</button></a>
+                 	<a id="btnLogout" href="#"><button class="btn btn-success btn-login-submit">Logout</button></a>
+                </div>
+            </c:if>
+                
+                
 			</nav>
 			
 			<!-- 3개의 컨텐츠 박스가 들어갈 section 영역 -->

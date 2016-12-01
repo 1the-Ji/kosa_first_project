@@ -42,7 +42,7 @@ public class StoreController {
 	@RequestMapping(value="/store/login", method=RequestMethod.GET)
 	public String loginForm(){
 		logger.info("login 페이지 열림");
-		return "store/login";
+		return "store/result";
 	}
 	
 	@RequestMapping(value="/store/login", method=RequestMethod.POST)
@@ -51,19 +51,19 @@ public class StoreController {
 		logger.info("spw: "+spw);
 		
 		int result = storeService.login(sid, spw);
-		logger.info("result"+result);
+		logger.info("result : "+ result);
 		
 		if (result == StoreService.LOGIN_FAIL_SPW) {
 			
-			model.addAttribute("error", "LOGIN_FAIL_SPW");
+			model.addAttribute("result", "LOGIN_FAIL_SPW");
 			logger.info("login_실패1");
-			return "store/login";
+			return "store/result";
 			
 		} else if (result == StoreService.LOGIN_FAIL_SID) {
 			
-			model.addAttribute("error", "LOGIN_FAIL_SID");
+			model.addAttribute("result", "LOGIN_FAIL_SID");
 			logger.info("login_실패2");
-			return "store/login";
+			return "store/result";
 			
 		} else {
 			String end = "success";
@@ -157,7 +157,7 @@ public class StoreController {
 		if (result == StoreService.LOGOUT_SUCCESS) {
 			session.removeAttribute("login");
 		}
-		return "redirect:/";
+		return "store/result";
 	}
 	
 	@RequestMapping("/store/showPhoto")
