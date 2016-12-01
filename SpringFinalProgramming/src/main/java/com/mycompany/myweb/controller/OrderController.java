@@ -311,7 +311,7 @@ public class OrderController {
 	//주문하기(진행 중)(검토 필요)(중요)
 	@RequestMapping(value="/sideList",method=RequestMethod.POST)
 	public String orderItems2(
-			int ordercount,String hot_ice, 
+			int ordercount,
 			String orderSize, String orderSyrup, String orderShot,
 			HttpSession session, Model model){
 		logger.info("주문 품목을 위한 흐름2");
@@ -351,7 +351,7 @@ public class OrderController {
 		return "order/confirmItem";
 	}
 		
-	//결제 완료하기
+	//결제 완료하기(중요)
 	@RequestMapping(value="/orderpay",method=RequestMethod.GET)
 	public String orderpay(Model model, HttpSession session){
 		logger.info("주문 흐름 3");
@@ -423,9 +423,11 @@ public class OrderController {
 		logger.info(""+(String) session.getAttribute("ogid")); 
 		return "order/orderResult";
 	}
-	//결제 수정하기
 	
-	//결제 취소하기(완료)
+	//결제 수정하기(진행중)
+	//public String 
+	
+	//결제 취소하기(중요)
 	@RequestMapping(value="/ordercancel",method=RequestMethod.GET)
 	public String ordercansel(Model model, HttpSession session){
 		String ogid = (String) session.getAttribute("ogid");

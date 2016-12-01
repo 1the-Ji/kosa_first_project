@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
- <%--이명진 --%>
+
  	<script type="text/javascript">
  		function getSelectValue(frm)
  		{

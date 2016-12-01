@@ -2,6 +2,8 @@
 
 
 <%--이명진 --%>
+<%--중요 --%>
+
 <div id="detailListModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document" style="width:1000px;">
      <div class="modal-content" style="height:700px">

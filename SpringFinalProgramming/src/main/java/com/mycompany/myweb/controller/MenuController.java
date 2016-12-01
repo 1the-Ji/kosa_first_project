@@ -108,13 +108,8 @@ public class MenuController {
 		
 		int totalBoardNo = menuService.getCountMgroup(sid, mgroup);
 		
-		logger.info(""+totalBoardNo);
-		
-		if (totalBoardNo == 0){
-			totalBoardNo = 1;
-		}
-		
-		logger.info("if문 처리 후"+totalBoardNo);
+		logger.info("totalBoardNo: "+totalBoardNo);
+
 		
 		int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
 		int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
@@ -128,7 +123,7 @@ public class MenuController {
 		logger.info("before model addAttribute");
 		List<Menu> list = menuService.listPageMgroup(intPageNo, rowsPerPage, sid, mgroup);
 		
-		model.addAttribute("sid",sid);
+		model.addAttribute("sid", sid);
 		model.addAttribute("mgroup", mgroup);
 		model.addAttribute("pageNo", intPageNo);
 		model.addAttribute("rowsPerPage", rowsPerPage);
@@ -146,33 +141,32 @@ public class MenuController {
 	} // menuList
 	
 	
-	@RequestMapping(value = "/menu/register", method=RequestMethod.GET)
+	@RequestMapping(value = "/register", method=RequestMethod.GET)
 	public String registerForm(HttpSession session){
-		return "menu/menuRegForm";
+		return "menu/registerForm";
 	} 
 	
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
-	public String register(HttpSession session, Menu menu){
+	public String registerForm(HttpSession session, Menu menu){
 		logger.info("메뉴등록");
 	
-			String sid = (String)session.getAttribute("login");
-			menu.setSid(sid);
-			logger.info(""+sid);
-			/*String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();*/
-			String msavedfile = menu.getPhoto().getOriginalFilename();
-			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/" + msavedfile);
-			logger.info(realpath);
-			try {
-				menu.getPhoto().transferTo(new File(realpath));
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-			menu.setMsavedfile(msavedfile);
-			menu.setMmimetype(menu.getPhoto().getContentType());
-			
-			int result = menuService.write(menu);
-			logger.info(""+result);
-			return "menu/menuRegister";		
+		String sid = (String)session.getAttribute("login");
+		menu.setSid(sid);
+		logger.info(""+sid);
+		/*String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();*/
+		String msavedfile = menu.getPhoto().getOriginalFilename();
+		String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/" + msavedfile);
+		logger.info(realpath);
+		try {
+			menu.getPhoto().transferTo(new File(realpath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		menu.setMsavedfile(msavedfile);
+		menu.setMmimetype(menu.getPhoto().getContentType());
+		
+		menuService.write(menu);
+		return "menu/menuRegister";		
 	
 	} // register
 	
@@ -207,7 +201,7 @@ public class MenuController {
 		Menu menu = menuService.info(mid);
 		menuService.modify(menu);
 		model.addAttribute("menu", menu);
-		return "menu/menuInfoModal";
+		return "menu/menuInfo";
 	} // info
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
