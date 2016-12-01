@@ -323,7 +323,7 @@ function cancelOrder(){
 
 function modifyOrderForm(ogidmnamehot_ice){
 	$("#detailListModal").css("opacity","0.5");
-	
+	 
 	$.ajax({
 	      url: "order/modifypayForm",
 	      data: {"ogidmnamehot_ice": ogidmnamehot_ice},
