@@ -121,6 +121,7 @@ public class MenuDao {
 		sql += "where rownum<=? ";
 		sql += ") ";
 		sql += "where rn>=? and sid=? and mgroup=?";
+		
 		Object[] sqlcondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup};
 		if(mgroup == null){
 			sql = "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
@@ -130,6 +131,7 @@ public class MenuDao {
 			sql += "where rownum<=? ";
 			sql += ") ";
 			sql += "where rn>=? and sid=?";
+			
 			sqlcondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
 		}
 		List<Menu> list = jdbcTemplate.query(
