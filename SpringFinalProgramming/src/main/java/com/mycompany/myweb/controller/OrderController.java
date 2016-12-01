@@ -143,7 +143,13 @@ public class OrderController {
 			
 			Menu menu = menuService.info(orderItems.get(i).getMid());//메뉴명
 			detailOrder.setMname(menu.getMname());//1품목 메뉴명 보존하기
+			if(menu.getHot_ice() == null){
+				detailOrder.setHot_ice("");//1품목 핫_아이스 보존하기(차,디저트 같은거)
+			}else{
+				detailOrder.setHot_ice(menu.getHot_ice());//1품목 핫_아이스 보존하기
+			}
 			logger.info("품목:"+detailOrder.getMname());
+			logger.info("핫_아이스:"+detailOrder.getHot_ice());
 			
 			detailOrder.setSameItemCount(orderItems.get(i).getOrdercount());//1품목 수량 보존하기
 			logger.info("수량:"+detailOrder.getSameItemCount());
@@ -188,7 +194,6 @@ public class OrderController {
 		//1주문 총 금액 저장 및 JSP에 보내기
 		session.setAttribute("resultprice", resultprice);
 		model.addAttribute("resultprice", resultprice);
-			
 		/*//총 금액 order_total의 ogtotalprice에 넣어주기
 		orderService.modifyOgprice(ogid, resultprice);
 		*/
@@ -425,7 +430,21 @@ public class OrderController {
 	}
 	
 	//결제 수정하기(진행중)
-	//public String 
+	@RequestMapping(value="/modifypayForm",method=RequestMethod.GET)
+	public String modifypayForm(String ogidmnamehot_ice,
+			Model model, HttpSession session){
+		
+		return "";
+	}
+	
+	//결제 수정하기(진행중)
+	@RequestMapping(value="/modifypay",method=RequestMethod.POST)
+	public String modifypay(String ogidmnamehot_ice,
+			Model model, HttpSession session){
+		
+		return "";
+	}
+	
 	
 	//결제 취소하기(중요)
 	@RequestMapping(value="/ordercancel",method=RequestMethod.GET)

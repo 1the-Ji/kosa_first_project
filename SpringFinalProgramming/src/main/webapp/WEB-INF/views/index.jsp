@@ -148,8 +148,8 @@
 		<%@ include file="order/orderForm1Modal.jsp" %>
 		<%@ include file="order/orderForm2Modal.jsp" %>
 		<%@ include file="order/termListModal.jsp" %>
-		<%@ include file="order/orderModifyModal.jsp" %>
-
+		<%@ include file="order/modifyForm2Modal.jsp" %>
+		
 	</body>
 </html>
 

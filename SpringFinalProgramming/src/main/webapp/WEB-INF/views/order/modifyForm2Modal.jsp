@@ -22,7 +22,7 @@
   		}
  	</script>
  	
- <div id="modifyForm2Modal" class="modal fade" tabindex="-1" role="dialog">
+ <div id="orderForm2Modal" class="modal fade" tabindex="-1" role="dialog">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
@@ -35,7 +35,7 @@
 			<div class="container" style="width: 80%; height: 80%">
 				<div class="row">
 					<div class="bs-docs-example">
-						  <table>
+						  <table id="modifyTbody">
 						  	<tr>
 						  		<th class="btn btn-default" width="100px;">수량</th>
 						  		<th width="100px;">
@@ -75,8 +75,7 @@
 						  	</tr>
 						  </table>
 						  <br/>
-						  <input onclick="newOrderSave()" class="btn btn-primary" type="submit" value="담기"/>&nbsp;&nbsp;&nbsp;
-			  			  <input class="btn btn-primary" type="button" onclick="alert('결제 기능 추가 예정')" value="바로 주문">				      
+						  <input onclick="orderModify()" class="btn btn-primary" type="submit" value="수정"/>&nbsp;&nbsp;&nbsp;				      
 					  </div>
 				</div>
 			</div>

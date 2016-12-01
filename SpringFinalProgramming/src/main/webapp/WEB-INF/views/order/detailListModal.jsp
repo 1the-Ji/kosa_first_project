@@ -13,15 +13,17 @@
        </div>
        <div class="modal-body">
  		<%--여기부터 --%>
- 		<div class="wrapper" align="center">
+ 		<div class="wrapper" align="center" style="overflow-y:scroll;">
  		
          <table id="acrylic" style="width:900px">
              <thead>
                  <tr>
                      <th>품목</th>
+                     <th>핫_아이스</th>
                      <th>수량</th>
                      <th>사이드</th>
                      <th>가격</th>
+                     <th>수정</th>
                  </tr>
              </thead>
              <tbody id="detailTbody">
