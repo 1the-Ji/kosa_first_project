@@ -4,42 +4,45 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><b>Menu List</b></h4>
+        <h4 class="modal-title"><b>Menu Information</b></h4>
       </div>
       <div class="modal-body">
-      	
-      	<div class="left-panel">
-	        
-	    	    <div class="panel panel-default">
-	    		    <div class="panel-body">
-	    				
-	    					<div class="thumbnail">
-	    						<a href="#"><img src="" alt=""/></a>
-	    					</div>
-	    					<div class="icerik-bilgi">
-	    						<h2>${menu.mname} ${menu.hot_ice}</h2>
-	    						<p></p>
-	    						<div class="btn-group">
-	    							
-	    						</div>
-	    						<a href="#">
-	    						 <button type="button" class="btn btn-primary">
-	    							<span class="btn btn-google">Read More <i class="fa fa-chevron-right"></i></span>
-	    						 </button>
-	    						 </a>
-	    					</div>
-	    				</div>
-	    			</div>
-	    		</div>
-	        </div>
-	    </div>
+		 <div class="left-panel"> 
+	         
+			<div class="panel panel-default">
+   		    	<div class="panel-body">
+   					<%-- <div class="thumbnail">
+   						<img style="width:300; height:400px" src="menu/showPhoto?msavedfile=' + menu.mid + '"/>
+   					</div>
+   					<div class="icerik-bilgi">
+   						<h2>${menu.mname} ${menu.hot_ice}</h2>
+   						<p></p>
+   						<div>
+   							가격: ${menu.mprice}
+   						</div>
+   						<div>
+   							${menu.mcontents}
+   						</div>
+   					</div> --%>
+   				</div>
+			</div>
+    	 </div>
+       </div>
+     </div>
       
-      </div>
-      <div class="modal-footer">
-			<button type="button" class="btn btn-default">수정</button>
-      </div>
-    </div>
-  </div>
+      
+	<div class="modal-footer">
+		<div>
+			<button type="button" class="btn btn-primary">
+				수정
+			</button>
+		</div>
+		<div>
+			<button type="button" class="btn btn-info">
+				삭제
+			</button>
+		</div>
+	</div>
 </div> 
       
 
