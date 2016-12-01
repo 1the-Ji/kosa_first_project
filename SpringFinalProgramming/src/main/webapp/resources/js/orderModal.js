@@ -89,7 +89,7 @@ function detailOrderList(ogid){
 	         
 	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
 	         $("#detailListModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
-	         $("#detailListModal .modal-footer").append('주문수정 : <input id="modifyOrderForm" onclick="modifyOrderForm(\''+ogid+'\')" class="btn btn-info" type="submit" value="수정하기"/>');
+	         $("#detailListModal .modal-footer").append('주문수정 : <input id="modifyOrderForm" onclick="modifyOrderForm(\''+ogid+'\')" class="btn btn-warning" type="submit" value="수정하기"/>');
 	         
 	         
 	         $("#detailListModal").modal({
@@ -198,9 +198,10 @@ function orderMenuList(mgroup) {
 				var menu = data[i];
 				$("#menuTbody").append(
 	         		'<tr>' + 
-	         		  '<td style="width:180px; font-size:30px;" data-label="메뉴번호">' + menu.mid + '</td>' + 
-	             	  '<td style="width:175px" data-label="메뉴사진"><img src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" width="50px" height="50px"/></td>' + 
-	             	  '<td style="width:165px" data-label="메뉴이름"><a type="button" class="btn btn-primary" href="javascript:newOrderSideForm(\'' + menu.mid + '\')">' + menu.mname + '</a></td>' +
+	         		  '<td style="width:140px; font-size:30px;" data-label="메뉴번호">' + menu.mid + '</td>' + 
+	             	  '<td style="width:135px" data-label="메뉴사진"><img src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" width="50px" height="50px"/></td>' + 
+	             	  '<td style="width:135px; font-size:30px;" data-label="핫_아이스">' + menu.hot_ice + '</td>' + 
+	             	  '<td style="width:135px" data-label="메뉴이름"><a type="button" class="btn btn-primary" href="javascript:newOrderSideForm(\'' + menu.mid + '\')">' + menu.mname + '</a></td>' +
 	             	'</tr>'
              	);
 			}
@@ -238,14 +239,13 @@ function newOrderSideForm(mid){
 
 function newOrderSave(){
 	var ordercount = $("#orderQuantity").val();
-	var hot_ice = $("#orderHotice").val();
 	var orderSize = $("#orderSize").val();
 	var orderSyrup = $("#orderSyrup").val();
 	var orderShot = $("#orderShot").val();
 	
 	$.ajax({
 		url: "order/sideList",
-		data: {"ordercount": ordercount,"hot_ice":hot_ice,"orderSize":orderSize,"orderSyrup":orderSyrup,"orderShot":orderShot},
+		data: {"ordercount": ordercount,"orderSize":orderSize,"orderSyrup":orderSyrup,"orderShot":orderShot},
 		type: "post",
 		success: function(data) {
 			if(data != null){
@@ -355,7 +355,7 @@ function modifyOrderForm(ogid){
 	          
 	         $("#orderModifyModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
 	         $("#orderModifyModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
-	         $("#orderModifyModal .modal-footer").append('수정하기 : <input id="modifyOrder" onclick="modifyOrder()" class="btn btn-info" type="submit" value="적용"/>&nbsp;&nbsp;');
+	         $("#orderModifyModal .modal-footer").append('적용하기 : <input id="modifyOrder" onclick="modifyOrder()" class="btn btn-danger" type="submit" value="적용"/>&nbsp;&nbsp;');
 	         
 	         $("#orderModifyModal").modal({
 	     		backdrop:"static",
