@@ -164,16 +164,51 @@ function showPageMenuList(pageNo, mgroup) {
 	});
 }
 
-function eventInfo(mid){
+function showMenuInfo(mid){
 	$.ajax({
 		url: "menu/info",
 		data: {"mid": mid},
 		success: function(data){
+			$("#menuInfoModal .panel-body").empty();
+			$("#menuModal .modal-footer").empty();
 			$("#menuInfoModal .panel-body").append(
-					
+					'<div class="thumbnail">' +
+						'<a href="javascript:showMenuInfo(' + menu.mid + ')><img style="width:300; height:400px" src="menu/showPhoto?msavedfile=' + menu.msavedfile + '"/></a>' +
+					'</div>' +
+					'<div class="icerik-bilgi">' +
+   						'<h2>' + menu.mname + menu.hot_ice + '</h2>' +
+   						'<p></p>' +
+   						'<div>' +
+   							'가격:' + menu.mprice +
+   						'</div>' +
+   						'<div>'+
+   							menu.mcontents +
+   						'</div>' +
+   					'</div>'	
 			);
+			
+			$("#menuModal .modal-footer").append(
+					'<div>' +
+						'<button type="button" class="btn btn-primary">' +
+							'수정' +
+						'</button>' +
+					'</div>' +
+					'<div>' +
+						'<button type="button" class="btn btn-info">' +
+							'삭제' +
+						'</button>' +
+					'</div>'
+			);
+			$("#menuModal").css("opacity", "0.5");
+			$("#menuInfoModal").modal({
+				backdrop: "static",
+				show: true
+			});
 		}
-				
+	});
+	
+	$("#menuInfoModal").on('hidden.bs.modal',function(){
+		$("#menuModal").css("opacity","1");
 	});
 
 }

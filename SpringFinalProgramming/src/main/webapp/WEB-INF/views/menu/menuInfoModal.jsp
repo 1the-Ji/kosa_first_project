@@ -11,7 +11,7 @@
 	         
 			<div class="panel panel-default">
    		    	<div class="panel-body">
-   					<div class="thumbnail">
+   					<%-- <div class="thumbnail">
    						<img style="width:300; height:400px" src="menu/showPhoto?msavedfile=' + menu.mid + '"/>
    					</div>
    					<div class="icerik-bilgi">
@@ -23,19 +23,7 @@
    						<div>
    							${menu.mcontents}
    						</div>
-   						<div>
-   							<div>
-   								<button type="button" class="btn btn-primary">
-	   								수정
-	   							</button>
-   							</div>
-	   						<div>
-	   							<button type="button" class="btn btn-info">
-	   								삭제
-	   							</button>
-	   						</div>
-   						</div>
-   					</div>
+   					</div> --%>
    				</div>
 			</div>
     	 </div>
@@ -43,11 +31,18 @@
      </div>
       
       
-     <div class="modal-footer">
-			<button type="button" class="btn btn-default">수정</button>
-     </div>
-    
-  </div>
+	<div class="modal-footer">
+		<div>
+			<button type="button" class="btn btn-primary">
+				수정
+			</button>
+		</div>
+		<div>
+			<button type="button" class="btn btn-info">
+				삭제
+			</button>
+		</div>
+	</div>
 </div> 
       
 

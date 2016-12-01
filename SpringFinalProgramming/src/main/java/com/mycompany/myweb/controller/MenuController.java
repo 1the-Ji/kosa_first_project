@@ -201,7 +201,7 @@ public class MenuController {
 		Menu menu = menuService.info(mid);
 		menuService.modify(menu);
 		model.addAttribute("menu", menu);
-		return "menu/menuInfoModal";
+		return "menu/menuInfo";
 	} // info
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
