@@ -138,7 +138,6 @@ public class MenuDao {
 			sql += ") ";
 			sql += "where rn>=? and sid=?";
 
-
 			sqlCondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
 
 		}
