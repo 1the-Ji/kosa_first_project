@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,6 +20,8 @@ public class MenuDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	   
+	private static final Logger logger = LoggerFactory.getLogger(MenuDao.class);
+	
 	public int insert(Menu menu){
 		String sql = "insert into menu(mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid) values(seq_menu_mid.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int row = jdbcTemplate.update(
@@ -121,20 +125,20 @@ public class MenuDao {
 		sql += "where rownum<=? ";
 		sql += ") ";
 		sql += "where rn>=? and sid=? and mgroup=?";
-		Object[] sqlcondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup};
+		Object[] sqlCondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup};
 		if(mgroup == null){
 			sql = "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
 			sql += "from ( ";
 			sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
 			sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
-			sql += "where rownum<=? ";
+			sql += "where rownum<=?" ;
 			sql += ") ";
 			sql += "where rn>=? and sid=?";
-			sqlcondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
+			sqlCondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
 		}
 		List<Menu> list = jdbcTemplate.query(
 				sql,
-				sqlcondition,
+				sqlCondition,
 				new RowMapper<Menu>(){
 					@Override
 					public Menu mapRow(ResultSet rs, int row) throws SQLException {
@@ -152,6 +156,7 @@ public class MenuDao {
 					}
 				}
 		);
+		System.out.println("menuSelectByPaging");
 		return list;
 	}
 	
@@ -303,9 +308,15 @@ public class MenuDao {
 
 	
 	public int countMgroup(String sid, String mgroup){
+		//String sql = "select count(*) from menu where sid=? and mgroup=?";
 		String sql = "select * from menu where sid=? and mgroup=?";
+		Object[] sqlConditions = new Object[]{sid, mgroup};
+		if(mgroup == null){
+			sql = "select * from menu where sid=?";
+			sqlConditions = new Object[]{sql};
+		}
 		List<Menu> list = jdbcTemplate.query(sql, 
-				new Object[]{sid, mgroup}, 
+				sqlConditions, 
 				new RowMapper<Menu>(){
 			@Override
 			public Menu mapRow(ResultSet rs, int row) throws SQLException {
@@ -322,7 +333,7 @@ public class MenuDao {
 				return menu;
 			}
 		});
-		System.out.println(list.size());
+		//logger.info("찾은 행의 수: " + list.size());
 		return list.size();
 	}
 	
