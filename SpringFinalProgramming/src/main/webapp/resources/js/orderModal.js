@@ -75,8 +75,7 @@ function detailOrderList(ogid){
 	                   	'<td data-label="핫_아이스">' + detail.hot_ice + '</td>' +
 	                   	'<td data-label="수량">' + detail.sameItemCount + '</td>' +
 	                   	'<td data-label="사이드">' + detail.xname + '</td>' +
-	                   	'<td data-label="가격">' + detail.sameItemPrice + '</td>' +
-	                   	'<td data-label="수정"><a type="button" class="btn btn-primary" href="javascript:modifyOrderForm(\''+modifyogid+','+ detail.mname+','+ detail.hot_ice + '\')">수정</a></td>' + 	
+	                   	'<td data-label="가격">' + detail.sameItemPrice + '</td>' +	
 	                 '</tr>'
 	               );
 	            
@@ -321,84 +320,7 @@ function cancelOrder(){
 	});
 }
 
-function modifyOrderForm(ogidmnamehot_ice){
-	$("#detailListModal").css("opacity","0.5");
-	 
-	$.ajax({
-	      url: "order/modifypayForm",
-	      data: {"ogidmnamehot_ice": ogidmnamehot_ice},
-	      success: function(data) {
-	    	  $("#detailTbody").empty();
-	          $("#detailListModal .modal-footer").empty();
-	         for(var i=0; i<data.detailList.length; i++) {
-	            var detail = data.detailList[i];
-	            $("#detailTbody").append(
-	            	  '<tr>' +
-	                   	'<td data-label="제품명">'+detail.mname+'</td>' +
-	                   	'<td data-label="핫_아이스">' + detail.hot_ice + '</td>' +
-	                   	'<td data-label="수량">' + detail.sameItemCount + '</td>' +
-	                   	'<td data-label="사이드">' + detail.xname + '</td>' +
-	                   	'<td data-label="가격">' + detail.sameItemPrice + '</td>' +
-	                   	'<td data-label="수정"><a type="button" class="btn btn-primary" href="javascript:modifyOrderForm(\''+modifyogid+','+ detail.mname+','+ detail.hot_ice + '\')">수정</a></td>' + 	
-	                 '</tr>'
-	               );
-	            
-	         }
-	         if(detail==null){
-	        	 var resultprice = 0;
-		         var oghowpay = "카드 결제";
-	         }else{
-	        	 var resultprice = data.resultprice;
-		         var oghowpay = detail.oghowpay; 
-	         }
-	         
-	         
-	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
-	         $("#detailListModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
-	  
-	         
-	         $("#detailListModal").modal({
-	 			backdrop:"static",
-				show:true
-			});
-	      }
-	   });
-	
-	$("#modifyForm2Modal").modal({
-		backdrop:"static",
-		show:true
-	});
-	
-	$("#modifyForm2Modal").on('hidden.bs.modal',function(){
-		$("#detailListModal").css("opacity","1");
-	});
-	
-	
-	
-}
 
-function orderModify(mname,hot_ice,modifyQuantity,modifySize,modifySyrup,modifyShot){
-	console.log(mname);
-	console.log(hot_ice);
-	console.log(modifyQuantity);
-	console.log(modifySize);
-	console.log(modifySyrup);
-	console.log(modifyShot);
-	
-	$("#orderModifyTbody").empty();
-    $("#orderModifyTbody .modal-footer").empty();
-	$.ajax({
-	      url: "order/modifypay",
-	      data: {"mname": mname,"hot_ice": hot_ice,"modifyQuantity": modifyQuantity,"modifySize": modifySize,"modifySyrup": modifySyrup,"modifyShot": modifyShot},
-	      type: "post",
-	      success: function(data) {
-	    	 
-	          
-	    	  $("#orderModifyModal").modal("hide");
-	    	  $("#detailListModal").modal("hide");
-	      }
-	   });
-}
 
 var activeEl = 2;
 $(function() {

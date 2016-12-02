@@ -23,7 +23,6 @@
                      <th>수량</th>
                      <th>사이드</th>
                      <th>가격</th>
-                     <th>수정</th>
                  </tr>
              </thead>
              <tbody id="detailTbody">
