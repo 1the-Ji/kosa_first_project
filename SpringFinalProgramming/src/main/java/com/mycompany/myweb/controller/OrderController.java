@@ -58,11 +58,9 @@ public class OrderController {
 	//주문전체 내역 페이지(검토 완료)
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
-		logger.info("오더 시작 다음");
 		String ogid = null; int resultprice = 0;
 		//그냥 맨처음 주문 리스트 보는 경우와 주문하고 나서 리스트를 보는 경우를 다뤄야 함
 		if((String) session.getAttribute("ogid")!=null){
-			logger.info("오더 시작 다음 다음");
 			if((Integer) session.getAttribute("resultprice")==null){//주문 중에 있을 때
 				session.setAttribute("ogid",null);
 			}else{//주문 완료 후에
@@ -258,9 +256,6 @@ public class OrderController {
 	}
 	
 	
-	
-	
-	
 	//---------------------------------------------------------------------
 	//주문의 시작! 폼 및 카페 당 메뉴리스트 페이지(검토 완료)
 	@RequestMapping(value="/menuList")
@@ -310,8 +305,11 @@ public class OrderController {
 	public String orderForm2(int mid, Model model, HttpSession session){
 		logger.info("주문 품목을 위한 흐름1");
 		Menu orderMenu = menuService.infoByMid(mid);
+		
+		logger.info("메뉴 그룹 : "+orderMenu.getMgroup());
 		model.addAttribute("orderMenu", orderMenu);//javascript 흐름 완료를 위해 model에 넣어주기(최적화 필요)
 		session.setAttribute("orderMenu", orderMenu);//1품목에 대한 메뉴 정보 세션에 넣어주기
+		
 		
 		return "order/menuInfo";
 	}
@@ -344,16 +342,35 @@ public class OrderController {
 		//주문시작할 때 session에 저장되는 ogid 얻기
 		String ogid = (String) session.getAttribute("ogid");
 		
-		//Order_Item 테이블을 추가하고 다시 찾는 부분
+		//Order_Item 테이블에 메뉴 추가하고 다시 찾는 부분
 		orderItemService.addOrderItem(ogid, menu.getMid(), ordercount);
-		OrderItem orderItem = orderItemService.searchOrderItemByOgidMid(ogid,menu.getMid());
+		//Order_Item 테이블에서 메뉴 다시 찾는 부분
+		List<OrderItem> orderItems = orderItemService.searchOrderItemsByOgidMid(ogid,menu.getMid());
+		logger.info("orderItems size : "+orderItems.size());
+		
+		////Extra_Order 테이블찾고 없으면 사이드 넣음
+		//메뉴(mname)가 같은 경우 하나의 메뉴에 xname1,2,3들이 중복되어 삽입되는 에러 안나도록 코드 수정(중요!)
+		for(int i=0;i<orderItems.size();i++){
+			if(extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid()).size() == 0){
+				logger.info(""+extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid()));
+				logger.info("사이드 잘 담김");
+				//Extra_Order 테이블을 추가하는 부분
+				extraOrderService.addExtraOrder(xid1,orderItems.get(i).getOid());
+				extraOrderService.addExtraOrder(xid2,orderItems.get(i).getOid());
+				extraOrderService.addExtraOrder(xid3,orderItems.get(i).getOid());
+			}else{
+				logger.info(""+orderItems.get(i).getOid());
+				logger.info(""+extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid()));
+				logger.info("사이드 찾는 중이거나 실패");
+				continue;
+			}
+		}
+		
+		//xname1,2,3 모두 안와도(차,디저트 경우) 널 포인터 익셉션 에러 안나도록 코드 수정(중요!)
+		
+		 
 		
 		
-		//나중에 xname1,2,3 모두 안와도 널 포인터 익셉션 에러 안나도록 코드 수정(중요!!!)
-		//Extra_Order 테이블을 추가하는 부분
-		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
-		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
-		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
 		
 		model.addAttribute(ogid);
 		return "order/confirmItem";
@@ -432,11 +449,6 @@ public class OrderController {
 		return "order/orderResult";
 	}
 	
-	
-	
-	
-	
-	
 	//결제 취소하기(중요)
 	@RequestMapping(value="/ordercancel",method=RequestMethod.GET)
 	public String ordercansel(Model model, HttpSession session){
@@ -450,12 +462,21 @@ public class OrderController {
 		return "order/confirmItem";
 	}
 	
-	//-----------------------------------------------------밑에는 보류
-	/*//메뉴 전체 검색(1차 검토 완료)
-	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
-	public String allMenuSearch(String pageNo, Model model,HttpSession session){
-		return "redirect:/order/orderItems";
-	}
+	//결제 삭제하기(중요)
+	@RequestMapping(value="/orderdelete",method=RequestMethod.GET)
+	public String orderdelete(String ogid, Model model, HttpSession session){
+		logger.info("ogid: "+ogid);
+		orderService.removeByOgid(ogid);
+		logger.info("결제 삭제 완료");
+		
+		session.setAttribute("ogid",null);
+		model.addAttribute("ogid", ogid);
+		logger.info("ogid: "+(String) session.getAttribute("ogid")); 
+		return "order/confirmItem";
+	}	
+	
+	//-----------------------------------------------------밑에는 추후 예정
+	/*
 	
 	//메뉴 키워드(이름) 검색(1차 검토 완료)
 	@RequestMapping(value="/someMenuSearchMname",method=RequestMethod.POST)

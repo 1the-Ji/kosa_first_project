@@ -12,5 +12,4 @@
 	"mmimetype":"${menu.mmimetype}",
 	"sid":"${menu.sid}"
 	
-	
 }

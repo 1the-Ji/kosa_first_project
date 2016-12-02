@@ -18,7 +18,6 @@ $(function() {
 	});
 	
 	$("#btnOrder").on("click", function() {
-		console.log("오더시작");
 		showPageList(1);
 	}); 
 });
