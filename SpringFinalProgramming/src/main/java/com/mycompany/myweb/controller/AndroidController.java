@@ -373,6 +373,7 @@ public class AndroidController {
 		extraOrderService.addExtraOrder(xid2,orderItems.get(0).getOid());
 		extraOrderService.addExtraOrder(xid3,orderItems.get(0).getOid());
 			
+		
 		return "android/orderTotalAndroid";
 	}
 	
