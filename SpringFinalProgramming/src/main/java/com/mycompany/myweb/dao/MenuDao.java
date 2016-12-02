@@ -313,33 +313,15 @@ public class MenuDao {
 
 	
 	public int countMgroup(String sid, String mgroup){
-		//String sql = "select count(*) from menu where sid=? and mgroup=?";
-		String sql = "select * from menu where sid=? and mgroup=?";
-		Object[] sqlConditions = new Object[]{sid, mgroup};
-		if(mgroup == null){
-			sql = "select * from menu where sid=?";
-			sqlConditions = new Object[]{sql};
+		if(mgroup == null) {
+			String sql = "select count(*) from menu where sid=?";
+			int count = jdbcTemplate.queryForObject(sql, new Object[] {sid}, Integer.class);
+			return count;
+		} else {
+			String sql = "select count(*) from menu where sid=? and mgroup=?";
+			int count = jdbcTemplate.queryForObject(sql, new Object[] {sid, mgroup}, Integer.class);
+			return count;
 		}
-		List<Menu> list = jdbcTemplate.query(sql, 
-				sqlConditions, 
-				new RowMapper<Menu>(){
-			@Override
-			public Menu mapRow(ResultSet rs, int row) throws SQLException {
-				Menu menu = new Menu();
-				menu.setMid(rs.getInt("mid"));
-				menu.setMgroup(rs.getString("mgroup"));
-				menu.setMname(rs.getString("mname"));
-				menu.setHot_ice(rs.getString("hot_ice"));
-				menu.setMprice(rs.getInt("mprice"));
-				menu.setMcontents(rs.getString("mcontents"));
-				menu.setMsavedfile(rs.getString("msavedfile"));
-				menu.setMmimetype(rs.getString("mmimetype"));
-				menu.setSid(rs.getString("sid"));
-				return menu;
-			}
-		});
-		//logger.info("찾은 행의 수: " + list.size());
-		return list.size();
 	}
 	
 }

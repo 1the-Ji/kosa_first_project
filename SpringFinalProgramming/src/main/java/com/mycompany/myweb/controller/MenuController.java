@@ -87,10 +87,13 @@ public class MenuController {
 	
 	// 페이징+그룹핑 기능 리스트
 	@RequestMapping(value="/menuList")
-	public String mgroupList(String mgroup, String pageNo, Model model, HttpSession session){
+	public String mgroupList(String keyword, String pageNo, Model model, HttpSession session){
 		logger.info("메뉴리스트 그룹+페이징 컨트롤러");
 		String sid = (String) session.getAttribute("login");
-		if(mgroup.equals("전체")) mgroup = null;
+		String mgroup = null;
+		if(!keyword.equals("전체")) {
+			mgroup = keyword;
+		};
 		
 		int intPageNo = 1;
 		if (pageNo == null) {
@@ -124,7 +127,7 @@ public class MenuController {
 		List<Menu> list = menuService.listPageMgroup(intPageNo, rowsPerPage, sid, mgroup);
 		
 		model.addAttribute("sid", sid);
-		model.addAttribute("mgroup", mgroup);
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("pageNo", intPageNo);
 		model.addAttribute("rowsPerPage", rowsPerPage);
 		model.addAttribute("pagesPerGroup", pagesPerGroup);

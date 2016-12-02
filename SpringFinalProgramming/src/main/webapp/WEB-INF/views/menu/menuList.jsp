@@ -27,5 +27,6 @@
 	"totalGroupNo": ${totalGroupNo},
 	"groupNo": ${groupNo},
 	"startPageNo": ${startPageNo},
-	"endPageNo": ${endPageNo}
+	"endPageNo": ${endPageNo},
+	"keyword": "${keyword}"
 }
