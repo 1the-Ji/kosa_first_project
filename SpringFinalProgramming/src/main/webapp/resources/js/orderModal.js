@@ -175,20 +175,18 @@ function termList(pageNo) {
 
 }
 
-$(function() {
-	$("#btnNewOrder").on("click", function() {
-		orderMenuList("전체");
-		$("#orderModal").css("opacity","0.5");
-		$("#orderForm1Modal").modal({
-			backdrop:"static",
-			show:true
-		});
+function btnNewOrder(){
+	orderMenuList("전체");
+	$("#orderModal").css("opacity","0.5");
+	$("#orderForm1Modal").modal({
+		backdrop:"static",
+		show:true
 	});
 	
 	$("#orderForm1Modal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
 	});
-});
+}
 
 function orderMenuList(mgroup) {
 	$("#menuTbody").empty();

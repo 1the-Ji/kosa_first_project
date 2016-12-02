@@ -24,7 +24,7 @@
 			</div>
 			
 			<div style="margin-top: 20px; text-align: right; width:900px;">
-	    		<a id="btnNewOrder" type="button" class="btn btn-warning" href="#">신규 주문</a>
+	    		<a id="btnNewOrder" onclick="btnNewOrder()" type="button" class="btn btn-warning" href="#">신규 주문</a>
 	    	</div>
 	    	
 	        <table id="acrylic" style="width:900px">
