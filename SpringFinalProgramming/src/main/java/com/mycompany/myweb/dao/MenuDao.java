@@ -122,23 +122,23 @@ public class MenuDao {
 		sql += "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
 		sql += "from ( ";
 		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
-		sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
-		sql += "where rownum<=? and sid=? and mgroup=?";
+		sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where sid=? and mgroup=?order by mid desc) ";
+		sql += "where rownum<=?";
 		sql += ") ";
 		sql += "where rn>=?";
 		
-		Object[] sqlCondition = new Object[]{(pageNo*rowsPerPage), sid, mgroup,((pageNo-1)*rowsPerPage+1)};
+		Object[] sqlCondition = new Object[]{ sid, mgroup, (pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1) };
 
 		if(mgroup == null){
 			sql = "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
 			sql += "from ( ";
 			sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
-			sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
+			sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu where sid=?order by mid desc) ";
 			sql += "where rownum<=?" ;
 			sql += ") ";
-			sql += "where rn>=? and sid=?";
+			sql += "where rn>=?";
 
-			sqlCondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
+			sqlCondition = new Object[]{ sid, (pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1)};
 
 		}
 		

@@ -168,7 +168,7 @@ function showPageMenuList(pageNo, mgroup) {
 }
 
 function showMenuInfo(mid){
-	console.log("showMenuInfo"+mid);
+	console.log("showMenuInfo " + mid);
 	$.ajax({
 		url:"menu/info",
 		data: {"mid":mid},
@@ -194,10 +194,10 @@ function showMenuInfo(mid){
 			
 			$("#menuInfoModal .modal-footer").append(
 					'<div>' +
-						'<button type="button" class="btn btn-primary">' +
+						'<button type="button" href="javascript:showModForm('+ data.mid + ')" class="btn btn-primary">' +
 							'수정' +
 						'</button>' +
-						'<button type="button" class="btn btn-warning">' +
+						'<button type="button" class="btn btn-danger">' +
 							'삭제' +
 						'</button>' +
 					'</div>'
@@ -215,4 +215,10 @@ function showMenuInfo(mid){
 		$("#menuModal").css("opacity","1");
 	});
 
+}
+
+function showModForm(mid){
+	console.log("showModForm: " + mid);
+	
+	
 }
