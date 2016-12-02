@@ -20,12 +20,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.myweb.dto.Event;
+import com.mycompany.myweb.dto.Extra;
 import com.mycompany.myweb.dto.Menu;
+import com.mycompany.myweb.dto.Order;
+import com.mycompany.myweb.dto.OrderItem;
 import com.mycompany.myweb.dto.Sphoto;
 import com.mycompany.myweb.dto.Store;
 import com.mycompany.myweb.dto.User;
 import com.mycompany.myweb.service.EventService;
+import com.mycompany.myweb.service.ExtraOrderService;
+import com.mycompany.myweb.service.ExtraService;
 import com.mycompany.myweb.service.MenuService;
+import com.mycompany.myweb.service.OrderItemService;
+import com.mycompany.myweb.service.OrderService;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
 import com.mycompany.myweb.service.UserService;
@@ -49,6 +56,18 @@ public class AndroidController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private OrderService orderService;
+	
+	@Autowired
+	private ExtraService extraService;
+	
+	@Autowired
+	private OrderItemService orderItemService;
+	
+	@Autowired
+	private ExtraOrderService extraOrderService;
 	
 	@RequestMapping("/eventAndroid")
 	public String getEvent(int sbeacon, Model model){
@@ -262,6 +281,8 @@ public class AndroidController {
 		
 	}*/
 	
+	
+		
 	@RequestMapping(value="/detailMenuAndroid")
 	public String info(int mid, Model model){
 		Menu menu = menuService.info(mid);
@@ -305,6 +326,57 @@ public class AndroidController {
 			return "android/loginAndroid";
 	}
 	
+	@RequestMapping(value="/orderTotalAndroid", method=RequestMethod.POST)
+	public String orderForm(String howpay, String sid, int ogtotalprice,String user_id, int ordercount,
+			String orderSize, String orderSyrup, String orderShot, int mid, Model model, HttpSession session){
+		String strResult = "WRITE_SUCCESS";
+		
+		String ogid= null;
+		long time = System.currentTimeMillis();
+		double random = Math.random();
+		ogid = ""+sid+time+random;
+			
+		Order order = new Order();	
+		ogid = (String) session.getAttribute("ogid");	
+		order.setOgid(ogid);
+		order.setOgtotalprice(ogtotalprice);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
+		order.setUser_id(user_id);//임의 데이터!
+		order.setSid(sid);
+		order.setOghowpay(howpay);//임의 데이터!
+			
+		int result = orderService.addOrder(order);
+		
+		if (result == OrderService.WRITE_FAIL) {
+			model.addAttribute("error","WRITE_FAIL");
+			strResult = "WRITE_FAIL";
+		} 
+		logger.info(""+result);
+		//session.setAttribute("login", user_id);//성공 시 session에 저장	
+		model.addAttribute("result", strResult);
+		
+		
+		
+		//---------------------------------------------------------------------------------
+		
+		Extra extra1 = extraService.infoByXname(orderSize);
+		Extra extra2 = extraService.infoByXname(orderSyrup);
+		Extra extra3 = extraService.infoByXname(orderShot);
+		int xid1 = extra1.getXid();
+		int xid2 = extra2.getXid();
+		int xid3 = extra3.getXid();
+		
+		orderItemService.addOrderItem(ogid, mid, ordercount);
+		
+		List<OrderItem> orderItems = orderItemService.searchOrderItemsByOgidMid(ogid,mid);
+		
+		extraOrderService.addExtraOrder(xid1,orderItems.get(0).getOid());
+		extraOrderService.addExtraOrder(xid2,orderItems.get(0).getOid());
+		extraOrderService.addExtraOrder(xid3,orderItems.get(0).getOid());
+			
+		return "android/orderTotalAndroid";
+	}
+	
+	
 	//menu test
 	@RequestMapping("/getImage")
 	public void getImage(String fileName, HttpServletRequest request,HttpServletResponse response){
@@ -335,4 +407,6 @@ public class AndroidController {
 		}
 		
 	}
+	
+	
 }
