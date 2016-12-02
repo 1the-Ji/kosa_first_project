@@ -225,10 +225,28 @@ function newOrderSideForm(mid){
 			}else{
 				console.log("메뉴 에러");
 			}
+			
+			if(data.mgroup=="디저트"||data.mgroup=="기타"){
+				console.log("디저트 or 기타 라서 일로 옴");
+				$("#orderForm2Modal #orderSyrupN").css("visibility","hidden");
+				$("#orderForm2Modal #orderSyrup").css("visibility","hidden");
+				$("#orderForm2Modal #orderSyrup").val("없음").prop("selected", true);
+				
+				$("#orderForm2Modal #orderShotN").css("visibility","hidden");
+				$("#orderForm2Modal #orderShot").css("visibility","hidden");
+				$("#orderForm2Modal #orderShot").val("없음").prop("selected", true);
+				
+			}else{
+				console.log("커피 or 차 라서 일로 옴");
+				$("#orderForm2Modal #orderSyrupN").css("visibility","visible");
+				$("#orderForm2Modal #orderSyrup").css("visibility","visible");
+				$("#orderForm2Modal #orderShotN").css("visibility","visible");
+				$("#orderForm2Modal #orderShot").css("visibility","visible");
+				
+			}
 		}
 	});
-	
-	
+
 	
 	$("#orderForm1Modal").css("opacity","0.5");
 	$("#orderForm2Modal").modal({

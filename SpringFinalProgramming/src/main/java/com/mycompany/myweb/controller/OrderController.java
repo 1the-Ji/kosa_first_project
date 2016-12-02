@@ -307,7 +307,7 @@ public class OrderController {
 		Menu orderMenu = menuService.infoByMid(mid);
 		
 		logger.info("메뉴 그룹 : "+orderMenu.getMgroup());
-		model.addAttribute("orderMenu", orderMenu);//javascript 흐름 완료를 위해 model에 넣어주기(최적화 필요)
+		model.addAttribute("orderMenu", orderMenu);//javascript 흐름 완료를 위해 model에 넣어주기
 		session.setAttribute("orderMenu", orderMenu);//1품목에 대한 메뉴 정보 세션에 넣어주기
 		
 		
@@ -342,7 +342,7 @@ public class OrderController {
 		//주문시작할 때 session에 저장되는 ogid 얻기
 		String ogid = (String) session.getAttribute("ogid");
 		
-		//Order_Item 테이블에 메뉴 추가하고 다시 찾는 부분
+		//Order_Item 테이블에 메뉴 추가하는 부분
 		orderItemService.addOrderItem(ogid, menu.getMid(), ordercount);
 		//Order_Item 테이블에서 메뉴 다시 찾는 부분
 		List<OrderItem> orderItems = orderItemService.searchOrderItemsByOgidMid(ogid,menu.getMid());
