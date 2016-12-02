@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
 
@@ -57,9 +58,11 @@ public class OrderController {
 	//주문전체 내역 페이지(검토 완료)
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(String pageNo,Model model,HttpSession session){
+		logger.info("오더 시작 다음");
 		String ogid = null; int resultprice = 0;
 		//그냥 맨처음 주문 리스트 보는 경우와 주문하고 나서 리스트를 보는 경우를 다뤄야 함
 		if((String) session.getAttribute("ogid")!=null){
+			logger.info("오더 시작 다음 다음");
 			if((Integer) session.getAttribute("resultprice")==null){//주문 중에 있을 때
 				session.setAttribute("ogid",null);
 			}else{//주문 완료 후에
@@ -429,21 +432,9 @@ public class OrderController {
 		return "order/orderResult";
 	}
 	
-	//결제 수정하기(진행중)
-	@RequestMapping(value="/modifypayForm",method=RequestMethod.GET)
-	public String modifypayForm(String ogidmnamehot_ice,
-			Model model, HttpSession session){
-		
-		return "";
-	}
 	
-	//결제 수정하기(진행중)
-	@RequestMapping(value="/modifypay",method=RequestMethod.POST)
-	public String modifypay(String ogidmnamehot_ice,
-			Model model, HttpSession session){
-		
-		return "";
-	}
+	
+	
 	
 	
 	//결제 취소하기(중요)
