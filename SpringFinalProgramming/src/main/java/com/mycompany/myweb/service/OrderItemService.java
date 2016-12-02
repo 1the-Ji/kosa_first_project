@@ -51,8 +51,8 @@ public class OrderItemService {
 	}
 	
 	//1개 주문에 대한 품목 찾기(주문 시 필요)
-	public OrderItem searchOrderItemByOgidMid(String ogid,int mid){
-		OrderItem orderItems = orderItemtDao.selectOrderItemByOgidMid(ogid,mid);
+	public List<OrderItem> searchOrderItemsByOgidMid(String ogid,int mid){
+		List<OrderItem> orderItems = orderItemtDao.selectOrderItemsByOgidMid(ogid,mid);
 		return orderItems;
 	}
 	/*//1개 주문 품목 당 총 가격 구하기(메뉴+사이드)

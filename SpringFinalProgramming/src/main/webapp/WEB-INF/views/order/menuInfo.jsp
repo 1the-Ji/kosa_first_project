@@ -1,19 +1,15 @@
 <%@ page contentType="application/json;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%--이명진 --%>
-<%--중요 --%>
 
 {	
-	"mid":"${menu.mid}",
-	"mgroup":"${menu.mgroup}",
-	"mname":"${menu.mname}",
-	"hot_ice":"${menu.hot_ice}",
-	"mprice":"${menu.mprice}",
-	"mcontents":"${menu.mcontents}",
-	"msavedfile":"${menu.msavedfile}",
-	"mmimetype":"${menu.mmimetype}",
-	"sid":"${menu.sid}"
-	
+	"mid":"${orderMenu.mid}",
+	"mgroup":"${orderMenu.mgroup}",
+	"mname":"${orderMenu.mname}",
+	"hot_ice":"${orderMenu.hot_ice}",
+	"mprice":"${orderMenu.mprice}",
+	"mcontents":"${orderMenu.mcontents}",
+	"msavedfile":"${orderMenu.msavedfile}",
+	"mmimetype":"${orderMenu.mmimetype}",
+	"sid":"${orderMenu.sid}"
 	
 }

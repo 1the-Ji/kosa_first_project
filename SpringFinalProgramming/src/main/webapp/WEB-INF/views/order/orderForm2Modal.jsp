@@ -2,7 +2,6 @@
 
   
 <%--이명진 --%>
-<%--중요 --%>
 
  	<script type="text/javascript">
   		function getSelectValue1(frm)
@@ -22,7 +21,7 @@
   		}
  	</script>
  	
- <div id="modifyForm2Modal" class="modal fade" tabindex="-1" role="dialog">
+ <div id="orderForm2Modal" class="modal fade" tabindex="-1" role="dialog">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
@@ -54,22 +53,24 @@
 								</th>
 						  	</tr>
 						  	<tr>
-						  		<th class="btn btn-warning" width="100px;">SIRUP</th>
+						  		<th id="orderSyrupN" class="btn btn-warning" width="100px;">SIRUP</th>
 						  		<th width="100px;">
 						  			<select id="orderSyrup"  style="margin-left: 20px;" data-style="btn-success" style="display: inline;">
 						      			<option>설탕시럽</option>
 						      			<option>딸기시럽</option>
 						      			<option>초코시럽</option>
+						      			<option>없음</option>
 						  			</select>
 						  		</th>
 						  	</tr>
 						  	<tr>
-						  		<th class="btn btn-danger" width="100px;">SHOT</th>
+						  		<th id="orderShotN" class="btn btn-danger" width="100px;">SHOT</th>
 						  		<th>
 									<select id="orderShot"  style="margin-left: 20px;" data-style="btn-success" style="display: inline;">
 						      			<option>샷추가1</option>
 						      			<option>샷추가2</option>
 						      			<option>샷추가3</option>
+						      			<option>없음</option>
 						  			</select>
 								</th>
 						  	</tr>

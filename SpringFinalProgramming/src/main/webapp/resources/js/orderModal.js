@@ -91,7 +91,8 @@ function detailOrderList(ogid){
 	         
 	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
 	         $("#detailListModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
-	  
+	         $("#detailListModal .modal-footer").append('삭제 : <input id="deleteOrder" onclick="deleteOrder(\''+ogid+'\')" class="btn btn-success" type="submit" value="삭제"/>&nbsp;&nbsp;');
+	   	  
 	         
 	         $("#detailListModal").modal({
 	 			backdrop:"static",
@@ -174,20 +175,18 @@ function termList(pageNo) {
 
 }
 
-$(function() {
-	$("#btnNewOrder").on("click", function() {
-		orderMenuList("전체");
-		$("#orderModal").css("opacity","0.5");
-		$("#orderForm1Modal").modal({
-			backdrop:"static",
-			show:true
-		});
+function btnNewOrder(){
+	orderMenuList("전체");
+	$("#orderModal").css("opacity","0.5");
+	$("#orderForm1Modal").modal({
+		backdrop:"static",
+		show:true
 	});
 	
 	$("#orderForm1Modal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
 	});
-});
+}
 
 function orderMenuList(mgroup) {
 	$("#menuTbody").empty();
@@ -212,22 +211,42 @@ function orderMenuList(mgroup) {
 
 function newOrderSideForm(mid){
 	console.log(mid);
-	$("#orderForm1Modal").css("opacity","0.5");
-	
+
 	$.ajax({
 		url: "order/sideList",
 		data: {"mid": mid},
 		type: "get",
 		success: function(data) {
+			console.log("메뉴 그룹: "+data.mgroup);
 			if(data != null){
 				console.log("메뉴 존재");
 			}else{
 				console.log("메뉴 에러");
 			}
 			
+			if(data.mgroup=="디저트"||data.mgroup=="기타"){
+				console.log("디저트 or 기타 라서 일로 옴");
+				$("#orderForm2Modal #orderSyrupN").css("visibility","hidden");
+				$("#orderForm2Modal #orderSyrup").css("visibility","hidden");
+				$("#orderForm2Modal #orderSyrup").val("없음").prop("selected", true);
+				
+				$("#orderForm2Modal #orderShotN").css("visibility","hidden");
+				$("#orderForm2Modal #orderShot").css("visibility","hidden");
+				$("#orderForm2Modal #orderShot").val("없음").prop("selected", true);
+				
+			}else{
+				console.log("커피 or 차 라서 일로 옴");
+				$("#orderForm2Modal #orderSyrupN").css("visibility","visible");
+				$("#orderForm2Modal #orderSyrup").css("visibility","visible");
+				$("#orderForm2Modal #orderShotN").css("visibility","visible");
+				$("#orderForm2Modal #orderShot").css("visibility","visible");
+				
+			}
 		}
 	});
+
 	
+	$("#orderForm1Modal").css("opacity","0.5");
 	$("#orderForm2Modal").modal({
 		backdrop:"static",
 		show:true
@@ -243,7 +262,10 @@ function newOrderSave(){
 	var orderSize = $("#orderSize").val();
 	var orderSyrup = $("#orderSyrup").val();
 	var orderShot = $("#orderShot").val();
-	
+	if(orderSyrup==null&&orderShot==null){
+		orderSyrup = "";
+		orderShot = "";
+	}
 	$.ajax({
 		url: "order/sideList",
 		data: {"ordercount": ordercount,"orderSize":orderSize,"orderSyrup":orderSyrup,"orderShot":orderShot},
@@ -320,7 +342,25 @@ function cancelOrder(){
 	});
 }
 
-
+function deleteOrder(ogid){
+	
+	$.ajax({
+		url: "order/orderdelete",
+		data: {"ogid": ogid},
+		success: function(data) {
+			if(data == null){
+				console.log("주문 삭제 완료");
+			}else{
+				console.log("주문 삭제 실패");
+			}
+			
+		}
+	});
+	
+	$("#detailListModal").modal('hide');
+	
+	
+}
 
 var activeEl = 2;
 $(function() {
