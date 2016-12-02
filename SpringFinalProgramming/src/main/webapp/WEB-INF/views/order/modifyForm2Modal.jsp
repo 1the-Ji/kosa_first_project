@@ -2,7 +2,6 @@
 
   
 <%--이명진 --%>
-<%--중요 --%>
 
  	<script type="text/javascript">
   		function getSelectValue1(frm)
