@@ -9,12 +9,12 @@ $(function() {
 	
 	$("#btnMenu").on("click", function() {
 		$("#menuModal").modal("show");
-		//showPageMenuList(1, "전체");
+		showPageMenuList(1, "전체");
 	});
 	
 	$("#btnEvent").on("click", function() {
 		$("#eventModal").modal("show");
-		//eventList();
+		eventList();
 	});
 	
 	$("#btnOrder").on("click", function() {

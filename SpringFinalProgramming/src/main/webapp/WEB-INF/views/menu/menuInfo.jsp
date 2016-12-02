@@ -1,11 +1,12 @@
 <%@ page contentType="application/json;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 {
-	"mid": "${menu.mid}",
-	"mname: "${menu.mname}",
-	"hot_ice": "${menu.hot_ice}",
-	"mprice" : "${menu.mprice}",
-	"mcontents" : "${menu.mcontents}",
-	"msavedfile" : "${menu.msavedfile}"
+	"eid":"${menu.mid}",
+	"etitle":"${menu.mgroup}",
+	"mname":"${menu.mname}",
+	"hot_ice":"${menu.hot_ice}",
+	"mprice":"${menu.mprice}",
+	"mcontents":"${menu.mcontents}",
+	"msavedfile":"${menu.msavedfile}"
 }

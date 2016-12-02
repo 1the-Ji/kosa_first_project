@@ -15,7 +15,7 @@
     	<link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" >
     	<link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet"/>
     	<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
-		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>  		
+		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>
 		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/custom.js"></script>

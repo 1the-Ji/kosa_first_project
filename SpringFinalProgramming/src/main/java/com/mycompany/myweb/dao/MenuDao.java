@@ -80,6 +80,7 @@ public class MenuDao {
 				return menu;
 			}
 		}); 
+		logger.info("selectByMid 접근완료, 리턴값(list.size(): " + list.size());
 		return (list.size() != 0)? list.get(0) : null;
 	}
 	
@@ -122,12 +123,12 @@ public class MenuDao {
 		sql += "from ( ";
 		sql += "select rownum as rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
 		sql += "from ( select mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid from menu order by mid desc) ";
-		sql += "where rownum<=? ";
+		sql += "where rownum<=? and sid=? and mgroup=?";
 		sql += ") ";
-		sql += "where rn>=? and sid=? and mgroup=?";
+		sql += "where rn>=?";
 		
 
-		Object[] sqlCondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid, mgroup};
+		Object[] sqlCondition = new Object[]{(pageNo*rowsPerPage), sid, mgroup,((pageNo-1)*rowsPerPage+1)};
 
 		if(mgroup == null){
 			sql = "select rn, mid, mgroup, mname, hot_ice, mprice, mcontents, msavedfile, mmimetype, sid ";
@@ -141,6 +142,7 @@ public class MenuDao {
 			sqlCondition = new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1), sid};
 
 		}
+		
 		List<Menu> list = jdbcTemplate.query(
 				sql,
 				sqlCondition,

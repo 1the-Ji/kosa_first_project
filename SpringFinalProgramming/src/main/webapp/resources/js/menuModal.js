@@ -20,7 +20,6 @@ $(function() {
 		var mgroup = $("#menuRegModal #mgroup").val();
 		var mname = $("#menuRegModal #mname").val();
 		var hot_ice = $("#menuRegModal input:radio[name=hot_ice]:checked").val();
-		//var rel = parseInt($('.doAction:checked').attr('rel'));
 		var mprice = $("#menuRegModal #mprice").val();
 		var mcontents = $("#menuRegModal #mcontents").val();
 		var photo = $("#menuRegModal #photo")[0];
@@ -85,13 +84,13 @@ $(function() {
 	})
 	
 	
-	$(".menuImg").on("click", function(){
+	/*$("#menuImg").on("click", function(){
 		$("#menuModal").css("opacity", "0.5");
 		$("#menuInfoModal").modal({
 			backdrop:"static",
 			show:true
 		});
-	});
+	});*/
 	
 	$("#menuInfoModal").on("hidden.bs.modal", function(){
 		$("#menuModal").css("opacity", "1");
@@ -108,19 +107,22 @@ function showPageMenuList(pageNo, mgroup) {
 		data: {"pageNo": pageNo, "keyword": mgroup},
 		success: function(data){
 			console.log("menuListJS success 처리중 중간");
+			
 			$("#menuListTd").empty();
 			$("#menuModal .modal-footer").empty();
 			for(var i=0; i<data.list.length; i++){
 				var menu = data.list[i];
-				console.log(menu);
+				console.log("메뉴리스트"+menu);
 				$("#menuListTd").append(
 					//<div style="width:150px;height:150px;display:inline-block; margin:10px;"' + menu.mgroup + '>' +
 	        		'<div style="width:150px; height:150px; display:inline-block; margin:10px;">' +
-	        			'<a href="javascript:showMenuInfo(' + menu.mid + ')"><img id="menuImg" width="150px" height="150px" src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" /></a>' + 
+	        			'<div>' +
+	        				'<a href="javascript:showMenuInfo('+ menu.mid + ')"><img id="menuImg" width="150px" height="150px" src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" ></a>' + 
+	        			'</div>' +
 	        			'<div align="center">' +
-	        			menu.mname + ' ' + menu.hot_ice + 
-	        			'<br/>' +
-	        			menu.mprice + 'won' +
+		        			menu.mname + ' ' + menu.hot_ice + '</a>' +
+		        			'<br/>' +
+		        			menu.mprice + 'won' +
 	        			'</div>' +
 	        		'</div>'
 				);
@@ -165,41 +167,42 @@ function showPageMenuList(pageNo, mgroup) {
 	});
 }
 
-function showMenuInfo(mid, aa){
+function showMenuInfo(mid){
+	console.log("showMenuInfo"+mid);
 	$.ajax({
-		url: "menu/info",
-		data: {"mid": mid},
+		url:"menu/info",
+		data: {"mid":mid},
 		success: function(data){
+			
 			$("#menuInfoModal .panel-body").empty();
-			$("#menuModal .modal-footer").empty();
+			$("#menuInfoModal .modal-footer").empty();
 			$("#menuInfoModal .panel-body").append(
-					'<div class="thumbnail">' +
-						'<a href="javascript:showMenuInfo(' + menu.mid + ')><img style="width:300; height:400px" src="menu/showPhoto?msavedfile=' + menu.msavedfile + '"/></a>' +
+					'<div class="thumbnail" style="width:300px; height:300px">' +
+						'<img style="width:300; height:300px" src="menu/showPhoto?msavedfile=' + data.msavedfile + '"/>' +
 					'</div>' +
 					'<div class="icerik-bilgi">' +
-   						'<h2>' + menu.mname + menu.hot_ice + '</h2>' +
+   						'<h2>' + data.mname + data.hot_ice + '</h2>' +
    						'<p></p>' +
-   						'<div>' +
-   							'가격:' + menu.mprice +
+   						'<div style="width: 500px;">' +
+   							'가격:' + data.mprice +
    						'</div>' +
    						'<div>'+
-   							menu.mcontents +
+   							data.mcontents +
    						'</div>' +
    					'</div>'	
 			);
 			
-			$("#menuModal .modal-footer").append(
+			$("#menuInfoModal .modal-footer").append(
 					'<div>' +
 						'<button type="button" class="btn btn-primary">' +
 							'수정' +
 						'</button>' +
-					'</div>' +
-					'<div>' +
-						'<button type="button" class="btn btn-info">' +
+						'<button type="button" class="btn btn-warning">' +
 							'삭제' +
 						'</button>' +
 					'</div>'
 			);
+			
 			$("#menuModal").css("opacity", "0.5");
 			$("#menuInfoModal").modal({
 				backdrop: "static",

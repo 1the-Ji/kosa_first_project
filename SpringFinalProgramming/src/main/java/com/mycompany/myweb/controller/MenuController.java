@@ -3,7 +3,6 @@ package com.mycompany.myweb.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
@@ -91,9 +90,10 @@ public class MenuController {
 		logger.info("메뉴리스트 그룹+페이징 컨트롤러");
 		String sid = (String) session.getAttribute("login");
 		String mgroup = null;
+		
 		if(!keyword.equals("전체")) {
 			mgroup = keyword;
-		};
+		}
 		
 		int intPageNo = 1;
 		if (pageNo == null) {
@@ -104,11 +104,11 @@ public class MenuController {
 		} else {
 			intPageNo = Integer.parseInt(pageNo);
 		}
+		
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
 		int rowsPerPage = 8;
 		int pagesPerGroup = 5;
-		
 		int totalBoardNo = menuService.getCountMgroup(sid, mgroup);
 		
 		logger.info("totalBoardNo: "+totalBoardNo);
@@ -124,6 +124,7 @@ public class MenuController {
 			endPageNo = totalPageNo;
 		}
 		logger.info("before model addAttribute");
+		
 		List<Menu> list = menuService.listPageMgroup(intPageNo, rowsPerPage, sid, mgroup);
 		
 		model.addAttribute("sid", sid);
@@ -201,14 +202,14 @@ public class MenuController {
 	
 	@RequestMapping(value="/info")
 	public String info(int mid, Model model){
+		logger.info("menuController- Info 부분");
 		Menu menu = menuService.info(mid);
-		menuService.modify(menu);
 		model.addAttribute("menu", menu);
 		return "menu/menuInfo";
 	} // info
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyForm(int mid, Model model){
+	public String modify(int mid, Model model){
 		Menu menu = menuService.info(mid);
 		model.addAttribute("menu", menu);
 		return "menu/menuModModal";
