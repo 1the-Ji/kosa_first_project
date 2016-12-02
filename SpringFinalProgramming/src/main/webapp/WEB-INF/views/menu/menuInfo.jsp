@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 {
-	"eid":"${menu.mid}",
-	"etitle":"${menu.mgroup}",
+	"mid":"${menu.mid}",
+	"mgroup":"${menu.mgroup}",
 	"mname":"${menu.mname}",
 	"hot_ice":"${menu.hot_ice}",
 	"mprice":"${menu.mprice}",

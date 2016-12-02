@@ -157,7 +157,7 @@ public class MenuController {
 		String sid = (String)session.getAttribute("login");
 		menu.setSid(sid);
 		logger.info(""+sid);
-		/*String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();*/
+		//String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();
 		String msavedfile = menu.getPhoto().getOriginalFilename();
 		String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/" + msavedfile);
 		logger.info(realpath);
