@@ -1,9 +1,14 @@
 package com.mycompany.myweb.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -59,8 +64,35 @@ public class SphotoController {
 			e.printStackTrace();
 			return "sphoto/write";
 		}
+	}
+		
+		@RequestMapping("/showPhoto")
+		public void showPhoto(String spic_savedfile, HttpServletRequest request, HttpServletResponse response){
+			try{
+				String fileName = spic_savedfile;
+				String mimeType = request.getServletContext().getMimeType(fileName);
+				response.setContentType(mimeType);
+				
+				OutputStream os = response.getOutputStream();
+				
+				String filePath = request.getServletContext().getRealPath("/WEB-INF/photo/" + fileName);
+				InputStream is = new FileInputStream(filePath);
+				
+				byte[] values = new byte[1024];
+				int byteNum = -1;
+				while((byteNum = is.read(values)) != -1){
+					os.write(values, 0, byteNum);
+				}
+				os.flush();
+				is.close();
+				os.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		} // showPhoto 
+		
 		
 	}
 	
 	
-}
+
