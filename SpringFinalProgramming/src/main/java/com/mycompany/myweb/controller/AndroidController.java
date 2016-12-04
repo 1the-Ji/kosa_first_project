@@ -337,7 +337,7 @@ public class AndroidController {
 		ogid = ""+sid+time+random;
 			
 		Order order = new Order();	
-		ogid = (String) session.getAttribute("ogid");	
+		/*ogid = (String) session.getAttribute("ogid");	*/
 		order.setOgid(ogid);
 		order.setOgtotalprice(ogtotalprice);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
 		order.setUser_id(user_id);//임의 데이터!
