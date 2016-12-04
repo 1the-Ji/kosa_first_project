@@ -1,4 +1,4 @@
-<%@ page contentType="application/json;charset=UTF-8" %>
+<%@ page contentType="application/json; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 { 
@@ -19,7 +19,7 @@
 		</c:forEach>
 	],
 	
-	"pageNo":${pageNo},
+	"pageNo": ${pageNo},
 	"rowsPerPage": ${rowsPerPage},
 	"pagesPerGroup": ${pagesPerGroup},
 	"totalBoardNo": ${totalBoardNo},
@@ -27,5 +27,6 @@
 	"totalGroupNo": ${totalGroupNo},
 	"groupNo": ${groupNo},
 	"startPageNo": ${startPageNo},
-	"endPageNo": ${endPageNo}
+	"endPageNo": ${endPageNo},
+	"keyword": "${keyword}"
 }

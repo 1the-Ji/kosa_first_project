@@ -1,6 +1,15 @@
 <%@ page contentType="application/json;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 {	
-	"menu":${menu}
+	"mid":"${orderMenu.mid}",
+	"mgroup":"${orderMenu.mgroup}",
+	"mname":"${orderMenu.mname}",
+	"hot_ice":"${orderMenu.hot_ice}",
+	"mprice":"${orderMenu.mprice}",
+	"mcontents":"${orderMenu.mcontents}",
+	"msavedfile":"${orderMenu.msavedfile}",
+	"mmimetype":"${orderMenu.mmimetype}",
+	"sid":"${orderMenu.sid}"
+	
 }

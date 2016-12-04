@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<div id="eventModal" class="modal fade" tabindex="-1" role="dialog" >
+
+<div id="eventModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document" style="width:800px; height:500px;">
     <div class="modal-content" style="height:500px;">
       <div class="modal-header">

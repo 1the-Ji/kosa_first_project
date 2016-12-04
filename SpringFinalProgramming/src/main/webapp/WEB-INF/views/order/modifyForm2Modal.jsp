@@ -34,7 +34,7 @@
 			<div class="container" style="width: 80%; height: 80%">
 				<div class="row">
 					<div class="bs-docs-example">
-						  <table>
+						  <table id="modifyTbody">
 						  	<tr>
 						  		<th class="btn btn-default" width="100px;">수량</th>
 						  		<th width="100px;">
@@ -53,31 +53,28 @@
 								</th>
 						  	</tr>
 						  	<tr>
-						  		<th id="orderSyrupN" class="btn btn-warning" width="100px;">SIRUP</th>
+						  		<th class="btn btn-warning" width="100px;">SIRUP</th>
 						  		<th width="100px;">
 						  			<select id="orderSyrup"  style="margin-left: 20px;" data-style="btn-success" style="display: inline;">
 						      			<option>설탕시럽</option>
 						      			<option>딸기시럽</option>
 						      			<option>초코시럽</option>
-						      			<option>없음</option>
 						  			</select>
 						  		</th>
 						  	</tr>
 						  	<tr>
-						  		<th id="orderShotN" class="btn btn-danger" width="100px;">SHOT</th>
+						  		<th class="btn btn-danger" width="100px;">SHOT</th>
 						  		<th>
 									<select id="orderShot"  style="margin-left: 20px;" data-style="btn-success" style="display: inline;">
 						      			<option>샷추가1</option>
 						      			<option>샷추가2</option>
 						      			<option>샷추가3</option>
-						      			<option>없음</option>
 						  			</select>
 								</th>
 						  	</tr>
 						  </table>
 						  <br/>
-						  <input onclick="newOrderSave()" class="btn btn-primary" type="submit" value="담기"/>&nbsp;&nbsp;&nbsp;
-			  			  <input class="btn btn-primary" type="button" onclick="alert('결제 기능 추가 예정')" value="바로 주문">				      
+						  <input onclick="orderModify()" class="btn btn-primary" type="submit" value="수정"/>&nbsp;&nbsp;&nbsp;				      
 					  </div>
 				</div>
 			</div>

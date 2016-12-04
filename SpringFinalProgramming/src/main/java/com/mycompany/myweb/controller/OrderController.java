@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
 
@@ -143,7 +144,13 @@ public class OrderController {
 			
 			Menu menu = menuService.info(orderItems.get(i).getMid());//메뉴명
 			detailOrder.setMname(menu.getMname());//1품목 메뉴명 보존하기
+			if(menu.getHot_ice() == null){
+				detailOrder.setHot_ice("");//1품목 핫_아이스 보존하기(차,디저트 같은거)
+			}else{
+				detailOrder.setHot_ice(menu.getHot_ice());//1품목 핫_아이스 보존하기
+			}
 			logger.info("품목:"+detailOrder.getMname());
+			logger.info("핫_아이스:"+detailOrder.getHot_ice());
 			
 			detailOrder.setSameItemCount(orderItems.get(i).getOrdercount());//1품목 수량 보존하기
 			logger.info("수량:"+detailOrder.getSameItemCount());
@@ -188,7 +195,6 @@ public class OrderController {
 		//1주문 총 금액 저장 및 JSP에 보내기
 		session.setAttribute("resultprice", resultprice);
 		model.addAttribute("resultprice", resultprice);
-			
 		/*//총 금액 order_total의 ogtotalprice에 넣어주기
 		orderService.modifyOgprice(ogid, resultprice);
 		*/
@@ -250,9 +256,6 @@ public class OrderController {
 	}
 	
 	
-	
-	
-	
 	//---------------------------------------------------------------------
 	//주문의 시작! 폼 및 카페 당 메뉴리스트 페이지(검토 완료)
 	@RequestMapping(value="/menuList")
@@ -302,8 +305,11 @@ public class OrderController {
 	public String orderForm2(int mid, Model model, HttpSession session){
 		logger.info("주문 품목을 위한 흐름1");
 		Menu orderMenu = menuService.infoByMid(mid);
-		model.addAttribute("orderMenu", orderMenu);//javascript 흐름 완료를 위해 model에 넣어주기(최적화 필요)
+		
+		logger.info("메뉴 그룹 : "+orderMenu.getMgroup());
+		model.addAttribute("orderMenu", orderMenu);//javascript 흐름 완료를 위해 model에 넣어주기
 		session.setAttribute("orderMenu", orderMenu);//1품목에 대한 메뉴 정보 세션에 넣어주기
+		
 		
 		return "order/menuInfo";
 	}
@@ -311,7 +317,7 @@ public class OrderController {
 	//주문하기(진행 중)(검토 필요)(중요)
 	@RequestMapping(value="/sideList",method=RequestMethod.POST)
 	public String orderItems2(
-			int ordercount,String hot_ice, 
+			int ordercount,
 			String orderSize, String orderSyrup, String orderShot,
 			HttpSession session, Model model){
 		logger.info("주문 품목을 위한 흐름2");
@@ -336,22 +342,41 @@ public class OrderController {
 		//주문시작할 때 session에 저장되는 ogid 얻기
 		String ogid = (String) session.getAttribute("ogid");
 		
-		//Order_Item 테이블을 추가하고 다시 찾는 부분
+		//Order_Item 테이블에 메뉴 추가하는 부분
 		orderItemService.addOrderItem(ogid, menu.getMid(), ordercount);
-		OrderItem orderItem = orderItemService.searchOrderItemByOgidMid(ogid,menu.getMid());
+		//Order_Item 테이블에서 메뉴 다시 찾는 부분
+		List<OrderItem> orderItems = orderItemService.searchOrderItemsByOgidMid(ogid,menu.getMid());
+		logger.info("orderItems size : "+orderItems.size());
+		
+		////Extra_Order 테이블찾고 없으면 사이드 넣음
+		//메뉴(mname)가 같은 경우 하나의 메뉴에 xname1,2,3들이 중복되어 삽입되는 에러 안나도록 코드 수정(중요!)
+		for(int i=0;i<orderItems.size();i++){
+			if(extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid()).size() == 0){
+				logger.info(""+extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid()));
+				logger.info("사이드 잘 담김");
+				//Extra_Order 테이블을 추가하는 부분
+				extraOrderService.addExtraOrder(xid1,orderItems.get(i).getOid());
+				extraOrderService.addExtraOrder(xid2,orderItems.get(i).getOid());
+				extraOrderService.addExtraOrder(xid3,orderItems.get(i).getOid());
+			}else{
+				logger.info(""+orderItems.get(i).getOid());
+				logger.info(""+extraOrderService.allExtraOrderByoneOid(orderItems.get(i).getOid()));
+				logger.info("사이드 찾는 중이거나 실패");
+				continue;
+			}
+		}
+		
+		//xname1,2,3 모두 안와도(차,디저트 경우) 널 포인터 익셉션 에러 안나도록 코드 수정(중요!)
+		
+		 
 		
 		
-		//나중에 xname1,2,3 모두 안와도 널 포인터 익셉션 에러 안나도록 코드 수정(중요!!!)
-		//Extra_Order 테이블을 추가하는 부분
-		extraOrderService.addExtraOrder(xid1,orderItem.getOid());
-		extraOrderService.addExtraOrder(xid2,orderItem.getOid());
-		extraOrderService.addExtraOrder(xid3,orderItem.getOid());
 		
 		model.addAttribute(ogid);
 		return "order/confirmItem";
 	}
 		
-	//결제 완료하기
+	//결제 완료하기(중요)
 	@RequestMapping(value="/orderpay",method=RequestMethod.GET)
 	public String orderpay(Model model, HttpSession session){
 		logger.info("주문 흐름 3");
@@ -423,9 +448,8 @@ public class OrderController {
 		logger.info(""+(String) session.getAttribute("ogid")); 
 		return "order/orderResult";
 	}
-	//결제 수정하기
 	
-	//결제 취소하기(완료)
+	//결제 취소하기(중요)
 	@RequestMapping(value="/ordercancel",method=RequestMethod.GET)
 	public String ordercansel(Model model, HttpSession session){
 		String ogid = (String) session.getAttribute("ogid");
@@ -438,12 +462,21 @@ public class OrderController {
 		return "order/confirmItem";
 	}
 	
-	//-----------------------------------------------------밑에는 보류
-	/*//메뉴 전체 검색(1차 검토 완료)
-	@RequestMapping(value="/allMenuSearch",method=RequestMethod.GET)
-	public String allMenuSearch(String pageNo, Model model,HttpSession session){
-		return "redirect:/order/orderItems";
-	}
+	//결제 삭제하기(중요)
+	@RequestMapping(value="/orderdelete",method=RequestMethod.GET)
+	public String orderdelete(String ogid, Model model, HttpSession session){
+		logger.info("ogid: "+ogid);
+		orderService.removeByOgid(ogid);
+		logger.info("결제 삭제 완료");
+		
+		session.setAttribute("ogid",null);
+		model.addAttribute("ogid", ogid);
+		logger.info("ogid: "+(String) session.getAttribute("ogid")); 
+		return "order/confirmItem";
+	}	
+	
+	//-----------------------------------------------------밑에는 추후 예정
+	/*
 	
 	//메뉴 키워드(이름) 검색(1차 검토 완료)
 	@RequestMapping(value="/someMenuSearchMname",method=RequestMethod.POST)

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
- <%--이명진 --%>
+<%--이명진 --%>
+
  	<script type="text/javascript">
  		function getSelectValue(frm)
  		{
@@ -56,8 +57,9 @@
 			<table id="acrylic" style="width:620px; margin-right: 23px; margin-bottom: 0px;">
 	             <thead>
 	                 <tr>
-	                     <th style="width:100px">메뉴번호</th>
-	                     <th style="width:100px">메뉴사진</th>
+	                     <th style="width:70px">메뉴번호</th>
+	                     <th style="width:70px">메뉴사진</th>
+	                     <th style="width:70px">핫_아이스</th>
 	                     <th style="width:70px">메뉴이름</th>
 	                 </tr>
 	             </thead>
@@ -66,7 +68,7 @@
 
  		<div class="wrapper" align="center" style="height:400px; overflow-y:scroll; margin-top: 0px;">
      	
-         <table id="acrylic" style="width:650px;margin-top: 0px;">
+         <table id="acrylic" style="width:600px;margin-top: 0px;">
              <tbody id="menuTbody">
              </tbody> 
          </table>

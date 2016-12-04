@@ -2,6 +2,8 @@
 
 
 <%--이명진 --%>
+<%--중요 --%>
+
 <div id="detailListModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document" style="width:1000px;">
      <div class="modal-content" style="height:700px">
@@ -11,12 +13,13 @@
        </div>
        <div class="modal-body">
  		<%--여기부터 --%>
- 		<div class="wrapper" align="center">
+ 		<div class="wrapper" align="center" style="overflow-y:scroll;">
  		
          <table id="acrylic" style="width:900px">
              <thead>
                  <tr>
                      <th>품목</th>
+                     <th>핫_아이스</th>
                      <th>수량</th>
                      <th>사이드</th>
                      <th>가격</th>

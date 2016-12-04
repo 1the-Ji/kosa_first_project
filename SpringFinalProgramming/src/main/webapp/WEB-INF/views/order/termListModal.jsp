@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
  <%--이명진 --%>
+ <%--중요 --%>
  
  <div id="termListModal" class="modal fade" tabindex="-1" role="dialog">
    <div class="modal-dialog" role="document" style="width:1000px;">

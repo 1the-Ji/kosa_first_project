@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 
+<%--이명진 --%>
+<%--중요 --%>
 
 <div id="orderModal" class="modal fade" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document" style="width:1000px;">
@@ -22,7 +24,7 @@
 			</div>
 			
 			<div style="margin-top: 20px; text-align: right; width:900px;">
-	    		<a id="btnNewOrder" type="button" class="btn btn-warning" href="#">신규 주문</a>
+	    		<a id="btnNewOrder" onclick="btnNewOrder()" type="button" class="btn btn-warning" href="#">신규 주문</a>
 	    	</div>
 	    	
 	        <table id="acrylic" style="width:900px">

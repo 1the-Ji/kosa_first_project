@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-
 <%--이명진 --%>
+<%--중요 --%>
+ 
 <div id="orderModifyModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document" style="width:1000px;">
      <div class="modal-content" style="height:700px">
@@ -11,14 +12,14 @@
        </div>
        <div class="modal-body">
  		<%--여기부터 --%>
- 		<div class="wrapper" align="center">
+ 		<div class="wrapper" align="center" style="overflow-y:scroll;">
  		
          <table id="acrylic" style="width:900px">
              <thead>
                  <tr>
                      <th>품목</th>
-                     <th>수량</th>
                      <th>핫or아이스</th>
+                     <th>수량</th>
                      <th>사이즈</th>
                      <th>시럽</th>
                      <th>샷추가</th>

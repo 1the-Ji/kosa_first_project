@@ -58,6 +58,7 @@ function showPageList(pageNo) {
 }
 
 function detailOrderList(ogid){
+	var modifyogid = ogid;
 	console.log("여기 옴");
 	$("#orderModal").css("opacity","0.5");
 	$.ajax({
@@ -69,12 +70,13 @@ function detailOrderList(ogid){
 	         for(var i=0; i<data.detailList.length; i++) {
 	            var detail = data.detailList[i];
 	            $("#detailTbody").append(
-	            	   '<tr>' +
-	                   	'<td data-label="제품명">' + detail.mname + '</td>' +
+	            	  '<tr>' +
+	                   	'<td data-label="제품명">'+detail.mname+'</td>' +
+	                   	'<td data-label="핫_아이스">' + detail.hot_ice + '</td>' +
 	                   	'<td data-label="수량">' + detail.sameItemCount + '</td>' +
 	                   	'<td data-label="사이드">' + detail.xname + '</td>' +
-	                   	'<td data-label="가격">' + detail.sameItemPrice + '</td>' +
-	                   '</tr>'
+	                   	'<td data-label="가격">' + detail.sameItemPrice + '</td>' +	
+	                 '</tr>'
 	               );
 	            
 	         }
@@ -89,8 +91,8 @@ function detailOrderList(ogid){
 	         
 	         $("#detailListModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
 	         $("#detailListModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
-	         $("#detailListModal .modal-footer").append('주문수정 : <input id="modifyOrderForm" onclick="modifyOrderForm(\''+ogid+'\')" class="btn btn-info" type="submit" value="수정하기"/>');
-	         
+	         $("#detailListModal .modal-footer").append('삭제 : <input id="deleteOrder" onclick="deleteOrder(\''+ogid+'\')" class="btn btn-success" type="submit" value="삭제"/>&nbsp;&nbsp;');
+	   	  
 	         
 	         $("#detailListModal").modal({
 	 			backdrop:"static",
@@ -173,20 +175,18 @@ function termList(pageNo) {
 
 }
 
-$(function() {
-	$("#btnNewOrder").on("click", function() {
-		orderMenuList("전체");
-		$("#orderModal").css("opacity","0.5");
-		$("#orderForm1Modal").modal({
-			backdrop:"static",
-			show:true
-		});
+function btnNewOrder(){
+	orderMenuList("전체");
+	$("#orderModal").css("opacity","0.5");
+	$("#orderForm1Modal").modal({
+		backdrop:"static",
+		show:true
 	});
 	
 	$("#orderForm1Modal").on('hidden.bs.modal',function(){
 		$("#orderModal").css("opacity","1");
 	});
-});
+}
 
 function orderMenuList(mgroup) {
 	$("#menuTbody").empty();
@@ -198,9 +198,10 @@ function orderMenuList(mgroup) {
 				var menu = data[i];
 				$("#menuTbody").append(
 	         		'<tr>' + 
-	         		  '<td style="width:180px; font-size:30px;" data-label="메뉴번호">' + menu.mid + '</td>' + 
-	             	  '<td style="width:175px" data-label="메뉴사진"><img src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" width="50px" height="50px"/></td>' + 
-	             	  '<td style="width:165px" data-label="메뉴이름"><a type="button" class="btn btn-primary" href="javascript:newOrderSideForm(\'' + menu.mid + '\')">' + menu.mname + '</a></td>' +
+	         		  '<td style="width:140px; font-size:30px;" data-label="메뉴번호">' + menu.mid + '</td>' + 
+	             	  '<td style="width:135px" data-label="메뉴사진"><img src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" width="50px" height="50px"/></td>' + 
+	             	  '<td style="width:135px; font-size:30px;" data-label="핫_아이스">' + menu.hot_ice + '</td>' + 
+	             	  '<td style="width:135px" data-label="메뉴이름"><a type="button" class="btn btn-primary" href="javascript:newOrderSideForm(\'' + menu.mid + '\')">' + menu.mname + '</a></td>' +
 	             	'</tr>'
              	);
 			}
@@ -210,22 +211,42 @@ function orderMenuList(mgroup) {
 
 function newOrderSideForm(mid){
 	console.log(mid);
-	$("#orderForm1Modal").css("opacity","0.5");
-	
+
 	$.ajax({
 		url: "order/sideList",
 		data: {"mid": mid},
 		type: "get",
 		success: function(data) {
+			console.log("메뉴 그룹: "+data.mgroup);
 			if(data != null){
 				console.log("메뉴 존재");
 			}else{
 				console.log("메뉴 에러");
 			}
 			
+			if(data.mgroup=="디저트"||data.mgroup=="기타"){
+				console.log("디저트 or 기타 라서 일로 옴");
+				$("#orderForm2Modal #orderSyrupN").css("visibility","hidden");
+				$("#orderForm2Modal #orderSyrup").css("visibility","hidden");
+				$("#orderForm2Modal #orderSyrup").val("없음").prop("selected", true);
+				
+				$("#orderForm2Modal #orderShotN").css("visibility","hidden");
+				$("#orderForm2Modal #orderShot").css("visibility","hidden");
+				$("#orderForm2Modal #orderShot").val("없음").prop("selected", true);
+				
+			}else{
+				console.log("커피 or 차 라서 일로 옴");
+				$("#orderForm2Modal #orderSyrupN").css("visibility","visible");
+				$("#orderForm2Modal #orderSyrup").css("visibility","visible");
+				$("#orderForm2Modal #orderShotN").css("visibility","visible");
+				$("#orderForm2Modal #orderShot").css("visibility","visible");
+				
+			}
 		}
 	});
+
 	
+	$("#orderForm1Modal").css("opacity","0.5");
 	$("#orderForm2Modal").modal({
 		backdrop:"static",
 		show:true
@@ -238,14 +259,16 @@ function newOrderSideForm(mid){
 
 function newOrderSave(){
 	var ordercount = $("#orderQuantity").val();
-	var hot_ice = $("#orderHotice").val();
 	var orderSize = $("#orderSize").val();
 	var orderSyrup = $("#orderSyrup").val();
 	var orderShot = $("#orderShot").val();
-	
+	if(orderSyrup==null&&orderShot==null){
+		orderSyrup = "";
+		orderShot = "";
+	}
 	$.ajax({
 		url: "order/sideList",
-		data: {"ordercount": ordercount,"hot_ice":hot_ice,"orderSize":orderSize,"orderSyrup":orderSyrup,"orderShot":orderShot},
+		data: {"ordercount": ordercount,"orderSize":orderSize,"orderSyrup":orderSyrup,"orderShot":orderShot},
 		type: "post",
 		success: function(data) {
 			if(data != null){
@@ -319,63 +342,24 @@ function cancelOrder(){
 	});
 }
 
-function modifyOrderForm(ogid){
+function deleteOrder(ogid){
 	
-	$("#detailListModal").css("opacity","0.5");
-		
 	$.ajax({
-	      url: "order/detailList",
-	      data: {"ogid": ogid},
-	      success: function(data) {
-	    	  $("#orderModifyTbody").empty();
-	          $("#orderModifyTbody .modal-footer").empty();
-	         for(var i=0; i<data.detailList.length; i++) {
-	            var detail = data.detailList[i];
-	            console.log(detail);
-	            $("#orderModifyTbody").append(
-	            	   '<tr>' +
-	                   		'<th width="100px;" data-label="제품명">' + detail.mname + '</th>' +
-	                   		'<th width="100px;" data-label="수량"><input id="modifyQuantity" type="number" data-style="btn-primary" style="margin-left: 20px;" name="quantity" min="1" max="5" value="1" style="display: inline;"></th>' +
-	                   		'<th width="100px;" data-label="orderHotice"><select id="modifyHotice" style="margin-left: 20px;" data-style="btn-primary" style="display: inline;"><option>HOT</option><option>ICE</option></select></td>' +
-	                   		'<th width="100px;" data-label="orderSize"><select id="modifySize" style="margin-left: 20px;" data-style="btn-info" style="display: inline;"><option>Midium</option><option>Large</option><option>Small</option></select></td>' +
-	                   		'<th width="100px;" data-label="orderSyrup"><select id="modifySyrup" style="margin-left: 20px;" data-style="btn-success" style="display: inline;"><option>설탕시럽</option><option>딸기시럽</option><option>초코시럽</option></select></td>' +
-	                   		'<th width="100px;" data-label="orderShot"><select id="modifyShot" style="margin-left: 20px;" data-style="btn-success" style="display: inline;"><option>샷추가1</option><option>샷추가2</option><option>샷추가3</option></select></td>' +    
-	                   '</tr>'
-	               );
-	            
-	         }
-	         if(detail==null){
-	        	 var resultprice = 0;
-		         var oghowpay = "카드 결제";
-	         }else{
-	        	 var resultprice = data.resultprice;
-		         var oghowpay = detail.oghowpay; 
-	         }
-	         
-	          
-	         $("#orderModifyModal .modal-footer").append('총 가격 : <p class="btn btn-primary">'+resultprice+'</p>&nbsp;&nbsp;');
-	         $("#orderModifyModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
-	         $("#orderModifyModal .modal-footer").append('수정하기 : <input id="modifyOrder" onclick="modifyOrder()" class="btn btn-info" type="submit" value="적용"/>&nbsp;&nbsp;');
-	         
-	         $("#orderModifyModal").modal({
-	     		backdrop:"static",
-	     		show:true
-	     	});
-	      }
-	   });
-	$("#orderModifyModal").on('hidden.bs.modal',function(){
-		$("#detailListModal").css("opacity","1");
-		$("#detailListModal").modal("hide");
+		url: "order/orderdelete",
+		data: {"ogid": ogid},
+		success: function(data) {
+			if(data == null){
+				console.log("주문 삭제 완료");
+			}else{
+				console.log("주문 삭제 실패");
+			}
+			
+		}
 	});
 	
-}
-
-function orderModify(ogid){
-	$("#detailListModal").css("opacity","0.5");
-
-	$("#orderModifyModal").on('hidden.bs.modal',function(){
-		$("#detailListModal").css("opacity","1");
-	});
+	$("#detailListModal").modal('hide');
+	
+	
 }
 
 var activeEl = 2;

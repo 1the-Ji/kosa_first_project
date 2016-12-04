@@ -11,26 +11,22 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">	
 		<link href="${pageContext.servletContext.contextPath}/resources/css/style_1.css" rel="stylesheet"/>	
 		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />	 
-		
-		<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css"> 
+		<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css">
     	<link href="${pageContext.servletContext.contextPath}/resources/css/waves.css" rel="stylesheet" >
     	<link href="${pageContext.servletContext.contextPath}/resources/css/animate.css" rel="stylesheet"/>
-
-		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>  		
+    	<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
+		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>
+		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/custom.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/bootstrap.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/waves.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/admin.js"></script>
-				
- 		<link href="${pageContext.servletContext.contextPath}/resources/css/index.css" rel="stylesheet"/>				
+							
  		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/index.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/menuModal.js"></script>
-		
- 		<link href="${pageContext.servletContext.contextPath}/resources/css/lmj1.css" rel="stylesheet"/>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/loginModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/orderModal.js"></script>
-		 
   		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/storeModal.js"></script>		
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/joinModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/eventModal.js"></script>
@@ -156,7 +152,7 @@
  		<%@ include file="menu/menuModal.jsp" %>
 		<%@ include file="menu/menuRegModal.jsp" %>
 		<%@ include file="menu/menuModModal.jsp" %>
-		<%@ include file="menu/menuInfoModal.jsp" %> 
+		<%@ include file="menu/menuInfoModal.jsp" %>
 		
 		<%@ include file="event/eventModal.jsp" %>
 		<%@ include file="event/eventRegModal.jsp" %>
@@ -168,8 +164,7 @@
 		<%@ include file="order/orderForm1Modal.jsp" %>
 		<%@ include file="order/orderForm2Modal.jsp" %>
 		<%@ include file="order/termListModal.jsp" %>
-		<%@ include file="order/orderModifyModal.jsp" %>
-
+		
 	</body>
 </html>
 

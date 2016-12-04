@@ -20,12 +20,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.myweb.dto.Event;
+import com.mycompany.myweb.dto.Extra;
 import com.mycompany.myweb.dto.Menu;
+import com.mycompany.myweb.dto.Order;
+import com.mycompany.myweb.dto.OrderItem;
 import com.mycompany.myweb.dto.Sphoto;
 import com.mycompany.myweb.dto.Store;
 import com.mycompany.myweb.dto.User;
 import com.mycompany.myweb.service.EventService;
+import com.mycompany.myweb.service.ExtraOrderService;
+import com.mycompany.myweb.service.ExtraService;
 import com.mycompany.myweb.service.MenuService;
+import com.mycompany.myweb.service.OrderItemService;
+import com.mycompany.myweb.service.OrderService;
 import com.mycompany.myweb.service.SphotoService;
 import com.mycompany.myweb.service.StoreService;
 import com.mycompany.myweb.service.UserService;
@@ -49,6 +56,18 @@ public class AndroidController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private OrderService orderService;
+	
+	@Autowired
+	private ExtraService extraService;
+	
+	@Autowired
+	private OrderItemService orderItemService;
+	
+	@Autowired
+	private ExtraOrderService extraOrderService;
 	
 	@RequestMapping("/eventAndroid")
 	public String getEvent(int sbeacon, Model model){
@@ -115,7 +134,7 @@ public class AndroidController {
 	public String list(String sid, String pageNo, Model model, HttpSession session){
 		
 	
-		int intPageNo = 1;
+		/*int intPageNo = 1;
 		if (pageNo == null) {
 			pageNo = (String) session.getAttribute("pageNo");
 			if(pageNo != null){
@@ -140,23 +159,93 @@ public class AndroidController {
 		
 		if(groupNo == totalGroupNo){
 			endPageNo = totalPageNo;
-		}
+		}*/
 		
+		int intPageNo = 1;
+		if (pageNo == null) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null){
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		int rowsPerPage = 8;
 		List<Menu> list = menuService.list(intPageNo, rowsPerPage, sid);
 		
 		model.addAttribute("sid",sid);
-		model.addAttribute("pageNo", intPageNo);
+		/*model.addAttribute("pageNo", intPageNo);
 		model.addAttribute("rowsPerPage", rowsPerPage);
 		model.addAttribute("pagesPerGroup", pagesPerGroup);
 		model.addAttribute("totalBoardNo", totalBoardNo);
 		model.addAttribute("totalPageNo", totalPageNo);
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("startPageNo", startPageNo);
-		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("endPageNo", endPageNo);*/
 		model.addAttribute("list", list);
 		
 		return "android/menuAndroid";
 	} // list
+	
+	// 페이징+그룹핑 기능 리스트
+		@RequestMapping(value="/menuGroupAndroid")
+		public String mgroupList(String sid, String mgroup, String pageNo, Model model, HttpSession session){
+			logger.info("메뉴리스트 그룹+페이징 컨트롤러");
+		
+			if(mgroup.equals("전체")) mgroup = null;
+			
+			int intPageNo = 1;
+			if (pageNo == null) {
+				pageNo = (String) session.getAttribute("pageNo");
+				if(pageNo != null){
+					intPageNo = Integer.parseInt(pageNo);
+				}
+			} else {
+				intPageNo = Integer.parseInt(pageNo);
+			}
+			session.setAttribute("pageNo", String.valueOf(intPageNo));
+			
+			int rowsPerPage = 8;
+			int pagesPerGroup = 5;
+			
+			int totalBoardNo = menuService.getCountMgroup(sid, mgroup);
+			
+			logger.info(""+totalBoardNo);
+			
+			if (totalBoardNo == 0){
+				totalBoardNo = 1;
+			}
+			
+			logger.info("if문 처리 후"+totalBoardNo);
+			
+			int totalPageNo = (totalBoardNo/rowsPerPage) + ((totalBoardNo%rowsPerPage!=0)?1:0);
+			int totalGroupNo = (totalPageNo/pagesPerGroup) + ((totalPageNo%pagesPerGroup!=0)?1:0);
+			int groupNo = (intPageNo-1)/pagesPerGroup + 1;
+			int startPageNo = (groupNo-1)*pagesPerGroup + 1;
+			int endPageNo = startPageNo + pagesPerGroup - 1;
+			
+			if(groupNo == totalGroupNo){
+				endPageNo = totalPageNo;
+			}
+			logger.info("before model addAttribute");
+			List<Menu> list = menuService.listPageMgroup(intPageNo, rowsPerPage, sid, mgroup);
+			
+			model.addAttribute("sid",sid);
+			model.addAttribute("mgroup", mgroup);
+			model.addAttribute("pageNo", intPageNo);
+			model.addAttribute("rowsPerPage", rowsPerPage);
+			model.addAttribute("pagesPerGroup", pagesPerGroup);
+			model.addAttribute("totalBoardNo", totalBoardNo);
+			model.addAttribute("totalPageNo", totalPageNo);
+			model.addAttribute("totalGroupNo", totalGroupNo);
+			model.addAttribute("groupNo", groupNo);
+			model.addAttribute("startPageNo", startPageNo);
+			model.addAttribute("endPageNo", endPageNo);
+			model.addAttribute("list", list);
+			logger.info(sid, mgroup);
+			return "android/menuGroupAndroid";
+		
+		} // menuList
 	
 	/*@RequestMapping("/detailMenuAndroid")
 	public String getDetailMenu(int mid, Model model){
@@ -192,6 +281,8 @@ public class AndroidController {
 		
 	}*/
 	
+	
+		
 	@RequestMapping(value="/detailMenuAndroid")
 	public String info(int mid, Model model){
 		Menu menu = menuService.info(mid);
@@ -201,14 +292,18 @@ public class AndroidController {
 	} 
 	
 	@RequestMapping(value="/joinAndroid", method=RequestMethod.POST)
-	public String join(User user){
+	public String join(User user, Model model){
+			String strResult = "JOIN_SUCCESS";
 			int result = userService.join(user);
-			if(result == UserService.JOIN_SUCCESS) {
-			logger.info("회원가입 성공");
-			return "android/joinAndroid";
-			} 
+			if(result == UserService.JOIN_FAIL) {
 			logger.info("회원가입 실패");
-			return "";
+			strResult = "JOIN_FAIL";
+			
+			} 
+			logger.info("회원가입 성공"+strResult);
+			//model.addAttribute("user", user);
+			model.addAttribute("result", result);
+			return "android/joinAndroid";
 	}
 	
 	@RequestMapping(value="/loginAndroid", method=RequestMethod.POST)
@@ -231,17 +326,57 @@ public class AndroidController {
 			return "android/loginAndroid";
 	}
 	
-	/*String strResult = "LOGIN_SUCCESS";
-      int result = memberService.login(mid, mpassword);
-      if(result == MemberService.LOGIN_FAIL_MPASSWORD){
-         strResult = "LOGIN_FAIL_MPASSWORD";
-      } else if(result == MemberService.LOGIN_FAIL_MID) {
-         strResult = "LOGIN_FAIL_MID";
-      } else {
-         session.setAttribute("login", mid); 
-      }
-      model.addAttribute("result", strResult);
-      return "member/login";*/
+	@RequestMapping(value="/orderTotalAndroid", method=RequestMethod.POST)
+	public String orderForm(String howpay, String sid, int ogtotalprice,String user_id, int ordercount,
+			String orderSize, String orderSyrup, String orderShot, int mid, Model model, HttpSession session){
+		String strResult = "WRITE_SUCCESS";
+		
+		String ogid= null;
+		long time = System.currentTimeMillis();
+		double random = Math.random();
+		ogid = ""+sid+time+random;
+			
+		Order order = new Order();	
+		/*ogid = (String) session.getAttribute("ogid");	*/
+		order.setOgid(ogid);
+		order.setOgtotalprice(ogtotalprice);//우선 0으로 초기화 -> 주문이 완료되면 수정되게 함
+		order.setUser_id(user_id);//임의 데이터!
+		order.setSid(sid);
+		order.setOghowpay(howpay);//임의 데이터!
+			
+		int result = orderService.addOrder(order);
+		
+		if (result == OrderService.WRITE_FAIL) {
+			model.addAttribute("error","WRITE_FAIL");
+			strResult = "WRITE_FAIL";
+		} 
+		logger.info(""+result);
+		//session.setAttribute("login", user_id);//성공 시 session에 저장	
+		model.addAttribute("result", strResult);
+		
+		
+		
+		//---------------------------------------------------------------------------------
+		
+		Extra extra1 = extraService.infoByXname(orderSize);
+		Extra extra2 = extraService.infoByXname(orderSyrup);
+		Extra extra3 = extraService.infoByXname(orderShot);
+		int xid1 = extra1.getXid();
+		int xid2 = extra2.getXid();
+		int xid3 = extra3.getXid();
+		
+		orderItemService.addOrderItem(ogid, mid, ordercount);
+		
+		List<OrderItem> orderItems = orderItemService.searchOrderItemsByOgidMid(ogid,mid);
+		
+		extraOrderService.addExtraOrder(xid1,orderItems.get(0).getOid());
+		extraOrderService.addExtraOrder(xid2,orderItems.get(0).getOid());
+		extraOrderService.addExtraOrder(xid3,orderItems.get(0).getOid());
+			
+		
+		return "android/orderTotalAndroid";
+	}
+	
 	
 	//menu test
 	@RequestMapping("/getImage")
@@ -273,4 +408,6 @@ public class AndroidController {
 		}
 		
 	}
+	
+	
 }

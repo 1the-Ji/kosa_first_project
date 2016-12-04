@@ -24,21 +24,21 @@
 				<!-- Text input-->
 				<div>
 					<label style="width:70px" for="mname">메뉴이름</label>  
-					<input name="mname" id="mname" type="text" style="width:400px"placeholder="예: 아메리카노">
+					<input name="mname" id="mname" type="text" style="width:400px"placeholder="예: 아메리카노"/>
 				</div>
 				
 				<!-- Text input-->
 				<div>
 					<label style="width:70px" for="hot_ice">핫/아이스</label>  
-				  	<input type="radio" name="hot_ice" checked value="HOT"> HOT
-	   				<input type="radio" name="hot_ice" value="ICE"> ICE
-	   				<input type="radio" name="hot_ice" value=" "> 없음 
+				  	<input type="radio" name="hot_ice" checked value="HOT"/> HOT
+	   				<input type="radio" name="hot_ice" value="ICE"/> ICE
+	   				<input type="radio" name="hot_ice" value=" "/> 없음 
 				</div>
 				
 				<!-- Text input-->
 				<div>
 					<label style="width:70px" for="mprice">가격</label>
-				  	<input name="mprice" id="mprice" type="text" style="width:200px" placeholder="예: 2500">원
+				  	<input name="mprice" id="mprice" type="text" style="width:200px" placeholder="예: 2500"/>원
 				</div>
 				
 				<!-- Textarea -->
