@@ -29,10 +29,10 @@ import com.mycompany.myweb.service.EventService;
 @RequestMapping("/event")
 public class EventController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	  
+	     
 	@Autowired
 	private EventService eventService;
-	
+	                
 	@RequestMapping("/eventList")
 	public String list(Model model, HttpSession session){
 		logger.info("Controller eventlist 시작");
