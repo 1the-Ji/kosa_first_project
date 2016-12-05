@@ -86,36 +86,6 @@ section>div>p>em>a>i:hover { transform:scale(1.2); opacity:1;}
 .box5>p:nth-child(3) { width:25%; height:50%; background:url(../../resources/photo/m1.jpg) no-repeat center center; background-size:cover;}
 
 
-/* 
-box4 
-.box4>p {	width:25%;height:25%; float:left;}
-.box4>p:nth-child(1) { width:50%;height:100%; background:#fff; background:url(../../resources/photo/k1.jpg) no-repeat center top; background-size:cover;}
-.box4>p:nth-child(2) { background:#555;}
-.box4>p:nth-child(3) { background:url(../../resources/photo/k2.jpg) no-repeat center center; background-size:cover;}
-.box4>p:nth-child(4) { width:50%; background:#222;}
-.box4>p:nth-child(5) { height:50%; background:url(../../resources/photo/k3.jpg) no-repeat center top; background-size:cover;}
-.box4>p:nth-child(6) { background:#777;}
-.box4>p:nth-child(7) { background:url(../../resources/photo/k4.jpg) no-repeat center center;	background-size:cover;}
-
-box5
-.box5>p {	height:25%;	float:left;	text-align:center;	position:relative;}
-.box5>p:nth-child(1) { width:50%; background-color:#333;}
-.box5>p:nth-child(2) { width:25%; background:#ccc; background:url(../../resources/photo/m1.jpg) no-repeat right center; background-size:cover;}
-.box5>p:nth-child(3) { width:25%; background:#444;	}
-.box5>p:nth-child(3) ul { position:absolute; top:50%;}
-.box5>p:nth-child(4) { width:50%;height:50%;background:url(../../resources/photo/m2.jpg) no-repeat center top; background-size:cover; float:right}
-.box5>p:nth-child(5) { width:25%;background:url(../../resources/photo/m3.jpg) no-repeat left center; background-color:#fff; background-size:cover; float:right}
-.box5>p:nth-child(6) { width:25%; background:#888; float:right;}
-.box5>p:nth-child(7) { width:25%; background:#444; float:right;}
-.box5>p:nth-child(8) { width:25%; background:url(../../resources/photo/m4.jpg) no-repeat center center; background-size:cover; float:right;}
-.box5>p:nth-child(9) { width:25%; background:#444;}
-.box5>p:nth-child(10) { width:50%; background:url(../../resources/photo/m5.jpg) no-repeat right center; background-size:cover;}
-.box5>p:nth-child(11) { width:25%;	background:#222;}
- */
- 
-
-
-
 
 
 
