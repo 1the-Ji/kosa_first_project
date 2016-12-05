@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-
 <div id="joinModal" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document" style="width:800px">
 	    <div class="modal-content">
@@ -14,18 +13,18 @@
 	        <form class="form-horizontal">
 	        
 	        <div class="form-group">
-	          <label class="col-sm-3 control-label" for="inputSid">아이디</label>
+	          <label class="col-sm-3 control-label">아이디</label>
 	        <div class="col-sm-6">
 	          <input id="sid" type="text" style="margin-top: 5px;" placeholder="아이디">
 	        </div>
 	        </div>
 	        
 	        <div class="form-group">
-	          	<label class="col-sm-3 control-label" for="semail">이메일</label>
+	          	<label class="col-sm-3 control-label">이메일</label>
 		        <div class="col-sm-8">
-		          <input id="semail" type="text" placeholder="이메일">@<input id="semail2" type="text">
+		          <input id="semail1" type="text" placeholder="이메일">@<input id="semail2" type="text">
 		          <select id="selectSemail" style="width:100px;margin-right:10px">
-					     <option value="naver.com">naver.com</option>
+					     <option value="naver.com" selected>naver.com</option>
 					     <option value="hanmail.net">hanmail.net</option>
 					     <option value="hotmail.com">hotmail.com</option>
 					     <option value="nate.com">nate.com</option>
@@ -45,7 +44,7 @@
 	        </div>
 	        
 	        <div class="form-group">
-	          <label class="col-sm-3 control-label" for="spw">비밀번호</label>
+	          <label class="col-sm-3 control-label">비밀번호</label>
 	        <div class="col-sm-6">
 	          <input id="spw" type="password" style="margin-top:5px;" placeholder="비밀번호">
 	        <p class="help-block">숫자, 특수문자 포함 8자 이상</p>
@@ -53,7 +52,7 @@
 	        </div>
 	        
 	         <div class="form-group">
-	              <label class="col-sm-3 control-label" for="inputSpwCheck">비밀번호 확인</label>
+	              <label class="col-sm-3 control-label">비밀번호 확인</label>
 	             <div class="col-sm-6">
 	              <input id="inputSPwCheck" type="password" style="margin-top:5px;" placeholder="비밀번호 확인">
 	                <p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
@@ -61,7 +60,7 @@
 	          </div>
 	          
  	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="sname">카페명</label>
+	            <label class="col-sm-3 control-label">카페명</label>
 	          <div class="col-md-8">
 	            <input id="sname" type="text" placeholder="카페명">
 	            <select id="selectSname">
@@ -82,56 +81,56 @@
 	        </div> 
 	      
 	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="slocal">지점명</label>
+	            <label class="col-sm-3 control-label">지점명</label>
 	          <div class="col-sm-6">
-	            <input id="slocal" type="text" style="margin-top:5px;">
+	            <input id="slocal" type="text" style="margin-top:5px;" placeholder="지점명">
 	          </div>
 	        </div>
 	        
 	       <div class="form-group">
-	            <label class="col-sm-3 control-label" for="saddr">주소</label>
+	            <label class="col-sm-3 control-label">주소</label>
 	          <div class="col-sm-6">
-	            <input id="saddr" type="text" style="margin-top:5px;">
+	            <input id="saddr" type="text" style="margin-top:5px;" placeholder="주소">
 	          </div>
 	        </div>
 	        
 	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="stel">대표전화</label>
+	            <label class="col-sm-3 control-label" >대표전화</label>
 	        <div class="col-sm-6">
-	           <input id="stel" type="tel" style="margin-top:5px;" placeholder="- 없이 입력해 주세요" />
+	           <input id="stel" type="tel" style="margin-top:5px;" placeholder="- 없이 입력해 주세요"/>
               	  </div>
                </div>
                
             <div class="form-group">
-	            <label class="col-sm-3 control-label" for="sopen">오픈시간</label>
+	            <label class="col-sm-3 control-label">오픈시간</label>
 	          <div class="col-sm-6">
 	            <input id="sopen" type="time" style="margin-top:5px;">
 	          </div>
 	        </div>
 	        
 	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="sclosed">마감시간</label>
+	            <label class="col-sm-3 control-label">마감시간</label>
 	          <div class="col-sm-6">
 	            <input id="sclosed" type="time" style="margin-top:5px;">
 	          </div>
 	        </div>
 	        
 	        <div class="form-group">
-	            <label class="col-sm-3 control-label" for="sbeacon">비콘번호</label>
+	            <label class="col-sm-3 control-label">비콘번호</label>
 	          <div class="col-sm-6">
-	            <input id="sbeacon" type="text" style="margin-top:5px;">
+	            <input id="sbeacon" type="text" style="margin-top:5px;" placeholder="비콘번호">
 	          </div>
 	        </div>
 	        
 	       <div class="form-group">
-	          	<label class="col-sm-3 control-label" for="sphoto">사진첨부</label>
+	          	<label class="col-sm-3 control-label">사진첨부</label>
 		       <div class="col-md-8">
 		          <input id="sphoto" type="file" style="margin-top:5px;" multiple="multiple">  
        			</div>
 	        </div>
 	    
 	        <div class="form-group">
-	              <label class="col-sm-3 control-label" for="inputAgree">약관 동의</label>
+	              <label class="col-sm-3 control-label" >약관 동의</label>
 	            <div class="col-sm-6" data-toggle="buttons">
 	              <label class="btn btn-warning active">
 	                <input id="agree" type="checkbox" autocomplete="off" checked/>
@@ -147,7 +146,7 @@
 	      
 	      <div class="modal-footer"> 
 	        <button id="btnSubmit" type="button" class="btn btn-primary">Join</button>
-	        <button type="reset" class="btn btn-danger">Cancel</button>
+	        <button id="btnReset" type="reset" class="btn btn-danger">Cancel</button>
 	        <button class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div><!-- /.modal-content -->

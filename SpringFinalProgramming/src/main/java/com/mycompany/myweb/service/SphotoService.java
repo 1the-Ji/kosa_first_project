@@ -33,7 +33,7 @@ public class SphotoService {
 		return sphotoDao.selectAll(sid);
 	}
 	public int write(Sphoto sphoto){
-		int row = sphotoDao.insert(sphoto);
+		sphotoDao.insert(sphoto);
 		return WRITE_SUCESS;
 	}
 	public int modify(Sphoto sphoto){

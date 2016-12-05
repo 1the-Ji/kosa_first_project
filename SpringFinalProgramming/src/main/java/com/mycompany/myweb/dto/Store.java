@@ -1,10 +1,14 @@
 package com.mycompany.myweb.dto;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class Store {
 	//김정호 1114 수정
 	private String sid;		//매장등록 회원아이디(아이디)
-	private String semail;	//회원이메일
+	private String semail;	//회원이메일(디비 저장할 주소)
+	private String semail1; //회원 이메일(아이디)
+	private String semail2; //회원 이메일(@주소)
+	
 	private String spw;		//회원비밀번호
 	private String sname;	//매장이름
 	private String slocal;	//매장 지점명
@@ -16,6 +20,15 @@ public class Store {
 	
 	private int sbeacon;	//비콘 번호
 	
+	private MultipartFile[] sphoto; //매장 사진 
+	
+	 
+	public MultipartFile[] getSphoto() {
+		return sphoto;
+	}
+	public void setSphoto(MultipartFile[] sphoto) {
+		this.sphoto = sphoto;
+	}
 	public String getSid() {
 		return sid;
 	}
@@ -28,6 +41,18 @@ public class Store {
 	}
 	public void setSemail(String semail) {
 		this.semail = semail;
+	}
+	public String getSemail1() {
+		return semail1;
+	}
+	public void setSemail1(String semail1) {
+		this.semail1 = semail1;
+	}
+	public String getSemail2() {
+		return semail2;
+	}
+	public void setSemail2(String semail2) {
+		this.semail2 = semail2;
 	}
 	public String getSpw() {
 		return spw;
@@ -77,6 +102,6 @@ public class Store {
 	public void setSbeacon(int sbeacon) {
 		this.sbeacon = sbeacon;
 	}
-	
+
 	
 }

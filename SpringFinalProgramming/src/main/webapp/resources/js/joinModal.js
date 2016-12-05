@@ -8,8 +8,6 @@ $(function() {
 			});		
 		});
 		
-		
-	
 	    $("#joinModal").on('hidden.bs.modal',function(){   //joinModal을 닫으면,
 	    	$("#loginModal").css("opacity","1");           //loginModal의 불투명도는 1이 된 후에
 	    	$("#loginModal").modal("show");                //바로 사라진다.
@@ -21,25 +19,17 @@ $(function() {
 		
 		$("#selectSname").on("change", function() {
 			$("#sname").val($("#selectSname").val());
-		});
+		});	
 		
-		$("#btnSubmit").on("click", function() { 
-			$("#joinModal").modal("hide");
-			$("#loginModal").css("opacity","1");   
-			
-		});		
-});
-
-
-/*$(function() {
-	
 		$("#btnSubmit").on("click", function() {
-	    		
+    		
 			console.info("상점 정보 입력 후 Join 버튼 클릭");
 			
 			var sid = $("#joinModal #sid").val();
-			var semail = $("#joinModal #semail").val();
+			var semail1 = $("#joinModal #semail1").val();
 			var semail2 = $("#joinModal #semail2").val();
+			var semail = semail1 + "@" + semail2;
+			var spw = $("#joinModal #spw").val();
 			var sname = $("#joinModal #sname").val();
 			var slocal = $("#joinModal #slocal").val();
 			var saddr = $("#joinModal #saddr").val();
@@ -49,23 +39,28 @@ $(function() {
 		    var sbeacon = $("#joinModal #sbeacon").val();
 	        var sphoto = $("#joinModal #sphoto")[0];
 		    
-		    console.log(sid);
-			console.log(semail);
-			console.log(semail2);
-			console.log(sname);
-			console.log(slocal);
-			console.log(saddr);
-			console.log(stel);
-			console.log(sopen);
-			console.log(sclosed);
-			console.log(sbeacon);
-			console.log(sphoto.files[0]);
-		    
+	        console.log("------------------회원가입 정보-----------------");
+		    console.log("store : " + sid);
+			console.log("store : " + semail1);
+			console.log("store : " + semail2);
+			console.log("store : " + semail);
+			console.log("store : " + spw);
+			console.log("store : " + sname);
+			console.log("store : " + slocal);
+			console.log("store : " + saddr);
+			console.log("store : " + stel);
+			console.log("store : " + sopen);
+			console.log("store : " + sclosed);
+			console.log("store : " + sbeacon);
+			console.log("store : " + sphoto);
+			console.log("------------------회원가입 정보-----------------");
 			
 			var data = new FormData();
 			data.append("sid", sid);
-			data.append("semail", semail);
+			data.append("semail1", semail1);
 			data.append("semail2", semail2);
+			data.append("semail",semail);
+			data.append("spw",spw);
 			data.append("sname", sname);
 			data.append("slocal", slocal);
 			data.append("saddr", saddr);
@@ -73,47 +68,38 @@ $(function() {
 			data.append("sopen", sopen);
 			data.append("sclosed", sclosed);
 			data.append("sbeacon", sbeacon);
-			data.append("sphoto", sphoto);
-			
-			if(sphoto.files.length != 0) {
-				data.append("sphoto", sphoto.files[0]);
+			for(var i=0;i<sphoto.files.length;i++){
+				data.append("sphoto", sphoto.files[i]);
 			}
-			
-			
-			    console.log(sid);
-				console.log(semail);
-				console.log(semail2);
-				console.log(sname);
-				console.log(slocal);
-				console.log(saddr);
-				console.log(stel);
-				console.log(sopen);
-				console.log(sclosed);
-				console.log(sbeacon);
-				console.log(sphoto);
 			
 			$.ajax({
 				url: "store/join",
 				method: "post",
 				data: data,
+				cache:false,
+				processData:false,
+				contentType:false,
 				success: function(data) {
 					if(data.result == "success") {
-						 logger.info("매장등록 성공");
+						 console.log("매장등록 성공");
 						 $("#joinModal").modal("hide");
-						 storeList();
+						 $("#loginModal").css("opacity","1");
+						 /*storeList();*/
+					} else {
+						console.log("매장등록 실패");
 					}
-				
-					
-					$("#joinModal").on('hidden.bs.modal',function(){
-					$("#loginModal").css("opacity","1");           //loginModal의 불투명도는 1이 된 후에
-			    	$("#loginModal").modal("show");  
-			        
-					});
 				}
 			});
 		});
+		
+});
+
+
+$(function() {
+	
+		
 });	
-*/
+
 
 /*
 function storeList() {
@@ -200,7 +186,6 @@ function storeList() {
 		$("#joinModal").css("opacity","1");
 	});
 }
-
 */
 
 
@@ -221,4 +206,3 @@ $(function() {
 	});
 });
 */
-
