@@ -60,7 +60,7 @@
 					</tr>
 					
 					<!-- Textarea -->
-					<tr>
+					<tr> 
 						<td>
 							<div style="width:70px" align="center">설명</div>
 						</td>
