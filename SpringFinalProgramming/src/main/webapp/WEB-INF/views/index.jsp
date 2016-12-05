@@ -58,14 +58,14 @@
                 
             <c:if test="${empty login}">
                 <div style="position:relative; top:85%;" class="form-group text-center">
-               		 <a id="btnLogin" href="#"><button class="btn btn-success btn-login-submit">Login</button></a>
-                 	<a id="btnLogout" href="#"><button style="display: none;" class="btn btn-success btn-login-submit">Logout</button></a>
+               		<button id="btnLogin" style="display: inline; zindex:5000;" class="btn btn-info btn-login-submit">Login</button></a>
+                 	<button id="btnLogout" style="display: none; zindex:5000;" class="btn btn-danger btn-login-submit">Logout</button></a>
                 </div>
             </c:if>
             <c:if test="${not empty login}">
                <div style="position:relative; top:85%;" class="form-group text-center">
-               		 <a id="btnLogin" href="#"><button style="display: none;" class="btn btn-success btn-login-submit">Login</button></a>
-                 	<a id="btnLogout" href="#"><button class="btn btn-success btn-login-submit">Logout</button></a>
+               		<button id="btnLogin" style="display: none; zindex:5000;"  class="btn btn-info btn-login-submit">Login</button>
+                 	<button id="btnLogout" style="display: inline; zindex:5000;" class="btn btn-danger btn-login-submit">Logout</button>
                 </div>
             </c:if>
                 
@@ -146,6 +146,7 @@
 		
 		<%-- Modal --%>
 		<%@ include file="store/loginModal.jsp" %>
+		<%@ include file="store/loginResultModal.jsp" %>
 		<%@ include file="store/storeModal.jsp" %>
 		<%@ include file="store/joinModal.jsp" %>
 		
