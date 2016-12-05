@@ -31,7 +31,7 @@
        <div class="modal-body">
  	<%--여기부터 --%>
 	 
-			<div class="container" style="width: 80%; height: 80%">
+			<div class="container" style="width: 50%; height: 80%">
 				<div class="row">
 					<div class="bs-docs-example">
 						  <table id="modifyTbody" style="width:420px; margin-right: 23px; margin-bottom: 0px;">
