@@ -298,6 +298,7 @@ function btnMenuMod(mid){
 			}
 		}
 	});
+	
 }
 
 function menuRemove(mid){
