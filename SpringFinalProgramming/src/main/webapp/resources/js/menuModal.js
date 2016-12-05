@@ -14,7 +14,6 @@ $(function() {
 	
 	
 	$("#btnMenuReg").on("click", function(){
-		
 		console.info("메뉴입력후등록클릭");
 
 		var mgroup = $("#menuRegModal #mgroup").val();
@@ -185,7 +184,7 @@ function showMenuInfo(mid){
 			$("#menuInfoModal .modal-footer").append(
 					'<div>' +
 						'<button type="button" onclick="showMenuModForm('+ data.mid + ')" class="btn btn-primary">' +
-							'수정폼' +
+							'수정' +
 						'</button>' +
 						'<button type="button" onclick="menuRemove(' + data.mid + ')" class="btn btn-danger">' +
 							'삭제' +
@@ -250,7 +249,7 @@ function showMenuModForm(mid){
 			$("#menuModModal #mcontents").text(data.mcontents);
 			$("#menuModModal #msavedfile").attr("src", "menu/showPhoto?msavedfile=" + data.msavedfile);
 			
-			$("#menuModModal .modal-footer").append('<button id="btnMenuMod" onclick="btnMenuMod('+data.mid+')" type="submit" class="btn btn-warning">수정</button>');
+			$("#menuModModal .modal-footer").append('<button id="btnMenuMod" onclick="btnMenuMod('+data.mid+')" type="submit" class="btn btn-warning">수정완료</button>');
 			$("#menuModModal .modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>');
 		}
 	});
