@@ -1,5 +1,5 @@
 <%@ page contentType="application/json;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%-- 보나 20161118~ --%>
 {
 	"mid":"${menu.mid}",

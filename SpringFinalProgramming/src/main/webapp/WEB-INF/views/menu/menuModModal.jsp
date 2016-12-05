@@ -58,8 +58,6 @@
       </div>
        
       <div class="modal-footer">
-	      <button id="btnMenuMod" type="button" class="btn btn-warning">수정</button>
-	      <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
       </div>
     </div>
   </div>

@@ -69,53 +69,6 @@ $(function() {
 		})
 	});
 	
-
-	$("#menuModModal #btnMenuMod").on("click",function() {
-		var mid = $("#menuModModal #mid").val();
-		var mgroup = $("#menuModModal #mgroup").val();
-		var mname = $("#menuModModal #mname").val();
-		var hot_ice = $("#menuModModal #hot_ice").val();
-		var mprice =$("#menuModModal #mprice").val();
-		var mcontents =$("#menuModModal #mcontents").val();
-		var photo = $("#menuModModal #photo")[0];
-		console.log(photo.files[0]);
-		
-		 
-		var data = new FormData();
-		data.append("mid", mid);
-		data.append("mgroup", mgroup);
-		data.append("mname", mname);
-		data.append("hot_ice", hot_ice);
-		data.append("mprice", mprice);
-		data.append("mcontents", mcontents);
-		
-		
-		console.log("data ajax test값 append성공");
-		
-		if(photo.files.length != 0) {
-			data.append("photo", photo.files[0]);
-			console.log("data ajax photo append성공");
-		}			
-		
-		
-		$.ajax({
-			url:"menu/modify",
-			method: "post",
-			data: data,
-			cache: false,
-			processData: false,
-			contentType: false,
-			success: function(data) {
-				if(data.result == "success") {
-					$("#menuModModal").modal("hide");
-					showPageMenuList(1, "전체");
-				}
-			}
-		});
-		
-	});
-
-	
 	
 	/*$("#menuImg").on("click", function(){
 		$("#menuModal").css("opacity", "0.5");
@@ -227,8 +180,8 @@ function showMenuInfo(mid){
 			
 			$("#menuInfoModal .modal-footer").append(
 					'<div>' +
-						'<button type="button" onclick="showMenuMod('+ data.mid + ')" class="btn btn-primary">' +
-							'수정' +
+						'<button type="button" onclick="showMenuModForm('+ data.mid + ')" class="btn btn-primary">' +
+							'수정폼' +
 						'</button>' +
 						'<button type="button" onclick="menuRemove(' + data.mid + ')" class="btn btn-danger">' +
 							'삭제' +
@@ -261,7 +214,7 @@ function showMenuInfo(mid){
 
 
 
-function showMenuMod(mid){
+function showMenuModForm(mid){
 	console.log(mid);
 	$("#menuModal").css("opacity", "0.5");
 	$("#menuInfoModal").modal("hide");
@@ -278,6 +231,9 @@ function showMenuMod(mid){
 		success: function(data){
 			console.log("ajax success!");
 			
+			$("#menuModModal .panel-body").empty();
+			$("#menuModModal .modal-footer").empty();
+			
 			$("#menuModModal #mid").val(data.mid);
 			$("#menuModModal #mgroup").val(data.mgroup);
 			$("#menuModModal #mname").val(data.mname);
@@ -285,6 +241,11 @@ function showMenuMod(mid){
 			$("#menuModModal #mprice").val(data.mprice);
 			$("#menuModModal #mcontents").text(data.mcontents);
 			$("#menuModModal #msavedfile").attr("src", "menu/showPhoto?msavedfile=" + data.msavedfile);
+			
+			$("#menuModModal .modal-footer").append('<button id="btnMenuMod" onclick="btnMenuMod('+data.mid+')" type="button" class="btn btn-warning">수정</button>');
+			$("#menuModModal .modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>');
+			
+		      
 		}
 	});
 	
@@ -295,6 +256,49 @@ function showMenuMod(mid){
 	
 }
 
+function btnMenuMod(mid){
+	var mid = $("#menuModModal #mid").val();
+	var mgroup = $("#menuModModal #mgroup").val();
+	var mname = $("#menuModModal #mname").val();
+	var hot_ice = $("#menuModModal #hot_ice").val();
+	var mprice =$("#menuModModal #mprice").val();
+	var mcontents =$("#menuModModal #mcontents").val();
+	var photo = $("#menuModModal #photo")[0];
+	console.log(photo.files[0]);
+	
+	 
+	var data = new FormData();
+	data.append("mid", mid);
+	data.append("mgroup", mgroup);
+	data.append("mname", mname);
+	data.append("hot_ice", hot_ice);
+	data.append("mprice", mprice);
+	data.append("mcontents", mcontents);
+	
+	
+	console.log("data ajax test값 append성공");
+	
+	if(photo.files.length != 0) {
+		data.append("photo", photo.files[0]);
+		console.log("data ajax photo append성공");
+	}			
+	
+	
+	$.ajax({
+		url:"menu/modify",
+		method: "post",
+		data: data,
+		cache: false,
+		processData: false,
+		contentType: false,
+		success: function(data) {
+			if(data.result == "success") {
+				$("#menuModModal").modal("hide");
+				showPageMenuList(1, "전체");
+			}
+		}
+	});
+}
 
 function menuRemove(mid){
 	$.ajax({
