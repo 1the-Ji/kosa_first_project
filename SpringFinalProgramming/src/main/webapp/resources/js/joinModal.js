@@ -26,8 +26,13 @@ $(function() {
 		$("#btnSubmit").on("click", function() { 
 			$("#joinModal").modal("hide");
 			$("#loginModal").css("opacity","1");   
+		});
+		
+		$("#btnReset").on("click", function() { 
 			
-		});		
+			$("#joinModal").modal("hide");
+		});
+		
 });
 
 
@@ -116,6 +121,7 @@ $(function() {
 */
 
 /*
+ * 
 function storeList() {
 	console.log("storeList 시작");
 	$.ajax({

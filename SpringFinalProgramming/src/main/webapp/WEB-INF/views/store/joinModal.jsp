@@ -147,7 +147,7 @@
 	      
 	      <div class="modal-footer"> 
 	        <button id="btnSubmit" type="button" class="btn btn-primary">Join</button>
-	        <button type="reset" class="btn btn-danger">Cancel</button>
+	        <button id="btnReset" type="reset" class="btn btn-danger">Cancel</button>
 	        <button class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div><!-- /.modal-content -->
