@@ -15,7 +15,7 @@ $(function() {
 	
 	$("#btnMenuReg").on("click", function(){
 		console.info("메뉴입력후등록클릭");
-
+		
 		var mgroup = $("#menuRegModal #mgroup").val();
 		var mname = $("#menuRegModal #mname").val();
 		var hot_ice = $("#menuRegModal input:radio[name=hot_ice]:checked").val();
