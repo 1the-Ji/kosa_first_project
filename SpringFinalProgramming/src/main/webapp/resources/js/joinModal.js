@@ -19,12 +19,7 @@ $(function() {
 		
 		$("#selectSname").on("change", function() {
 			$("#sname").val($("#selectSname").val());
-		});
-		
-		$("#btnSubmit").on("click", function() { 
-			$("#joinModal").modal("hide");
-			$("#loginModal").css("opacity","1");   
-		});		
+		});	
 		
 		$("#btnSubmit").on("click", function() {
     		
@@ -74,9 +69,7 @@ $(function() {
 			data.append("sclosed", sclosed);
 			data.append("sbeacon", sbeacon);
 			for(var i=0;i<sphoto.files.length;i++){
-				if(sphoto.files.length != 0) {
-					data.append("sphoto", sphoto.files[0]);
-				}
+				data.append("sphoto", sphoto.files[i]);
 			}
 			
 			$.ajax({
@@ -88,17 +81,13 @@ $(function() {
 				contentType:false,
 				success: function(data) {
 					if(data.result == "success") {
-						 logger.info("매장등록 성공");
+						 console.log("매장등록 성공");
 						 $("#joinModal").modal("hide");
+						 $("#loginModal").css("opacity","1");
 						 /*storeList();*/
+					} else {
+						console.log("매장등록 실패");
 					}
-				
-					
-					$("#joinModal").on('hidden.bs.modal',function(){
-					$("#loginModal").css("opacity","1");           //loginModal의 불투명도는 1이 된 후에
-			    	$("#loginModal").modal("show");  
-			        
-					});
 				}
 			});
 		});

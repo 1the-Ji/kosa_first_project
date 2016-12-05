@@ -102,14 +102,8 @@ public class StoreController {
 		return "store/resultFindSpw";
 	}
 	
-	@RequestMapping(value="/store/join", method=RequestMethod.GET)
-	public String joinModal(){
-		logger.info("joinModal 진입 성공");
-		return "store/joinModal";
-	}
-	
-	@RequestMapping(value="/store/join",method=RequestMethod.POST)
-	public String join(Store store, Sphoto sphoto, HttpSession session){
+	@RequestMapping(value="/store/join")
+	public String join(Store store, HttpSession session, Model model){
 		logger.info("store(id) " + store.getSid() );
 		logger.info("store(email 아이디) " + store.getSemail1());
 		logger.info("store(email 아이디) " + store.getSemail2());
@@ -122,38 +116,33 @@ public class StoreController {
 		logger.info("store(sopen) " + store.getSopen());
 		logger.info("store(sclose) " + store.getSclosed());
 		logger.info("store(sbeacon) " + store.getSbeacon());
-		
-		
-		
+		logger.info("store(sphoto) " + store.getSphoto().length);
 		
 		try {
-			
 			 storeService.join(store);
 			
-			/*=========sphoto=============================*/
-			String sid = store.getSid();
-			sphoto.setSid(sid);
-			logger.info("sphoto: "+sphoto.getPhoto().toString() );
-			
-			for(MultipartFile photo: sphoto.getPhoto()){
-					String savedfile = new Date().getTime()+photo.getOriginalFilename();
+			//=========sphoto=============================
+			for(MultipartFile photo: store.getSphoto()){
+					//String savedfile = new Date().getTime()+photo.getOriginalFilename();
+					String savedfile = photo.getOriginalFilename();
 					String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+savedfile);
 					
 					photo.transferTo(new File(realpath));
+					
+					Sphoto sphoto = new Sphoto();
+					sphoto.setSid(store.getSid());
 					sphoto.setSpic_savedfile(savedfile);
-					
-					logger.info(realpath);
-					
 					sphoto.setSpic_mimetype(photo.getContentType());
 					
 					sphotoService.write(sphoto);
-				
 			}
-			/*=========sphoto=============================*/
-			return "store/joinModal";
+			//=========sphoto=============================
+			model.addAttribute("result", "success");
+			return "store/joinResult";
 		} catch (Exception e) {
 			logger.info("join 실패"+e.getMessage());
-			return "store/joinModal";
+			model.addAttribute("result", "fail");
+			return "store/joinResult";
 		}
 		
 	}
