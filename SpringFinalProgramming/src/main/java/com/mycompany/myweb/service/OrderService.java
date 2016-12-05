@@ -39,7 +39,7 @@ public class OrderService {
 		return orderDao.selectByOgid(ogid);
 	}
 	
-	//주문 기간 조회(완료)
+	//주문 기간 조회(완료) 
 	public List<Order> listTerm(int pageNo, int rowsPerPage, Date term1, Date term2){
 		return orderDao.selectByTerm(pageNo, rowsPerPage, term1, term2);
 	}

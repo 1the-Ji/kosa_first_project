@@ -9,11 +9,11 @@ function showPageList(pageNo) {
             var order = data.list[i];
             $("#orderTbody").append(
                '<tr>' +
-                   '<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="javascript:detailOrderList(\'' + order.ogid + '\')">' + order.ogid.substring(4, 7) + order.ogid.substring(11, 14) +'</a></td>' +
-                   '<td data-label="아이디">' + order.user_id + '</td>' +
-                   '<td data-label="주문시간">' + order.ogtime + '</td>' +
-                   '<td data-label="총 가격">' + order.ogtotalprice + '</td>' +
-                   '<td data-label="결제 방식">' + order.oghowpay + '</td>' +
+                   '<td data-label="주문번호" style="width:70px;"><a type="button" class="btn btn-primary" href="javascript:detailOrderList(\'' + order.ogid + '\')">' + order.ogid.substring(4, 7) + order.ogid.substring(11, 14) +'</a></td>' +
+                   '<td data-label="아이디" style="width:70px; font-size:18px; font-weight:bold;">' + order.user_id + '</td>' +
+                   '<td data-label="주문시간" style="width:70px; font-size:15px;">' + order.ogtime + '</td>' +
+                   '<td data-label="총 가격" style="width:70px; font-size:18px; font-weight:bold;">' + order.ogtotalprice + '</td>' +
+                   '<td data-label="결제 방식" style="width:70px; font-size:15px;">' + order.oghowpay + '</td>' +
                    '</tr>'
                );
             
@@ -44,7 +44,7 @@ function showPageList(pageNo) {
          }
          
          if(groupNo<totalGroupNo) {
-            $("#orderModal .modal-footer").append('<a type="button" class="btn btn-primary" href="javascript:showPageList(' + (startPageNo+1) + ')">다음</a>');
+            $("#orderModal .modal-footer").append('<a type="button" class="btn btn-primary" href="javascript:showPageList(' + (endPageNo+1) + ')">다음</a>');
          }
          
          
@@ -71,11 +71,11 @@ function detailOrderList(ogid){
 	            var detail = data.detailList[i];
 	            $("#detailTbody").append(
 	            	  '<tr>' +
-	                   	'<td data-label="제품명">'+detail.mname+'</td>' +
-	                   	'<td data-label="핫_아이스">' + detail.hot_ice + '</td>' +
-	                   	'<td data-label="수량">' + detail.sameItemCount + '</td>' +
-	                   	'<td data-label="사이드">' + detail.xname + '</td>' +
-	                   	'<td data-label="가격">' + detail.sameItemPrice + '</td>' +	
+	                   	'<td data-label="제품명" style="width:100px; font-size:15px; font-weight:bold;">'+detail.mname+'</td>' +
+	                   	'<td data-label="핫_아이스" style="width:50px; font-size:18px; font-weight:bold;">' + detail.hot_ice + '</td>' +
+	                   	'<td data-label="수량" style="width:50px; font-size:18px; font-weight:bold;">' + detail.sameItemCount + '</td>' +
+	                   	'<td data-label="사이드" style="width:100px; font-size:15px; font-weight:bold;">' + detail.xname + '</td>' +
+	                   	'<td data-label="가격" style="width:70px; font-size:18px;">' + detail.sameItemPrice + '</td>' +	
 	                 '</tr>'
 	               );
 	            
@@ -121,10 +121,10 @@ function termList(pageNo) {
             $("#termTbody").append(
                '<tr>' +
                    '<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="javascript:detailOrderList(\'' + term.ogid + '\')">' + term.ogid.substring(4, 7) + term.ogid.substring(11, 14) +'</a></td>' +
-                   '<td data-label="아이디">' + term.user_id + '</td>' +
-                   '<td data-label="주문시간">' + term.ogtime + '</td>' +
-                   '<td data-label="총 가격">' + term.ogtotalprice + '</td>' +
-                   '<td data-label="결제 방식">' + term.oghowpay + '</td>' +
+                   '<td data-label="아이디" style="width:70px; font-size:18px; font-weight:bold;">' + term.user_id + '</td>' +
+                   '<td data-label="주문시간" style="width:70px; font-size:15px;">' + term.ogtime + '</td>' +
+                   '<td data-label="총 가격" style="width:70px; font-size:18px; font-weight:bold;">' + term.ogtotalprice + '</td>' +
+                   '<td data-label="결제 방식" style="width:70px; font-size:15px;">' + term.oghowpay + '</td>' +
               '</tr>'
                );
             
@@ -155,7 +155,7 @@ function termList(pageNo) {
          }
          
          if(termGroupNo<termTotalGroupNo) {
-            $("#termListModal .modal-footer").append('<a type="button" class="btn btn-primary" href="javascript:termList(' + (termStartPageNo+1) + ')">다음</a>');
+            $("#termListModal .modal-footer").append('<a type="button" class="btn btn-primary" href="javascript:termList(' + (termEndPageNo+1) + ')">다음</a>');
          }
          
          
@@ -198,9 +198,9 @@ function orderMenuList(mgroup) {
 				var menu = data[i];
 				$("#menuTbody").append(
 	         		'<tr>' + 
-	         		  '<td style="width:140px; font-size:30px;" data-label="메뉴번호">' + menu.mid + '</td>' + 
+	         		  '<td style="width:140px; font-size:25px;" data-label="메뉴번호">' + menu.mid + '</td>' + 
 	             	  '<td style="width:135px" data-label="메뉴사진"><img src="menu/showPhoto?msavedfile=' + menu.msavedfile + '" width="50px" height="50px"/></td>' + 
-	             	  '<td style="width:135px; font-size:30px;" data-label="핫_아이스">' + menu.hot_ice + '</td>' + 
+	             	  '<td style="width:135px; font-size:25px;" data-label="핫_아이스">' + menu.hot_ice + '</td>' + 
 	             	  '<td style="width:135px" data-label="메뉴이름"><a type="button" class="btn btn-primary" href="javascript:newOrderSideForm(\'' + menu.mid + '\')">' + menu.mname + '</a></td>' +
 	             	'</tr>'
              	);
@@ -362,9 +362,9 @@ function deleteOrder(ogid){
 	
 }
 
-var activeEl = 2;
+var activeEl = 0;
 $(function() {
-    var items = $('.btn-nav');
+    var items = $(".btn-nav");
     $( items[activeEl] ).addClass('active');
     $( ".btn-nav" ).click(function() {
         $( items[activeEl] ).removeClass('active');

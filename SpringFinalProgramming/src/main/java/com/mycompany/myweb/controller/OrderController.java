@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
 
@@ -204,16 +203,29 @@ public class OrderController {
 	//주문내역 기간보기(날짜 정확하게 검색하기 위한 수정 필요)
 	@RequestMapping(value="/termList", method=RequestMethod.GET)
 	public String termList(String term1, String term2, String pageNo, Model model, HttpSession session) throws ParseException{
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		logger.info("문자열 기간1: "+term1);
+		logger.info("문자열 기간2: "+term2);
 		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1 = transFormat.parse(term1);
 		Date date2 = transFormat.parse(term2);
 		
-		/*Date date1 = transFormat.parse(term1);
+		logger.info("날짜 기간1: "+date1);
+		logger.info("날짜 기간2: "+date2);
+		
+		
+		/*SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date date1 = transFormat.parse(term1);
 		Date date2 = transFormat.parse(term2);
 		*/
+		
+		/*Date date1 = transFormat.parse(term1);
+		Date date2 = transFormat.parse(term2);
+		
 		logger.info(""+date1);
 		logger.info(""+date2);
+		*/
 		
 		int intPageNo = 1;
 		if(pageNo == null){
@@ -239,6 +251,7 @@ public class OrderController {
 		}
 		
 		List<Order> termList = orderService.listTerm(intPageNo, rowsPerPage, date1, date2);
+	
 		logger.info("termList: "+termList);
 		
 		model.addAttribute("pageNo",intPageNo);
