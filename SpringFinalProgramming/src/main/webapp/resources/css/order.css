@@ -189,7 +189,6 @@ table#acrylic {
 }
 @media (max-width: 600px) {
     .btn-nav .glyphicon {
-        padding-top: 12px;
         font-size: 26px;
     }
 }
