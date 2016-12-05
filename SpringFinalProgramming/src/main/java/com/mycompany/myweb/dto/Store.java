@@ -20,6 +20,12 @@ public class Store {
 	
 	private int sbeacon;	//비콘 번호
 	
+	private MultipartFile[] sphoto; //매장 사진 
+	
+	
+	public MultipartFile[] getSphoto() {
+		return sphoto;
+	}
 	public void setSphoto(MultipartFile[] sphoto) {
 		this.sphoto = sphoto;
 	}
@@ -96,10 +102,6 @@ public class Store {
 	public void setSbeacon(int sbeacon) {
 		this.sbeacon = sbeacon;
 	}
-	private MultipartFile[] sphoto;
-	
-	public MultipartFile[] getSphoto() {
-		return sphoto;
-	}
+
 	
 }
