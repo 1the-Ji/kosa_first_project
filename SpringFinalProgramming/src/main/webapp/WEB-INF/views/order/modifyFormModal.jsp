@@ -21,7 +21,7 @@
   		}
  	</script>
  	
- <div id="orderForm2Modal" class="modal fade" tabindex="-1" role="dialog">
+ <div id="modifyFormModal" class="modal fade" tabindex="-1" role="dialog">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
        <div class="modal-header">
@@ -30,11 +30,11 @@
        </div>
        <div class="modal-body">
  	<%--여기부터 --%>
-	 
-			<div class="container" style="width: 50%; height: 80%">
+	
+			<div class="container" style="width: 80%; height: 80%">
 				<div class="row">
 					<div class="bs-docs-example">
-						  <table id="modifyTbody" style="width:420px; margin-right: 23px; margin-bottom: 0px;">
+						  <table id="modifyTbody">
 						  	<tr>
 						  		<th class="btn btn-default" width="100px;">수량</th>
 						  		<th width="100px;">

@@ -8,7 +8,6 @@
   			frm.sname.value = frm.snameBox.options[frm.snameBox.selectedIndex].text;
   			frm.optionValue.value = frm.snameBox.options[frm.snameBox.selectedIndex].value;
  		}
- 		document.getElementById('focusMenu').focus();
  	</script>
  	
  <div id="orderForm1Modal" class="modal fade" tabindex="-1" role="dialog">

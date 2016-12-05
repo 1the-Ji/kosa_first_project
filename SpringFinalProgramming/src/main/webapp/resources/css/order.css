@@ -166,7 +166,7 @@ table#acrylic {
 	display: block;
 	width: 0;
 	z-index: 1;
-	/* margin-left: -6px; */
+	margin-left: -6px;
 	top: 0;
 	left: 50%;
 }
@@ -183,8 +183,8 @@ table#acrylic {
     .btn-group {
         display: block !important;
         float: none !important;
-        /* width: 100% !important; */
-        /* max-width: 100% !important; */
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 @media (max-width: 600px) {

@@ -31,7 +31,7 @@
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/joinModal.js"></script>
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/eventModal.js"></script>
 	</head> 
-	<body style="padding-top:0px;">
+	<body style="padding-top:-10px;">
 		<div class="wrap">
 			<!-- nav 영역을 호출할 버튼  -->
 			<a class="btnMenu" href="#"><i class="fa fa-navicon"></i> </a>
