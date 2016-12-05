@@ -140,7 +140,7 @@ function showPageMenuList(pageNo, mgroup) {
 	         }
 
 	         if(groupNo<totalGroupNo) {
-	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + (startPageNo+1) + ', \'' + keyword + '\')">다음</a>');
+	            $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + (endPageNo+1) + ', \'' + keyword + '\')">다음</a>');
 	         }
 
 	         $("#menuModal .modal-footer").append('<a type="button" class="btn btn-warning" href="javascript:showPageMenuList(' + totalPageNo + ', \'' + keyword + '\')">맨끝</a>');
