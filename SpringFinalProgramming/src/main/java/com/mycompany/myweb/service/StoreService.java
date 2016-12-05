@@ -49,11 +49,6 @@ public class StoreService {
 		return LOGIN_SUCCESS;
 	}
 	
-	public int logout(String sid){
-		//매장 로그아웃
-		return LOGOUT_SUCCESS;
-	}
-	
 	public Store info(String sid) {
 		//매장 정보
 		Store store = storeDao.selectBySid(sid);

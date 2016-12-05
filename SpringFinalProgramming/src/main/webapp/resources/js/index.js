@@ -3,11 +3,14 @@ $(function() {
 		$("#loginModal").modal("show");
 	});
 	
-	$("nav #btnLogout").on("click",function(){
+	$("#btnLogout").on("click",function(){
 		$.ajax({
-			url:"/store/logout",
+			url:"store/logout",
 			success: function(data){
-				alert("success");
+				if(data.result = "success") {
+					$("#btnLogin").show();
+					$("#btnLogout").hide();
+				}
 			}
 		});
 	});

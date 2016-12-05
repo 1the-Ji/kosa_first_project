@@ -39,13 +39,7 @@ public class StoreController {
 	@Autowired
 	private SphotoService sphotoService;
 	
-	@RequestMapping(value="/store/login", method=RequestMethod.GET)
-	public String loginForm(){
-		logger.info("login 페이지 열림");
-		return "store/result";
-	}
-	
-	@RequestMapping(value="/store/login", method=RequestMethod.POST)
+	@RequestMapping(value="/store/login")
 	public String login(String sid, String spw, HttpSession session, Model model){
 		logger.info("sid: "+sid);
 		logger.info("spw: "+spw);
@@ -54,25 +48,22 @@ public class StoreController {
 		logger.info("result : "+ result);
 		
 		if (result == StoreService.LOGIN_FAIL_SPW) {
-			
 			model.addAttribute("result", "LOGIN_FAIL_SPW");
 			logger.info("login_실패1");
-			return "store/result";
+			return "store/loginResult";
 			
 		} else if (result == StoreService.LOGIN_FAIL_SID) {
-			
 			model.addAttribute("result", "LOGIN_FAIL_SID");
 			logger.info("login_실패2");
-			return "store/result";
+			return "store/loginResult";
 			
 		} else {
-			String end = "success";
-			model.addAttribute("result", end);
+			model.addAttribute("result", "LOGIN_SUCCESS");
 			session.setAttribute("login", sid);
 			logger.info("login_성공");
 			String login = (String)session.getAttribute("login");
 			logger.info("login: "+login);
-			return "store/result";
+			return "store/loginResult";
 		}
 		
 		
@@ -151,13 +142,10 @@ public class StoreController {
 	}
 	
 	@RequestMapping("/store/logout")
-	public String logout(HttpSession session){
-		String sid = (String) session.getAttribute("login");
-		int result = storeService.logout(sid);
-		if (result == StoreService.LOGOUT_SUCCESS) {
-			session.removeAttribute("login");
-		}
-		return "store/result";
+	public String logout(HttpSession session, Model model){
+		session.removeAttribute("login");
+		model.addAttribute("result", "success");
+		return "store/logoutResult";
 	}
 	
 	@RequestMapping("/store/showPhoto")
