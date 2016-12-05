@@ -16,7 +16,7 @@ $(function() {
 	});
 	
 	
-	$("#btnStore").on("click", function () {
+	$("#btnStore").on("click", function () { 
 		$("#storeModal").modal("show");
 	});
 	

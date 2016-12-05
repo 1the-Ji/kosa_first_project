@@ -15,9 +15,16 @@
 
 		<div class="wrapper" align="center">
 			<div>
-		           <fieldset style = "width:350"><br>
-		                    조회 날짜 : <input id="datepicker1" type = "date" min = "1987-07-01" max = "2020-08-01" name = "date1" step = "1">
-		                    ~ <input id="datepicker2" type = "date" min = "1987-07-01" max = "2020-08-01" name = "date2" step = "1">
+		           <fieldset style = "width:300; font-size:18px; font-weight:bold;"><br>
+		                    조회 날짜 : <input id="datepicker1" style="border-style: groove;" type = "date" min = "1987-07-01" max = "2020-08-01" name = "date1" step = "1">
+		                    ~ <input id="datepicker2" style="border-style: groove;" type = "date" min = "1987-07-01" max = "2020-08-01" name = "date2" step = "1">
+		                    
+		                    <!-- <button onclick="termList()" type="button" class="btn btn-nav">
+                     			<span style = "background-color: #000000" class="glyphicon glyphicon-search"></span>
+                 			</button>
+                 			<button onclick="" type="button" class="btn btn-nav">
+                     			<span style = "background-color: #000000" class="glyphicon glyphicon-erase"></span>
+                 			</button> -->
 		                    <input  id="termList" type = "submit" onclick="termList()" value = "검색"/>
 		                    <input type = "reset" value = "리셋"/>
 		            </fieldset>
@@ -30,11 +37,11 @@
 	        <table id="acrylic" style="width:900px">
 	            <thead>
 	                <tr>
-	                    <th>주문번호</th>
-	                    <th>아이디</th>
-	                    <th>주문시간</th>
-	                    <th>총 가격</th>
-	                    <th>결제 방식</th>
+	                    <th style="width:70px">주문번호</th>
+	                    <th style="width:70px">아이디</th>
+	                    <th style="width:70px">주문시간</th>
+	                    <th style="width:70px">총 가격</th>
+	                    <th style="width:70px">결제 방식</th>
 	                </tr>
 	            </thead>
 	            <tbody id="orderTbody">

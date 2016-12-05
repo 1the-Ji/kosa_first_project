@@ -63,13 +63,13 @@ public class OrderDao {
 		sql += "select rn, ogid, ogtotalprice, ogtime, user_id, sid, oghowpay ";
 		sql += "from( ";
 		sql += "select rownum as rn, ogid, ogtotalprice, ogtime, user_id, sid, oghowpay ";
-		sql += "from(select ogid, ogtotalprice, ogtime, user_id, sid, oghowpay from order_total where ogtime>=? and ogtime<=? order by ogtime desc) ";
+		sql += "from(select ogid, ogtotalprice, ogtime, user_id, sid, oghowpay from order_total where ogtime between ? and ? order by ogtime desc) ";
 		sql += "where rownum<=? ";
 		sql += ") ";
 		sql += "where rn>=? ";
 
 		List<Order> list = jdbcTemplate.query(sql,
-				new Object[] { term1, term2, (pageNo * rowsPerPage), ((pageNo - 1) * rowsPerPage + 1) }, new RowMapper<Order>() {
+				new Object[] { term1, term2,(pageNo * rowsPerPage), ((pageNo - 1) * rowsPerPage + 1) }, new RowMapper<Order>() {
 
 					@Override
 					public Order mapRow(ResultSet rs, int row) throws SQLException {
@@ -87,6 +87,7 @@ public class OrderDao {
 
 		return list;
 	}
+
 	
 	//모든 주문 검색 페이지
 	public List<Order> selectByPage(int pageNo, int rowsPerPage) {

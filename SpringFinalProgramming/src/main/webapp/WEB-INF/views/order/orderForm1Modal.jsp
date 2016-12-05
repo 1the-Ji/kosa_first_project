@@ -8,6 +8,7 @@
   			frm.sname.value = frm.snameBox.options[frm.snameBox.selectedIndex].text;
   			frm.optionValue.value = frm.snameBox.options[frm.snameBox.selectedIndex].value;
  		}
+ 		document.getElementById('focusMenu').focus();
  	</script>
  	
  <div id="orderForm1Modal" class="modal fade" tabindex="-1" role="dialog">
@@ -23,31 +24,31 @@
      	<div class="btn-group btn-group-justified">
              <div class="btn-group">
                  <button onclick="orderMenuList('전체')" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-folder-close"></span>
+                     <span class="glyphicon glyphicon-globe"></span>
      			    <p>전체</p>
                  </button>
              </div>
              <div class="btn-group">
                  <button onclick="orderMenuList('커피')" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-calendar"></span>
+                     <span class="glyphicon glyphicon-glass"></span>
      			    <p>커피</p>
                  </button>
              </div>
              <div class="btn-group">
                  <button onclick="orderMenuList('차')" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-globe"></span>
+                     <span class="glyphicon glyphicon-leaf"></span>
      			    <p>차</p>
                  </button>
              </div>
              <div class="btn-group">
                  <button onclick="orderMenuList('디저트')" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-leaf"></span>
+                     <span class="glyphicon glyphicon-ice-lolly-tasted"></span>
      			    <p>디저트</p>
                  </button>
              </div>
              <div class="btn-group">
                  <button onclick="orderMenuList('기타')" type="button" class="btn btn-nav">
-                     <span class="glyphicon glyphicon-leaf"></span>
+                     <span class="glyphicon glyphicon-apple"></span>
      			    <p>기타</p>
                  </button>
              </div>
@@ -76,8 +77,8 @@
      
      <%--pagination--%>
        <div class="modal-footer">
-       		<input id="payOrder" onclick="resultOrder()" class="btn btn-danger" type="submit" value="결제"/>&nbsp;&nbsp;
-       		<input id="cancelOrder" onclick="cancelOrder()" class="btn btn-success" type="submit" value="취소"/>
+       		<input id="payOrder" onclick="resultOrder()" class="btn btn-danger" type="submit" value="결제 완료"/>&nbsp;&nbsp;
+       		<input id="cancelOrder" onclick="cancelOrder()" class="btn btn-success" type="submit" value="결제 취소"/>
        </div>
      
  	</div>

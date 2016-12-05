@@ -1,5 +1,6 @@
 package com.mycompany.myweb.dto;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class Store {
 	//김정호 1114 수정
@@ -19,6 +20,15 @@ public class Store {
 	
 	private int sbeacon;	//비콘 번호
 	
+	private MultipartFile[] sphoto; //매장 사진 
+	
+	 
+	public MultipartFile[] getSphoto() {
+		return sphoto;
+	}
+	public void setSphoto(MultipartFile[] sphoto) {
+		this.sphoto = sphoto;
+	}
 	public String getSid() {
 		return sid;
 	}
@@ -92,6 +102,6 @@ public class Store {
 	public void setSbeacon(int sbeacon) {
 		this.sbeacon = sbeacon;
 	}
-	
+
 	
 }
