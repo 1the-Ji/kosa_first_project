@@ -247,7 +247,7 @@ public class MenuController {
 	@RequestMapping("/remove")
 	public String remove(int mid){
 		menuService.remove(mid);
-		return "menu/menuModal";
+		return "menu/menuList";
 	}
 
 } // class

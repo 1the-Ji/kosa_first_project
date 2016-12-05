@@ -77,10 +77,8 @@ $(function() {
 			show:true
 		});
 	});*/
-	
-	$("#menuInfoModal").on("hidden.bs.modal", function(){
-		$("#menuModal").css("opacity", "1");
-	});
+
+
 	
 });
  
@@ -155,11 +153,15 @@ function showPageMenuList(pageNo, mgroup) {
 
 function showMenuInfo(mid){
 	console.log("showMenuInfo " + mid);
+	$("#menuModal").css("opacity","0.5");
+	$("#menuInfoModal").modal({
+		backdrop:"static",
+		show:true
+	});
 	$.ajax({
 		url:"menu/info",
 		data: {"mid":mid},
 		success: function(data){
-			
 			$("#menuInfoModal .panel-body").empty();
 			$("#menuInfoModal .modal-footer").empty();
 			$("#menuInfoModal .panel-body").append(
@@ -188,19 +190,16 @@ function showMenuInfo(mid){
 						'</button>' +
 					'</div>'
 			);
-			
-			$("#menuModal").css("opacity", "0.5");
-			$("#menuInfoModal").modal({
-				backdrop: "static",
-				show: true
-			});
+			/*			
+				$("#menuModal").css("opacity", "0.5");
+				$("#menuInfoModal").modal({
+					backdrop: "static",
+					show: true
+				});
+			*/
 		}
 	});
-	
-	$("#menuInfoModal").on('hidden.bs.modal',function(){
-		$("#menuModal").css("opacity","1");
-	});
-	
+
 /*
 	$("#btnModModal").on("click", function() {
 		$("#menuModal").css("opacity", "0.5");
@@ -208,21 +207,14 @@ function showMenuInfo(mid){
 			backdrop:"static",
 			show:true
 		});
-	});*/
+	});
+*/
 
 }
 
 
-
 function showMenuModForm(mid){
 	console.log(mid);
-	$("#menuModal").css("opacity", "0.5");
-	$("#menuInfoModal").modal("hide");
-	$("#menuModModal").modal({
-		backdrop: "static",
-		show: true
-	});
-	
 	console.log("menuModify ajax 전" + mid);
 	
 	$.ajax({
@@ -318,14 +310,22 @@ function btnMenuMod(mid){
 }
 
 function menuRemove(mid){
+	console.log("menuRemove 시작");
 	$.ajax({
 		url: "menu/remove",
 		data: {"mid": mid},
 		success:function(){
+			console.log("성공");
+			$("#menuInfoModal").modal("hide");
+			showPageMenuList(1, "전체");
+			$("#menuModal").css("opacity","1");
+			
 		}
 	});
-	$("#menuInfoModal").on('hidden.bs.modal',function(){
-		$("#menuModal").css("opacity","1");
-		showPageMenuList(1, "전체");
-	});
+
+	console.log("menuRemove 끝");
 }
+
+$("#menuInfoModal").on("hidden.bs.modal", function(){
+	$("#menuModal").css("opacity", "1");
+});
