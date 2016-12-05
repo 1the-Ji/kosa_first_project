@@ -57,7 +57,7 @@ $(function() {
 			console.log("store : " + sopen);
 			console.log("store : " + sclosed);
 			console.log("store : " + sbeacon);
-			console.log("store : " + sphoto.files[0]);
+			console.log("store : " + sphoto);
 			console.log("------------------회원가입 정보-----------------");
 			
 			var data = new FormData();
@@ -73,10 +73,10 @@ $(function() {
 			data.append("sopen", sopen);
 			data.append("sclosed", sclosed);
 			data.append("sbeacon", sbeacon);
-			data.append("sphoto", sphoto);
-			
-			if(sphoto.files.length != 0) {
-				data.append("sphoto", sphoto.files[0]);
+			for(var i=0;i<sphoto.files.length;i++){
+				if(sphoto.files.length != 0) {
+					data.append("sphoto", sphoto.files[0]);
+				}
 			}
 			
 			$.ajax({

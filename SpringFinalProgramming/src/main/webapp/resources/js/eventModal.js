@@ -64,7 +64,6 @@ $(function() {
 		var elastperiod = $("#eventModiModal #elastperiod").val();
 		var econtents =$("#eventModiModal #econtents").val();
 		var photo = $("#eventModiModal #photo")[0];
-		console.log(photo.files[0]);
 		
 		 
 		var data = new FormData();
@@ -75,6 +74,7 @@ $(function() {
 		data.append("econtents", econtents);
 		
 		console.log("------------------------------------------");
+		console.log(photo.files[0]);
 		console.log("eventModi(etitle) 성공 " + etitle);
 		console.log("eventModi(estartperiod) 성공 " + estartperiod);
 		console.log("eventModi(elastperiod) 성공 " + elastperiod);

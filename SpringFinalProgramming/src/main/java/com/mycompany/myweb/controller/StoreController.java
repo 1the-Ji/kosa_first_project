@@ -127,7 +127,8 @@ public class StoreController {
 		
 		
 		try {
-			int result = storeService.join(store);
+			
+			 storeService.join(store);
 			
 			/*=========sphoto=============================*/
 			String sid = store.getSid();
@@ -145,11 +146,11 @@ public class StoreController {
 					
 					sphoto.setSpic_mimetype(photo.getContentType());
 					
-					int result2 = sphotoService.write(sphoto);
+					sphotoService.write(sphoto);
 				
 			}
 			/*=========sphoto=============================*/
-			return "redirect:/";
+			return "store/joinModal";
 		} catch (Exception e) {
 			logger.info("join 실패"+e.getMessage());
 			return "store/joinModal";
