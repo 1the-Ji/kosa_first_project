@@ -12,12 +12,13 @@
     margin-bottom:20px;
 }
 /* 
+
 .btn-group{
 	color: black;
-} */
+}
 
 
-/* menuInfoModal.jsp PANEL */
+menuInfoModal.jsp PANEL
 #menuInfoModal .left-panel .panel-default{border-bottom-left-radius:7px; border-bottom-right-radius:7px; border-bottom:2px #DDD solid;}
 #menuInfoModal .left-panel .panel-default .panel-body {padding:0; margin:0;}
 #menuInfoModal .left-panel .panel-default .panel-body .thumbnail{border:none; margin:0; padding:0; position:relative;}
@@ -29,3 +30,4 @@
 #menuInfoModal .icerik-bilgi h2:hover{color:#E74C3C; text-decoration:none;}
 #menuInfoModal .icerik-bilgi a:hover{text-decoration:none;}
 #menuInfoModal .icerik-bilgi p{margin-bottom:30px; line-height:25px; font-size:16px;}
+ */

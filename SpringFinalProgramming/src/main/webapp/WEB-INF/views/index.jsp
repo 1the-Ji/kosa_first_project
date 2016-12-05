@@ -4,7 +4,7 @@
 <!DOCTYPE html >
 <html>
 	<head>
-		<title> ex3 step6 </title> 
+		<title> 2CM </title> 
 			     
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -101,22 +101,10 @@
 					<p></p>
 					<p></p>
 					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
 				</div>
 				
 				<!-- 다섯 번째 박스 -->
 				<div class="box5">
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
 					<p></p>
 					<p></p>
 					<p></p>
