@@ -77,8 +77,10 @@ $(function() {
 			show:true
 		});
 	});*/
-
-
+	
+	$("#menuInfoModal").on("hidden.bs.modal", function(){
+		$("#menuModal").css("opacity", "1");
+	});
 	
 });
  
@@ -190,16 +192,16 @@ function showMenuInfo(mid){
 						'</button>' +
 					'</div>'
 			);
-			/*			
-				$("#menuModal").css("opacity", "0.5");
-				$("#menuInfoModal").modal({
-					backdrop: "static",
-					show: true
-				});
-			*/
+			
+			$("#menuModal").css("opacity", "0.5");
+			$("#menuInfoModal").modal({
+				backdrop: "static",
+				show: true
+			});
 		}
 	});
 
+	
 /*
 	$("#btnModModal").on("click", function() {
 		$("#menuModal").css("opacity", "0.5");
@@ -207,14 +209,20 @@ function showMenuInfo(mid){
 			backdrop:"static",
 			show:true
 		});
-	});
-*/
+	});*/
 
 }
 
 
 function showMenuModForm(mid){
 	console.log(mid);
+	$("#menuModal").css("opacity", "0.5");
+	$("#menuInfoModal").modal("hide");
+	$("#menuModModal").modal({
+		backdrop: "static",
+		show: true
+	});
+	
 	console.log("menuModify ajax 전" + mid);
 	
 	$.ajax({
@@ -247,10 +255,10 @@ function showMenuModForm(mid){
 		}
 	});
 	
-	$("#menuModModal").on('hidden.bs.modal',function(){
+/*	$("#menuModModal").on('hidden.bs.modal',function(){
 		$("#menuModal").css("opacity","1");
 		showPageMenuList(1, "전체");
-	});
+	});*/
 	
 }
 
@@ -302,6 +310,7 @@ function btnMenuMod(mid){
 		success: function(data) {
 			if(data.result == "success") {
 				$("#menuModModal").modal("hide");
+				$("#menuModal").css("opacity","1");
 				showPageMenuList(1, "전체");
 			}
 		}
@@ -315,17 +324,11 @@ function menuRemove(mid){
 		url: "menu/remove",
 		data: {"mid": mid},
 		success:function(){
-			console.log("성공");
-			$("#menuInfoModal").modal("hide");
-			showPageMenuList(1, "전체");
-			$("#menuModal").css("opacity","1");
 			
 		}
 	});
-
+	showPageMenuList(1, "전체");
+	$("#menuInfoModal").modal("hide");
+	$("#menuModal").css("opacity","1");
 	console.log("menuRemove 끝");
 }
-
-$("#menuInfoModal").on("hidden.bs.modal", function(){
-	$("#menuModal").css("opacity", "1");
-});
