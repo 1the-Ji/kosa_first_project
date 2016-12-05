@@ -1,11 +1,10 @@
-/* ¸íÁø */
 table#acrylic {
 	border-collapse: separate;
 	background: #fff;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	margin: 50px auto;
+	margin: 10px auto;
 	-moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -119,6 +118,6 @@ table#acrylic {
 
 .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
 
-
+ 
 
 

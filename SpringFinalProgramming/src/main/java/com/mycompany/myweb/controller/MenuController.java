@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -210,30 +209,40 @@ public class MenuController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modify(int mid, Model model){
+		logger.info("수정 컨트롤러");
 		Menu menu = menuService.info(mid);
 		model.addAttribute("menu", menu);
-		return "menu/menuModModal";
+		logger.info("수정 컨트롤러 폼 넘어가기 전");
+		return "menu/modify";
 	} // modifyForm
 	
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Menu menu, HttpSession session, Model model){
+		String sid=(String)session.getAttribute("login");
+		menu.setSid(sid);
+		//String msavedfile = new Date().getTime()+event.getPhoto().getOriginalFilename();
+		logger.info("이벤트 modify post 컨트롤러");
+		
+		String msavedfile = menu.getPhoto().getOriginalFilename();
+		String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/"+msavedfile);
 		
 		try{
 			// String sid = (String)session.getAttribute("login");
 			// menu.setSid(sid);
 			
-			String msavedfile = new Date().getTime() + menu.getPhoto().getOriginalFilename();
-			
-			String realpath = session.getServletContext().getRealPath("/WEB-INF/photo/" + msavedfile);
 			logger.info("realpath : "+realpath);
 			menu.getPhoto().transferTo(new File(realpath));
-			menu.setMsavedfile(msavedfile);
-			menu.setMmimetype(menu.getPhoto().getContentType());
-			menuService.modify(menu);
-		}catch(Exception e){}
-		return "menu/menuModal";
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		menu.setMsavedfile(msavedfile);
+		menu.setMmimetype(menu.getPhoto().getContentType());
+		menuService.modify(menu);
+		return "menu/modifyResult";
 	} //modify
+	
 	
 	@RequestMapping("/remove")
 	public String remove(int mid){

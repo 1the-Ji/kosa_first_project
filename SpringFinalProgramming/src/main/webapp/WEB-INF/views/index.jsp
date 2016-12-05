@@ -58,8 +58,8 @@
                 
             <c:if test="${empty login}">
                 <div style="position:relative; top:85%;" class="form-group text-center">
-               		<button id="btnLogin" style="display: inline; zindex:5000;" class="btn btn-info btn-login-submit">Login</button></a>
-                 	<button id="btnLogout" style="display: none; zindex:5000;" class="btn btn-danger btn-login-submit">Logout</button></a>
+               		<button id="btnLogin" style="display: inline; zindex:5000;" class="btn btn-info btn-login-submit">Login</button>
+                 	<button id="btnLogout" style="display: none; zindex:5000;" class="btn btn-danger btn-login-submit">Logout</button>
                 </div>
             </c:if>
             <c:if test="${not empty login}">
