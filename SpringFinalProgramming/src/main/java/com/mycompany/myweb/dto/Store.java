@@ -22,7 +22,7 @@ public class Store {
 	
 	private MultipartFile[] sphoto; //매장 사진 
 	
-	
+	 
 	public MultipartFile[] getSphoto() {
 		return sphoto;
 	}
