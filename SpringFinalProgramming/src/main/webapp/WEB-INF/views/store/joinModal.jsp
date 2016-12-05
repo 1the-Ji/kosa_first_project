@@ -122,14 +122,14 @@
 	            <input id="sbeacon" type="text" style="margin-top:5px;">
 	          </div>
 	        </div>
-	<!--         
+	        
 	       <div class="form-group">
 	          	<label class="col-sm-3 control-label" for="sphoto">사진첨부</label>
 		       <div class="col-md-8">
 		          <input id="sphoto" type="file" style="margin-top:5px;" multiple="multiple">  
        			</div>
 	        </div>
-	        -->
+	    
 	        <div class="form-group">
 	              <label class="col-sm-3 control-label" for="inputAgree">약관 동의</label>
 	            <div class="col-sm-6" data-toggle="buttons">
