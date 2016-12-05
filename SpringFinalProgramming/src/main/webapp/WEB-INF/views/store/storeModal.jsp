@@ -25,7 +25,6 @@
 		            <th class="text-center">수정/삭제</th>
 		        </tr>
 		    </thead>
-		    
 		    	<tbody id="storeTbody"></tbody>
 				<!-- <tr>
 		            <td id="sid"></td>
