@@ -77,10 +77,8 @@ $(function() {
 			show:true
 		});
 	});*/
-	
-	$("#menuInfoModal").on("hidden.bs.modal", function(){
-		$("#menuModal").css("opacity", "1");
-	});
+
+
 	
 });
  
@@ -155,11 +153,15 @@ function showPageMenuList(pageNo, mgroup) {
 
 function showMenuInfo(mid){
 	console.log("showMenuInfo " + mid);
+	$("#menuModal").css("opacity","0.5");
+	$("#menuInfoModal").modal({
+		backdrop:"static",
+		show:true
+	});
 	$.ajax({
 		url:"menu/info",
 		data: {"mid":mid},
 		success: function(data){
-			
 			$("#menuInfoModal .panel-body").empty();
 			$("#menuInfoModal .modal-footer").empty();
 			$("#menuInfoModal .panel-body").append(
@@ -188,19 +190,16 @@ function showMenuInfo(mid){
 						'</button>' +
 					'</div>'
 			);
-			
-			$("#menuModal").css("opacity", "0.5");
-			$("#menuInfoModal").modal({
-				backdrop: "static",
-				show: true
-			});
+			/*			
+				$("#menuModal").css("opacity", "0.5");
+				$("#menuInfoModal").modal({
+					backdrop: "static",
+					show: true
+				});
+			*/
 		}
 	});
-	
-	$("#menuInfoModal").on('hidden.bs.modal',function(){
-		$("#menuModal").css("opacity","1");
-	});
-	
+
 /*
 	$("#btnModModal").on("click", function() {
 		$("#menuModal").css("opacity", "0.5");
@@ -208,28 +207,29 @@ function showMenuInfo(mid){
 			backdrop:"static",
 			show:true
 		});
-	});*/
+	});
+*/
 
 }
 
 
-
 function showMenuModForm(mid){
 	console.log(mid);
-	$("#menuModal").css("opacity", "0.5");
-	$("#menuInfoModal").modal("hide");
-	$("#menuModModal").modal({
-		backdrop: "static",
-		show: true
-	});
-	
 	console.log("menuModify ajax 전" + mid);
 	
 	$.ajax({
 		url: "menu/modify",
 		data: {"mid": mid},
 		success: function(data){
-			console.log("ajax success!");
+			console.log("-----------menu 수정 정보-----------");
+			console.log(data.mid);
+			console.log(data.mgroup);
+			console.log(data.mname);
+			console.log(data.hot_ice);
+			console.log(data.mprice);
+			console.log(data.mcontents);
+			console.log(data.msavedfile);
+			console.log("-----------menu 수정 정보-----------");
 			
 			$("#menuModModal .panel-body").empty();
 			$("#menuModModal .modal-footer").empty();
@@ -242,10 +242,8 @@ function showMenuModForm(mid){
 			$("#menuModModal #mcontents").text(data.mcontents);
 			$("#menuModModal #msavedfile").attr("src", "menu/showPhoto?msavedfile=" + data.msavedfile);
 			
-			$("#menuModModal .modal-footer").append('<button id="btnMenuMod" onclick="btnMenuMod('+data.mid+')" type="button" class="btn btn-warning">수정</button>');
+			$("#menuModModal .modal-footer").append('<button id="btnMenuMod" onclick="btnMenuMod('+data.mid+')" type="submit" class="btn btn-warning">수정</button>');
 			$("#menuModModal .modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>');
-			
-		      
 		}
 	});
 	
@@ -260,7 +258,7 @@ function btnMenuMod(mid){
 	var mid = $("#menuModModal #mid").val();
 	var mgroup = $("#menuModModal #mgroup").val();
 	var mname = $("#menuModModal #mname").val();
-	var hot_ice = $("#menuModModal #hot_ice").val();
+	var hot_ice = $("#menuModModal input:radio[name=hot_ice]:checked").val();
 	var mprice =$("#menuModModal #mprice").val();
 	var mcontents =$("#menuModModal #mcontents").val();
 	var photo = $("#menuModModal #photo")[0];
@@ -284,6 +282,16 @@ function btnMenuMod(mid){
 	}			
 	
 	
+	console.log("-----------menu DB 수정 정보-----------");
+	console.log(mid);
+	console.log(mgroup);
+	console.log(mname);
+	console.log(hot_ice);
+	console.log(mprice);
+	console.log(mcontents);
+	console.log(msavedfile);
+	console.log("-----------menu DB 수정 정보-----------");
+	
 	$.ajax({
 		url:"menu/modify",
 		method: "post",
@@ -302,14 +310,22 @@ function btnMenuMod(mid){
 }
 
 function menuRemove(mid){
+	console.log("menuRemove 시작");
 	$.ajax({
 		url: "menu/remove",
 		data: {"mid": mid},
 		success:function(){
+			console.log("성공");
+			$("#menuInfoModal").modal("hide");
+			showPageMenuList(1, "전체");
+			$("#menuModal").css("opacity","1");
+			
 		}
 	});
-	$("#menuInfoModal").on('hidden.bs.modal',function(){
-		$("#menuModal").css("opacity","1");
-		showPageMenuList(1, "전체");
-	});
+
+	console.log("menuRemove 끝");
 }
+
+$("#menuInfoModal").on("hidden.bs.modal", function(){
+	$("#menuModal").css("opacity", "1");
+});

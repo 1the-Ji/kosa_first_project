@@ -1,4 +1,3 @@
-
 function onClickLogin() {
 	var sid = $("#storeId").val();
 	var spw = $("#storePw").val();

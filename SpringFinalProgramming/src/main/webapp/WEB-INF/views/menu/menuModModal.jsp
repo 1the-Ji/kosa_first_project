@@ -51,7 +51,8 @@
 				<!-- Photo -->
 				<div>
 					<label style="width:70px" for="photo">사진</label>
-				    <input type="file" name="photo" id="photo" name="photo"/>
+					<img style="width:100px" id="msavedfile">
+				    <input type="file" name="photo" id="photo"/>
 				</div>
 			</fieldset>
 		</form>
