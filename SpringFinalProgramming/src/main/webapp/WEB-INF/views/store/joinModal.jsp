@@ -15,7 +15,7 @@
 	        <div class="form-group">
 	          <label class="col-sm-3 control-label">아이디</label>
 	        <div class="col-sm-6">
-	          <input id="sid" type="text" style="margin-top: 5px;" placeholder="아이디" value="store3">
+	          <input id="sid" type="text" style="margin-top: 5px;" placeholder="아이디">
 	        </div>
 	        </div>
 	        
@@ -54,7 +54,7 @@
 	         <div class="form-group">
 	              <label class="col-sm-3 control-label">비밀번호 확인</label>
 	             <div class="col-sm-6">
-	              <input id="inputSPwCheck" type="password" style="margin-top:5px;" placeholder="비밀번호 확인" value="1234">
+	              <input id="inputSPwCheck" type="password" style="margin-top:5px;" placeholder="비밀번호 확인">
 	                <p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 	             </div>
 	          </div>
@@ -62,7 +62,7 @@
  	        <div class="form-group">
 	            <label class="col-sm-3 control-label">카페명</label>
 	          <div class="col-md-8">
-	            <input id="sname" type="text" placeholder="카페명" value="투썸플레이스">
+	            <input id="sname" type="text" placeholder="카페명">
 	            <select id="selectSname">
 					<option value="스타벅스">스타벅스</option>
 					<option value="탐앤탐스">탐앤탐스</option>
@@ -83,21 +83,21 @@
 	        <div class="form-group">
 	            <label class="col-sm-3 control-label">지점명</label>
 	          <div class="col-sm-6">
-	            <input id="slocal" type="text" style="margin-top:5px;" value="경찰병원점">
+	            <input id="slocal" type="text" style="margin-top:5px;" placeholder="지점명">
 	          </div>
 	        </div>
 	        
 	       <div class="form-group">
 	            <label class="col-sm-3 control-label">주소</label>
 	          <div class="col-sm-6">
-	            <input id="saddr" type="text" style="margin-top:5px;" value="송파구 경찰병원역">
+	            <input id="saddr" type="text" style="margin-top:5px;" placeholder="주소">
 	          </div>
 	        </div>
 	        
 	        <div class="form-group">
 	            <label class="col-sm-3 control-label" >대표전화</label>
 	        <div class="col-sm-6">
-	           <input id="stel" type="tel" style="margin-top:5px;" placeholder="- 없이 입력해 주세요" value="010-1234-5678"/>
+	           <input id="stel" type="tel" style="margin-top:5px;" placeholder="- 없이 입력해 주세요"/>
               	  </div>
                </div>
                
@@ -118,7 +118,7 @@
 	        <div class="form-group">
 	            <label class="col-sm-3 control-label">비콘번호</label>
 	          <div class="col-sm-6">
-	            <input id="sbeacon" type="text" style="margin-top:5px;" value="1111">
+	            <input id="sbeacon" type="text" style="margin-top:5px;" placeholder="비콘번호">
 	          </div>
 	        </div>
 	        
@@ -146,7 +146,7 @@
 	      
 	      <div class="modal-footer"> 
 	        <button id="btnSubmit" type="button" class="btn btn-primary">Join</button>
-	        <button type="reset" class="btn btn-danger">Cancel</button>
+	        <button id="btnReset" type="reset" class="btn btn-danger">Cancel</button>
 	        <button class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div><!-- /.modal-content -->

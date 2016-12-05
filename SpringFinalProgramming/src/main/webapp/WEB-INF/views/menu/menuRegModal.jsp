@@ -12,7 +12,7 @@
 			<fieldset>
 				<!-- Text input-->
 				<div class="form-group">
-					<label style="width:70px" for="mgroup">분류</label>  
+					<label style="width:70px" >분류</label>  
 				  	<select name="mgroup" id="mgroup">
    						<option selected value="커피">커피</option>
    						<option>차</option>
@@ -23,7 +23,7 @@
 				
 				<!-- Text input-->
 				<div>
-					<label style="width:70px" for="mname">메뉴이름</label>  
+					<label style="width:70px" >메뉴이름</label>  
 					<input name="mname" id="mname" type="text" style="width:400px"placeholder="예: 아메리카노"/>
 				</div>
 				

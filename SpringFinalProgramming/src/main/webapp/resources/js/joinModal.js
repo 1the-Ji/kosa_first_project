@@ -186,7 +186,6 @@ function storeList() {
 		$("#joinModal").css("opacity","1");
 	});
 }
-
 */
 
 
@@ -207,4 +206,3 @@ $(function() {
 	});
 });
 */
-
