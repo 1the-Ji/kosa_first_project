@@ -229,7 +229,15 @@ function showMenuModForm(mid){
 		url: "menu/modify",
 		data: {"mid": mid},
 		success: function(data){
-			console.log("ajax success!");
+			console.log("-----------menu 수정 정보-----------");
+			console.log(data.mid);
+			console.log(data.mgroup);
+			console.log(data.mname);
+			console.log(data.hot_ice);
+			console.log(data.mprice);
+			console.log(data.mcontents);
+			console.log(data.msavedfile);
+			console.log("-----------menu 수정 정보-----------");
 			
 			$("#menuModModal .panel-body").empty();
 			$("#menuModModal .modal-footer").empty();
@@ -242,10 +250,8 @@ function showMenuModForm(mid){
 			$("#menuModModal #mcontents").text(data.mcontents);
 			$("#menuModModal #msavedfile").attr("src", "menu/showPhoto?msavedfile=" + data.msavedfile);
 			
-			$("#menuModModal .modal-footer").append('<button id="btnMenuMod" onclick="btnMenuMod('+data.mid+')" type="button" class="btn btn-warning">수정</button>');
+			$("#menuModModal .modal-footer").append('<button id="btnMenuMod" onclick="btnMenuMod('+data.mid+')" type="submit" class="btn btn-warning">수정</button>');
 			$("#menuModModal .modal-footer").append('<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>');
-			
-		      
 		}
 	});
 	
@@ -260,7 +266,7 @@ function btnMenuMod(mid){
 	var mid = $("#menuModModal #mid").val();
 	var mgroup = $("#menuModModal #mgroup").val();
 	var mname = $("#menuModModal #mname").val();
-	var hot_ice = $("#menuModModal #hot_ice").val();
+	var hot_ice = $("#menuModModal input:radio[name=hot_ice]:checked").val();
 	var mprice =$("#menuModModal #mprice").val();
 	var mcontents =$("#menuModModal #mcontents").val();
 	var photo = $("#menuModModal #photo")[0];
@@ -283,6 +289,16 @@ function btnMenuMod(mid){
 		console.log("data ajax photo append성공");
 	}			
 	
+	
+	console.log("-----------menu DB 수정 정보-----------");
+	console.log(mid);
+	console.log(mgroup);
+	console.log(mname);
+	console.log(hot_ice);
+	console.log(mprice);
+	console.log(mcontents);
+	console.log(msavedfile);
+	console.log("-----------menu DB 수정 정보-----------");
 	
 	$.ajax({
 		url:"menu/modify",

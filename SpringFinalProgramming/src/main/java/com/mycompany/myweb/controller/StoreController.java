@@ -109,7 +109,23 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value="/store/join",method=RequestMethod.POST)
-	public String join(Store store,Sphoto sphoto, HttpSession session){
+	public String join(Store store, Sphoto sphoto, HttpSession session){
+		logger.info("store(id) " + store.getSid() );
+		logger.info("store(email 아이디) " + store.getSemail1());
+		logger.info("store(email 아이디) " + store.getSemail2());
+		logger.info("store(DB 등록 이메일)" + store.getSemail());
+		logger.info("store(spw) " + store.getSpw());
+		logger.info("store(sname) " + store.getSname());
+		logger.info("store(slocal) " + store.getSlocal());
+		logger.info("store(sadder) " + store.getSaddr());
+		logger.info("store(stel) "  + store.getStel());
+		logger.info("store(sopen) " + store.getSopen());
+		logger.info("store(sclose) " + store.getSclosed());
+		logger.info("store(sbeacon) " + store.getSbeacon());
+		
+		
+		
+		
 		try {
 			int result = storeService.join(store);
 			
