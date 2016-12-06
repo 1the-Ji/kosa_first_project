@@ -120,7 +120,7 @@ function termList(pageNo) {
             var term = data.termList[i];
             $("#termTbody").append(
                '<tr>' +
-                   '<td class="detailList" data-label="주문번호"><a type="button" class="btn btn-primary" href="javascript:detailOrderList(\'' + term.ogid + '\')">' + term.ogid.substring(4, 7) + term.ogid.substring(11, 14) +'</a></td>' +
+                   '<td class="detailList" data-label="주문번호" style="width:70px"><a type="button" class="btn btn-primary" href="javascript:detailOrderList(\'' + term.ogid + '\')">' + term.ogid.substring(4, 7) + term.ogid.substring(11, 14) +'</a></td>' +
                    '<td data-label="아이디" style="width:70px; font-size:18px; font-weight:bold;">' + term.user_id + '</td>' +
                    '<td data-label="주문시간" style="width:70px; font-size:15px;">' + term.ogtime + '</td>' +
                    '<td data-label="총 가격" style="width:70px; font-size:18px; font-weight:bold;">' + term.ogtotalprice + '</td>' +
