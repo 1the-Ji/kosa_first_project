@@ -74,7 +74,7 @@ function detailOrderList(ogid){
 	                   	'<td data-label="제품명" style="width:100px; font-size:15px; font-weight:bold;">'+detail.mname+'</td>' +
 	                   	'<td data-label="핫_아이스" style="width:50px; font-size:18px; font-weight:bold;">' + detail.hot_ice + '</td>' +
 	                   	'<td data-label="수량" style="width:50px; font-size:18px; font-weight:bold;">' + detail.sameItemCount + '</td>' +
-	                   	'<td data-label="사이드" style="width:100px; font-size:15px; font-weight:bold;">' + detail.xname + '</td>' +
+	                   	'<td data-label="사이드" style="width:120px; font-size:15px; font-weight:bold;">' + detail.xname + '</td>' +
 	                   	'<td data-label="가격" style="width:70px; font-size:18px;">' + detail.sameItemPrice + '</td>' +	
 	                 '</tr>'
 	               );

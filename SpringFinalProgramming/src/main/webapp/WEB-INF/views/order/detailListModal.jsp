@@ -21,7 +21,7 @@
                      <th style="width:100px">품목</th>
                      <th style="width:50px">핫_아이스</th>
                      <th style="width:50px">수량</th>
-                     <th style="width:100px">사이드</th>
+                     <th style="width:120px">사이드</th>
                      <th style="width:70px">가격</th>
                  </tr>
              </thead>

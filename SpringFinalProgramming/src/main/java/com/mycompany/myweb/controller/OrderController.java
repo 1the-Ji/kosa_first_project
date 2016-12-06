@@ -36,14 +36,15 @@ public class OrderController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
+	
+	@Autowired
+	OrderService orderService;
+	
 	@Autowired
 	OrderItemService orderItemService;
 	
 	@Autowired
 	ExtraOrderService extraOrderService;
-	
-	@Autowired
-	OrderService orderService;
 	
 	@Autowired
 	MenuService menuService;
