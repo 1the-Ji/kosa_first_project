@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 
 		 <div id="eventModiModal" class="modal fade" tabindex="-1" role="dialog">
-		  <div class="modal-dialog" role="document">
+		  <div class="modal-dialog" role="document" style="width:800px">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

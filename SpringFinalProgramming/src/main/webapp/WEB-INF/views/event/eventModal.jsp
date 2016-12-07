@@ -15,7 +15,7 @@
 		            <th>No.</th>
 		            <th>Title</th>
 		            <th>time</th>
-		            <th>content</th>
+		           <!--  <th>content</th> -->
 		            <th class="text-center">Action</th>
 		        </tr>
 		    </thead>
