@@ -2,5 +2,5 @@
 
 
 {	
-	"ogid":${ogid}
+	"ogid":"${ogid}"
 }

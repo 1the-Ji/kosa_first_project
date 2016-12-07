@@ -74,14 +74,7 @@ public class OrderController {
 					
 				}
 			}
-		}//맨처음 주문 리스트 보는 경우(ogid에 대해 아무것도)
-		
-		/*//총 금액 order_total의 ogtotalprice에 넣어주기
-		String ogid = (String) session.getAttribute("ogid");
-		int resultprice = (Integer) session.getAttribute("resultprice");
-		orderService.modifyOgprice(ogid, resultprice);*/
-				
-		
+		}//맨처음 주문 리스트 보는 경우(ogid에 대해 아무것도 처리 안함)	
 		int intPageNo = 1;
 		if(pageNo == null){
 			pageNo = (String)session.getAttribute("pageNo");
@@ -92,7 +85,6 @@ public class OrderController {
 			intPageNo = Integer.parseInt(pageNo);
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
-		
 		int rowsPerPage = 5;
 		int pagesPerGroup = 5;
 		int totalBoardNo = orderService.getCount();
@@ -116,7 +108,6 @@ public class OrderController {
 		model.addAttribute("groupNo",groupNo);
 		model.addAttribute("startPageNo",startPageNo);
 		model.addAttribute("endPageNo",endPageNo);
-		
 		model.addAttribute("list", list);
 		
 		return "order/list";
@@ -176,13 +167,6 @@ public class OrderController {
 			detailOrder.setOghowpay(orderService.searchOne(ogid).getOghowpay());//결제 방법
 			
 			detailOrders.add(i,detailOrder);
-			
-			/*int tempitemprice = itemprice*orderItems.get(i).getOrdercount();
-			detailOrder.setSameItemPrice(tempitemprice);//1주문 동일 품목(메뉴 사이드) 가격
-			totalprice += tempitemprice;
-			resultprice += totalprice;*/
-			
-			//detailOrder.setTotalprice(totalprice);//1 주문 총 가격
 			
 		}
 		model.addAttribute("detailList", detailOrders);
@@ -269,8 +253,8 @@ public class OrderController {
 		return "order/termList";
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------
 	
-	//---------------------------------------------------------------------
 	//주문의 시작! 폼 및 카페 당 메뉴리스트 페이지(검토 완료)
 	@RequestMapping(value="/menuList")
 	public String orderForm(String mgroup, Model model, HttpSession session){
@@ -279,20 +263,14 @@ public class OrderController {
 		//ogid(문자열) 만들기(sid+현재시간+랜덤 숫자)(안겹치게 하기 위해서)
 		String sid = (String) session.getAttribute("login");
 		
-		String ogid= null;
-		ogid = (String) session.getAttribute("ogid");
+		String ogid= null; ogid = (String) session.getAttribute("ogid");
 		if(ogid == null){
 			long time = System.currentTimeMillis(); double random = Math.random();
 			ogid = ""+sid+time+random;
 			session.setAttribute("ogid", ogid);		
 			logger.info("ogid: "+session.getAttribute("ogid"));
-			
-			//나중에 새로고침 계속 했을 때 쓸모없는 주문 데이터 삽입을 방지하기 위한 유효성검사 필요!
-			//totalprice가 0인 order_table 데이터는 지울 수 있는 코드 삽입되어야 함
-			
 			//Order_Total 테이블을 추가해야 함
-			//앱에서 주문할 때 와야 하는 데이터(user_id, oghowpay)(중요!!)
-			//위의 두 데이터는 임의의 테스트 데이터(user_id, oghowpay)로 대체
+			//위의 두 데이터는 임의의 테스트 데이터(user_id, oghowpay)
 			Order order = new Order();	
 			ogid = (String) session.getAttribute("ogid");	
 			order.setOgid(ogid);
@@ -300,12 +278,8 @@ public class OrderController {
 			order.setUser_id("user1");//임의 데이터!
 			order.setSid(sid);
 			order.setOghowpay("카드 결제");//임의 데이터!
-			
 			orderService.addOrder(order);
-			
 		}
-		
-		
 		//---------------------------------------------------
 		//String sid = (String) session.getAttribute("login");
 		if(mgroup.equals("전체")) mgroup = null;
@@ -337,12 +311,6 @@ public class OrderController {
 		logger.info("주문 품목을 위한 흐름2");
 		//현재 주문되고 있는 menu 정보는 sesstion에 저장되어 있음(중요) : "orderMenu"
 		Menu menu = (Menu) session.getAttribute("orderMenu");
-		
-		//ordercount는 맨 나중에 order_total 수정해야
-		
-		/*//실제 정확한 메뉴가 뭔지 알기 위해(필요없을듯)
-		Menu menu = menuService.infoByMnameHot_Ice(mname, hot_ice);
-		int mid = menu.getMid();*/
 		
 		//사이드 이름들에 대한 사이드들이 뭔지 찾기 위해
 		Extra extra1 = extraService.infoByXname(orderSize);
@@ -379,13 +347,6 @@ public class OrderController {
 				continue;
 			}
 		}
-		
-		//xname1,2,3 모두 안와도(차,디저트 경우) 널 포인터 익셉션 에러 안나도록 코드 수정(중요!)
-		
-		 
-		
-		
-		
 		model.addAttribute(ogid);
 		return "order/confirmItem";
 	}
@@ -437,21 +398,13 @@ public class OrderController {
 			detailOrder.setOghowpay(orderService.searchOne(ogid).getOghowpay());//결제 방법
 					
 			detailOrders.add(i,detailOrder);
-					
-			/*int tempitemprice = itemprice*orderItems.get(i).getOrdercount();
-			detailOrder.setSameItemPrice(tempitemprice);//1주문 동일 품목(메뉴 사이드) 가격
-			totalprice += tempitemprice;
-			resultprice += totalprice;*/
-					
-			//detailOrder.setTotalprice(totalprice);//1 주문 총 가격
-					
 		}
 		model.addAttribute("detailOrders", detailOrders);
 			
 		int resultprice=0;
 		for(int i=0;i<detailOrders.size();i++){
 				resultprice += detailOrders.get(i).getSameItemPrice();
-			}
+		}
 				
 		//1주문 총 금액 저장 및 JSP에 보내기 및 order_total ogprice 최신화
 		session.setAttribute("resultprice", resultprice);
@@ -471,7 +424,7 @@ public class OrderController {
 		logger.info("결제 취소 완료");
 		
 		session.setAttribute("ogid",null);
-		model.addAttribute("ogid", ogid);
+		model.addAttribute("ogid", "cancel");
 		logger.info("ogid: "+(String) session.getAttribute("ogid")); 
 		return "order/confirmItem";
 	}
@@ -484,7 +437,7 @@ public class OrderController {
 		logger.info("결제 삭제 완료");
 		
 		session.setAttribute("ogid",null);
-		model.addAttribute("ogid", ogid);
+		model.addAttribute("ogid", "delete");
 		logger.info("ogid: "+(String) session.getAttribute("ogid")); 
 		return "order/confirmItem";
 	}	
