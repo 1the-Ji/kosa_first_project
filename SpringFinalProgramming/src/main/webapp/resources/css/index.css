@@ -32,3 +32,8 @@
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
     } */
+#eventInfo .list-group {border-radius: 0;}
+#eventInfo .list-group .list-group-item {background-color: transparent;overflow: hidden;border: 0;border-radius: 0;padding: 0 16px;}
+#eventInfo .list-group .list-group-item .row-action-primary label {display: block;width: 56px;height: 56px;}
+#eventInfo .list-group .list-group-item .row-content {display: inline-block;width: calc(100% - 92px);min-height: 66px;}
+    

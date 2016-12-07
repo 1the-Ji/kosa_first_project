@@ -119,7 +119,7 @@ function eventList(){
 		             '<td>'+ event.eid +'</td>' +
 		             '<td><a href="javascript:eventInfo('+ event.eid + ')">'+ event.etitle +'</td>'+
 		             '<td>'+ event.estartperiod + ' ~ ' + event.elastperiod + '</td>'+
-		             '<td>'+ event.econtents + '~' + '</td>'+
+		             /*'<td>'+ event.econtents + '~' + '</td>'+*/
 		             '<td class="text-center"><a class="btn btn-info btn-xs" href="javascript:eventModify(' + event.eid +')" id="btnModiEvent"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="javascript:eventRemove(' + event.eid +')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>'+
 			         '</tr>'
             	);
@@ -145,12 +145,22 @@ function eventInfo(eid){
 			console.log("ajax 성공 " + data.esavedfile);
 			$("#eventInfo").empty();
 			$("#eventInfo").append(
-			  '<div class="media">' +
-			    '<img class="media-object" width=150px src="event/showPhoto?esavedfile=' + data.esavedfile + '">' +
-			  		 '<div class="media-body">' +
-			    		'<h4 class="media-heading" id="etitle">' + data.etitle +'</h4>' +
-			            '<p>' + data.econtents+ '</p>' +
-			  			'<span><i class="glyphicon glyphicon-calendar"></i>'+ data.estartperiod + '~' + data.elastperiod +'</span>' +
+			  '<div class="row">' +
+			    '<div class="col-xs-12 col-sm-3 col-md-3">' +
+			      '<img class="img-responsive img-box img-thumbnail" src="event/showPhoto?esavedfile=' + data.esavedfile + '">' +
+			    '</div>' + 
+			     '<div class="col-xs-12 col-sm-9 col-md-9">' +
+			       '<div class="list-group">'+
+			        	'<div class="row-content">' +
+			        		'<small>'+
+			        		'<br>'+
+			        		' <i class="glyphicon glyphicon-calendar"></i>'+ '<span>' +data.estartperiod + '~' + data.elastperiod + '</span>' +
+			        		'</small>' +
+			           		'<h4 id="etitle">' + data.etitle +'</h4>' +
+			           		'<p>' + data.econtents+ '</p>' +
+			           '</div>'+
+			          '</div>'+
+			         '</div>'+
 			        '</div>' +
 			    '</div>'
 				);

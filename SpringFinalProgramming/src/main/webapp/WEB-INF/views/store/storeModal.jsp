@@ -10,7 +10,7 @@
       <div id="modal-body" class="modal-body">
 	    <table class="table table-striped custab">
 		    <thead>
-		     <a href="#" id="btnStoreInfo" class="btn btn-primary btn-xs pull-right"><b>+</b> 목록 추가</a>
+		    <!--  <a href="#" id="btnStoreInfo" class="btn btn-primary btn-xs pull-right"><b>+</b> 목록 추가</a> -->
 
 		        <tr>
 		            <th>매장아이디</th>
@@ -42,21 +42,20 @@
 		            <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> 수정</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a></td>
 		      	</tr>
 		  -->
-	       		<%-- <tr>
-		             <td>store1</td>
-		             <td>store1@naver.com</td>
+	       		 <tr>
+		             <td>starbucks1</td>
+		             <td>storebucks1@naver.com</td>
 		             <td>스타벅스</td>
 		             <td>송파구청점</td>
 		             <td>서울 송파구 오금로 87</td>
 		             <td>0221450300</td>
 		             <td>07:00</td>
 		             <td>11:00</td>
-		             <td>sb1</td>
+		             <td>503</td>
 		             <td><img src="${pageContext.servletContext.contextPath}/resources/image/스타벅스 송파구청점-1.JPG" width="100"></td>
 		             <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> 수정</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a></td>
 	        	 </tr>
-	
-	        	 --%>
+
 	    </table>
       </div>
       <div class="modal-footer">

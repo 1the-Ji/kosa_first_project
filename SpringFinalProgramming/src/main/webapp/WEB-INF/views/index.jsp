@@ -37,7 +37,7 @@
 			<a class="btnMenu" href="#"><i class="fa fa-navicon"></i> </a>
 			<!-- 실제 카테고리 메뉴가 들어갈 nav 영역 -->
 			<nav>
-				<h1><img src="resources/photo/logo.png" /></h1>
+				<h1 style="left:58px; top:0px;"><img src="resources/photo/logo.png" style="width:250px;"/></h1>
 				<ul id="gnb">
 					<li><a href="#">Home</a></li>
 					<li><a id="btnStore" href="#">Store</a></li>

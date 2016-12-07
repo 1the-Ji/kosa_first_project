@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<div id="eventInfoModal" class="modal fade" tabindex="-1" role="dialog">
- <div class="modal-dialog" role="document">
+<div id="eventInfoModal" class="modal fade" tabindex="-1" role="dialog" >
+ <div class="modal-dialog" role="document" style="width:800px">
    <div class="modal-content">
      <div class="modal-header">
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
        <h4 class="modal-title">Event 등록</h4>
      </div> 
-		<div id="eventInfo" class="well">
+		<div id="eventInfo" class="row">
 			<%--
 			<div class="media">
 		    		<img class="media-object" width=150px src="${event.esavedfile}">
