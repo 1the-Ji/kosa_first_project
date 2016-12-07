@@ -10,7 +10,7 @@
       <div id="modal-body" class="modal-body">
 	    <table class="table table-striped custab">
 		    <thead>
-		     <a href="#" id="btnStoreInfo" class="btn btn-primary btn-xs pull-right"><b>+</b> 목록 추가</a>
+		    <!--  <a href="#" id="btnStoreInfo" class="btn btn-primary btn-xs pull-right"><b>+</b> 목록 추가</a> -->
 
 		        <tr>
 		            <th>매장아이디</th>

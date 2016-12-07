@@ -113,6 +113,7 @@ function termList(pageNo) {
       url: "order/termList",
       data: {"term1":term1,"term2":term2,"pageNo":pageNo},
       success: function(data) {
+    	  location.reload();
     	 console.log("성공");
          $("#termTbody").empty();
          $("#termListModal .modal-footer").empty();
@@ -194,6 +195,7 @@ function orderMenuList(mgroup) {
 		url: "order/menuList",
 		data: {"mgroup": mgroup},
 		success: function(data) {
+			location.reload();
 			for(var i=0; i<data.length; i++) {
 				var menu = data[i];
 				$("#menuTbody").append(
@@ -215,6 +217,7 @@ function newOrderSideForm(mid){
 		data: {"mid": mid},
 		type: "get",
 		success: function(data) {
+			location.reload();
 			console.log("메뉴 그룹: "+data.mgroup);
 			if(data != null){
 				console.log("메뉴 존재");
@@ -267,6 +270,7 @@ function newOrderSave(){
 		data: {"ordercount": ordercount,"orderSize":orderSize,"orderSyrup":orderSyrup,"orderShot":orderShot},
 		type: "post",
 		success: function(data) {
+			location.reload();
 			if(data != null){
 				console.log("주문 저장 성공");
 			}else{
@@ -291,11 +295,10 @@ function resultOrder(){
 	$.ajax({
 		url: "order/orderpay",
 		success: function(data) {
-			if(data.detailOrders != null){
+			location.reload();
+			showPageList(1);
+			if(data != null){
 				console.log("총 주문 완료");
-				$("#orderForm1Modal").modal('hide');
-				showPageList(1);
-				
 			}else{
 				console.log("총 주문 실패");
 			}
@@ -303,6 +306,16 @@ function resultOrder(){
 		}
 	});
 	
+	$("#orderForm1Modal").modal('hide');
+	
+	$("#orderModal").modal({
+		backdrop:"static",
+		show:true
+	});
+	
+	$("#orderForm1Modal").on('hidden.bs.modal',function(){
+		$("#orderModal").css("opacity","1");
+	});
 }
 
 function cancelOrder(){
@@ -310,15 +323,17 @@ function cancelOrder(){
 	$.ajax({
 		url: "order/ordercancel",
 		success: function(data) {
-			if(data.ogid == "cancel"){
+			location.reload();
+			if(data == null){
 				console.log("주문 취소 완료");
-				$("#orderForm1Modal").modal('hide');
-				showPageList(1);
 			}else{
 				console.log("주문 취소 실패");
 			}
+			
 		}
 	});
+	
+	$("#orderForm1Modal").modal('hide');
 	
 	$("#orderModal").modal({
 		backdrop:"static",
@@ -336,16 +351,19 @@ function deleteOrder(ogid){
 		url: "order/orderdelete",
 		data: {"ogid": ogid},
 		success: function(data) {
-			if(data.ogid == "delete"){
+			location.reload();
+			if(data == null){
 				console.log("주문 삭제 완료");
-				$("#detailListModal").modal('hide');
-				showPageList(1);
 			}else{
 				console.log("주문 삭제 실패");
 			}
 			
 		}
 	});
+	
+	$("#detailListModal").modal('hide');
+	
+	
 }
 
 var activeEl = 0;
