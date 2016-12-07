@@ -17,11 +17,11 @@
          <table id="acrylic" style="width:900px">
              <thead>
                  <tr>
-                     <th>주문번호</th>
-                     <th>아이디</th>
-                     <th>주문시간</th>
-                     <th>총 가격</th>
-                     <th>결제 방식</th>
+                     <th style="width:70px">주문번호</th>
+                     <th style="width:70px">아이디</th>
+                     <th style="width:70px">주문시간</th>
+                     <th style="width:70px">총 가격</th>
+                     <th style="width:70px">결제 방식</th>
                  </tr>
              </thead>
              <tbody id="termTbody">

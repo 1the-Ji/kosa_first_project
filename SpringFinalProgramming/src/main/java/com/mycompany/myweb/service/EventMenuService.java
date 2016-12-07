@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.myweb.dao.EventMenuDao;
 import com.mycompany.myweb.dto.EventMenu;
-
+//지워야 할듯(검토 바람)
 @Component
 public class EventMenuService {
 	
