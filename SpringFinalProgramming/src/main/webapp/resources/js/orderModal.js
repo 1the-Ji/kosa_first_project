@@ -93,7 +93,7 @@ function detailOrderList(ogid){
 	         $("#detailListModal .modal-footer").append('결제방식 : <p class="btn btn-primary">'+oghowpay+'</p>&nbsp;&nbsp;');
 	         $("#detailListModal .modal-footer").append('삭제 : <input id="deleteOrder" onclick="deleteOrder(\''+ogid+'\')" class="btn btn-success" type="submit" value="삭제"/>&nbsp;&nbsp;');
 	   	  
-	         
+	         $("#termListModal").modal('hide');
 	         $("#detailListModal").modal({
 	 			backdrop:"static",
 				show:true
